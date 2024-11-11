@@ -3,7 +3,6 @@
 # it can be (it used to be actually) simplified to use a tab-delimited local file, but since my main file is a google sheet I didn't want to export and save all the time
 # the script creates a JSON object with keys = year and values a nested dict with all the rulers
 
-
 #Sunny ☀️   🌡️+76°F (feels +76°F, 32%) 🌬️↘6mph 🌘&m Sat Jun  1 11:17:32 2024
 #W22Q2 – 153 ➡️ 212 – 21 ❇️ 343
 

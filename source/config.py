@@ -3,7 +3,6 @@ import os
 import sys
 
 
-
 def log(s, *args):
     if args:
         s = s % args
