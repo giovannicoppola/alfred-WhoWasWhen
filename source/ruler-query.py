@@ -276,7 +276,7 @@ def serveRulers (MYINPUT, myRulers, myFiltered):
 					}
 				},	
 				"icon": {
-					# "path": myIcon
+					"path": "icons/crownedPerson.png"
 				},
 				
 					}) 
