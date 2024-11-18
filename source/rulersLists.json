@@ -1,0 +1,6191 @@
+{
+    "Pope": [
+        {
+            "progr": 1,
+            "name": "St. Peter",
+            "personal name": "",
+            "period": "32-67",
+            "rulerID": ""
+        },
+        {
+            "progr": 2,
+            "name": "St. Linus",
+            "personal name": "",
+            "period": "67-76",
+            "rulerID": ""
+        },
+        {
+            "progr": 3,
+            "name": "St. Anacletus (Cletus)",
+            "personal name": "",
+            "period": "76-88",
+            "rulerID": ""
+        },
+        {
+            "progr": 4,
+            "name": "St. Clement I",
+            "personal name": "",
+            "period": "88-97",
+            "rulerID": ""
+        },
+        {
+            "progr": 5,
+            "name": "St. Evaristus",
+            "personal name": "",
+            "period": "97-105",
+            "rulerID": ""
+        },
+        {
+            "progr": 6,
+            "name": "St. Alexander I",
+            "personal name": "",
+            "period": "105-115",
+            "rulerID": ""
+        },
+        {
+            "progr": 7,
+            "name": "St. Sixtus I ",
+            "personal name": "",
+            "period": "115-125",
+            "rulerID": ""
+        },
+        {
+            "progr": 8,
+            "name": "St. Telesphorus",
+            "personal name": "",
+            "period": "125-136",
+            "rulerID": ""
+        },
+        {
+            "progr": 9,
+            "name": "St. Hyginus",
+            "personal name": "",
+            "period": "136-140",
+            "rulerID": ""
+        },
+        {
+            "progr": 10,
+            "name": "St. Pius I",
+            "personal name": "",
+            "period": "140-155",
+            "rulerID": ""
+        },
+        {
+            "progr": 11,
+            "name": "St. Anicetus",
+            "personal name": "",
+            "period": "155-166",
+            "rulerID": ""
+        },
+        {
+            "progr": 12,
+            "name": "St. Soter",
+            "personal name": "",
+            "period": "166-175",
+            "rulerID": ""
+        },
+        {
+            "progr": 13,
+            "name": "St. Eleutherius",
+            "personal name": "",
+            "period": "175-189",
+            "rulerID": ""
+        },
+        {
+            "progr": 14,
+            "name": "St. Victor I",
+            "personal name": "",
+            "period": "189-199",
+            "rulerID": ""
+        },
+        {
+            "progr": 15,
+            "name": "St. Zephyrinus",
+            "personal name": "",
+            "period": "199-217",
+            "rulerID": ""
+        },
+        {
+            "progr": 16,
+            "name": "St. Callistus I",
+            "personal name": "",
+            "period": "217-22",
+            "rulerID": ""
+        },
+        {
+            "progr": 17,
+            "name": "St. Urban I",
+            "personal name": "",
+            "period": "222-30",
+            "rulerID": ""
+        },
+        {
+            "progr": 18,
+            "name": "St. Pontian",
+            "personal name": "",
+            "period": "230-35",
+            "rulerID": ""
+        },
+        {
+            "progr": 19,
+            "name": "St. Anterus",
+            "personal name": "",
+            "period": "235-36",
+            "rulerID": ""
+        },
+        {
+            "progr": 20,
+            "name": "St. Fabian",
+            "personal name": "",
+            "period": "236-50",
+            "rulerID": ""
+        },
+        {
+            "progr": 21,
+            "name": "St. Cornelius",
+            "personal name": "",
+            "period": "251-53",
+            "rulerID": ""
+        },
+        {
+            "progr": 22,
+            "name": "St. Lucius I",
+            "personal name": "",
+            "period": "253-54",
+            "rulerID": ""
+        },
+        {
+            "progr": 23,
+            "name": "St. Stephen I",
+            "personal name": "",
+            "period": "254-257",
+            "rulerID": ""
+        },
+        {
+            "progr": 24,
+            "name": "St. Sixtus II",
+            "personal name": "",
+            "period": "257-258",
+            "rulerID": ""
+        },
+        {
+            "progr": 25,
+            "name": "St. Dionysius",
+            "personal name": "",
+            "period": "260-268",
+            "rulerID": ""
+        },
+        {
+            "progr": 26,
+            "name": "St. Felix I",
+            "personal name": "",
+            "period": "269-274",
+            "rulerID": ""
+        },
+        {
+            "progr": 27,
+            "name": "St. Eutychian",
+            "personal name": "",
+            "period": "275-283",
+            "rulerID": ""
+        },
+        {
+            "progr": 28,
+            "name": "St. Caius ",
+            "personal name": "",
+            "period": "283-296",
+            "rulerID": ""
+        },
+        {
+            "progr": 29,
+            "name": "St. Marcellinus",
+            "personal name": "",
+            "period": "296-304",
+            "rulerID": ""
+        },
+        {
+            "progr": 30,
+            "name": "St. Marcellus I",
+            "personal name": "",
+            "period": "308-309",
+            "rulerID": ""
+        },
+        {
+            "progr": 31,
+            "name": "St. Eusebius",
+            "personal name": "",
+            "period": "310",
+            "rulerID": ""
+        },
+        {
+            "progr": 32,
+            "name": "St. Miltiades",
+            "personal name": "",
+            "period": "311-14",
+            "rulerID": ""
+        },
+        {
+            "progr": 33,
+            "name": "St. Sylvester I",
+            "personal name": "",
+            "period": "314-35",
+            "rulerID": ""
+        },
+        {
+            "progr": 34,
+            "name": "St. Marcus",
+            "personal name": "",
+            "period": "336",
+            "rulerID": ""
+        },
+        {
+            "progr": 35,
+            "name": "St. Julius I",
+            "personal name": "",
+            "period": "337-52",
+            "rulerID": ""
+        },
+        {
+            "progr": 36,
+            "name": "Liberius",
+            "personal name": "",
+            "period": "352-66",
+            "rulerID": ""
+        },
+        {
+            "progr": 37,
+            "name": "St. Damasus I",
+            "personal name": "",
+            "period": "366-84",
+            "rulerID": ""
+        },
+        {
+            "progr": 38,
+            "name": "St. Siricius",
+            "personal name": "",
+            "period": "384-99",
+            "rulerID": ""
+        },
+        {
+            "progr": 39,
+            "name": "St. Anastasius I",
+            "personal name": "",
+            "period": "399-401",
+            "rulerID": ""
+        },
+        {
+            "progr": 40,
+            "name": "St. Innocent I",
+            "personal name": "",
+            "period": "401-17",
+            "rulerID": ""
+        },
+        {
+            "progr": 41,
+            "name": "St. Zosimus",
+            "personal name": "",
+            "period": "417-18",
+            "rulerID": ""
+        },
+        {
+            "progr": 42,
+            "name": "St. Boniface I",
+            "personal name": "",
+            "period": "418-22",
+            "rulerID": ""
+        },
+        {
+            "progr": 43,
+            "name": "St. Celestine I",
+            "personal name": "",
+            "period": "422-32",
+            "rulerID": ""
+        },
+        {
+            "progr": 44,
+            "name": "St. Sixtus III",
+            "personal name": "",
+            "period": "432-40",
+            "rulerID": ""
+        },
+        {
+            "progr": 45,
+            "name": "St. Leo I (the Great)",
+            "personal name": "",
+            "period": "440-61",
+            "rulerID": ""
+        },
+        {
+            "progr": 46,
+            "name": "St. Hilarius",
+            "personal name": "",
+            "period": "461-68",
+            "rulerID": ""
+        },
+        {
+            "progr": 47,
+            "name": "St. Simplicius",
+            "personal name": "",
+            "period": "468-83",
+            "rulerID": ""
+        },
+        {
+            "progr": 48,
+            "name": "St. Felix III (II)",
+            "personal name": "",
+            "period": "483-92",
+            "rulerID": ""
+        },
+        {
+            "progr": 49,
+            "name": "St. Gelasius I",
+            "personal name": "",
+            "period": "492-96",
+            "rulerID": ""
+        },
+        {
+            "progr": 50,
+            "name": "Anastasius II",
+            "personal name": "",
+            "period": "496-98",
+            "rulerID": ""
+        },
+        {
+            "progr": 51,
+            "name": "St. Symmachus",
+            "personal name": "",
+            "period": "498-514",
+            "rulerID": ""
+        },
+        {
+            "progr": 52,
+            "name": "St. Hormisdas",
+            "personal name": "",
+            "period": "514-23",
+            "rulerID": ""
+        },
+        {
+            "progr": 53,
+            "name": "St. John I",
+            "personal name": "",
+            "period": "523-26",
+            "rulerID": ""
+        },
+        {
+            "progr": 54,
+            "name": "St. Felix IV (III)",
+            "personal name": "",
+            "period": "529-30",
+            "rulerID": ""
+        },
+        {
+            "progr": 55,
+            "name": "Boniface II",
+            "personal name": "",
+            "period": "530-32",
+            "rulerID": ""
+        },
+        {
+            "progr": 56,
+            "name": "John II",
+            "personal name": "",
+            "period": "533-35",
+            "rulerID": ""
+        },
+        {
+            "progr": 57,
+            "name": "St. Agapetus I",
+            "personal name": "",
+            "period": "535-36",
+            "rulerID": ""
+        },
+        {
+            "progr": 58,
+            "name": "St. Silverius",
+            "personal name": "",
+            "period": "536-37",
+            "rulerID": ""
+        },
+        {
+            "progr": 59,
+            "name": "Vigilius",
+            "personal name": "",
+            "period": "537-55",
+            "rulerID": ""
+        },
+        {
+            "progr": 60,
+            "name": "Pelagius I",
+            "personal name": "",
+            "period": "556-61",
+            "rulerID": ""
+        },
+        {
+            "progr": 61,
+            "name": "John III",
+            "personal name": "",
+            "period": "561-74",
+            "rulerID": ""
+        },
+        {
+            "progr": 62,
+            "name": "Benedict I",
+            "personal name": "",
+            "period": "575-79",
+            "rulerID": ""
+        },
+        {
+            "progr": 63,
+            "name": "Pelagius II",
+            "personal name": "",
+            "period": "579-90",
+            "rulerID": ""
+        },
+        {
+            "progr": 64,
+            "name": "St. Gregory I (the Great)",
+            "personal name": "",
+            "period": "590-604",
+            "rulerID": ""
+        },
+        {
+            "progr": 65,
+            "name": "Sabinian",
+            "personal name": "",
+            "period": "604-606",
+            "rulerID": ""
+        },
+        {
+            "progr": 66,
+            "name": "Boniface III",
+            "personal name": "",
+            "period": "607",
+            "rulerID": ""
+        },
+        {
+            "progr": 67,
+            "name": "St. Boniface IV",
+            "personal name": "",
+            "period": "608-15",
+            "rulerID": ""
+        },
+        {
+            "progr": 68,
+            "name": "St. Deusdedit (Adeodatus I)",
+            "personal name": "",
+            "period": "615-18",
+            "rulerID": ""
+        },
+        {
+            "progr": 69,
+            "name": "Boniface V",
+            "personal name": "",
+            "period": "619-25",
+            "rulerID": ""
+        },
+        {
+            "progr": 70,
+            "name": "Honorius I",
+            "personal name": "",
+            "period": "625-38",
+            "rulerID": ""
+        },
+        {
+            "progr": 71,
+            "name": "Severinus",
+            "personal name": "",
+            "period": "640",
+            "rulerID": ""
+        },
+        {
+            "progr": 72,
+            "name": "John IV",
+            "personal name": "",
+            "period": "640-42",
+            "rulerID": ""
+        },
+        {
+            "progr": 73,
+            "name": "Theodore I",
+            "personal name": "",
+            "period": "642-49",
+            "rulerID": ""
+        },
+        {
+            "progr": 74,
+            "name": "St. Martin I",
+            "personal name": "",
+            "period": "649-55",
+            "rulerID": ""
+        },
+        {
+            "progr": 75,
+            "name": "St. Eugene I",
+            "personal name": "",
+            "period": "655-57",
+            "rulerID": ""
+        },
+        {
+            "progr": 76,
+            "name": "St. Vitalian",
+            "personal name": "",
+            "period": "657-72",
+            "rulerID": ""
+        },
+        {
+            "progr": 77,
+            "name": "Adeodatus (II)",
+            "personal name": "",
+            "period": "672-76",
+            "rulerID": ""
+        },
+        {
+            "progr": 78,
+            "name": "Donus",
+            "personal name": "",
+            "period": "676-78",
+            "rulerID": ""
+        },
+        {
+            "progr": 79,
+            "name": "St. Agatho",
+            "personal name": "",
+            "period": "678-81",
+            "rulerID": ""
+        },
+        {
+            "progr": 80,
+            "name": "St. Leo II",
+            "personal name": "",
+            "period": "682-83",
+            "rulerID": ""
+        },
+        {
+            "progr": 81,
+            "name": "St. Benedict II",
+            "personal name": "",
+            "period": "684-85",
+            "rulerID": ""
+        },
+        {
+            "progr": 82,
+            "name": "John V",
+            "personal name": "",
+            "period": "685-86",
+            "rulerID": ""
+        },
+        {
+            "progr": 83,
+            "name": "Conon",
+            "personal name": "",
+            "period": "686-87",
+            "rulerID": ""
+        },
+        {
+            "progr": 84,
+            "name": "St. Sergius I",
+            "personal name": "",
+            "period": "687-701",
+            "rulerID": ""
+        },
+        {
+            "progr": 85,
+            "name": "John VI",
+            "personal name": "",
+            "period": "701-05",
+            "rulerID": ""
+        },
+        {
+            "progr": 86,
+            "name": "John VII",
+            "personal name": "",
+            "period": "705-07",
+            "rulerID": ""
+        },
+        {
+            "progr": 87,
+            "name": "Sisinnius",
+            "personal name": "",
+            "period": "708",
+            "rulerID": ""
+        },
+        {
+            "progr": 88,
+            "name": "Constantine",
+            "personal name": "",
+            "period": "708-15",
+            "rulerID": ""
+        },
+        {
+            "progr": 89,
+            "name": "St. Gregory II",
+            "personal name": "",
+            "period": "715-31",
+            "rulerID": ""
+        },
+        {
+            "progr": 90,
+            "name": "St. Gregory III",
+            "personal name": "",
+            "period": "731-41",
+            "rulerID": ""
+        },
+        {
+            "progr": 91,
+            "name": "St. Zachary",
+            "personal name": "",
+            "period": "741-52",
+            "rulerID": ""
+        },
+        {
+            "progr": 92,
+            "name": "Stephen II (III)",
+            "personal name": "",
+            "period": "752-57",
+            "rulerID": ""
+        },
+        {
+            "progr": 93,
+            "name": "St. Paul I",
+            "personal name": "",
+            "period": "757-67",
+            "rulerID": ""
+        },
+        {
+            "progr": 94,
+            "name": "Stephen III (IV)",
+            "personal name": "",
+            "period": "767-72",
+            "rulerID": ""
+        },
+        {
+            "progr": 95,
+            "name": "Adrian I",
+            "personal name": "",
+            "period": "772-95",
+            "rulerID": ""
+        },
+        {
+            "progr": 96,
+            "name": "St. Leo III",
+            "personal name": "",
+            "period": "795-816",
+            "rulerID": ""
+        },
+        {
+            "progr": 97,
+            "name": "Stephen IV (V)",
+            "personal name": "",
+            "period": "816-17",
+            "rulerID": ""
+        },
+        {
+            "progr": 98,
+            "name": "St. Paschal I",
+            "personal name": "",
+            "period": "817-24",
+            "rulerID": ""
+        },
+        {
+            "progr": 99,
+            "name": "Eugene II",
+            "personal name": "",
+            "period": "824-27",
+            "rulerID": ""
+        },
+        {
+            "progr": 100,
+            "name": "Valentine",
+            "personal name": "",
+            "period": "827",
+            "rulerID": ""
+        },
+        {
+            "progr": 101,
+            "name": "Gregory IV",
+            "personal name": "",
+            "period": "827-44",
+            "rulerID": ""
+        },
+        {
+            "progr": 102,
+            "name": "Sergius II ",
+            "personal name": "",
+            "period": "844-47",
+            "rulerID": ""
+        },
+        {
+            "progr": 103,
+            "name": "St. Leo IV",
+            "personal name": "",
+            "period": "847-55",
+            "rulerID": ""
+        },
+        {
+            "progr": 104,
+            "name": "Benedict III ",
+            "personal name": "",
+            "period": "855-58",
+            "rulerID": ""
+        },
+        {
+            "progr": 105,
+            "name": "St. Nicholas I (the Great)",
+            "personal name": "",
+            "period": "858-67",
+            "rulerID": ""
+        },
+        {
+            "progr": 106,
+            "name": "Adrian II",
+            "personal name": "",
+            "period": "867-72",
+            "rulerID": ""
+        },
+        {
+            "progr": 107,
+            "name": "John VIII",
+            "personal name": "",
+            "period": "872-82",
+            "rulerID": ""
+        },
+        {
+            "progr": 108,
+            "name": "Marinus I",
+            "personal name": "",
+            "period": "882-84",
+            "rulerID": ""
+        },
+        {
+            "progr": 109,
+            "name": "St. Adrian III",
+            "personal name": "",
+            "period": "884-85",
+            "rulerID": ""
+        },
+        {
+            "progr": 110,
+            "name": "Stephen V (VI)",
+            "personal name": "",
+            "period": "885-91",
+            "rulerID": ""
+        },
+        {
+            "progr": 111,
+            "name": "Formosus",
+            "personal name": "",
+            "period": "891-96",
+            "rulerID": ""
+        },
+        {
+            "progr": 112,
+            "name": "Boniface VI",
+            "personal name": "",
+            "period": "896",
+            "rulerID": ""
+        },
+        {
+            "progr": 113,
+            "name": "Stephen VI (VII)",
+            "personal name": "",
+            "period": "896-97",
+            "rulerID": ""
+        },
+        {
+            "progr": 114,
+            "name": "Romanus",
+            "personal name": "",
+            "period": "897",
+            "rulerID": ""
+        },
+        {
+            "progr": 115,
+            "name": "Theodore II",
+            "personal name": "",
+            "period": "897",
+            "rulerID": ""
+        },
+        {
+            "progr": 116,
+            "name": "John IX",
+            "personal name": "",
+            "period": "898-900",
+            "rulerID": ""
+        },
+        {
+            "progr": 117,
+            "name": "Benedict IV",
+            "personal name": "",
+            "period": "900-03",
+            "rulerID": ""
+        },
+        {
+            "progr": 118,
+            "name": "Leo V ",
+            "personal name": "",
+            "period": "903",
+            "rulerID": ""
+        },
+        {
+            "progr": 119,
+            "name": "Sergius III",
+            "personal name": "",
+            "period": "904-11",
+            "rulerID": ""
+        },
+        {
+            "progr": 120,
+            "name": "Anastasius III",
+            "personal name": "",
+            "period": "911-13",
+            "rulerID": ""
+        },
+        {
+            "progr": 121,
+            "name": "Lando",
+            "personal name": "",
+            "period": "913-14",
+            "rulerID": ""
+        },
+        {
+            "progr": 122,
+            "name": "John X",
+            "personal name": "",
+            "period": "914-28",
+            "rulerID": ""
+        },
+        {
+            "progr": 123,
+            "name": "Leo VI",
+            "personal name": "",
+            "period": "928",
+            "rulerID": ""
+        },
+        {
+            "progr": 124,
+            "name": "Stephen VIII",
+            "personal name": "",
+            "period": "929-31",
+            "rulerID": ""
+        },
+        {
+            "progr": 125,
+            "name": "John XI",
+            "personal name": "",
+            "period": "931-35",
+            "rulerID": ""
+        },
+        {
+            "progr": 126,
+            "name": "Leo VII",
+            "personal name": "",
+            "period": "936-39",
+            "rulerID": ""
+        },
+        {
+            "progr": 127,
+            "name": "Stephen IX",
+            "personal name": "",
+            "period": "939-42",
+            "rulerID": ""
+        },
+        {
+            "progr": 128,
+            "name": "Marinus II",
+            "personal name": "",
+            "period": "942-46",
+            "rulerID": ""
+        },
+        {
+            "progr": 129,
+            "name": "Agapetus II",
+            "personal name": "",
+            "period": "946-55",
+            "rulerID": ""
+        },
+        {
+            "progr": 130,
+            "name": "John XII",
+            "personal name": "",
+            "period": "955-63",
+            "rulerID": ""
+        },
+        {
+            "progr": 131,
+            "name": "Leo VIII",
+            "personal name": "",
+            "period": "963-64",
+            "rulerID": ""
+        },
+        {
+            "progr": 132,
+            "name": "Benedict V",
+            "personal name": "",
+            "period": "964",
+            "rulerID": ""
+        },
+        {
+            "progr": 133,
+            "name": "John XIII",
+            "personal name": "",
+            "period": "965-72",
+            "rulerID": ""
+        },
+        {
+            "progr": 134,
+            "name": "Benedict VI",
+            "personal name": "",
+            "period": "973-74",
+            "rulerID": ""
+        },
+        {
+            "progr": 135,
+            "name": "Benedict VII ",
+            "personal name": "",
+            "period": "974-83",
+            "rulerID": ""
+        },
+        {
+            "progr": 136,
+            "name": "John XIV",
+            "personal name": "",
+            "period": "983-84",
+            "rulerID": ""
+        },
+        {
+            "progr": 137,
+            "name": "John XV",
+            "personal name": "",
+            "period": "985-96",
+            "rulerID": ""
+        },
+        {
+            "progr": 138,
+            "name": "Gregory V ",
+            "personal name": "",
+            "period": "996-99",
+            "rulerID": ""
+        },
+        {
+            "progr": 139,
+            "name": "Sylvester II",
+            "personal name": "",
+            "period": "999-1003",
+            "rulerID": ""
+        },
+        {
+            "progr": 140,
+            "name": "John XVII",
+            "personal name": "Giovanni Sicco",
+            "period": "1003",
+            "rulerID": ""
+        },
+        {
+            "progr": 141,
+            "name": "John XVIII",
+            "personal name": "Giovanni Fasano",
+            "period": "1003-09",
+            "rulerID": ""
+        },
+        {
+            "progr": 142,
+            "name": "Sergius IV",
+            "personal name": "Pietro Martino Boccadiporco",
+            "period": "1009-12",
+            "rulerID": ""
+        },
+        {
+            "progr": 143,
+            "name": "Benedict VIII",
+            "personal name": "Teofilatto di Tuscolo",
+            "period": "1012-24",
+            "rulerID": ""
+        },
+        {
+            "progr": 144,
+            "name": "John XIX",
+            "personal name": "Romano di Tuscolo",
+            "period": "1024-32",
+            "rulerID": ""
+        },
+        {
+            "progr": 145,
+            "name": "Benedict IX",
+            "personal name": "Teofilatto di Tuscolo",
+            "period": "1032-45",
+            "rulerID": ""
+        },
+        {
+            "progr": 146,
+            "name": "Sylvester III Considered by some to be an antipope",
+            "personal name": "Giovanni dei Crescenzi Ottaviani",
+            "period": "1045",
+            "rulerID": ""
+        },
+        {
+            "progr": 147,
+            "name": "Benedict IX",
+            "personal name": "Teofilatto di Tuscolo",
+            "period": "1045",
+            "rulerID": ""
+        },
+        {
+            "progr": 148,
+            "name": "Gregory VI",
+            "personal name": "Giovanni Graziano Pierleoni",
+            "period": "1045-46",
+            "rulerID": ""
+        },
+        {
+            "progr": 149,
+            "name": "Clement II",
+            "personal name": "Suidger von Morsleben-Hornburg",
+            "period": "1046-47",
+            "rulerID": ""
+        },
+        {
+            "progr": 150,
+            "name": "Benedict IX",
+            "personal name": "Teofilatto di Tuscolo",
+            "period": "1047-48",
+            "rulerID": ""
+        },
+        {
+            "progr": 151,
+            "name": "Damasus II",
+            "personal name": "Poppo de Curagnoni",
+            "period": "1048",
+            "rulerID": ""
+        },
+        {
+            "progr": 152,
+            "name": "St. Leo IX",
+            "personal name": "Bruno von Egisheim-Dagsburg",
+            "period": "1049-54",
+            "rulerID": ""
+        },
+        {
+            "progr": 153,
+            "name": "Victor II",
+            "personal name": "Gebhard II von Calw-Dollnstein-Hirschberg",
+            "period": "1055-57",
+            "rulerID": ""
+        },
+        {
+            "progr": 154,
+            "name": "Stephen X",
+            "personal name": "Frederich",
+            "period": "1057-58",
+            "rulerID": ""
+        },
+        {
+            "progr": 155,
+            "name": "Nicholas II ",
+            "personal name": "Gerald de Bourgogne",
+            "period": "1058-61",
+            "rulerID": ""
+        },
+        {
+            "progr": 156,
+            "name": "Alexander II ",
+            "personal name": "Anselmo da Baggio",
+            "period": "1061-73",
+            "rulerID": ""
+        },
+        {
+            "progr": 157,
+            "name": "St. Gregory VII",
+            "personal name": "Ildebrando Aldobrandeschi di Soana",
+            "period": "1073-85",
+            "rulerID": ""
+        },
+        {
+            "progr": 158,
+            "name": "Blessed Victor III",
+            "personal name": "Dauferio Epifani Del Zotto",
+            "period": "1086-87",
+            "rulerID": ""
+        },
+        {
+            "progr": 159,
+            "name": "Blessed Urban II",
+            "personal name": "Odon de Lagery",
+            "period": "1088-99",
+            "rulerID": ""
+        },
+        {
+            "progr": 160,
+            "name": "Paschal II ",
+            "personal name": "Rainero Ranieri",
+            "period": "1099-1118",
+            "rulerID": ""
+        },
+        {
+            "progr": 161,
+            "name": "Gelasius II ",
+            "personal name": "Giovanni Caetani",
+            "period": "1118-19",
+            "rulerID": ""
+        },
+        {
+            "progr": 162,
+            "name": "Callistus II",
+            "personal name": "Guy",
+            "period": "1119-24",
+            "rulerID": ""
+        },
+        {
+            "progr": 163,
+            "name": "Honorius II ",
+            "personal name": "Lamberto Scannabecchi da Fiagnano",
+            "period": "1124-30",
+            "rulerID": ""
+        },
+        {
+            "progr": 164,
+            "name": "Innocent II ",
+            "personal name": "Gregorio Papareschi",
+            "period": "1130-43",
+            "rulerID": ""
+        },
+        {
+            "progr": 165,
+            "name": "Celestine II",
+            "personal name": "Guido Guelfuccio de Castello",
+            "period": "1143-44",
+            "rulerID": ""
+        },
+        {
+            "progr": 166,
+            "name": "Lucius II",
+            "personal name": "Gherardo Caccianemici dall'Orso\nCan.Reg.",
+            "period": "1144-45",
+            "rulerID": ""
+        },
+        {
+            "progr": 167,
+            "name": "Blessed Eugene III",
+            "personal name": "Pietro dei Paganelli di Montemagno",
+            "period": "1145-53",
+            "rulerID": ""
+        },
+        {
+            "progr": 168,
+            "name": "Anastasius IV",
+            "personal name": "Corrado Demitri della Suburra",
+            "period": "1153-54",
+            "rulerID": ""
+        },
+        {
+            "progr": 169,
+            "name": "Adrian IV",
+            "personal name": "Nicholas Breakspear",
+            "period": "1154-59",
+            "rulerID": ""
+        },
+        {
+            "progr": 170,
+            "name": "Alexander III ",
+            "personal name": "Rolando Bandinelli",
+            "period": "1159-81",
+            "rulerID": ""
+        },
+        {
+            "progr": 171,
+            "name": "Lucius III",
+            "personal name": "Ubaldo Allucignoli",
+            "period": "1181-85",
+            "rulerID": ""
+        },
+        {
+            "progr": 172,
+            "name": "Urban III",
+            "personal name": "Uberto Crivelli",
+            "period": "1185-87",
+            "rulerID": ""
+        },
+        {
+            "progr": 173,
+            "name": "Gregory VIII",
+            "personal name": "Alberto de Morra",
+            "period": "1187",
+            "rulerID": ""
+        },
+        {
+            "progr": 174,
+            "name": "Clement III",
+            "personal name": "Paolo Scolari",
+            "period": "1187-91",
+            "rulerID": ""
+        },
+        {
+            "progr": 175,
+            "name": "Celestine III",
+            "personal name": "Giacinto Bobone Orsini",
+            "period": "1191-98",
+            "rulerID": ""
+        },
+        {
+            "progr": 176,
+            "name": "Innocent III",
+            "personal name": "Lotario dei Conti di Segni",
+            "period": "1198-1216",
+            "rulerID": ""
+        },
+        {
+            "progr": 177,
+            "name": "Honorius III",
+            "personal name": "Cencio Savelli",
+            "period": "1216-27",
+            "rulerID": ""
+        },
+        {
+            "progr": 178,
+            "name": "Gregory IX",
+            "personal name": "Ugolino dei Conti di Segni",
+            "period": "1227-41",
+            "rulerID": ""
+        },
+        {
+            "progr": 179,
+            "name": "Celestine IV",
+            "personal name": "Goffredo Castiglioni",
+            "period": "1241",
+            "rulerID": ""
+        },
+        {
+            "progr": 180,
+            "name": "Innocent IV",
+            "personal name": "Sinibaldo Fieschi",
+            "period": "1243-54",
+            "rulerID": ""
+        },
+        {
+            "progr": 181,
+            "name": "Alexander IV",
+            "personal name": "Rinaldo dei Conti di Jenne",
+            "period": "1254-61",
+            "rulerID": ""
+        },
+        {
+            "progr": 182,
+            "name": "Urban IV",
+            "personal name": "Jacques Pantal\u00e9on",
+            "period": "1261-64",
+            "rulerID": ""
+        },
+        {
+            "progr": 183,
+            "name": "Clement IV",
+            "personal name": "Gui Faucoi",
+            "period": "1265-68",
+            "rulerID": ""
+        },
+        {
+            "progr": 184,
+            "name": "Blessed Gregory X",
+            "personal name": "Tebaldo Visconti",
+            "period": "1271-76",
+            "rulerID": ""
+        },
+        {
+            "progr": 185,
+            "name": "Blessed Innocent V",
+            "personal name": "Pierre de Tarentaise",
+            "period": "1276",
+            "rulerID": ""
+        },
+        {
+            "progr": 186,
+            "name": "Adrian V",
+            "personal name": "Ottobuono Fieschi",
+            "period": "1276",
+            "rulerID": ""
+        },
+        {
+            "progr": 187,
+            "name": "John XXI",
+            "personal name": "Pedro Juli\u00e3o (a.k.a. Petrus Hispanus and Pedro Hispano)",
+            "period": "1276-77",
+            "rulerID": ""
+        },
+        {
+            "progr": 188,
+            "name": "Nicholas III",
+            "personal name": "Giovanni Gaetano Orsini",
+            "period": "1277-80",
+            "rulerID": ""
+        },
+        {
+            "progr": 189,
+            "name": "Martin IV",
+            "personal name": "Simon de Brion",
+            "period": "1281-85",
+            "rulerID": ""
+        },
+        {
+            "progr": 190,
+            "name": "Honorius IV",
+            "personal name": "Giacomo Savelli",
+            "period": "1285-87",
+            "rulerID": ""
+        },
+        {
+            "progr": 191,
+            "name": "Nicholas IV",
+            "personal name": "Girolamo Masci, O.F.M.",
+            "period": "1288-92",
+            "rulerID": ""
+        },
+        {
+            "progr": 192,
+            "name": "St. Celestine V",
+            "personal name": "Pietro Angelerio, O.S.B.",
+            "period": "1294",
+            "rulerID": ""
+        },
+        {
+            "progr": 193,
+            "name": "Boniface VIII",
+            "personal name": "Benedetto Caetani",
+            "period": "1294-1303",
+            "rulerID": ""
+        },
+        {
+            "progr": 194,
+            "name": "Blessed Benedict XI",
+            "personal name": "Niccol\u00f2 Boccasini, O.P.",
+            "period": "1303-04",
+            "rulerID": ""
+        },
+        {
+            "progr": 195,
+            "name": "Clement V",
+            "personal name": "Raymond Bertrand de Gouth",
+            "period": "1305-14",
+            "rulerID": ""
+        },
+        {
+            "progr": 196,
+            "name": "John XXII ",
+            "personal name": "Jacques d'Euse; Jacques Du\u00e8se",
+            "period": "1316-34",
+            "rulerID": ""
+        },
+        {
+            "progr": 197,
+            "name": "Benedict XII",
+            "personal name": "Jacques Fournier, O.Cist.",
+            "period": "1334-42",
+            "rulerID": ""
+        },
+        {
+            "progr": 198,
+            "name": "Clement VI",
+            "personal name": "Pierre Roger, O.S.B.",
+            "period": "1342-52",
+            "rulerID": ""
+        },
+        {
+            "progr": 199,
+            "name": "Innocent VI",
+            "personal name": "\u00c9tienne Aubert",
+            "period": "1352-62",
+            "rulerID": ""
+        },
+        {
+            "progr": 200,
+            "name": "Blessed Urban V",
+            "personal name": "Guillaume (de) Grimoard, O.S.B.",
+            "period": "1362-70",
+            "rulerID": ""
+        },
+        {
+            "progr": 201,
+            "name": "Gregory XI",
+            "personal name": "Pierre Roger de Beaufort",
+            "period": "1370-78",
+            "rulerID": ""
+        },
+        {
+            "progr": 202,
+            "name": "Urban VI ",
+            "personal name": "Bartolomeo Prignano",
+            "period": "1378-89",
+            "rulerID": ""
+        },
+        {
+            "progr": 203,
+            "name": "Boniface IX ",
+            "personal name": "Pietro Tomacelli Cybo",
+            "period": "1389-1404",
+            "rulerID": ""
+        },
+        {
+            "progr": 204,
+            "name": "Innocent VII ",
+            "personal name": "Cosimo Gentile Migliorati",
+            "period": "1404-06",
+            "rulerID": ""
+        },
+        {
+            "progr": 205,
+            "name": "Gregory XII ",
+            "personal name": "Angelo Correr",
+            "period": "1406-15",
+            "rulerID": ""
+        },
+        {
+            "progr": 206,
+            "name": "Martin V",
+            "personal name": "Oddone Colonna, O.F.S",
+            "period": "1417-31",
+            "rulerID": ""
+        },
+        {
+            "progr": 207,
+            "name": "Eugene IV ",
+            "personal name": "Gabriele Condulmer, O.S.A.",
+            "period": "1431-47",
+            "rulerID": ""
+        },
+        {
+            "progr": 208,
+            "name": "Nicholas V",
+            "personal name": "Tommaso Parentucelli",
+            "period": "1447-55",
+            "rulerID": ""
+        },
+        {
+            "progr": 209,
+            "name": "Callistus III",
+            "personal name": "Alfonso de Borja",
+            "period": "1455-58",
+            "rulerID": ""
+        },
+        {
+            "progr": 210,
+            "name": "Pius II",
+            "personal name": "Enea Silvio Piccolomini",
+            "period": "1458-64",
+            "rulerID": ""
+        },
+        {
+            "progr": 211,
+            "name": "Paul II",
+            "personal name": "Pietro Barbo",
+            "period": "1464-71",
+            "rulerID": ""
+        },
+        {
+            "progr": 212,
+            "name": "Sixtus IV",
+            "personal name": "Francesco della Rovere, O.F.M.",
+            "period": "1471-84",
+            "rulerID": ""
+        },
+        {
+            "progr": 213,
+            "name": "Innocent VIII",
+            "personal name": "Giovanni Battista Cybo",
+            "period": "1484-92",
+            "rulerID": ""
+        },
+        {
+            "progr": 214,
+            "name": "Alexander VI",
+            "personal name": "Roderic Llan\u00e7ol i de Borja",
+            "period": "1492-1503",
+            "rulerID": ""
+        },
+        {
+            "progr": 215,
+            "name": "Pius III",
+            "personal name": "Francesco Todeschini Piccolomini",
+            "period": "1503",
+            "rulerID": ""
+        },
+        {
+            "progr": 216,
+            "name": "Julius II",
+            "personal name": "Giuliano della Rovere, O.F.M.",
+            "period": "1503-13",
+            "rulerID": ""
+        },
+        {
+            "progr": 217,
+            "name": "Leo X",
+            "personal name": "Giovanni di Lorenzo de' Medici",
+            "period": "1513-21",
+            "rulerID": ""
+        },
+        {
+            "progr": 218,
+            "name": "Adrian VI",
+            "personal name": "Adriaan Floriszoon Boeyens",
+            "period": "1522-23",
+            "rulerID": ""
+        },
+        {
+            "progr": 219,
+            "name": "Clement VII",
+            "personal name": "Giulio di Giuliano de' Medici",
+            "period": "1523-34",
+            "rulerID": ""
+        },
+        {
+            "progr": 220,
+            "name": "Paul III",
+            "personal name": "Alessandro Farnese",
+            "period": "1534-49",
+            "rulerID": ""
+        },
+        {
+            "progr": 221,
+            "name": "Julius III",
+            "personal name": "Giovanni Maria Ciocchi del Monte",
+            "period": "1550-55",
+            "rulerID": ""
+        },
+        {
+            "progr": 222,
+            "name": "Marcellus II",
+            "personal name": "Marcello Cervini degli Spannochi",
+            "period": "1555",
+            "rulerID": ""
+        },
+        {
+            "progr": 223,
+            "name": "Paul IV",
+            "personal name": "Giovanni Pietro Carafa, C.R.",
+            "period": "1555-59",
+            "rulerID": ""
+        },
+        {
+            "progr": 224,
+            "name": "Pius IV",
+            "personal name": "Giovanni Angelo Medici",
+            "period": "1559-65",
+            "rulerID": ""
+        },
+        {
+            "progr": 225,
+            "name": "St. Pius V",
+            "personal name": "Antonio Ghislieri, O.P.",
+            "period": "1566-72",
+            "rulerID": ""
+        },
+        {
+            "progr": 226,
+            "name": "Gregory XIII",
+            "personal name": "Ugo Boncompagni",
+            "period": "1572-85",
+            "rulerID": ""
+        },
+        {
+            "progr": 227,
+            "name": "Sixtus V",
+            "personal name": "Felice Peretti di Montalto, O.F.M. Conv.",
+            "period": "1585-90",
+            "rulerID": ""
+        },
+        {
+            "progr": 228,
+            "name": "Urban VII",
+            "personal name": "Giovanni Battista Castagna",
+            "period": "1590",
+            "rulerID": ""
+        },
+        {
+            "progr": 229,
+            "name": "Gregory XIV",
+            "personal name": "Niccol\u00f2 Sfondrati",
+            "period": "1590-91",
+            "rulerID": ""
+        },
+        {
+            "progr": 230,
+            "name": "Innocent IX",
+            "personal name": "Giovanni Antonio Facchinetti",
+            "period": "1591",
+            "rulerID": ""
+        },
+        {
+            "progr": 231,
+            "name": "Clement VIII",
+            "personal name": "Ippolito Aldobrandini",
+            "period": "1592-1605",
+            "rulerID": ""
+        },
+        {
+            "progr": 232,
+            "name": "Leo XI",
+            "personal name": "Alessandro Ottaviano de' Medici",
+            "period": "1605",
+            "rulerID": ""
+        },
+        {
+            "progr": 233,
+            "name": "Paul V",
+            "personal name": "Camillo Borghese",
+            "period": "1605-21",
+            "rulerID": ""
+        },
+        {
+            "progr": 234,
+            "name": "Gregory XV",
+            "personal name": "Alessandro Ludovisi",
+            "period": "1621-23",
+            "rulerID": ""
+        },
+        {
+            "progr": 235,
+            "name": "Urban VIII",
+            "personal name": "Maffeo Barberini",
+            "period": "1623-44",
+            "rulerID": ""
+        },
+        {
+            "progr": 236,
+            "name": "Innocent X",
+            "personal name": "Giovanni Battista Pamphilj",
+            "period": "1644-55",
+            "rulerID": ""
+        },
+        {
+            "progr": 237,
+            "name": "Alexander VII",
+            "personal name": "Fabio Chigi",
+            "period": "1655-67",
+            "rulerID": ""
+        },
+        {
+            "progr": 238,
+            "name": "Clement IX",
+            "personal name": "Giulio Rospigliosi",
+            "period": "1667-69",
+            "rulerID": ""
+        },
+        {
+            "progr": 239,
+            "name": "Clement X",
+            "personal name": "Emilio Bonaventura Altieri",
+            "period": "1670-76",
+            "rulerID": ""
+        },
+        {
+            "progr": 240,
+            "name": "Blessed Innocent XI",
+            "personal name": "Benedetto Odescalchi",
+            "period": "1676-89",
+            "rulerID": ""
+        },
+        {
+            "progr": 241,
+            "name": "Alexander VIII",
+            "personal name": "Pietro Vito Ottoboni",
+            "period": "1689-91",
+            "rulerID": ""
+        },
+        {
+            "progr": 242,
+            "name": "Innocent XII",
+            "personal name": "Antonio Pignatelli, O.F.S",
+            "period": "1691-1700",
+            "rulerID": ""
+        },
+        {
+            "progr": 243,
+            "name": "Clement XI",
+            "personal name": "Giovanni Francesco Albani",
+            "period": "1700-21",
+            "rulerID": ""
+        },
+        {
+            "progr": 244,
+            "name": "Innocent XIII",
+            "personal name": "Michelangelo dei Conti",
+            "period": "1721-24",
+            "rulerID": ""
+        },
+        {
+            "progr": 245,
+            "name": "Benedict XIII",
+            "personal name": "Pietro Francesco Orsini, O.P.",
+            "period": "1724-30",
+            "rulerID": ""
+        },
+        {
+            "progr": 246,
+            "name": "Clement XII",
+            "personal name": "Lorenzo Corsini, O.F.S",
+            "period": "1730-40",
+            "rulerID": ""
+        },
+        {
+            "progr": 247,
+            "name": "Benedict XIV",
+            "personal name": "Prospero Lorenzo Lambertini",
+            "period": "1740-58",
+            "rulerID": ""
+        },
+        {
+            "progr": 248,
+            "name": "Clement XIII",
+            "personal name": "Carlo della Torre di Rezzonico",
+            "period": "1758-69",
+            "rulerID": ""
+        },
+        {
+            "progr": 249,
+            "name": "Clement XIV",
+            "personal name": "Giovanni Vincenzo Antonio Ganganelli",
+            "period": "1769-74",
+            "rulerID": ""
+        },
+        {
+            "progr": 250,
+            "name": "Pius VI",
+            "personal name": "Count Giovanni Angelo Braschi",
+            "period": "1775-99",
+            "rulerID": ""
+        },
+        {
+            "progr": 251,
+            "name": "Pius VII",
+            "personal name": "Count Barnaba Niccol\u00f2 Maria Luigi Chiaramonti",
+            "period": "1800-23",
+            "rulerID": ""
+        },
+        {
+            "progr": 252,
+            "name": "Leo XII",
+            "personal name": "Count Annibale Francesco Clemente Melchiore Girolamo Nicola Sermattei della Genga",
+            "period": "1823-29",
+            "rulerID": ""
+        },
+        {
+            "progr": 253,
+            "name": "Pius VIII",
+            "personal name": "Francesco Saverio Castiglioni",
+            "period": "1829-30",
+            "rulerID": ""
+        },
+        {
+            "progr": 254,
+            "name": "Gregory XVI",
+            "personal name": "Bartolomeo Alberto Cappellari",
+            "period": "1831-46",
+            "rulerID": ""
+        },
+        {
+            "progr": 255,
+            "name": "Blessed Pius IX",
+            "personal name": "Count Giovanni Maria Mastai-Ferretti",
+            "period": "1846-78",
+            "rulerID": ""
+        },
+        {
+            "progr": 256,
+            "name": "Leo XIII",
+            "personal name": "Gioacchino Vincenzo Raffaele Luigi Pecci",
+            "period": "1878-1903",
+            "rulerID": ""
+        },
+        {
+            "progr": 257,
+            "name": "St. Pius X",
+            "personal name": "Giuseppe Melchiorre Sarto",
+            "period": "1903-14",
+            "rulerID": ""
+        },
+        {
+            "progr": 258,
+            "name": "Benedict XV",
+            "personal name": "Giacomo Paolo Giovanni Battista Della Chiesa",
+            "period": "1914-22",
+            "rulerID": ""
+        },
+        {
+            "progr": 259,
+            "name": "Pius XI",
+            "personal name": "Achille Ambrogio Damiano Ratti",
+            "period": "1922-39",
+            "rulerID": ""
+        },
+        {
+            "progr": 260,
+            "name": "Pius XII",
+            "personal name": "Eugenio Maria Giuseppe Giovanni Pacelli",
+            "period": "1939-58",
+            "rulerID": ""
+        },
+        {
+            "progr": 261,
+            "name": "St. John XXIII",
+            "personal name": "Angelo Giuseppe Roncalli",
+            "period": "1958-63",
+            "rulerID": ""
+        },
+        {
+            "progr": 262,
+            "name": "Paul VI",
+            "personal name": "Giovanni Battista Enrico Antonio Maria Montini",
+            "period": "1963-78",
+            "rulerID": ""
+        },
+        {
+            "progr": 263,
+            "name": "John Paul I",
+            "personal name": "Albino Luciani",
+            "period": "1978",
+            "rulerID": ""
+        },
+        {
+            "progr": 264,
+            "name": "St. John Paul II",
+            "personal name": "Karol J\u00f3zef Wojty\u0142a",
+            "period": "1978-2005",
+            "rulerID": ""
+        },
+        {
+            "progr": 265,
+            "name": "Benedict XVI",
+            "personal name": "Joseph Aloisius Ratzinger",
+            "period": "2005-2013",
+            "rulerID": ""
+        },
+        {
+            "progr": 266,
+            "name": "Francis",
+            "personal name": "Jorge Mario Bergoglio, S.J.",
+            "period": "2013-2024",
+            "rulerID": ""
+        }
+    ],
+    "English Monarch": [
+        {
+            "progr": 1,
+            "name": "Egbert",
+            "personal name": "",
+            "period": "802-839",
+            "rulerID": "265"
+        },
+        {
+            "progr": 2,
+            "name": "Aethelwulf",
+            "personal name": "",
+            "period": "839-856",
+            "rulerID": "266"
+        },
+        {
+            "progr": 3,
+            "name": "Aethelbald",
+            "personal name": "",
+            "period": "856-860",
+            "rulerID": "267"
+        },
+        {
+            "progr": 4,
+            "name": "Aethelberht",
+            "personal name": "",
+            "period": "860-865",
+            "rulerID": "268"
+        },
+        {
+            "progr": 5,
+            "name": "Aethelred I",
+            "personal name": "",
+            "period": "865-871",
+            "rulerID": "269"
+        },
+        {
+            "progr": 6,
+            "name": "Alfred the Great",
+            "personal name": "",
+            "period": "871-899",
+            "rulerID": "270"
+        },
+        {
+            "progr": 7,
+            "name": "Edward the Elder",
+            "personal name": "",
+            "period": "899-924",
+            "rulerID": "271"
+        },
+        {
+            "progr": 8,
+            "name": "Athelstan",
+            "personal name": "",
+            "period": "925-939",
+            "rulerID": "272"
+        },
+        {
+            "progr": 9,
+            "name": "Edmund I",
+            "personal name": "",
+            "period": "939-946",
+            "rulerID": "273"
+        },
+        {
+            "progr": 10,
+            "name": "Eadred",
+            "personal name": "",
+            "period": "946-955",
+            "rulerID": "274"
+        },
+        {
+            "progr": 11,
+            "name": "Eadwig",
+            "personal name": "",
+            "period": "955-959",
+            "rulerID": "275"
+        },
+        {
+            "progr": 12,
+            "name": "Edgar",
+            "personal name": "",
+            "period": "959-975",
+            "rulerID": "276"
+        },
+        {
+            "progr": 13,
+            "name": "Edward the Martyr",
+            "personal name": "",
+            "period": "975-978",
+            "rulerID": "277"
+        },
+        {
+            "progr": 14,
+            "name": "Ethelred II the Unready",
+            "personal name": "",
+            "period": "978-1013",
+            "rulerID": "278"
+        },
+        {
+            "progr": 15,
+            "name": "Sweyn Forkbeard",
+            "personal name": "",
+            "period": "1013-14",
+            "rulerID": "279"
+        },
+        {
+            "progr": 16,
+            "name": "Ethelred II the Unready",
+            "personal name": "",
+            "period": "1014-16",
+            "rulerID": "278"
+        },
+        {
+            "progr": 17,
+            "name": "Edmund II Ironside",
+            "personal name": "",
+            "period": "1016",
+            "rulerID": "280"
+        },
+        {
+            "progr": 18,
+            "name": "Canute",
+            "personal name": "",
+            "period": "1016-35",
+            "rulerID": "281"
+        },
+        {
+            "progr": 19,
+            "name": "Harold I Harefoot",
+            "personal name": "",
+            "period": "1035-40",
+            "rulerID": "282"
+        },
+        {
+            "progr": 20,
+            "name": "Hardecanute",
+            "personal name": "",
+            "period": "1040-42",
+            "rulerID": "283"
+        },
+        {
+            "progr": 21,
+            "name": "Edward the Confessor",
+            "personal name": "",
+            "period": "1042-66",
+            "rulerID": "284"
+        },
+        {
+            "progr": 22,
+            "name": "Harold II",
+            "personal name": "",
+            "period": "1066",
+            "rulerID": "285"
+        },
+        {
+            "progr": 23,
+            "name": "William I the Conqueror",
+            "personal name": "",
+            "period": "1066-87",
+            "rulerID": "286"
+        },
+        {
+            "progr": 24,
+            "name": "William II",
+            "personal name": "",
+            "period": "1087-1100",
+            "rulerID": "287"
+        },
+        {
+            "progr": 25,
+            "name": "Henry I of England",
+            "personal name": "",
+            "period": "1100-35",
+            "rulerID": "288"
+        },
+        {
+            "progr": 26,
+            "name": "Stephen",
+            "personal name": "",
+            "period": "1135-54",
+            "rulerID": "289"
+        },
+        {
+            "progr": 27,
+            "name": "Henry II Plantagenet",
+            "personal name": "Plantagenet",
+            "period": "1154-89",
+            "rulerID": "290"
+        },
+        {
+            "progr": 28,
+            "name": "Richard I",
+            "personal name": "Plantagenet",
+            "period": "1189-99",
+            "rulerID": "291"
+        },
+        {
+            "progr": 29,
+            "name": "John",
+            "personal name": "Plantagenet",
+            "period": "1199-1216",
+            "rulerID": "292"
+        },
+        {
+            "progr": 30,
+            "name": "Henry III",
+            "personal name": "Plantagenet",
+            "period": "1216-72",
+            "rulerID": "293"
+        },
+        {
+            "progr": 31,
+            "name": "Edward I",
+            "personal name": "Plantagenet",
+            "period": "1272-1307",
+            "rulerID": "294"
+        },
+        {
+            "progr": 32,
+            "name": "Edward II",
+            "personal name": "Plantagenet",
+            "period": "1307-27",
+            "rulerID": "295"
+        },
+        {
+            "progr": 33,
+            "name": "Edward III",
+            "personal name": "Plantagenet",
+            "period": "1327-77",
+            "rulerID": "296"
+        },
+        {
+            "progr": 34,
+            "name": "Richard II",
+            "personal name": "Plantagenet",
+            "period": "1377-99",
+            "rulerID": "297"
+        },
+        {
+            "progr": 35,
+            "name": "Henry IV",
+            "personal name": "Lancaster",
+            "period": "1399-1413",
+            "rulerID": "298"
+        },
+        {
+            "progr": 36,
+            "name": "Henry V",
+            "personal name": "Lancaster",
+            "period": "1413-22",
+            "rulerID": "299"
+        },
+        {
+            "progr": 37,
+            "name": "Henry VI",
+            "personal name": "Lancaster",
+            "period": "1422-61",
+            "rulerID": "300"
+        },
+        {
+            "progr": 38,
+            "name": "Edward IV",
+            "personal name": "York",
+            "period": "1461-70",
+            "rulerID": "301"
+        },
+        {
+            "progr": 39,
+            "name": "Henry VI",
+            "personal name": "Lancaster",
+            "period": "1470-71",
+            "rulerID": "300"
+        },
+        {
+            "progr": 40,
+            "name": "Edward IV",
+            "personal name": "York",
+            "period": "1471-83",
+            "rulerID": "301"
+        },
+        {
+            "progr": 41,
+            "name": "Edward V",
+            "personal name": "York",
+            "period": "1483",
+            "rulerID": "302"
+        },
+        {
+            "progr": 42,
+            "name": "Richard III",
+            "personal name": "York",
+            "period": "1483-85",
+            "rulerID": "303"
+        },
+        {
+            "progr": 43,
+            "name": "Henry VII",
+            "personal name": "Tudor",
+            "period": "1485-1509",
+            "rulerID": "304"
+        },
+        {
+            "progr": 44,
+            "name": "Henry VIII",
+            "personal name": "Tudor",
+            "period": "1509-47",
+            "rulerID": "305"
+        },
+        {
+            "progr": 45,
+            "name": "Edward VI",
+            "personal name": "Tudor",
+            "period": "1547-53",
+            "rulerID": "306"
+        },
+        {
+            "progr": 46,
+            "name": "Mary I",
+            "personal name": "Tudor",
+            "period": "1553-58",
+            "rulerID": "307"
+        },
+        {
+            "progr": 47,
+            "name": "Elizabeth I",
+            "personal name": "Tudor",
+            "period": "1558-1603",
+            "rulerID": "308"
+        },
+        {
+            "progr": 48,
+            "name": "James I",
+            "personal name": "Stuart",
+            "period": "1603-25",
+            "rulerID": ""
+        },
+        {
+            "progr": 49,
+            "name": "Charles I",
+            "personal name": "Stuart",
+            "period": "1625-49",
+            "rulerID": ""
+        },
+        {
+            "progr": 50,
+            "name": "Charles II",
+            "personal name": "Stuart",
+            "period": "1660-85",
+            "rulerID": ""
+        },
+        {
+            "progr": 51,
+            "name": "James II",
+            "personal name": "Stuart",
+            "period": "1685-88",
+            "rulerID": ""
+        },
+        {
+            "progr": 52,
+            "name": "William III and Mary II",
+            "personal name": "Stuart",
+            "period": "1689-1702",
+            "rulerID": ""
+        },
+        {
+            "progr": 53,
+            "name": "Anne",
+            "personal name": "Stuart",
+            "period": "1702-14",
+            "rulerID": ""
+        },
+        {
+            "progr": 54,
+            "name": "George I",
+            "personal name": "Hanover",
+            "period": "1714-27",
+            "rulerID": ""
+        },
+        {
+            "progr": 55,
+            "name": "George II",
+            "personal name": "Hanover",
+            "period": "1727-60",
+            "rulerID": ""
+        },
+        {
+            "progr": 56,
+            "name": "George III",
+            "personal name": "Hanover",
+            "period": "1760-1820",
+            "rulerID": ""
+        },
+        {
+            "progr": 57,
+            "name": "George IV",
+            "personal name": "Hanover",
+            "period": "1820-30",
+            "rulerID": ""
+        },
+        {
+            "progr": 58,
+            "name": "William IV",
+            "personal name": "Hanover",
+            "period": "1830-37",
+            "rulerID": ""
+        },
+        {
+            "progr": 59,
+            "name": "Victoria",
+            "personal name": "Hanover",
+            "period": "1837-1901",
+            "rulerID": ""
+        },
+        {
+            "progr": 60,
+            "name": "Edward VII",
+            "personal name": "Windsor",
+            "period": "1901-10",
+            "rulerID": ""
+        },
+        {
+            "progr": 61,
+            "name": "George V",
+            "personal name": "Windsor",
+            "period": "1910-36",
+            "rulerID": ""
+        },
+        {
+            "progr": 62,
+            "name": "Edward VIII",
+            "personal name": "Windsor",
+            "period": "1936",
+            "rulerID": ""
+        },
+        {
+            "progr": 63,
+            "name": "George VI",
+            "personal name": "Windsor",
+            "period": "1936-52",
+            "rulerID": ""
+        },
+        {
+            "progr": 64,
+            "name": "Elizabeth II",
+            "personal name": "Windsor",
+            "period": "1952-2022",
+            "rulerID": ""
+        },
+        {
+            "progr": 65,
+            "name": "Charles III",
+            "personal name": "Windsor",
+            "period": "2022-2024",
+            "rulerID": ""
+        }
+    ],
+    "US president": [
+        {
+            "progr": 1,
+            "name": "George Washington (John Adams)",
+            "personal name": "",
+            "period": "1789-1797",
+            "rulerID": ""
+        },
+        {
+            "progr": 2,
+            "name": "John Adams (Thomas Jefferson)",
+            "personal name": "",
+            "period": "1797-1801",
+            "rulerID": ""
+        },
+        {
+            "progr": 3,
+            "name": "Thomas Jefferson (Aaron Burr)",
+            "personal name": "",
+            "period": "1801-1805",
+            "rulerID": ""
+        },
+        {
+            "progr": 4,
+            "name": "Thomas Jefferson (George Clinton)",
+            "personal name": "",
+            "period": "1805-1809",
+            "rulerID": ""
+        },
+        {
+            "progr": 5,
+            "name": "James Madison (George Clinton)",
+            "personal name": "",
+            "period": "1809-1812",
+            "rulerID": ""
+        },
+        {
+            "progr": 6,
+            "name": "James Madison (office vacant)",
+            "personal name": "",
+            "period": "1812-1813",
+            "rulerID": ""
+        },
+        {
+            "progr": 7,
+            "name": "James Madison (Elbridge Gerry)",
+            "personal name": "",
+            "period": "1813-1814",
+            "rulerID": ""
+        },
+        {
+            "progr": 8,
+            "name": "James Madison (office vacant)",
+            "personal name": "",
+            "period": "1814-1817",
+            "rulerID": ""
+        },
+        {
+            "progr": 9,
+            "name": "James Monroe (Daniel D. Tompkins)",
+            "personal name": "",
+            "period": "1817-1825",
+            "rulerID": ""
+        },
+        {
+            "progr": 10,
+            "name": "John Quincy Adams (John C. Calhoun)",
+            "personal name": "",
+            "period": "1825-1829",
+            "rulerID": ""
+        },
+        {
+            "progr": 11,
+            "name": "Andrew Jackson (John C. Calhoun)",
+            "personal name": "",
+            "period": "1829-1832",
+            "rulerID": ""
+        },
+        {
+            "progr": 12,
+            "name": "Andrew Jackson (Martin Van Buren)",
+            "personal name": "",
+            "period": "1833-1837",
+            "rulerID": ""
+        },
+        {
+            "progr": 13,
+            "name": "Martin Van Buren (Richard M. Johnson)",
+            "personal name": "",
+            "period": "1837-1841",
+            "rulerID": ""
+        },
+        {
+            "progr": 14,
+            "name": "William Henry Harrison (John Tyler)",
+            "personal name": "",
+            "period": "1841",
+            "rulerID": ""
+        },
+        {
+            "progr": 15,
+            "name": "John Tyler (office vacant)",
+            "personal name": "",
+            "period": "1841-1845",
+            "rulerID": ""
+        },
+        {
+            "progr": 16,
+            "name": "James K. Polk (George M. Dallas)",
+            "personal name": "",
+            "period": "1845-1849",
+            "rulerID": ""
+        },
+        {
+            "progr": 17,
+            "name": "Zachary Taylor (Millard Fillmore)",
+            "personal name": "",
+            "period": "1849-1850",
+            "rulerID": ""
+        },
+        {
+            "progr": 18,
+            "name": "Millard Fillmore (office vacant)",
+            "personal name": "",
+            "period": "1850-1853",
+            "rulerID": ""
+        },
+        {
+            "progr": 19,
+            "name": "Franklin Pierce (William R. King)",
+            "personal name": "",
+            "period": "1853",
+            "rulerID": ""
+        },
+        {
+            "progr": 20,
+            "name": "Franklin Pierce (office vacant)",
+            "personal name": "",
+            "period": "1853-1857",
+            "rulerID": ""
+        },
+        {
+            "progr": 21,
+            "name": "James Buchanan (John C. Breckinridge)",
+            "personal name": "",
+            "period": "1857-1861",
+            "rulerID": ""
+        },
+        {
+            "progr": 22,
+            "name": "Abraham Lincoln (Hannibal Hamlin)",
+            "personal name": "",
+            "period": "1861-1865",
+            "rulerID": ""
+        },
+        {
+            "progr": 23,
+            "name": "Abraham Lincoln (Andrew Johnson)",
+            "personal name": "",
+            "period": "1865",
+            "rulerID": ""
+        },
+        {
+            "progr": 24,
+            "name": "Andrew Johnson (office vacant)",
+            "personal name": "",
+            "period": "1865-1869",
+            "rulerID": ""
+        },
+        {
+            "progr": 25,
+            "name": "Ulysses S. Grant (Schuyler Colfax)",
+            "personal name": "",
+            "period": "1869-1873",
+            "rulerID": ""
+        },
+        {
+            "progr": 26,
+            "name": "Ulysses S. Grant (Henry Wilson)",
+            "personal name": "",
+            "period": "1873-1875",
+            "rulerID": ""
+        },
+        {
+            "progr": 27,
+            "name": "Ulysses S. Grant (office vacant)",
+            "personal name": "",
+            "period": "1875-1877",
+            "rulerID": ""
+        },
+        {
+            "progr": 28,
+            "name": "Rutherford Birchard Hayes (William A. Wheeler)",
+            "personal name": "",
+            "period": "1877-1881",
+            "rulerID": ""
+        },
+        {
+            "progr": 29,
+            "name": "James A. Garfield (Chester A. Arthur)",
+            "personal name": "",
+            "period": "1881",
+            "rulerID": ""
+        },
+        {
+            "progr": 30,
+            "name": "Chester A. Arthur (office vacant)",
+            "personal name": "",
+            "period": "1881-1885",
+            "rulerID": ""
+        },
+        {
+            "progr": 31,
+            "name": "Grover Cleveland (Thomas A. Hendricks)",
+            "personal name": "",
+            "period": "1885",
+            "rulerID": ""
+        },
+        {
+            "progr": 32,
+            "name": "Grover Cleveland (office vacant)",
+            "personal name": "",
+            "period": "1885-1889",
+            "rulerID": ""
+        },
+        {
+            "progr": 33,
+            "name": "Benjamin Harrison (Levi P. Morton)",
+            "personal name": "",
+            "period": "1889-1893",
+            "rulerID": ""
+        },
+        {
+            "progr": 34,
+            "name": "Grover Cleveland (Adlai E. Stevenson)",
+            "personal name": "",
+            "period": "1893-1897",
+            "rulerID": ""
+        },
+        {
+            "progr": 35,
+            "name": "William McKinley (Garret A. Hobart)",
+            "personal name": "",
+            "period": "1897-1899",
+            "rulerID": ""
+        },
+        {
+            "progr": 36,
+            "name": "William McKinley (office vacant)",
+            "personal name": "",
+            "period": "1899-1901",
+            "rulerID": ""
+        },
+        {
+            "progr": 37,
+            "name": "William McKinley (Theodore Roosevelt)",
+            "personal name": "",
+            "period": "1901",
+            "rulerID": ""
+        },
+        {
+            "progr": 38,
+            "name": "Theodore Roosevelt (office vacant)",
+            "personal name": "",
+            "period": "1901-1905",
+            "rulerID": ""
+        },
+        {
+            "progr": 39,
+            "name": "Theodore Roosevelt (Charles W. Fairbanks)",
+            "personal name": "",
+            "period": "1905-1909",
+            "rulerID": ""
+        },
+        {
+            "progr": 40,
+            "name": "William H. Taft (James S. Sherman)",
+            "personal name": "",
+            "period": "1909-1912",
+            "rulerID": ""
+        },
+        {
+            "progr": 41,
+            "name": "William H. Taft (office vacant)",
+            "personal name": "",
+            "period": "1912-1913",
+            "rulerID": ""
+        },
+        {
+            "progr": 42,
+            "name": "Woodrow Wilson (Thomas R. Marshall)",
+            "personal name": "",
+            "period": "1913-1921",
+            "rulerID": ""
+        },
+        {
+            "progr": 43,
+            "name": "Warren G. Harding (Calvin Coolidge)",
+            "personal name": "",
+            "period": "1921-1923",
+            "rulerID": ""
+        },
+        {
+            "progr": 44,
+            "name": "Calvin Coolidge (office vacant)",
+            "personal name": "",
+            "period": "1923-1925",
+            "rulerID": ""
+        },
+        {
+            "progr": 45,
+            "name": "Calvin Coolidge (Charles G. Dawes)",
+            "personal name": "",
+            "period": "1925-1929",
+            "rulerID": ""
+        },
+        {
+            "progr": 46,
+            "name": "Herbert Hoover (Charles Curtis)",
+            "personal name": "",
+            "period": "1929-1933",
+            "rulerID": ""
+        },
+        {
+            "progr": 47,
+            "name": "Franklin D. Roosevelt (John N. Garner)",
+            "personal name": "",
+            "period": "1933-1941",
+            "rulerID": ""
+        },
+        {
+            "progr": 48,
+            "name": "Franklin D. Roosevelt (Henry A. Wallace)",
+            "personal name": "",
+            "period": "1941-1945",
+            "rulerID": ""
+        },
+        {
+            "progr": 49,
+            "name": "Franklin D. Roosevelt (Harry S. Truman)",
+            "personal name": "",
+            "period": "1945",
+            "rulerID": ""
+        },
+        {
+            "progr": 50,
+            "name": "Harry S. Truman (office vacant)",
+            "personal name": "",
+            "period": "1945-1949",
+            "rulerID": ""
+        },
+        {
+            "progr": 51,
+            "name": "Harry S. Truman (Barkley, Alben W.)",
+            "personal name": "",
+            "period": "1949-1953",
+            "rulerID": ""
+        },
+        {
+            "progr": 52,
+            "name": "Dwight D. Eisenhower (Richard M. Nixon)",
+            "personal name": "",
+            "period": "1953-1961",
+            "rulerID": ""
+        },
+        {
+            "progr": 53,
+            "name": "John F. Kennedy (Lyndon B. Johnson)",
+            "personal name": "",
+            "period": "1961-1963",
+            "rulerID": ""
+        },
+        {
+            "progr": 54,
+            "name": "Lyndon B. Johnson (office vacant)",
+            "personal name": "",
+            "period": "1963-1965",
+            "rulerID": ""
+        },
+        {
+            "progr": 55,
+            "name": "Lyndon B. Johnson (Hubert H. Humphrey)",
+            "personal name": "",
+            "period": "1965-1969",
+            "rulerID": ""
+        },
+        {
+            "progr": 56,
+            "name": "Richard M. Nixon (Spiro T. Agnew)",
+            "personal name": "",
+            "period": "1969-1973",
+            "rulerID": ""
+        },
+        {
+            "progr": 57,
+            "name": "Richard M. Nixon (Gerald R. Ford)",
+            "personal name": "",
+            "period": "1973-1974",
+            "rulerID": ""
+        },
+        {
+            "progr": 58,
+            "name": "Gerald R. Ford (Nelson Rockefeller)",
+            "personal name": "",
+            "period": "1974-1977",
+            "rulerID": ""
+        },
+        {
+            "progr": 59,
+            "name": "Jimmy Carter (Walter F. Mondale)",
+            "personal name": "",
+            "period": "1977-1981",
+            "rulerID": ""
+        },
+        {
+            "progr": 60,
+            "name": "Ronald Reagan (George Bush)",
+            "personal name": "",
+            "period": "1981-1989",
+            "rulerID": ""
+        },
+        {
+            "progr": 61,
+            "name": "George Bush (Dan Quayle)",
+            "personal name": "",
+            "period": "1989-1993",
+            "rulerID": ""
+        },
+        {
+            "progr": 62,
+            "name": "Bill Clinton (Albert Gore)",
+            "personal name": "",
+            "period": "1993-2001",
+            "rulerID": ""
+        },
+        {
+            "progr": 63,
+            "name": "George W. Bush (Richard Cheney)",
+            "personal name": "",
+            "period": "2001-2009",
+            "rulerID": ""
+        },
+        {
+            "progr": 64,
+            "name": "Barack Obama (Joseph R. Biden)",
+            "personal name": "",
+            "period": "2009-2017",
+            "rulerID": ""
+        },
+        {
+            "progr": 65,
+            "name": "Donald J. Trump (Mike Pence)",
+            "personal name": "",
+            "period": "2017-2021",
+            "rulerID": ""
+        },
+        {
+            "progr": 66,
+            "name": "Joseph R. Biden (Kamala Harris)",
+            "personal name": "",
+            "period": "2021-2024",
+            "rulerID": ""
+        }
+    ],
+    "British PM": [
+        {
+            "progr": 1,
+            "name": "Robert Walpole",
+            "personal name": "",
+            "period": "1721-42",
+            "rulerID": ""
+        },
+        {
+            "progr": 2,
+            "name": "Spencer Compton",
+            "personal name": "",
+            "period": "1742-43",
+            "rulerID": ""
+        },
+        {
+            "progr": 3,
+            "name": "Henry Pelham",
+            "personal name": "",
+            "period": "1743-54",
+            "rulerID": ""
+        },
+        {
+            "progr": 4,
+            "name": "Thomas Pelham-Holles",
+            "personal name": "",
+            "period": "1754-56",
+            "rulerID": ""
+        },
+        {
+            "progr": 5,
+            "name": "William Cavendish",
+            "personal name": "",
+            "period": "1756-57",
+            "rulerID": ""
+        },
+        {
+            "progr": 6,
+            "name": "Thomas Pelham-Holles",
+            "personal name": "",
+            "period": "1757-62",
+            "rulerID": ""
+        },
+        {
+            "progr": 7,
+            "name": "John Stuart",
+            "personal name": "",
+            "period": "1762-63",
+            "rulerID": ""
+        },
+        {
+            "progr": 8,
+            "name": "George Grenville",
+            "personal name": "",
+            "period": "1763-65",
+            "rulerID": ""
+        },
+        {
+            "progr": 9,
+            "name": "Charles Watson Wentworth",
+            "personal name": "",
+            "period": "1765-66",
+            "rulerID": ""
+        },
+        {
+            "progr": 10,
+            "name": "William Pitt, the Elder",
+            "personal name": "",
+            "period": "1766-68",
+            "rulerID": ""
+        },
+        {
+            "progr": 11,
+            "name": "Augustus Henry Fitzroy",
+            "personal name": "",
+            "period": "1768-70",
+            "rulerID": ""
+        },
+        {
+            "progr": 12,
+            "name": "Frederick North",
+            "personal name": "",
+            "period": "1770-82",
+            "rulerID": ""
+        },
+        {
+            "progr": 13,
+            "name": "Charles Watson Wentworth",
+            "personal name": "",
+            "period": "1782",
+            "rulerID": ""
+        },
+        {
+            "progr": 14,
+            "name": "William Petty-Fitzmaurice",
+            "personal name": "",
+            "period": "1782-83",
+            "rulerID": ""
+        },
+        {
+            "progr": 15,
+            "name": "William Henry Cavendish-Bentinck",
+            "personal name": "",
+            "period": "1783",
+            "rulerID": ""
+        },
+        {
+            "progr": 16,
+            "name": "William Pitt, the Younger",
+            "personal name": "",
+            "period": "1783-1801",
+            "rulerID": ""
+        },
+        {
+            "progr": 17,
+            "name": "Henry Addington",
+            "personal name": "",
+            "period": "1801-04",
+            "rulerID": ""
+        },
+        {
+            "progr": 18,
+            "name": "William Pitt, the Younger",
+            "personal name": "",
+            "period": "1804-06",
+            "rulerID": ""
+        },
+        {
+            "progr": 19,
+            "name": "William Wyndham Grenville",
+            "personal name": "",
+            "period": "1806-07",
+            "rulerID": ""
+        },
+        {
+            "progr": 20,
+            "name": "William Henry Cavendish-Bentinck",
+            "personal name": "",
+            "period": "1807-09",
+            "rulerID": ""
+        },
+        {
+            "progr": 21,
+            "name": "Spencer Perceval",
+            "personal name": "",
+            "period": "1809-12",
+            "rulerID": ""
+        },
+        {
+            "progr": 22,
+            "name": "Robert Banks Jenkinson",
+            "personal name": "",
+            "period": "1812-27",
+            "rulerID": ""
+        },
+        {
+            "progr": 23,
+            "name": "George Canning",
+            "personal name": "",
+            "period": "1827",
+            "rulerID": ""
+        },
+        {
+            "progr": 24,
+            "name": "Frederick John Robinson",
+            "personal name": "",
+            "period": "1827-28",
+            "rulerID": ""
+        },
+        {
+            "progr": 25,
+            "name": "Arthur Wellesley",
+            "personal name": "",
+            "period": "1828-30",
+            "rulerID": ""
+        },
+        {
+            "progr": 26,
+            "name": "Charles Grey",
+            "personal name": "",
+            "period": "1830-34",
+            "rulerID": ""
+        },
+        {
+            "progr": 27,
+            "name": "William Lamb",
+            "personal name": "",
+            "period": "1834",
+            "rulerID": ""
+        },
+        {
+            "progr": 28,
+            "name": "Arthur Wellesley",
+            "personal name": "",
+            "period": "1834",
+            "rulerID": ""
+        },
+        {
+            "progr": 29,
+            "name": "Robert Peel",
+            "personal name": "",
+            "period": "1834-35",
+            "rulerID": ""
+        },
+        {
+            "progr": 30,
+            "name": "William Lamb",
+            "personal name": "",
+            "period": "1835-41",
+            "rulerID": ""
+        },
+        {
+            "progr": 31,
+            "name": "Robert Peel",
+            "personal name": "",
+            "period": "1841-46",
+            "rulerID": ""
+        },
+        {
+            "progr": 32,
+            "name": "John Russell",
+            "personal name": "",
+            "period": "1846-52",
+            "rulerID": ""
+        },
+        {
+            "progr": 33,
+            "name": "Edward Geoffrey Stanley",
+            "personal name": "",
+            "period": "1852",
+            "rulerID": ""
+        },
+        {
+            "progr": 34,
+            "name": "George Hamilton-Gordon",
+            "personal name": "",
+            "period": "1852-55",
+            "rulerID": ""
+        },
+        {
+            "progr": 35,
+            "name": "Henry John Temple",
+            "personal name": "",
+            "period": "1855-58",
+            "rulerID": ""
+        },
+        {
+            "progr": 36,
+            "name": "Edward Geoffrey Stanley",
+            "personal name": "",
+            "period": "1858-59",
+            "rulerID": ""
+        },
+        {
+            "progr": 37,
+            "name": "Henry John Temple",
+            "personal name": "",
+            "period": "1859-65",
+            "rulerID": ""
+        },
+        {
+            "progr": 38,
+            "name": "John Russell",
+            "personal name": "",
+            "period": "1865-66",
+            "rulerID": ""
+        },
+        {
+            "progr": 39,
+            "name": "Edward Geoffrey Stanley",
+            "personal name": "",
+            "period": "1866-68",
+            "rulerID": ""
+        },
+        {
+            "progr": 40,
+            "name": "Benjamin Disraeli",
+            "personal name": "",
+            "period": "1868",
+            "rulerID": ""
+        },
+        {
+            "progr": 41,
+            "name": "William Ewart Gladstone",
+            "personal name": "",
+            "period": "1868-74",
+            "rulerID": ""
+        },
+        {
+            "progr": 42,
+            "name": "Benjamin Disraeli",
+            "personal name": "",
+            "period": "1874-80",
+            "rulerID": ""
+        },
+        {
+            "progr": 43,
+            "name": "William Ewart Gladstone",
+            "personal name": "",
+            "period": "1880-85",
+            "rulerID": ""
+        },
+        {
+            "progr": 44,
+            "name": "Robert Cecil",
+            "personal name": "",
+            "period": "1885-86",
+            "rulerID": ""
+        },
+        {
+            "progr": 45,
+            "name": "William Ewart Gladstone",
+            "personal name": "",
+            "period": "1886",
+            "rulerID": ""
+        },
+        {
+            "progr": 46,
+            "name": "Robert Cecil",
+            "personal name": "",
+            "period": "1886-92",
+            "rulerID": ""
+        },
+        {
+            "progr": 47,
+            "name": "William Ewart Gladstone",
+            "personal name": "",
+            "period": "1892-94",
+            "rulerID": ""
+        },
+        {
+            "progr": 48,
+            "name": "Archibald Philip Primrose",
+            "personal name": "",
+            "period": "1894-95",
+            "rulerID": ""
+        },
+        {
+            "progr": 49,
+            "name": "Robert Cecil",
+            "personal name": "",
+            "period": "1895-1902",
+            "rulerID": ""
+        },
+        {
+            "progr": 50,
+            "name": "Arthur James Balfour",
+            "personal name": "",
+            "period": "1902-05",
+            "rulerID": ""
+        },
+        {
+            "progr": 51,
+            "name": "Henry Campbell-Bannerman",
+            "personal name": "",
+            "period": "1905-08",
+            "rulerID": ""
+        },
+        {
+            "progr": 52,
+            "name": "H.H. Asquith",
+            "personal name": "",
+            "period": "1908-16",
+            "rulerID": ""
+        },
+        {
+            "progr": 53,
+            "name": "David Lloyd George",
+            "personal name": "",
+            "period": "1916-22",
+            "rulerID": ""
+        },
+        {
+            "progr": 54,
+            "name": "Bonar Law",
+            "personal name": "",
+            "period": "1922-23",
+            "rulerID": ""
+        },
+        {
+            "progr": 55,
+            "name": "Stanley Baldwin",
+            "personal name": "",
+            "period": "1923-24",
+            "rulerID": ""
+        },
+        {
+            "progr": 56,
+            "name": "Ramsay Macdonald",
+            "personal name": "",
+            "period": "1924",
+            "rulerID": ""
+        },
+        {
+            "progr": 57,
+            "name": "Stanley Baldwin",
+            "personal name": "",
+            "period": "1924-29",
+            "rulerID": ""
+        },
+        {
+            "progr": 58,
+            "name": "Ramsay Macdonald",
+            "personal name": "",
+            "period": "1929-35",
+            "rulerID": ""
+        },
+        {
+            "progr": 59,
+            "name": "Stanley Baldwin",
+            "personal name": "",
+            "period": "1935-37",
+            "rulerID": ""
+        },
+        {
+            "progr": 60,
+            "name": "Neville Chamberlain",
+            "personal name": "",
+            "period": "1937-40",
+            "rulerID": ""
+        },
+        {
+            "progr": 61,
+            "name": "Winston Churchill",
+            "personal name": "",
+            "period": "1940-45",
+            "rulerID": ""
+        },
+        {
+            "progr": 62,
+            "name": "Clement Attlee",
+            "personal name": "",
+            "period": "1945-51",
+            "rulerID": ""
+        },
+        {
+            "progr": 63,
+            "name": "Winston Churchill",
+            "personal name": "",
+            "period": "1951-55",
+            "rulerID": ""
+        },
+        {
+            "progr": 64,
+            "name": "Anthony Eden",
+            "personal name": "",
+            "period": "1955-57",
+            "rulerID": ""
+        },
+        {
+            "progr": 65,
+            "name": "Harold Macmillan",
+            "personal name": "",
+            "period": "1957-63",
+            "rulerID": ""
+        },
+        {
+            "progr": 66,
+            "name": "Alec Douglas-Home",
+            "personal name": "",
+            "period": "1963-64",
+            "rulerID": ""
+        },
+        {
+            "progr": 67,
+            "name": "Harold Wilson",
+            "personal name": "",
+            "period": "1964-70",
+            "rulerID": ""
+        },
+        {
+            "progr": 68,
+            "name": "Edward Heath",
+            "personal name": "",
+            "period": "1970-74",
+            "rulerID": ""
+        },
+        {
+            "progr": 69,
+            "name": "Harold Wilson",
+            "personal name": "",
+            "period": "1974-76",
+            "rulerID": ""
+        },
+        {
+            "progr": 70,
+            "name": "James Callaghan",
+            "personal name": "",
+            "period": "1976-79",
+            "rulerID": ""
+        },
+        {
+            "progr": 71,
+            "name": "Margaret Thatcher",
+            "personal name": "",
+            "period": "1979-90",
+            "rulerID": ""
+        },
+        {
+            "progr": 72,
+            "name": "John Major",
+            "personal name": "",
+            "period": "1990-97",
+            "rulerID": ""
+        },
+        {
+            "progr": 73,
+            "name": "Tony Blair",
+            "personal name": "",
+            "period": "1997-2007",
+            "rulerID": ""
+        },
+        {
+            "progr": 74,
+            "name": "Gordon Brown",
+            "personal name": "",
+            "period": "2007-10",
+            "rulerID": ""
+        },
+        {
+            "progr": 75,
+            "name": "David Cameron",
+            "personal name": "",
+            "period": "2010-16",
+            "rulerID": ""
+        },
+        {
+            "progr": 76,
+            "name": "Theresa May",
+            "personal name": "",
+            "period": "2016-19",
+            "rulerID": ""
+        },
+        {
+            "progr": 77,
+            "name": "Boris Johnson",
+            "personal name": "",
+            "period": "2019-22",
+            "rulerID": ""
+        },
+        {
+            "progr": 78,
+            "name": "Liz Truss",
+            "personal name": "",
+            "period": "2022",
+            "rulerID": ""
+        },
+        {
+            "progr": 79,
+            "name": "Rishi Sunak",
+            "personal name": "",
+            "period": "2022-2024",
+            "rulerID": ""
+        }
+    ],
+    "French Monarch": [
+        {
+            "progr": 1,
+            "name": "Pippin III, the Short (mayor of the palace)",
+            "personal name": "",
+            "period": "741-751",
+            "rulerID": ""
+        },
+        {
+            "progr": 2,
+            "name": "Pippin III, the Short (king of the Franks)",
+            "personal name": "",
+            "period": "751-768",
+            "rulerID": ""
+        },
+        {
+            "progr": 3,
+            "name": "Carloman (king of the Franks)",
+            "personal name": "",
+            "period": "768-771",
+            "rulerID": ""
+        },
+        {
+            "progr": 4,
+            "name": "Charlemagne (Charles I; king of the Franks)",
+            "personal name": "",
+            "period": "771-800",
+            "rulerID": ""
+        },
+        {
+            "progr": 5,
+            "name": "Louis I, the Pious (emperor)",
+            "personal name": "",
+            "period": "814-840",
+            "rulerID": ""
+        },
+        {
+            "progr": 6,
+            "name": "Lothar I (emperor)",
+            "personal name": "",
+            "period": "840-855",
+            "rulerID": ""
+        },
+        {
+            "progr": 7,
+            "name": "Louis II, the German (king of the East Franks)",
+            "personal name": "",
+            "period": "840-876",
+            "rulerID": ""
+        },
+        {
+            "progr": 2,
+            "name": "Louis II (emperor)",
+            "personal name": "",
+            "period": "855-875",
+            "rulerID": ""
+        },
+        {
+            "progr": 2,
+            "name": "Louis II, the Stammerer (king of the West Franks)",
+            "personal name": "",
+            "period": "877-879",
+            "rulerID": ""
+        },
+        {
+            "progr": 3,
+            "name": "Louis III (king of the West Franks)",
+            "personal name": "",
+            "period": "879-882",
+            "rulerID": ""
+        },
+        {
+            "progr": 4,
+            "name": "Carloman (king of the West Franks)",
+            "personal name": "",
+            "period": "879-884",
+            "rulerID": ""
+        },
+        {
+            "progr": 5,
+            "name": "Arnulf (king of the East Franks)",
+            "personal name": "",
+            "period": "887-899",
+            "rulerID": ""
+        },
+        {
+            "progr": 6,
+            "name": "Eudes (king of the West Franks)",
+            "personal name": "",
+            "period": "888-898",
+            "rulerID": ""
+        },
+        {
+            "progr": 3,
+            "name": "Consulate (Napoleon Bonaparte)",
+            "personal name": "Bonaparte",
+            "period": "1799-1804",
+            "rulerID": ""
+        },
+        {
+            "progr": 3,
+            "name": "Louis XVIII",
+            "personal name": "Bourbon",
+            "period": "1815-24",
+            "rulerID": ""
+        },
+        {
+            "progr": 4,
+            "name": "Charles X",
+            "personal name": "Bourbon",
+            "period": "1824-30",
+            "rulerID": ""
+        },
+        {
+            "progr": 5,
+            "name": "Louis-Philippe",
+            "personal name": "",
+            "period": "1830-48",
+            "rulerID": ""
+        }
+    ],
+    "King of the West Franks": [
+        {
+            "progr": 1,
+            "name": "Charles II, the Bald",
+            "personal name": "",
+            "period": "843-875",
+            "rulerID": ""
+        },
+        {
+            "progr": 7,
+            "name": "Charles III, the Simple",
+            "personal name": "",
+            "period": "898-922",
+            "rulerID": ""
+        },
+        {
+            "progr": 9,
+            "name": "Robert I",
+            "personal name": "",
+            "period": "922-923",
+            "rulerID": ""
+        },
+        {
+            "progr": 10,
+            "name": "Rudolf",
+            "personal name": "",
+            "period": "923-936",
+            "rulerID": ""
+        },
+        {
+            "progr": 11,
+            "name": "Louis IV d'Outremer",
+            "personal name": "",
+            "period": "936-954",
+            "rulerID": ""
+        },
+        {
+            "progr": 12,
+            "name": "Lothar",
+            "personal name": "",
+            "period": "954-986",
+            "rulerID": ""
+        },
+        {
+            "progr": 13,
+            "name": "Louis V",
+            "personal name": "",
+            "period": "986-987",
+            "rulerID": ""
+        }
+    ],
+    "King of the East Franks": [
+        {
+            "progr": 1,
+            "name": "Charles III, the Fat",
+            "personal name": "",
+            "period": "876-887",
+            "rulerID": ""
+        },
+        {
+            "progr": 8,
+            "name": "Louis IV, the Child",
+            "personal name": "",
+            "period": "899-911",
+            "rulerID": ""
+        }
+    ],
+    "King of the Franks": [
+        {
+            "progr": 1,
+            "name": "Hugh Capet",
+            "personal name": "Capet",
+            "period": "987-996",
+            "rulerID": ""
+        },
+        {
+            "progr": 2,
+            "name": "Robert II, the Pious",
+            "personal name": "Capet",
+            "period": "996-1031",
+            "rulerID": ""
+        },
+        {
+            "progr": 3,
+            "name": "Henry I of France",
+            "personal name": "Capet",
+            "period": "1031-60",
+            "rulerID": ""
+        },
+        {
+            "progr": 4,
+            "name": "Philip I",
+            "personal name": "Capet",
+            "period": "1060-1108",
+            "rulerID": ""
+        },
+        {
+            "progr": 5,
+            "name": "Louis VI",
+            "personal name": "Capet",
+            "period": "1108-37",
+            "rulerID": ""
+        },
+        {
+            "progr": 6,
+            "name": "Louis VII",
+            "personal name": "Capet",
+            "period": "1137-80",
+            "rulerID": ""
+        }
+    ],
+    "King of France": [
+        {
+            "progr": 1,
+            "name": "Philip II (Philippe Auguste)",
+            "personal name": "Capet",
+            "period": "1180-1223",
+            "rulerID": ""
+        },
+        {
+            "progr": 2,
+            "name": "Louis VIII",
+            "personal name": "Capet",
+            "period": "1223-26",
+            "rulerID": ""
+        },
+        {
+            "progr": 3,
+            "name": "Louis IX (St. Louis)",
+            "personal name": "Capet",
+            "period": "1226-70",
+            "rulerID": ""
+        },
+        {
+            "progr": 4,
+            "name": "Philip III",
+            "personal name": "Capet",
+            "period": "1270-85",
+            "rulerID": ""
+        },
+        {
+            "progr": 5,
+            "name": "Philip IV",
+            "personal name": "Capet",
+            "period": "1285-1314",
+            "rulerID": ""
+        },
+        {
+            "progr": 6,
+            "name": "Louis X",
+            "personal name": "Capet",
+            "period": "1314-16",
+            "rulerID": ""
+        },
+        {
+            "progr": 7,
+            "name": "John I",
+            "personal name": "Capet",
+            "period": "1316",
+            "rulerID": ""
+        },
+        {
+            "progr": 8,
+            "name": "Philip V",
+            "personal name": "Capet",
+            "period": "1316-22",
+            "rulerID": ""
+        },
+        {
+            "progr": 9,
+            "name": "Charles IV of France",
+            "personal name": "Capet",
+            "period": "1322-28",
+            "rulerID": ""
+        },
+        {
+            "progr": 10,
+            "name": "Philip VI",
+            "personal name": "Valois",
+            "period": "1328-50",
+            "rulerID": ""
+        },
+        {
+            "progr": 11,
+            "name": "John II, the Good",
+            "personal name": "Valois",
+            "period": "1350-64",
+            "rulerID": ""
+        },
+        {
+            "progr": 12,
+            "name": "Charles V of France",
+            "personal name": "Valois",
+            "period": "1364-80",
+            "rulerID": ""
+        },
+        {
+            "progr": 13,
+            "name": "Charles VI of France",
+            "personal name": "Valois",
+            "period": "1380-1422",
+            "rulerID": ""
+        },
+        {
+            "progr": 14,
+            "name": "Charles VII of France",
+            "personal name": "Valois",
+            "period": "1422-61",
+            "rulerID": ""
+        },
+        {
+            "progr": 15,
+            "name": "Louis XI",
+            "personal name": "Valois",
+            "period": "1461-83",
+            "rulerID": ""
+        },
+        {
+            "progr": 16,
+            "name": "Charles VIII",
+            "personal name": "Valois",
+            "period": "1483-98",
+            "rulerID": ""
+        },
+        {
+            "progr": 17,
+            "name": "Louis XII",
+            "personal name": "Valois-Orl\u00e9ans",
+            "period": "1498-1515",
+            "rulerID": ""
+        },
+        {
+            "progr": 18,
+            "name": "Francis I of France",
+            "personal name": "Valois-Angoul\u00eame",
+            "period": "1515-47",
+            "rulerID": ""
+        },
+        {
+            "progr": 19,
+            "name": "Henri II",
+            "personal name": "Valois-Angoul\u00eame",
+            "period": "1547-59",
+            "rulerID": ""
+        },
+        {
+            "progr": 20,
+            "name": "Francis II of France",
+            "personal name": "Valois-Angoul\u00eame",
+            "period": "1559-60",
+            "rulerID": ""
+        },
+        {
+            "progr": 21,
+            "name": "Charles IX",
+            "personal name": "Valois-Angoul\u00eame",
+            "period": "1560-74",
+            "rulerID": ""
+        },
+        {
+            "progr": 22,
+            "name": "Henri III",
+            "personal name": "Valois-Angoul\u00eame",
+            "period": "1574-89",
+            "rulerID": ""
+        },
+        {
+            "progr": 23,
+            "name": "Henri IV",
+            "personal name": "Bourbon",
+            "period": "1589-1610",
+            "rulerID": ""
+        },
+        {
+            "progr": 24,
+            "name": "Louis XIII",
+            "personal name": "Bourbon",
+            "period": "1610-43",
+            "rulerID": ""
+        },
+        {
+            "progr": 25,
+            "name": "Louis XIV",
+            "personal name": "Bourbon",
+            "period": "1643-1715",
+            "rulerID": ""
+        },
+        {
+            "progr": 26,
+            "name": "Louis XV",
+            "personal name": "Bourbon",
+            "period": "1715-74",
+            "rulerID": ""
+        },
+        {
+            "progr": 27,
+            "name": "Louis XVI",
+            "personal name": "Bourbon",
+            "period": "1774-92",
+            "rulerID": ""
+        },
+        {
+            "progr": 28,
+            "name": "Louis (XVII)",
+            "personal name": "Bourbon",
+            "period": "1793-95",
+            "rulerID": ""
+        }
+    ],
+    "French Government": [
+        {
+            "progr": 1,
+            "name": "National Convention",
+            "personal name": "",
+            "period": "1792-95",
+            "rulerID": ""
+        },
+        {
+            "progr": 2,
+            "name": "Directory",
+            "personal name": "",
+            "period": "1795-99",
+            "rulerID": ""
+        },
+        {
+            "progr": 18,
+            "name": "Provisional government",
+            "personal name": "",
+            "period": "1944-46",
+            "rulerID": ""
+        }
+    ],
+    "French Emperor": [
+        {
+            "progr": 1,
+            "name": "Napoleon I (Napoleon Bonaparte)",
+            "personal name": "Bonaparte",
+            "period": "1804-14",
+            "rulerID": ""
+        },
+        {
+            "progr": 2,
+            "name": "Napoleon (II)",
+            "personal name": "Bonaparte",
+            "period": "1815",
+            "rulerID": ""
+        },
+        {
+            "progr": 2,
+            "name": "Napoleon III (Louis-Napol\u00e9on Bonaparte)",
+            "personal name": "",
+            "period": "1852-70",
+            "rulerID": ""
+        }
+    ],
+    "French President": [
+        {
+            "progr": 1,
+            "name": "Louis-Napol\u00e9on Bonaparte",
+            "personal name": "",
+            "period": "1848-52",
+            "rulerID": ""
+        },
+        {
+            "progr": 3,
+            "name": "Adolphe Thiers",
+            "personal name": "",
+            "period": "1871-73",
+            "rulerID": ""
+        },
+        {
+            "progr": 4,
+            "name": "Patrice de Mac-Mahon",
+            "personal name": "",
+            "period": "1873-79",
+            "rulerID": ""
+        },
+        {
+            "progr": 5,
+            "name": "Jules Gr\u00e9vy",
+            "personal name": "",
+            "period": "1879-87",
+            "rulerID": ""
+        },
+        {
+            "progr": 6,
+            "name": "Sadi Carnot",
+            "personal name": "",
+            "period": "1887-94",
+            "rulerID": ""
+        },
+        {
+            "progr": 7,
+            "name": "Jean Casimir-P\u00e9rier",
+            "personal name": "",
+            "period": "1894-95",
+            "rulerID": ""
+        },
+        {
+            "progr": 8,
+            "name": "F\u00e9lix Faure",
+            "personal name": "",
+            "period": "1895-99",
+            "rulerID": ""
+        },
+        {
+            "progr": 9,
+            "name": "\u00c9mile Loubet",
+            "personal name": "",
+            "period": "1899-1906",
+            "rulerID": ""
+        },
+        {
+            "progr": 10,
+            "name": "Armand Falli\u00e8res",
+            "personal name": "",
+            "period": "1906-13",
+            "rulerID": ""
+        },
+        {
+            "progr": 11,
+            "name": "Raymond Poincar\u00e9",
+            "personal name": "",
+            "period": "1913-20",
+            "rulerID": ""
+        },
+        {
+            "progr": 12,
+            "name": "Paul Deschanel",
+            "personal name": "",
+            "period": "1920",
+            "rulerID": ""
+        },
+        {
+            "progr": 13,
+            "name": "Alexandre Millerand",
+            "personal name": "",
+            "period": "1920-24",
+            "rulerID": ""
+        },
+        {
+            "progr": 14,
+            "name": "Gaston Doumergue",
+            "personal name": "",
+            "period": "1924-31",
+            "rulerID": ""
+        },
+        {
+            "progr": 15,
+            "name": "Paul Doumer",
+            "personal name": "",
+            "period": "1931-32",
+            "rulerID": ""
+        },
+        {
+            "progr": 16,
+            "name": "Albert Lebrun",
+            "personal name": "",
+            "period": "1932-40",
+            "rulerID": ""
+        },
+        {
+            "progr": 17,
+            "name": "Philippe P\u00e9tain",
+            "personal name": "",
+            "period": "1940-44",
+            "rulerID": ""
+        },
+        {
+            "progr": 19,
+            "name": "Vincent Auriol",
+            "personal name": "",
+            "period": "1947-54",
+            "rulerID": ""
+        },
+        {
+            "progr": 20,
+            "name": "Ren\u00e9 Coty",
+            "personal name": "",
+            "period": "1954-59",
+            "rulerID": ""
+        },
+        {
+            "progr": 21,
+            "name": "Charles de Gaulle",
+            "personal name": "",
+            "period": "1959-69",
+            "rulerID": ""
+        },
+        {
+            "progr": 22,
+            "name": "Georges Pompidou",
+            "personal name": "",
+            "period": "1969-74",
+            "rulerID": ""
+        },
+        {
+            "progr": 23,
+            "name": "Val\u00e9ry Giscard d'Estaing",
+            "personal name": "",
+            "period": "1974-81",
+            "rulerID": ""
+        },
+        {
+            "progr": 24,
+            "name": "Fran\u00e7ois Mitterrand",
+            "personal name": "",
+            "period": "1981-95",
+            "rulerID": ""
+        },
+        {
+            "progr": 25,
+            "name": "Jacques Chirac",
+            "personal name": "",
+            "period": "1995-2007",
+            "rulerID": ""
+        },
+        {
+            "progr": 26,
+            "name": "Nicolas Sarkozy",
+            "personal name": "",
+            "period": "2007-12",
+            "rulerID": ""
+        },
+        {
+            "progr": 27,
+            "name": "Fran\u00e7ois Hollande",
+            "personal name": "",
+            "period": "2012-17",
+            "rulerID": ""
+        },
+        {
+            "progr": 28,
+            "name": "Emmanuel Macron",
+            "personal name": "",
+            "period": "2017-2024",
+            "rulerID": ""
+        }
+    ],
+    "Byzantine Emperor": [
+        {
+            "progr": 1,
+            "name": "Anastasius I",
+            "personal name": "",
+            "period": "491-518",
+            "rulerID": ""
+        },
+        {
+            "progr": 2,
+            "name": "Justin I",
+            "personal name": "",
+            "period": "518-527",
+            "rulerID": ""
+        },
+        {
+            "progr": 3,
+            "name": "Justinian I",
+            "personal name": "",
+            "period": "527-565",
+            "rulerID": ""
+        },
+        {
+            "progr": 4,
+            "name": "Justin II",
+            "personal name": "",
+            "period": "565-578",
+            "rulerID": ""
+        },
+        {
+            "progr": 5,
+            "name": "Maurice",
+            "personal name": "",
+            "period": "582-602",
+            "rulerID": ""
+        },
+        {
+            "progr": 6,
+            "name": "Phocas",
+            "personal name": "",
+            "period": "602-610",
+            "rulerID": ""
+        },
+        {
+            "progr": 7,
+            "name": "Heraclius",
+            "personal name": "",
+            "period": "610-641",
+            "rulerID": ""
+        },
+        {
+            "progr": 8,
+            "name": "Heraclonas",
+            "personal name": "",
+            "period": "641",
+            "rulerID": ""
+        },
+        {
+            "progr": 9,
+            "name": "Constantine III",
+            "personal name": "",
+            "period": "641",
+            "rulerID": ""
+        },
+        {
+            "progr": 10,
+            "name": "Constans II Pogonatus",
+            "personal name": "",
+            "period": "641-668",
+            "rulerID": ""
+        },
+        {
+            "progr": 11,
+            "name": "Constantine IV",
+            "personal name": "",
+            "period": "668-685",
+            "rulerID": ""
+        },
+        {
+            "progr": 12,
+            "name": "Justinian II",
+            "personal name": "",
+            "period": "685-695",
+            "rulerID": "https://en.wikipedia.org/wiki/Justinian_II"
+        },
+        {
+            "progr": 13,
+            "name": "Justinian II",
+            "personal name": "",
+            "period": "705-711",
+            "rulerID": "https://en.wikipedia.org/wiki/Justinian_II"
+        },
+        {
+            "progr": 14,
+            "name": "Philippicus Bardanes",
+            "personal name": "",
+            "period": "711-713",
+            "rulerID": ""
+        },
+        {
+            "progr": 15,
+            "name": "Anastasios II",
+            "personal name": "",
+            "period": "713-715",
+            "rulerID": ""
+        },
+        {
+            "progr": 16,
+            "name": "Leo III",
+            "personal name": "",
+            "period": "717-741",
+            "rulerID": ""
+        },
+        {
+            "progr": 17,
+            "name": "Constantine V Copronymus",
+            "personal name": "",
+            "period": "741-775",
+            "rulerID": ""
+        },
+        {
+            "progr": 18,
+            "name": "Leo IV",
+            "personal name": "",
+            "period": "775-780",
+            "rulerID": ""
+        },
+        {
+            "progr": 19,
+            "name": "Constantine VI",
+            "personal name": "",
+            "period": "780-797",
+            "rulerID": ""
+        },
+        {
+            "progr": 20,
+            "name": "Nicephorus I",
+            "personal name": "",
+            "period": "802-811",
+            "rulerID": ""
+        },
+        {
+            "progr": 21,
+            "name": "Michael I Rhangabe",
+            "personal name": "",
+            "period": "811-813",
+            "rulerID": ""
+        },
+        {
+            "progr": 22,
+            "name": "Leo V",
+            "personal name": "",
+            "period": "813-820",
+            "rulerID": ""
+        },
+        {
+            "progr": 23,
+            "name": "Michael II",
+            "personal name": "",
+            "period": "820-829",
+            "rulerID": ""
+        },
+        {
+            "progr": 24,
+            "name": "Michael III",
+            "personal name": "",
+            "period": "842-867",
+            "rulerID": ""
+        },
+        {
+            "progr": 25,
+            "name": "Basil I",
+            "personal name": "",
+            "period": "867-886",
+            "rulerID": ""
+        },
+        {
+            "progr": 26,
+            "name": "Leo VI",
+            "personal name": "",
+            "period": "886-912",
+            "rulerID": ""
+        },
+        {
+            "progr": 27,
+            "name": "Alexander",
+            "personal name": "",
+            "period": "912-913",
+            "rulerID": ""
+        },
+        {
+            "progr": 28,
+            "name": "Constantine VII Porphyrogenitus",
+            "personal name": "",
+            "period": "913-959",
+            "rulerID": ""
+        },
+        {
+            "progr": 29,
+            "name": "Romanus I Lecapenus",
+            "personal name": "",
+            "period": "920-944",
+            "rulerID": ""
+        },
+        {
+            "progr": 30,
+            "name": "Romanus II",
+            "personal name": "",
+            "period": "959-963",
+            "rulerID": ""
+        },
+        {
+            "progr": 31,
+            "name": "Nicephorus II Phocas",
+            "personal name": "",
+            "period": "963-969",
+            "rulerID": ""
+        },
+        {
+            "progr": 32,
+            "name": "John I Tzimisces",
+            "personal name": "",
+            "period": "969-976",
+            "rulerID": ""
+        },
+        {
+            "progr": 33,
+            "name": "Basil II",
+            "personal name": "",
+            "period": "976-1025",
+            "rulerID": ""
+        },
+        {
+            "progr": 34,
+            "name": "Constantine VIII",
+            "personal name": "",
+            "period": "1025-28",
+            "rulerID": ""
+        },
+        {
+            "progr": 35,
+            "name": "Michael IV",
+            "personal name": "",
+            "period": "1034-41",
+            "rulerID": ""
+        },
+        {
+            "progr": 36,
+            "name": "Michael V Calaphates",
+            "personal name": "",
+            "period": "1041-42",
+            "rulerID": ""
+        },
+        {
+            "progr": 37,
+            "name": "Constantine IX Monomachus",
+            "personal name": "",
+            "period": "1042-55",
+            "rulerID": ""
+        },
+        {
+            "progr": 38,
+            "name": "Michael VI Stratioticus",
+            "personal name": "",
+            "period": "1056-57",
+            "rulerID": ""
+        },
+        {
+            "progr": 39,
+            "name": "Isaac I Comnenus",
+            "personal name": "",
+            "period": "1057-59",
+            "rulerID": ""
+        },
+        {
+            "progr": 40,
+            "name": "Constantine X Ducas",
+            "personal name": "",
+            "period": "1059-67",
+            "rulerID": ""
+        },
+        {
+            "progr": 41,
+            "name": "Michael VII Ducas",
+            "personal name": "",
+            "period": "1071-78",
+            "rulerID": ""
+        },
+        {
+            "progr": 42,
+            "name": "Nicephorus III Botaneiates",
+            "personal name": "",
+            "period": "1078-81",
+            "rulerID": ""
+        },
+        {
+            "progr": 43,
+            "name": "Alexius I Comnenus",
+            "personal name": "",
+            "period": "1081-1118",
+            "rulerID": ""
+        },
+        {
+            "progr": 44,
+            "name": "John II Comnenus",
+            "personal name": "",
+            "period": "1118-43",
+            "rulerID": ""
+        },
+        {
+            "progr": 45,
+            "name": "Manuel I Comnenus",
+            "personal name": "",
+            "period": "1143-80",
+            "rulerID": ""
+        },
+        {
+            "progr": 46,
+            "name": "Alexius II Comnenus",
+            "personal name": "",
+            "period": "1180-83",
+            "rulerID": ""
+        },
+        {
+            "progr": 47,
+            "name": "Andronicus I Comnenus",
+            "personal name": "",
+            "period": "1183-85",
+            "rulerID": ""
+        },
+        {
+            "progr": 48,
+            "name": "Isaac II Angelus",
+            "personal name": "",
+            "period": "1185-95",
+            "rulerID": ""
+        },
+        {
+            "progr": 49,
+            "name": "Alexius III Angelus",
+            "personal name": "",
+            "period": "1195-1203",
+            "rulerID": ""
+        },
+        {
+            "progr": 50,
+            "name": "Alexius IV Angelus",
+            "personal name": "",
+            "period": "1203-04",
+            "rulerID": ""
+        },
+        {
+            "progr": 51,
+            "name": "Alexius V Ducas Mourtzouphlus",
+            "personal name": "",
+            "period": "1204",
+            "rulerID": ""
+        },
+        {
+            "progr": 52,
+            "name": "Baldwin I",
+            "personal name": "",
+            "period": "1204-05",
+            "rulerID": ""
+        },
+        {
+            "progr": 53,
+            "name": "Baldwin II Porphyrogenitus",
+            "personal name": "",
+            "period": "1228-61",
+            "rulerID": ""
+        },
+        {
+            "progr": 54,
+            "name": "Michael VIII Palaeologus",
+            "personal name": "",
+            "period": "1261-82",
+            "rulerID": ""
+        },
+        {
+            "progr": 55,
+            "name": "Andronicus II Palaeologus",
+            "personal name": "",
+            "period": "1282-1328",
+            "rulerID": ""
+        },
+        {
+            "progr": 56,
+            "name": "Andronicus III Palaeologus",
+            "personal name": "",
+            "period": "1328-41",
+            "rulerID": ""
+        },
+        {
+            "progr": 57,
+            "name": "John V Palaeologus",
+            "personal name": "",
+            "period": "1341-91",
+            "rulerID": ""
+        },
+        {
+            "progr": 58,
+            "name": "John VI Cantacuzenus",
+            "personal name": "",
+            "period": "1347-54",
+            "rulerID": ""
+        },
+        {
+            "progr": 59,
+            "name": "Andronicus IV Palaeologus",
+            "personal name": "",
+            "period": "1376-79",
+            "rulerID": ""
+        },
+        {
+            "progr": 60,
+            "name": "John VII Palaeologus",
+            "personal name": "",
+            "period": "1390",
+            "rulerID": ""
+        },
+        {
+            "progr": 61,
+            "name": "Manuel II Palaeologus",
+            "personal name": "",
+            "period": "1391-1425",
+            "rulerID": ""
+        },
+        {
+            "progr": 62,
+            "name": "John VIII Palaeologus",
+            "personal name": "",
+            "period": "1421-48",
+            "rulerID": ""
+        },
+        {
+            "progr": 63,
+            "name": "Constantine XI Palaeologus",
+            "personal name": "",
+            "period": "1449-53",
+            "rulerID": ""
+        }
+    ],
+    "Emperor of China": [
+        {
+            "progr": 1,
+            "name": "Shihuangdi",
+            "personal name": "",
+            "period": "221BC-210BC",
+            "rulerID": "https://en.wikipedia.org/wiki/Shihuangdi"
+        },
+        {
+            "progr": 2,
+            "name": "Gaozu of Han",
+            "personal name": "",
+            "period": "202BC-195BC",
+            "rulerID": "https://en.wikipedia.org/wiki/Gaozu_of_Han"
+        },
+        {
+            "progr": 3,
+            "name": "Wen of Han",
+            "personal name": "",
+            "period": "180BC-157BC",
+            "rulerID": "https://en.wikipedia.org/wiki/Emperor_Wen_of_Han"
+        },
+        {
+            "progr": 4,
+            "name": "Jingdi",
+            "personal name": "",
+            "period": "157BC-141BC",
+            "rulerID": ""
+        },
+        {
+            "progr": 5,
+            "name": "Wu of Han",
+            "personal name": "",
+            "period": "141BC-87BC",
+            "rulerID": "https://en.wikipedia.org/wiki/Wudi_of_Han"
+        },
+        {
+            "progr": 6,
+            "name": "Xuandi",
+            "personal name": "",
+            "period": "74BC-49BC",
+            "rulerID": ""
+        },
+        {
+            "progr": 7,
+            "name": "Yuandi",
+            "personal name": "",
+            "period": "49BC-33BC",
+            "rulerID": ""
+        },
+        {
+            "progr": 8,
+            "name": "Pingdi",
+            "personal name": "",
+            "period": "1BC-5AD",
+            "rulerID": ""
+        },
+        {
+            "progr": 9,
+            "name": "Guangwudi",
+            "personal name": "",
+            "period": "25-57 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 10,
+            "name": "Mingdi",
+            "personal name": "",
+            "period": "57-75 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 11,
+            "name": "Zhangdi",
+            "personal name": "",
+            "period": "75-88 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 12,
+            "name": "Wang Mang",
+            "personal name": "",
+            "period": "45BC-23AD",
+            "rulerID": ""
+        },
+        {
+            "progr": 13,
+            "name": "Cao Pi",
+            "personal name": "",
+            "period": "220-226",
+            "rulerID": ""
+        },
+        {
+            "progr": 14,
+            "name": "Sun Quan",
+            "personal name": "",
+            "period": "229-252",
+            "rulerID": ""
+        },
+        {
+            "progr": 15,
+            "name": "Wei dynasty",
+            "personal name": "",
+            "period": "386-535",
+            "rulerID": ""
+        },
+        {
+            "progr": 16,
+            "name": "Xiaowendi",
+            "personal name": "",
+            "period": "471-499",
+            "rulerID": ""
+        },
+        {
+            "progr": 17,
+            "name": "Wu of Jin",
+            "personal name": "",
+            "period": "265-290",
+            "rulerID": "https://en.wikipedia.org/wiki/Emperor_Wu_of_Jin"
+        },
+        {
+            "progr": 18,
+            "name": "Yuan of Jin",
+            "personal name": "",
+            "period": "318-323",
+            "rulerID": "https://en.wikipedia.org/wiki/Emperor_Yuan_of_Jin"
+        },
+        {
+            "progr": 19,
+            "name": "Wudi",
+            "personal name": "",
+            "period": "502-549",
+            "rulerID": ""
+        },
+        {
+            "progr": 20,
+            "name": "Wendi",
+            "personal name": "",
+            "period": "581-604 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 21,
+            "name": "Yangdi",
+            "personal name": "",
+            "period": "604-618 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 22,
+            "name": "Gaozu",
+            "personal name": "",
+            "period": "618-626",
+            "rulerID": ""
+        },
+        {
+            "progr": 23,
+            "name": "Taizong of Tang",
+            "personal name": "",
+            "period": "626-649",
+            "rulerID": "https://en.wikipedia.org/wiki/Emperor_Taizong_of_Tang"
+        },
+        {
+            "progr": 24,
+            "name": "Gaozong of Tang",
+            "personal name": "",
+            "period": "649-683",
+            "rulerID": "https://en.wikipedia.org/wiki/Gaozong_of_Tang"
+        },
+        {
+            "progr": 25,
+            "name": "Ruizong",
+            "personal name": "",
+            "period": "684-712",
+            "rulerID": ""
+        },
+        {
+            "progr": 26,
+            "name": "Xuanzong",
+            "personal name": "",
+            "period": "712-756",
+            "rulerID": ""
+        },
+        {
+            "progr": 27,
+            "name": "Dezong",
+            "personal name": "",
+            "period": "779-805",
+            "rulerID": ""
+        },
+        {
+            "progr": 28,
+            "name": "Wenzong",
+            "personal name": "",
+            "period": "827-840",
+            "rulerID": ""
+        },
+        {
+            "progr": 29,
+            "name": "Zhu Wen",
+            "personal name": "",
+            "period": "907-923",
+            "rulerID": ""
+        },
+        {
+            "progr": 30,
+            "name": "Taizu",
+            "personal name": "",
+            "period": "960-976",
+            "rulerID": ""
+        },
+        {
+            "progr": 31,
+            "name": "Taizong",
+            "personal name": "",
+            "period": "976-997",
+            "rulerID": ""
+        },
+        {
+            "progr": 32,
+            "name": "Zhenzong",
+            "personal name": "",
+            "period": "997-1022",
+            "rulerID": ""
+        },
+        {
+            "progr": 33,
+            "name": "Renzong",
+            "personal name": "",
+            "period": "1022-63",
+            "rulerID": ""
+        },
+        {
+            "progr": 34,
+            "name": "Shenzong",
+            "personal name": "",
+            "period": "1067-85",
+            "rulerID": ""
+        },
+        {
+            "progr": 35,
+            "name": "Huizong",
+            "personal name": "",
+            "period": "1100-1126",
+            "rulerID": ""
+        },
+        {
+            "progr": 36,
+            "name": "Qinzong",
+            "personal name": "",
+            "period": "1126-1127",
+            "rulerID": ""
+        },
+        {
+            "progr": 37,
+            "name": "Li Yuanhao",
+            "personal name": "",
+            "period": "1038-48",
+            "rulerID": ""
+        },
+        {
+            "progr": 38,
+            "name": "Gaozong",
+            "personal name": "",
+            "period": "1127-62",
+            "rulerID": ""
+        },
+        {
+            "progr": 39,
+            "name": "Ningzong",
+            "personal name": "",
+            "period": "1195-1224",
+            "rulerID": ""
+        },
+        {
+            "progr": 40,
+            "name": "Kublai Khan",
+            "personal name": "",
+            "period": "1271-94",
+            "rulerID": ""
+        },
+        {
+            "progr": 41,
+            "name": "Tem\u00fcr",
+            "personal name": "",
+            "period": "1295-1307",
+            "rulerID": ""
+        },
+        {
+            "progr": 42,
+            "name": "Buyantu",
+            "personal name": "",
+            "period": "1311-20",
+            "rulerID": ""
+        },
+        {
+            "progr": 43,
+            "name": "Togon-tem\u00fcr",
+            "personal name": "",
+            "period": "1333-68",
+            "rulerID": ""
+        },
+        {
+            "progr": 44,
+            "name": "Hongwu",
+            "personal name": "",
+            "period": "1368-98",
+            "rulerID": ""
+        },
+        {
+            "progr": 45,
+            "name": "Yongle",
+            "personal name": "",
+            "period": "1402-24",
+            "rulerID": ""
+        },
+        {
+            "progr": 46,
+            "name": "Zhengtong",
+            "personal name": "",
+            "period": "1435-64",
+            "rulerID": ""
+        },
+        {
+            "progr": 47,
+            "name": "Jingtai",
+            "personal name": "",
+            "period": "1449-57",
+            "rulerID": ""
+        },
+        {
+            "progr": 48,
+            "name": "Zhengde",
+            "personal name": "",
+            "period": "1505-21",
+            "rulerID": ""
+        },
+        {
+            "progr": 49,
+            "name": "Jiajing",
+            "personal name": "",
+            "period": "1521-1567",
+            "rulerID": ""
+        },
+        {
+            "progr": 50,
+            "name": "Longqing",
+            "personal name": "",
+            "period": "1567-72",
+            "rulerID": ""
+        },
+        {
+            "progr": 51,
+            "name": "Wanli",
+            "personal name": "",
+            "period": "1572-1620",
+            "rulerID": ""
+        },
+        {
+            "progr": 52,
+            "name": "Tianqi",
+            "personal name": "",
+            "period": "1620-27",
+            "rulerID": ""
+        },
+        {
+            "progr": 53,
+            "name": "Chongzhen",
+            "personal name": "",
+            "period": "1627-44",
+            "rulerID": ""
+        },
+        {
+            "progr": 54,
+            "name": "Shunzhi",
+            "personal name": "",
+            "period": "1644-61",
+            "rulerID": ""
+        },
+        {
+            "progr": 55,
+            "name": "Kangxi",
+            "personal name": "",
+            "period": "1661-1722",
+            "rulerID": ""
+        },
+        {
+            "progr": 56,
+            "name": "Yongzheng",
+            "personal name": "",
+            "period": "1722-35",
+            "rulerID": ""
+        },
+        {
+            "progr": 57,
+            "name": "Qianlong",
+            "personal name": "",
+            "period": "1735-96",
+            "rulerID": ""
+        },
+        {
+            "progr": 58,
+            "name": "Jiaqing",
+            "personal name": "",
+            "period": "1796-1820",
+            "rulerID": ""
+        },
+        {
+            "progr": 59,
+            "name": "Daoguang",
+            "personal name": "",
+            "period": "1820-50",
+            "rulerID": ""
+        },
+        {
+            "progr": 60,
+            "name": "Xianfeng",
+            "personal name": "",
+            "period": "1850-61",
+            "rulerID": ""
+        },
+        {
+            "progr": 61,
+            "name": "Tongzhi",
+            "personal name": "",
+            "period": "1861-1875",
+            "rulerID": ""
+        },
+        {
+            "progr": 62,
+            "name": "Guangxu",
+            "personal name": "",
+            "period": "1875-1908",
+            "rulerID": ""
+        },
+        {
+            "progr": 63,
+            "name": "Puyi",
+            "personal name": "",
+            "period": "1908-1912",
+            "rulerID": ""
+        }
+    ],
+    "Holy Roman Emperor": [
+        {
+            "progr": 1,
+            "name": "Charlemagne",
+            "personal name": "",
+            "period": "800-814",
+            "rulerID": "#N/A"
+        },
+        {
+            "progr": 2,
+            "name": "Louis I",
+            "personal name": "",
+            "period": "814-840",
+            "rulerID": ""
+        },
+        {
+            "progr": 3,
+            "name": "Lothar I",
+            "personal name": "",
+            "period": "823-855",
+            "rulerID": ""
+        },
+        {
+            "progr": 4,
+            "name": "Louis II",
+            "personal name": "",
+            "period": "850-875",
+            "rulerID": ""
+        },
+        {
+            "progr": 3,
+            "name": "Guy II",
+            "personal name": "",
+            "period": "891-894",
+            "rulerID": ""
+        },
+        {
+            "progr": 4,
+            "name": "Lambert of Spoleto",
+            "personal name": "",
+            "period": "892-898",
+            "rulerID": ""
+        },
+        {
+            "progr": 5,
+            "name": "Arnulf",
+            "personal name": "",
+            "period": "896-899",
+            "rulerID": ""
+        },
+        {
+            "progr": 6,
+            "name": "Louis III",
+            "personal name": "",
+            "period": "901-905",
+            "rulerID": ""
+        },
+        {
+            "progr": 7,
+            "name": "Berengar",
+            "personal name": "",
+            "period": "915-924",
+            "rulerID": ""
+        },
+        {
+            "progr": 8,
+            "name": "Otto I",
+            "personal name": "",
+            "period": "962-973",
+            "rulerID": ""
+        },
+        {
+            "progr": 9,
+            "name": "Otto II",
+            "personal name": "",
+            "period": "967-983",
+            "rulerID": ""
+        },
+        {
+            "progr": 10,
+            "name": "Otto III",
+            "personal name": "",
+            "period": "996-1002",
+            "rulerID": ""
+        },
+        {
+            "progr": 11,
+            "name": "Henry II (Saint Henry)",
+            "personal name": "",
+            "period": "1014-24",
+            "rulerID": "#N/A"
+        },
+        {
+            "progr": 12,
+            "name": "Conrad II",
+            "personal name": "",
+            "period": "1027-39",
+            "rulerID": ""
+        },
+        {
+            "progr": 13,
+            "name": "Heinrich III",
+            "personal name": "",
+            "period": "1046-56",
+            "rulerID": ""
+        },
+        {
+            "progr": 14,
+            "name": "Henry IV",
+            "personal name": "",
+            "period": "1084-1106",
+            "rulerID": ""
+        },
+        {
+            "progr": 15,
+            "name": "Henry V",
+            "personal name": "",
+            "period": "1111-25",
+            "rulerID": ""
+        },
+        {
+            "progr": 16,
+            "name": "Lothar III",
+            "personal name": "",
+            "period": "1133-37",
+            "rulerID": ""
+        },
+        {
+            "progr": 17,
+            "name": "Frederick I",
+            "personal name": "",
+            "period": "1152-90",
+            "rulerID": ""
+        },
+        {
+            "progr": 18,
+            "name": "Henry VI",
+            "personal name": "",
+            "period": "1191-97",
+            "rulerID": "https://en.wikipedia.org/wiki/Henry_VI_of_England"
+        },
+        {
+            "progr": 19,
+            "name": "Otto IV",
+            "personal name": "",
+            "period": "1209-15",
+            "rulerID": ""
+        },
+        {
+            "progr": 20,
+            "name": "Frederick II",
+            "personal name": "",
+            "period": "1220-50",
+            "rulerID": ""
+        },
+        {
+            "progr": 21,
+            "name": "Henry VII",
+            "personal name": "",
+            "period": "1312-13",
+            "rulerID": ""
+        },
+        {
+            "progr": 22,
+            "name": "Louis IV",
+            "personal name": "",
+            "period": "1328-47",
+            "rulerID": ""
+        },
+        {
+            "progr": 23,
+            "name": "Charles IV",
+            "personal name": "",
+            "period": "1355-78",
+            "rulerID": "https://en.wikipedia.org/wiki/Charles_IV,_Holy_Roman_Emperor"
+        },
+        {
+            "progr": 24,
+            "name": "Sigismund",
+            "personal name": "",
+            "period": "1433-37",
+            "rulerID": ""
+        },
+        {
+            "progr": 25,
+            "name": "Frederick III",
+            "personal name": "",
+            "period": "1452-93",
+            "rulerID": ""
+        },
+        {
+            "progr": 26,
+            "name": "Maximilian I",
+            "personal name": "",
+            "period": "1493-1519",
+            "rulerID": ""
+        },
+        {
+            "progr": 27,
+            "name": "Charles V",
+            "personal name": "",
+            "period": "1519-56",
+            "rulerID": ""
+        },
+        {
+            "progr": 28,
+            "name": "Ferdinand I",
+            "personal name": "",
+            "period": "1558-64",
+            "rulerID": ""
+        },
+        {
+            "progr": 29,
+            "name": "Maximilian II",
+            "personal name": "",
+            "period": "1564-76",
+            "rulerID": ""
+        },
+        {
+            "progr": 30,
+            "name": "Rudolf II",
+            "personal name": "",
+            "period": "1576-1612",
+            "rulerID": ""
+        },
+        {
+            "progr": 31,
+            "name": "Matthias",
+            "personal name": "",
+            "period": "1612-19",
+            "rulerID": ""
+        },
+        {
+            "progr": 32,
+            "name": "Ferdinand II",
+            "personal name": "",
+            "period": "1619-37",
+            "rulerID": ""
+        },
+        {
+            "progr": 33,
+            "name": "Ferdinand III",
+            "personal name": "",
+            "period": "1637-57",
+            "rulerID": ""
+        },
+        {
+            "progr": 34,
+            "name": "Leopold I",
+            "personal name": "",
+            "period": "1658-1705",
+            "rulerID": ""
+        },
+        {
+            "progr": 35,
+            "name": "Joseph I",
+            "personal name": "",
+            "period": "1705-11",
+            "rulerID": ""
+        },
+        {
+            "progr": 36,
+            "name": "Charles VI",
+            "personal name": "",
+            "period": "1711-40",
+            "rulerID": ""
+        },
+        {
+            "progr": 37,
+            "name": "Charles VII",
+            "personal name": "",
+            "period": "1742-45",
+            "rulerID": ""
+        },
+        {
+            "progr": 38,
+            "name": "Francis I",
+            "personal name": "",
+            "period": "1745-65",
+            "rulerID": ""
+        },
+        {
+            "progr": 39,
+            "name": "Joseph II",
+            "personal name": "",
+            "period": "1765-90",
+            "rulerID": ""
+        },
+        {
+            "progr": 40,
+            "name": "Leopold II",
+            "personal name": "",
+            "period": "1790-92",
+            "rulerID": ""
+        },
+        {
+            "progr": 41,
+            "name": "Francis II",
+            "personal name": "",
+            "period": "1792-1806",
+            "rulerID": ""
+        }
+    ],
+    "Emperor of the Carolingian Empire": [
+        {
+            "progr": 1,
+            "name": "Charles II, the Bald",
+            "personal name": "",
+            "period": "875-877",
+            "rulerID": ""
+        },
+        {
+            "progr": 2,
+            "name": "Charles III, the Fat",
+            "personal name": "",
+            "period": "881-887",
+            "rulerID": ""
+        }
+    ],
+    "Roman Emperor": [
+        {
+            "progr": 1,
+            "name": "Augustus",
+            "personal name": "",
+            "period": "31BC-14AD",
+            "rulerID": ""
+        },
+        {
+            "progr": 2,
+            "name": "Tiberius",
+            "personal name": "",
+            "period": "14-37",
+            "rulerID": ""
+        },
+        {
+            "progr": 3,
+            "name": "Caligula",
+            "personal name": "",
+            "period": "37-41",
+            "rulerID": ""
+        },
+        {
+            "progr": 4,
+            "name": "Claudius",
+            "personal name": "",
+            "period": "41-54",
+            "rulerID": ""
+        },
+        {
+            "progr": 5,
+            "name": "Nero",
+            "personal name": "",
+            "period": "54-68",
+            "rulerID": ""
+        },
+        {
+            "progr": 6,
+            "name": "Galba",
+            "personal name": "",
+            "period": "68-69",
+            "rulerID": ""
+        },
+        {
+            "progr": 7,
+            "name": "Otho",
+            "personal name": "",
+            "period": "69",
+            "rulerID": ""
+        },
+        {
+            "progr": 8,
+            "name": "Aulus Vitellius",
+            "personal name": "",
+            "period": "69",
+            "rulerID": ""
+        },
+        {
+            "progr": 9,
+            "name": "Vespasian",
+            "personal name": "",
+            "period": "69-79",
+            "rulerID": ""
+        },
+        {
+            "progr": 10,
+            "name": "Titus",
+            "personal name": "",
+            "period": "79-81 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 11,
+            "name": "Domitian",
+            "personal name": "",
+            "period": "81-96 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 12,
+            "name": "Nerva",
+            "personal name": "",
+            "period": "96-98 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 13,
+            "name": "Trajan",
+            "personal name": "",
+            "period": "98-117 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 14,
+            "name": "Hadrian",
+            "personal name": "",
+            "period": "117-138 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 15,
+            "name": "Antoninus Pius",
+            "personal name": "",
+            "period": "138-161 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 16,
+            "name": "Marcus Aurelius",
+            "personal name": "",
+            "period": "161-180 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 17,
+            "name": "Lucius Verus",
+            "personal name": "",
+            "period": "161-169 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 18,
+            "name": "Commodus",
+            "personal name": "",
+            "period": "177-192 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 19,
+            "name": "Publius Helvius Pertinax",
+            "personal name": "",
+            "period": "193",
+            "rulerID": ""
+        },
+        {
+            "progr": 20,
+            "name": "Marcus Didius Severus Julianus",
+            "personal name": "",
+            "period": "193",
+            "rulerID": ""
+        },
+        {
+            "progr": 21,
+            "name": "Septimius Severus",
+            "personal name": "Severan",
+            "period": "193-211 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 22,
+            "name": "Caracalla",
+            "personal name": "Severan",
+            "period": "198-217 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 23,
+            "name": "Publius Septimius Geta",
+            "personal name": "Severan",
+            "period": "209-211 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 24,
+            "name": "Macrinus",
+            "personal name": "",
+            "period": "217-218 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 25,
+            "name": "Elagabalus",
+            "personal name": "",
+            "period": "218-222 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 26,
+            "name": "Severus Alexander",
+            "personal name": "",
+            "period": "222-235 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 27,
+            "name": "Maximinus",
+            "personal name": "",
+            "period": "235-238 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 28,
+            "name": "Gordian I",
+            "personal name": "",
+            "period": "238",
+            "rulerID": ""
+        },
+        {
+            "progr": 29,
+            "name": "Gordian II",
+            "personal name": "",
+            "period": "238",
+            "rulerID": ""
+        },
+        {
+            "progr": 30,
+            "name": "Pupienus Maximus",
+            "personal name": "",
+            "period": "238",
+            "rulerID": ""
+        },
+        {
+            "progr": 31,
+            "name": "Balbinus",
+            "personal name": "",
+            "period": "238",
+            "rulerID": ""
+        },
+        {
+            "progr": 32,
+            "name": "Gordian III",
+            "personal name": "",
+            "period": "238-244 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 33,
+            "name": "Philip",
+            "personal name": "",
+            "period": "244-249 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 34,
+            "name": "Decius",
+            "personal name": "",
+            "period": "249-251 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 35,
+            "name": "Hostilian",
+            "personal name": "",
+            "period": "251",
+            "rulerID": ""
+        },
+        {
+            "progr": 36,
+            "name": "Gallus",
+            "personal name": "",
+            "period": "251-253 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 37,
+            "name": "Aemilian",
+            "personal name": "",
+            "period": "253",
+            "rulerID": ""
+        },
+        {
+            "progr": 38,
+            "name": "Valerian",
+            "personal name": "",
+            "period": "253-260 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 39,
+            "name": "Gallienus",
+            "personal name": "",
+            "period": "253-268 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 40,
+            "name": "Claudius II Gothicus",
+            "personal name": "",
+            "period": "268-270 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 41,
+            "name": "Quintillus",
+            "personal name": "",
+            "period": "270",
+            "rulerID": ""
+        },
+        {
+            "progr": 42,
+            "name": "Aurelian",
+            "personal name": "",
+            "period": "270-275 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 43,
+            "name": "Tacitus",
+            "personal name": "",
+            "period": "275-276 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 44,
+            "name": "Florian",
+            "personal name": "",
+            "period": "276",
+            "rulerID": ""
+        },
+        {
+            "progr": 45,
+            "name": "Probus",
+            "personal name": "",
+            "period": "276-282 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 46,
+            "name": "Carus",
+            "personal name": "",
+            "period": "282-283 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 47,
+            "name": "Numerian",
+            "personal name": "",
+            "period": "283-284 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 48,
+            "name": "Carinus",
+            "personal name": "",
+            "period": "283-285 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 6,
+            "name": "Constantine I",
+            "personal name": "",
+            "period": "306-337 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 7,
+            "name": "Galerius Valerius Maximinus",
+            "personal name": "",
+            "period": "310-313 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 8,
+            "name": "Licinius",
+            "personal name": "",
+            "period": "308-324 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 9,
+            "name": "Constantine II",
+            "personal name": "",
+            "period": "337-340 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 10,
+            "name": "Constantius II",
+            "personal name": "",
+            "period": "337-361 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 11,
+            "name": "Constans I",
+            "personal name": "",
+            "period": "337-350 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 12,
+            "name": "Gallus Caesar",
+            "personal name": "",
+            "period": "351-354 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 13,
+            "name": "Julian",
+            "personal name": "",
+            "period": "361-363 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 14,
+            "name": "Jovian",
+            "personal name": "",
+            "period": "363-364 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 19,
+            "name": "Valentinian II",
+            "personal name": "",
+            "period": "375-392",
+            "rulerID": ""
+        },
+        {
+            "progr": 21,
+            "name": "Theodosius I",
+            "personal name": "",
+            "period": "392-395",
+            "rulerID": ""
+        }
+    ],
+    "Roman Emperor (East)": [
+        {
+            "progr": 1,
+            "name": "Diocletian",
+            "personal name": "",
+            "period": "284-305",
+            "rulerID": ""
+        },
+        {
+            "progr": 3,
+            "name": "Galerius",
+            "personal name": "",
+            "period": "305-311",
+            "rulerID": ""
+        },
+        {
+            "progr": 16,
+            "name": "Valens",
+            "personal name": "",
+            "period": "364-378",
+            "rulerID": ""
+        },
+        {
+            "progr": 17,
+            "name": "Procopius",
+            "personal name": "",
+            "period": "365-366",
+            "rulerID": ""
+        },
+        {
+            "progr": 20,
+            "name": "Theodosius I",
+            "personal name": "",
+            "period": "379-392",
+            "rulerID": ""
+        },
+        {
+            "progr": 22,
+            "name": "Arcadius",
+            "personal name": "",
+            "period": "383-402",
+            "rulerID": ""
+        },
+        {
+            "progr": 25,
+            "name": "Theodosius II",
+            "personal name": "",
+            "period": "408-450",
+            "rulerID": ""
+        },
+        {
+            "progr": 12,
+            "name": "Leo II",
+            "personal name": "",
+            "period": "474",
+            "rulerID": ""
+        },
+        {
+            "progr": 13,
+            "name": "Zeno",
+            "personal name": "",
+            "period": "474-491",
+            "rulerID": ""
+        }
+    ],
+    "Roman Emperor (West)": [
+        {
+            "progr": 1,
+            "name": "Maximian",
+            "personal name": "",
+            "period": "286-305",
+            "rulerID": ""
+        },
+        {
+            "progr": 2,
+            "name": "Constantius I",
+            "personal name": "",
+            "period": "305-306",
+            "rulerID": ""
+        },
+        {
+            "progr": 4,
+            "name": "Severus",
+            "personal name": "",
+            "period": "306-307",
+            "rulerID": ""
+        },
+        {
+            "progr": 5,
+            "name": "Maxentius",
+            "personal name": "",
+            "period": "306-312",
+            "rulerID": ""
+        },
+        {
+            "progr": 15,
+            "name": "Valentinian I",
+            "personal name": "",
+            "period": "364-375 ",
+            "rulerID": ""
+        },
+        {
+            "progr": 18,
+            "name": "Gratian",
+            "personal name": "",
+            "period": "367-383",
+            "rulerID": ""
+        },
+        {
+            "progr": 23,
+            "name": "Magnus Maximus",
+            "personal name": "",
+            "period": "383-388",
+            "rulerID": ""
+        },
+        {
+            "progr": 24,
+            "name": "Honorius",
+            "personal name": "",
+            "period": "393-423",
+            "rulerID": ""
+        },
+        {
+            "progr": 26,
+            "name": "Constantius III",
+            "personal name": "",
+            "period": "421",
+            "rulerID": ""
+        },
+        {
+            "progr": 27,
+            "name": "Valentinian III",
+            "personal name": "",
+            "period": "425-455",
+            "rulerID": ""
+        },
+        {
+            "progr": 2,
+            "name": "Petronius Maximus",
+            "personal name": "",
+            "period": "455",
+            "rulerID": ""
+        },
+        {
+            "progr": 3,
+            "name": "Avitus",
+            "personal name": "",
+            "period": "455-456",
+            "rulerID": ""
+        },
+        {
+            "progr": 4,
+            "name": "Majorian",
+            "personal name": "",
+            "period": "457-461",
+            "rulerID": ""
+        },
+        {
+            "progr": 5,
+            "name": "Libius Severus",
+            "personal name": "",
+            "period": "461-465",
+            "rulerID": ""
+        },
+        {
+            "progr": 6,
+            "name": "Anthemius",
+            "personal name": "",
+            "period": "467-472",
+            "rulerID": ""
+        },
+        {
+            "progr": 7,
+            "name": "Olybrius",
+            "personal name": "",
+            "period": "472",
+            "rulerID": ""
+        },
+        {
+            "progr": 8,
+            "name": "Glycerius",
+            "personal name": "",
+            "period": "473-474",
+            "rulerID": ""
+        },
+        {
+            "progr": 9,
+            "name": "Julius Nepos",
+            "personal name": "",
+            "period": "474-475",
+            "rulerID": ""
+        },
+        {
+            "progr": 10,
+            "name": "Romulus Augustulus",
+            "personal name": "",
+            "period": "475-476",
+            "rulerID": ""
+        }
+    ],
+    "Roman Emperor  (East)": [
+        {
+            "progr": 1,
+            "name": "Marcian",
+            "personal name": "",
+            "period": "450-457",
+            "rulerID": ""
+        },
+        {
+            "progr": 11,
+            "name": "Leo I",
+            "personal name": "",
+            "period": "457-474",
+            "rulerID": ""
+        }
+    ],
+    "Russian Emperor": [
+        {
+            "progr": 1,
+            "name": "Peter I",
+            "personal name": "",
+            "period": "1721-25",
+            "rulerID": ""
+        },
+        {
+            "progr": 2,
+            "name": "Catherine",
+            "personal name": "",
+            "period": "1725-27",
+            "rulerID": ""
+        },
+        {
+            "progr": 3,
+            "name": "Peter II",
+            "personal name": "",
+            "period": "1727-30",
+            "rulerID": ""
+        },
+        {
+            "progr": 4,
+            "name": "Anna",
+            "personal name": "",
+            "period": "1730-40",
+            "rulerID": ""
+        },
+        {
+            "progr": 5,
+            "name": "Ivan VI",
+            "personal name": "",
+            "period": "1740-41",
+            "rulerID": ""
+        },
+        {
+            "progr": 6,
+            "name": "Elizabeth",
+            "personal name": "",
+            "period": "1741-61",
+            "rulerID": ""
+        },
+        {
+            "progr": 7,
+            "name": "Peter III",
+            "personal name": "",
+            "period": "1762",
+            "rulerID": ""
+        },
+        {
+            "progr": 8,
+            "name": "Catherine II",
+            "personal name": "",
+            "period": "1762-96",
+            "rulerID": ""
+        },
+        {
+            "progr": 9,
+            "name": "Paul",
+            "personal name": "",
+            "period": "1796-1801",
+            "rulerID": ""
+        },
+        {
+            "progr": 10,
+            "name": "Alexander I",
+            "personal name": "",
+            "period": "1801-25",
+            "rulerID": ""
+        },
+        {
+            "progr": 11,
+            "name": "Nicholas I",
+            "personal name": "",
+            "period": "1825-55",
+            "rulerID": ""
+        },
+        {
+            "progr": 12,
+            "name": "Alexander II",
+            "personal name": "",
+            "period": "1855-81",
+            "rulerID": ""
+        },
+        {
+            "progr": 13,
+            "name": "Alexander III",
+            "personal name": "",
+            "period": "1881-94",
+            "rulerID": ""
+        },
+        {
+            "progr": 14,
+            "name": "Nicholas II",
+            "personal name": "",
+            "period": "1894-1917",
+            "rulerID": ""
+        }
+    ],
+    "Prince of Moscow": [
+        {
+            "progr": 1,
+            "name": "Daniel",
+            "personal name": "",
+            "period": "1276-1303",
+            "rulerID": ""
+        },
+        {
+            "progr": 2,
+            "name": "Yury",
+            "personal name": "",
+            "period": "1303-25",
+            "rulerID": ""
+        },
+        {
+            "progr": 3,
+            "name": "Ivan I",
+            "personal name": "",
+            "period": "1325-40",
+            "rulerID": ""
+        },
+        {
+            "progr": 4,
+            "name": "Semyon (Simeon)",
+            "personal name": "",
+            "period": "1340-53",
+            "rulerID": ""
+        },
+        {
+            "progr": 5,
+            "name": "Ivan II",
+            "personal name": "",
+            "period": "1353-59",
+            "rulerID": ""
+        },
+        {
+            "progr": 6,
+            "name": "Dmitry (II) Donskoy",
+            "personal name": "",
+            "period": "1359-89",
+            "rulerID": ""
+        },
+        {
+            "progr": 7,
+            "name": "Vasily I",
+            "personal name": "",
+            "period": "1389-1425",
+            "rulerID": ""
+        },
+        {
+            "progr": 8,
+            "name": "Vasily II",
+            "personal name": "",
+            "period": "1425-62",
+            "rulerID": ""
+        },
+        {
+            "progr": 9,
+            "name": "Ivan III",
+            "personal name": "",
+            "period": "1462-1505",
+            "rulerID": ""
+        },
+        {
+            "progr": 10,
+            "name": "Vasily III",
+            "personal name": "",
+            "period": "1505-33",
+            "rulerID": ""
+        },
+        {
+            "progr": 11,
+            "name": "Ivan IV",
+            "personal name": "",
+            "period": "1533-47",
+            "rulerID": ""
+        }
+    ],
+    "Tsar of Russia": [
+        {
+            "progr": 1,
+            "name": "Ivan IV",
+            "personal name": "",
+            "period": "1547-84",
+            "rulerID": ""
+        },
+        {
+            "progr": 2,
+            "name": "Fyodor I",
+            "personal name": "",
+            "period": "1584-98",
+            "rulerID": ""
+        },
+        {
+            "progr": 3,
+            "name": "Boris Godunov",
+            "personal name": "",
+            "period": "1598-1605",
+            "rulerID": ""
+        },
+        {
+            "progr": 4,
+            "name": "Fyodor II",
+            "personal name": "",
+            "period": "1605",
+            "rulerID": ""
+        },
+        {
+            "progr": 5,
+            "name": "False Dmitry",
+            "personal name": "",
+            "period": "1605-06",
+            "rulerID": ""
+        },
+        {
+            "progr": 6,
+            "name": "Vasily (IV) Shuysky",
+            "personal name": "",
+            "period": "1606-10",
+            "rulerID": ""
+        },
+        {
+            "progr": 7,
+            "name": "Interregnum",
+            "personal name": "",
+            "period": "1610-12",
+            "rulerID": ""
+        },
+        {
+            "progr": 8,
+            "name": "Michael",
+            "personal name": "",
+            "period": "1613-45",
+            "rulerID": ""
+        },
+        {
+            "progr": 9,
+            "name": "Alexis",
+            "personal name": "",
+            "period": "1645-76",
+            "rulerID": ""
+        },
+        {
+            "progr": 10,
+            "name": "Fyodor III",
+            "personal name": "",
+            "period": "1676-82",
+            "rulerID": ""
+        },
+        {
+            "progr": 11,
+            "name": "Peter I (Ivan V coruler)",
+            "personal name": "",
+            "period": "1682-96",
+            "rulerID": ""
+        },
+        {
+            "progr": 12,
+            "name": "Peter I",
+            "personal name": "",
+            "period": "1696-1721",
+            "rulerID": ""
+        }
+    ],
+    "Chairman of the Communist Party of the Soviet Union": [
+        {
+            "progr": 1,
+            "name": "Vladimir Ilich Lenin",
+            "personal name": "",
+            "period": "1917-24",
+            "rulerID": ""
+        },
+        {
+            "progr": 2,
+            "name": "Joseph Stalin",
+            "personal name": "",
+            "period": "1924-53",
+            "rulerID": ""
+        },
+        {
+            "progr": 3,
+            "name": "Georgy Malenkov",
+            "personal name": "",
+            "period": "1953",
+            "rulerID": ""
+        },
+        {
+            "progr": 4,
+            "name": "Nikita Khrushchev",
+            "personal name": "",
+            "period": "1953-64",
+            "rulerID": ""
+        },
+        {
+            "progr": 5,
+            "name": "Leonid Brezhnev",
+            "personal name": "",
+            "period": "1964-82",
+            "rulerID": ""
+        },
+        {
+            "progr": 6,
+            "name": "Yury Andropov",
+            "personal name": "",
+            "period": "1982-84",
+            "rulerID": ""
+        },
+        {
+            "progr": 7,
+            "name": "Konstantin Chernenko",
+            "personal name": "",
+            "period": "1984-85",
+            "rulerID": ""
+        },
+        {
+            "progr": 8,
+            "name": "Mikhail Gorbachev",
+            "personal name": "",
+            "period": "1985-91",
+            "rulerID": ""
+        }
+    ],
+    "President of Russia": [
+        {
+            "progr": 1,
+            "name": "Boris Yeltsin",
+            "personal name": "",
+            "period": "1991-99",
+            "rulerID": ""
+        },
+        {
+            "progr": 2,
+            "name": "Vladimir Putin",
+            "personal name": "",
+            "period": "1999-2008",
+            "rulerID": ""
+        },
+        {
+            "progr": 3,
+            "name": "Dmitry Medvedev",
+            "personal name": "",
+            "period": "2008-12",
+            "rulerID": ""
+        },
+        {
+            "progr": 4,
+            "name": "Vladimir Putin",
+            "personal name": "",
+            "period": "2012-24",
+            "rulerID": ""
+        }
+    ]
+}

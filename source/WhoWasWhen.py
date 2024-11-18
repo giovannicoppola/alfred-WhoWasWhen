@@ -13,7 +13,7 @@ import gspread
 import gspread.exceptions
 from oauth2client.service_account import ServiceAccountCredentials
 from google.oauth2 import service_account
-from config import KEYFILE, log, GSHEET_URL, MY_PERIOD_SHEET
+from config import KEYFILE, log, GSHEET_URL, MY_PERIOD_SHEET, MY_RULERS_SHEET
 
 # Function to expand the years field (by ChatGPT)
 def expand_years(years):
@@ -135,36 +135,100 @@ def createRulersSearch (data,searchFields=['personal name','name']):
         json.dump(rulers_search, json_file, indent=4)
 
 
-def exportRulers (myData):
+def exportRulersYears (myData,myRulers):
     # Initialize the dictionary
+    rulerYears_dict = {}
     rulers_dict = {}
-
-        
+    myCounter = 0
     for key,row in myData.items():
         
         ruler_type = row['Ruler']
+        myCounter += 1
+        if ruler_type in rulers_dict:
+            rulers_dict[ruler_type].append({'progr': myCounter,
+                                            'name': row['Name'],
+                                            'personal name': row['Personal Name'],
+                                            'period': row['Year'],
+                                            'rulerID': row['RulerID']
+                                            })
+        else:
+            myCounter = 1
+            rulers_dict[ruler_type] = [{'progr': myCounter,
+                                        'name': row['Name'],
+                                        'personal name': row['Personal Name'],
+                                        'period': row['Year'],
+                                        'rulerID': row['RulerID']
+
+                                        }]
         name = row['Name']
-        years_field = row['Year']
+        years_field = row['Year'].strip()
         personalName = row['Personal Name']
         years = expand_years(years_field)
+        year_max = max(years)
+        year_min = min(years)
+        if row['RulerID'] in myRulers.keys():
+            if row['Ruler'] not in myRulers[row['RulerID']]['title']:
+                myRulers[row['RulerID']]['title'].append (row['Ruler'])
+            
         
         for year in years:
             year_str = str(year)
-            if year_str not in rulers_dict:
-                rulers_dict[year_str] = {ruler_type: [{'name': name, 'period': years_field, 'personal name': personalName}]}  # Save the ruler as a list
+            if year_str not in rulerYears_dict:
+                rulerYears_dict[year_str] = {
+                    ruler_type: [{
+                        'name': name, 
+                        'period': years_field, 
+                        'startYear': year_min,
+                        'endYear': year_max,
+                        'searchString': f"{year_str} {ruler_type} {name} {personalName}".lower().strip(),
+                        'personal name': personalName}]}  # Save the ruler as a list
             else:
-                if ruler_type in rulers_dict[year_str]:
-                    rulers_dict[year_str][ruler_type].append({'name': name, 'period': years_field, 'personal name': personalName})  # Append to the existing list
+                if ruler_type in rulerYears_dict[year_str]:
+                    rulerYears_dict[year_str][ruler_type].append({
+                        'name': name, 
+                        'period': years_field, 
+                        'startYear': year_min,
+                        'endYear': year_max,
+                        'searchString': f"{year_str} {ruler_type} {name} {personalName}".lower().strip(),
+                        'personal name': personalName})  # Append to the existing list
                 else:
-                    rulers_dict[year_str][ruler_type] = [{'name': name, 'period': years_field, 'personal name': personalName}]  # Create a new list
+                    rulerYears_dict[year_str][ruler_type] = [{
+                        'name': name, 
+                        'period': years_field,
+                        'startYear': year_min,
+                        'endYear': year_max,
+                        'searchString': f"{year_str} {ruler_type} {name} {personalName}".lower().strip(),
+                        'personal name': personalName}]  # Create a new list
 
     # Export the resulting dictionary to a JSON file
-    with open('rulers.json', 'w') as json_file:
+    with open('rulersYears.json', 'w') as json_file:
+        json.dump(rulerYears_dict, json_file, indent=4)
+    
+    # Export the resulting dictionary to a JSON file
+    with open('rulersLists.json', 'w') as json_file:
         json.dump(rulers_dict, json_file, indent=4)
     
-    createRulersSearch (rulers_dict)
+    with open('rulersInfo.json', 'w') as json_file:
+        json.dump(myRulers, json_file, indent=4)
+    
 
-
+def exportRulers (myData):
+    # Initialize the dictionary
+    rulers = {}
+    for key,row in myData.items():
+        
+        rulers [row['RulerID']] = {
+            "name": row['Name'],
+            "personal name": row['Personal Name'],
+            "epithet": row['Epithet'],
+            "wikipedia": row['Wikipedia'],
+            "title": [],
+            "notes": row['Notes']
+        }
+    
+    # # Export the resulting dictionary to a JSON file
+    return rulers
+    
 
 def createIconDict():
     iconDict = {
@@ -183,12 +247,18 @@ def createIconDict():
 
 
 def main ():
+
+    # get rulers
+    allRulers = getSheet(KEYFILE, GSHEET_URL, MY_RULERS_SHEET, ["RulerID","Name","Personal Name","Wikipedia", "Epithet","Personal Name", "Notes"])
+    allRulers = exportRulers(allRulers)
+
+
     # fetching the values from the google sheet
-    selected_columns = ["Progr","Ruler", "Name", "Year", "Notes", "Personal Name"] #columns to be fetched from the gsheet
+    selected_columns = ["Progr","Ruler", "Name", "RulerID", "Year", "Notes", "Personal Name"] #columns to be fetched from the gsheet
     allValues = getSheet(KEYFILE, GSHEET_URL, MY_PERIOD_SHEET, selected_columns)
-    #print (allValues)
-    exportRulers(allValues)
+    exportRulersYears(allValues,allRulers)
     createIconDict()
+
 
     result= {"items": [{
         "title": "Done!" ,
