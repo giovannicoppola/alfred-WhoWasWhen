@@ -6,379 +6,157 @@ import os
 import json
 from time import time
 import sys
-from config import log, MYYEARS, MYRULERS
+from config import log, MYYEARS, MYRULERS, MYRULERSLISTS, MYICONDICT, MY_DB
+import sqlite3
 
 mySource = os.getenv('mySource')
 myRulerID = os.getenv('myRulerID')
-myTitle = os.getenv('myTitle')
 
 
-MYINPUT = sys.argv[1].casefold()
+
+MYINPUT = sys.argv[1].strip().casefold()
 
 
-# load the rulers periods list
-with open(MYYEARS, 'r') as file:
-	data = json.load(file)
+
+
+def by_ruler(conn,searchStringList,queryType):
 	
-# load the search index
-with open("rulersInfo.json", 'r') as file:
-	rulers = json.load(file)
+	myRulerID = 0
+	if queryType == "searchRuler":
+		textSQLstring = " AND ".join(
+			[f"""(ru.name LIKE '%{s}%' OR 
+			ru.personal_name LIKE '%{s}%' OR 
+			ru.epithet LIKE '%{s}%' OR 
+			ru.notes LIKE '%{s}%' OR 
+			t.title LIKE '%{s}%'
+		)""" for s in searchStringList])
 
-# load the search index
-with open("rulersLists.json", 'r') as file:
-	rulersList = json.load(file)
-
-with open("iconDict.json", 'r') as file:
-	iconDict = json.load(file)
-
-
-
-
-def search_rulers(data, search_query):
-	matching_keys = []
-	search_terms = search_query.split()  # Split the search query into substrings
-	
-	for key, value in data.items():
-		all_match = True
+		query = f'''
+		SELECT 
+		ru.*,
+		per.*,
+		t.title AS title,
+		t.titlePlural as titlePlural,
 		
-		# Check all substrings in all fields (excluding 'wikipedia')
-		for term in search_terms:
-			#log(f"Checking term: {term}")
-			term_found = False
-			for field, field_value in value.items():
-				if field.lower() == "wikipedia":  # Skip 'wikipedia'
-					continue
-				
-				# Check the field for the term
-				if isinstance(field_value, list):
-					if any(term in item.lower() for item in field_value):
-						term_found = True
-						break
-				elif isinstance(field_value, str):
-					if term in field_value.lower():
-						term_found = True
-						break
-			
-			if not term_found:
-				all_match = False
-				break
 		
-		# Add the key if all substrings matched
-		if all_match:
-			matching_keys.append(key)
-			# Debugging log: print the matched key
-			log(search_terms)
-			log(f"Matched key: {key}, value: {value}")
+		GROUP_CONCAT(t.title || ' (' || per.period || ')', '; ') AS concatenated_titles
 
-	# Debugging log: print the final matching keys list
-	log(f"Final matching keys: {matching_keys}")
-	return matching_keys
+		FROM
+			rulers ru
+		JOIN 
+			byPeriod per ON ru.rulerID = per.rulerID
+		JOIN 
+			titles t ON per.titleID = t.titleID
+		WHERE
 
+			{textSQLstring}
+		GROUP BY
+			ru.rulerID;
+		'''
+		
+		
+	elif queryType == "listLineage":
+		myTitle = os.getenv('myTitle')
+		myTitleProg = os.getenv('mytitleProg')
+		myRulerID = os.getenv('myRulerID')
+		query = f'''
+		SELECT 
+		ru.*,
+		per.*,
+		t.title AS title,
+		t.maxCount as titleCount,
+		t.titlePlural as titlePlural
+		
 
-
-
-
-def search_nested(str_data, search_query):
-	result = []
-	search_terms = search_query.split()
-	for key, value in str_data.items():
-		for key2, value2 in value.items():
-			for entry in value2:
-				if all (term in entry.get ('searchString') for term in search_terms):
-					result.append([key,key2])
-			
+		FROM
+			rulers ru
+		JOIN 
+			byPeriod per ON ru.rulerID = per.rulerID
+		JOIN 
+			titles t ON per.titleID = t.titleID
+		WHERE
+			t.title = '{myTitle}' AND per.progrTitle > ({myTitleProg} - 3)
+		
+		;
+		'''
+		
 	
-	return result
+	cursor = conn.cursor()
+	
+	cursor.execute(query)
+	rs = cursor.fetchall()
+	
+	result= {"items": []}
+	for r in rs:
+		if int(r['rulerID']) == int (myRulerID):
+			rulerStar = "🌟"
+		else:
+			rulerStar = ""
 
-def search_nested_exact(str_data, search_query):
-    result = []
-    search_terms = search_query.split()
-    
-    for key, value in str_data.items():
-        for key2, value2 in value.items():
-            for entry in value2:
-                search_string = entry.get('searchString', '')
-                
-                # Check if all terms match
-                match = True
-                for term in search_terms:
-                    if term.isdigit():  # Exact match for numeric terms
-                        if term not in search_string.split():  # Match exact word
-                            match = False
-                            break
-                    else:  # Partial match for non-numeric terms
-                        if term not in search_string:
-                            match = False
-                            break
-                
-                if match:
-                    result.append([key, key2])
-    
-    return result
+		if queryType == "searchRuler":
+			myTitle = f"{r['name']} "
+			subtitleString = f"{r['personal_name']}, {r['concatenated_titles']}" if r['personal_name'] else f"{r['concatenated_titles']}"
 
+		else:
+			myTitle = f"{r['name']} ({r['period']}) {rulerStar}"
+			subtitleString = f"({r['progrTitle']}/{r['titleCount']}) {r['personal_name']}, {r['title']} ({r['period']})" if r['personal_name'] else f"({r['progrTitle']}/{r['titleCount']}) {r['title']}"
 
+		
+		wikilink = r['wikipedia'] if r['wikipedia'] else f"https://en.wikipedia.org/wiki/{r['name']}"
+		endYear = r['endYear']
+		startYear = r['startYear']
+		
+		icon_path = f"icons/{r['title']}.png" if os.path.exists(f"icons/{r['title']}.png") else "icons/crown.png"
 
-def serveResults (MYINPUT, myFiltered):
-		result = {"items": []}
-		for myresult in myFiltered:
-			currYear = myresult[0]
-			currRulerTitle = myresult[1]
-			myRecord = data[currYear][currRulerTitle]
-			
-			supportedIcons = ['Pope','France Monarch','English Monarch','Roman Emperor','Byzantine Emperor','Holy Roman Emperor','US president','British PM']
-			if currRulerTitle in supportedIcons:
-				myIcon = iconDict[currRulerTitle]
-			else:
-				myIcon = 'icons/crown.png'
-
-			
-			#formatted_ruler = [f"{ruler['name']} ({ruler['period']})" for ruler in myRecord]
-			#formatted_ruler = ", ".join (formatted_ruler)
-
-			for ruler in myRecord:
-				if ruler ['personal name']:
-					subtitleString = f"{ruler['personal name']}, {currRulerTitle}"
-				else:
-					subtitleString = f"{currRulerTitle}"
-				
-				
-				endYear = ruler['endYear']
-				startYear = ruler['startYear']
-			
-				result["items"].append({
-					"title": f"{ruler['name']} ({ruler['period']})",
+		result["items"].append({
+					"title": myTitle,
 					'subtitle': subtitleString,
 					'valid': True,
-					'arg': f"{ruler['name']}",
+					'arg': f"{wikilink}",
 					'mods': {
 						"cmd": {
 							"valid": True,
 							"arg": endYear,
 							"subtitle": f"travel to {endYear}",
 							"variables": {
-								"mySource": "end",
-								"Period": endYear 
+							"mySource": "",	
 								},
-						},
+							},
 						"ctrl": {
 							"valid": True,
 							"arg": startYear,
 							"subtitle": f"travel to {startYear}",
 							"variables": {
-								"mySource": "start",
-								"Period": startYear 
+							"mySource": "",	
 								},
-						},
+							},
 					
 						"alt": {
 							"valid": True,
-							"arg": f"{currYear}",
-							"subtitle": f"Copy {currYear} to clipboard"
-						},
+							"arg": r['titlePlural'],
+							"subtitle": f"Show all {r['titlePlural']}",
+							"variables": {
+								"mySource": "ruler",
+								"myRulerID": r['rulerID'],
+								"mytitleProg": r['progrTitle'],
+								
+								"myTitle": r['title']
+								},
+							},
 						"shift": {
 							"valid": True,
-							"arg": f"{ruler['period']}",
-							"subtitle": f"Copy {ruler['period']} to clipboard"
+							"arg": "{ruler['period']}",
+							"subtitle": "Copy {ruler['period']} to clipboard"
 						}
 					},	
 					"icon": {
-						"path": myIcon
+						"path": icon_path
 					},
 					
-						}) 
-		
-				
-		
-		if MYINPUT and not myFiltered:
-			result["items"].append({
-				"title": "No results here 🫤",
-				"subtitle": "Try a different query",
-				"arg": "",
-				"icon": {
-					"path": "icons/hopeless.png"
-					}
-				
-					})
-			
-		
-		print (json.dumps(result))
+						})
 
-def serveRulers (MYINPUT, myRulers, myFiltered):
-		result = {"items": []}
-		for myresult in myFiltered:
-			ruler = myRulers[myresult]
-			
-			supportedIcons = ['Pope','France Monarch','English Monarch','Roman Emperor','Byzantine Emperor','Holy Roman Emperor','US president','British PM']
-			
-			# if currRulerTitle in supportedIcons:
-			# 	myIcon = iconDict[currRulerTitle]
-			# else:
-			# 	myIcon = 'icons/crown.png'
-
-			
-			#formatted_ruler = [f"{ruler['name']} ({ruler['period']})" for ruler in myRecord]
-			#formatted_ruler = ", ".join (formatted_ruler)
-
-
-			if ruler ['personal name']:
-				subtitleString = f"{ruler['personal name']}"
-			else:
-				subtitleString = f"currRulerTitle"
-			
-			
-			endYear = 99
-			startYear = 99
-			if len(ruler['title']) > 0:
-				myTitle = ruler['title'][0]
-				
-			else:
-				myTitle = ""
-			
-			result["items"].append({
-				"title": f"{ruler['name']}",
-				'subtitle': subtitleString,
-				'valid': True,
-				'arg': f"{myTitle}",
-				'variables': {
-					"mySource": "ruler",
-					"myRulerID": myresult,
-					"myTitle": myTitle
-				},
-				'mods': {
-					"cmd": {
-						"valid": True,
-						"arg": endYear,
-						"subtitle": f"travel to {endYear}",
-						"variables": {
-							"mySource": "end",
-							"Period": endYear 
-							},
-					},
-					"ctrl": {
-						"valid": True,
-						"arg": startYear,
-						"subtitle": f"travel to {startYear}",
-						"variables": {
-							"mySource": "start",
-							"Period": startYear 
-							},
-					},
-				
-					"alt": {
-						"valid": True,
-						"arg": f"currYear",
-						"subtitle": f"Copy currYear to clipboard"
-					},
-					"shift": {
-						"valid": True,
-						"arg": f"ruler['period']",
-						"subtitle": f"Copy ruler['period'] to clipboard"
-					}
-				},	
-				"icon": {
-					"path": "icons/crownedPerson.png"
-				},
-				
-					}) 
-		print (json.dumps(result))
-		
-def serveLineage (title, progressive, data):
-	result = {"items": []}
 	
-
-	if title in data:
-		# Determine the range of 'progr' values
-		start_progr = max(1, progressive - 2)  # Ensure it doesn't go below 1
-		max_progr = max(entry["progr"] for entry in data[title])  # Get the maximum 'progr' value
-		
-		# Subset the records within the range
-		toShow = [entry for entry in data[title] if start_progr <= entry["progr"] <= max_progr]
-	else:
-		toShow = []
-		log(f"Title '{title}' not found in the data")
-		return
-		
-    
-
-
-
-	for ruler in toShow:
-		supportedIcons = ['Pope','France Monarch','English Monarch','Roman Emperor','Byzantine Emperor','Holy Roman Emperor','US president','British PM']
-		
-		# if currRulerTitle in supportedIcons:
-		# 	myIcon = iconDict[currRulerTitle]
-		# else:
-		# 	myIcon = 'icons/crown.png'
-
-		
-		#formatted_ruler = [f"{ruler['name']} ({ruler['period']})" for ruler in myRecord]
-		#formatted_ruler = ", ".join (formatted_ruler)
-
-
-		if ruler['personal name']:
-			subtitleString = f"{ruler['personal name']}"
-		else:
-			subtitleString = f"currRulerTitle"
-
-
-		if ruler['rulerID'] == "308":
-			starString = "🌟"
-		else:
-			starString = ""
-		
-		
-		endYear = 99
-		startYear = 99
-
-		result["items"].append({
-			"title": f"{ruler['name']} {starString}",
-			'subtitle': subtitleString,
-			'valid': True,
-			'arg': f"{title}",
-			'variables': {
-				"mySource": "ruler",
-				"myRulerID": ruler['rulerID'],
-				"myTitle": myTitle
-			},
-			'mods': {
-				"cmd": {
-					"valid": True,
-					"arg": endYear,
-					"subtitle": f"travel to {endYear}",
-					"variables": {
-						"mySource": "end",
-						"Period": endYear 
-						},
-				},
-				"ctrl": {
-					"valid": True,
-					"arg": startYear,
-					"subtitle": f"travel to {startYear}",
-					"variables": {
-						"mySource": "start",
-						"Period": startYear 
-						},
-				},
-			
-				"alt": {
-					"valid": True,
-					"arg": f"currYear",
-					"subtitle": f"Copy currYear to clipboard"
-				},
-				"shift": {
-					"valid": True,
-					"arg": f"ruler['period']",
-					"subtitle": f"Copy ruler['period'] to clipboard"
-				}
-			},	
-			"icon": {
-				# "path": myIcon
-			},
-			
-				}) 
-		
-	
-	if not toShow:
+	if searchStringList and not rs:
 		result["items"].append({
 			"title": "No results here 🫤",
 			"subtitle": "Try a different query",
@@ -389,74 +167,189 @@ def serveLineage (title, progressive, data):
 			
 				})
 		
+
+	
+	print (json.dumps(result)) 
+
+def is_year_range(string):
+    # Check if the string contains exactly one hyphen and both parts are numbers
+    if string.count('-') == 1:
+        start, end = string.split('-')
+        if start.isdigit() and end.isdigit():
+            return True
+    return False
+
+
+def by_year(conn,search_terms):
+	
+	if len(search_terms) > 1:
+		junctionString =   " AND "
+	else:
+		junctionString = ""
+
+	# identifying the element containing the year
+	year = next((term for term in search_terms if term.isdigit() or term.endswith('*') or is_year_range(term)), None)
+		
+	# rest of the search terms
+	search_terms_wn = [
+		term for term in search_terms 
+			if not (term.isdigit() or term.endswith('*') or is_year_range(term))]
+
+	# processing wildcards
+	asteriskCount = len(year) - len(year.rstrip('*'))
+	
+	prefix = year[:len(year) - asteriskCount]
+	wildcards = "_" * asteriskCount
+	
+	# processing a year range
+	if is_year_range(year):
+		start, end = year.split('-')
+		yearSQLstring = f"(y.year BETWEEN '{start}' AND '{end}'){junctionString}"
+	else:
+		yearSQLstring = f"(CAST (y.year as TEXT) LIKE '{prefix}{wildcards}'){junctionString}"	
+	
+	textSQLstring = " AND ".join(
+	[f"((r.name LIKE '%{s}%') OR (t.title LIKE '%{s}%'))" for s in search_terms_wn])
+
+	query = f'''
+	SELECT 
+	r.*,
+	per.*,
+	t.title AS title,
+	t.maxCount as titleCount,
+	t.titlePlural as titlePlural,
+	y.year AS year
+	
+
+	FROM
+		byYear rt
+	JOIN 
+		byPeriod per ON rt.periodID = per.periodID
+	JOIN 
+		rulers r ON per.rulerID = r.rulerID
+	JOIN 
+		titles t ON per.titleID = t.titleID
+	JOIN
+		years y ON rt.yearID = y.yearID
+	WHERE
+		{yearSQLstring}
+		{textSQLstring}
+	GROUP BY
+			per.periodID
+	ORDER BY 
+		y.year
+	
+		;
+	'''
+	cursor = conn.cursor()
+	
+	cursor.execute(query)
+	rs = cursor.fetchall()
+	result= {"items": []}
+	totalCount = len(rs)
+	myCounter = 0
+	for r in rs:
+		myCounter += 1
+		if asteriskCount or is_year_range(year):
+			yearString = year
+		else:
+			yearString = r['year'] 
+		
+		myTitle = f"{yearString}: {r['name']} ({r['period']})"
+		
+		subtitleString = f"{myCounter}/{totalCount} {r['personal_name']}, {r['title']} ({r['progrTitle']}/{r['titleCount']}) {r['notes']}" if r ['personal_name'] else f"{myCounter}/{totalCount} {r['title']} ({r['progrTitle']}/{r['titleCount']}) {r['notes']}"
+		
+		wikilink = r['wikipedia'] if r['wikipedia'] else f"https://en.wikipedia.org/wiki/{r['name']}"
+		endYear = r['endYear']
+		startYear = r['startYear']
+
+		
+		icon_path = f"icons/{r['title']}.png" if os.path.exists(f"icons/{r['title']}.png") else "icons/crown.png"
+
+		result["items"].append({
+					"title": myTitle,
+					'subtitle': subtitleString,
+					'valid': True,
+					'arg': f"{wikilink}",
+					'mods': {
+						"cmd": {
+							"valid": True,
+							"arg": endYear,
+							"subtitle": f"travel to {endYear}",
+							"variables": {
+								mySource: "",
+								},
+							},
+						"ctrl": {
+							"valid": True,
+							"arg": startYear,
+							"subtitle": f"travel to {startYear}",
+							"variables": {
+								mySource: "",
+								},
+							},
+					
+						"alt": {
+							"valid": True,
+							"arg": r['titlePlural'],
+							"subtitle": f"Show all {r['titlePlural']}",
+							"variables": {
+								"mySource": "ruler",
+								"myRulerID": r['rulerID'],
+								"mytitleProg": r['progrTitle'],
+								"myTitle": r['title']
+								},
+							},
+						"shift": {
+							"valid": True,
+							"arg": "{ruler['period']}",
+							"subtitle": "Copy {ruler['period']} to clipboard"
+						}
+					},	
+					"icon": {
+						"path": icon_path
+					},
+					
+						}) 
+
+			
+
+	if year and not rs:
+		result["items"].append({
+			"title": "No results here 🫤",
+			"subtitle": "Try a different query",
+			"arg": "",
+			"icon": {
+				"path": "icons/hopeless.png"
+				}
+			
+				})
+		
+
 	
 	print (json.dumps(result))
 
-def get_progr(data, key, ruler_id):
-    if key in data:
-        for entry in data[key]:
-            if entry.get("rulerID") == ruler_id:
-                return entry.get("progr")  # Return the value of 'progr' if found
-    return None  # Return None if no match is found
-
-
 def main():
 	main_start_time = time()
-	
+	conn = sqlite3.connect(MY_DB)
+	conn.row_factory = sqlite3.Row
+
+	# if mySource == 'ruler' show a list of rulers	
 	if mySource == 'ruler':
-		log (f"Ruler ID: {myRulerID}")
-		log (f"Title: {myTitle}")
-		myProgrs = get_progr(rulersList, myTitle, myRulerID)
-		log (f"Progr: {myProgrs}")
-		serveLineage (myTitle, myProgrs, rulersList)
+		by_ruler(conn, "", "listLineage")
 		return
 	
 
 	search_terms = MYINPUT.split()
 
 	# Check for the presence of numbers in the search terms
-	contains_number = any(term.isdigit() for term in search_terms)
-
-	# Classify based on the scenarios
-	if len(search_terms) == 1:
-		if MYINPUT[-1] == " " and MYINPUT[:-1].isdigit():
-            # Scenario 5: Single number followed by a space
-			log ("Scenario 5, single number plus space")
-			myFiltered = search_nested_exact(data, MYINPUT)
-			log ("Scenario 2, single number")
-			serveResults (MYINPUT, myFiltered)
-
-		elif search_terms[0].isdigit():
-			# Scenario 2: Single number
-			myFiltered = search_nested(data, MYINPUT)
-			log ("Scenario 2, single number")
-			serveResults (MYINPUT, myFiltered)
-		
-		else:
-			# Scenario 1: Single word
-			myFiltered = search_rulers(rulers, MYINPUT)
-			serveRulers (MYINPUT, rulers, myFiltered)
-			log ("Scenario 1, single word")
-	
-	elif len(search_terms) > 1:
-		if contains_number:
-			# Scenario 3: Multiple words, one is a number
-			log ("Scenario 3, multiple words, one is a number")
-			myFiltered = search_nested_exact(data, MYINPUT)
-			log (myFiltered)
-			serveResults (MYINPUT, myFiltered)
-
-		else:
-			# Scenario 4: Multiple words, none are a number
-			log ("Scenario 4, multiple words, none are a number")	
-			myFiltered = search_rulers(rulers, MYINPUT)
-			serveRulers (MYINPUT, rulers, myFiltered)
-	
-	
-	
+	contains_number = any(term.isdigit() or (term.endswith('*')) or is_year_range (term) for term in search_terms)
 	
 
-	
+	if contains_number:
+		by_year(conn, search_terms) # search for a year
+	else:
+		by_ruler(conn, search_terms, "searchRuler")	 # search for a ruler
 	
 	
 	
@@ -466,3 +359,6 @@ def main():
     
 if __name__ == '__main__':
     main ()
+
+
+
