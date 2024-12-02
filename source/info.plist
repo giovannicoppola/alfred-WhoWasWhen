@@ -22,6 +22,16 @@
 				<key>destinationuid</key>
 				<string>9C706140-CECC-4899-9AEC-C284A655F24E</string>
 				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>40A1963B-DAC7-4FEF-9A22-7500E8581A89</string>
+				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
@@ -41,7 +51,7 @@
 		</array>
 	</dict>
 	<key>createdby</key>
-	<string></string>
+	<string>giovanni</string>
 	<key>description</key>
 	<string></string>
 	<key>disabled</key>
@@ -87,18 +97,18 @@
 				<key>keyword</key>
 				<string>wwho</string>
 				<key>queuedelaycustom</key>
-				<integer>3</integer>
+				<integer>1</integer>
 				<key>queuedelayimmediatelyinitially</key>
-				<true/>
+				<false/>
 				<key>queuedelaymode</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>⏳...fetching database ...</string>
 				<key>script</key>
 				<string>/usr/bin/python3 ruler-query.py "$1"
-</string>
+#/usr/bin/python3 ruler-queryOLD.py "$1"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -140,6 +150,27 @@
 			<string>alfred.workflow.output.callexternaltrigger</string>
 			<key>uid</key>
 			<string>9C706140-CECC-4899-9AEC-C284A655F24E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>40A1963B-DAC7-4FEF-9A22-7500E8581A89</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -221,6 +252,10 @@ https://www.flaticon.com/free-icon/laurel_362599</string>
 	<dict>
 		<key>029F64E6-A72A-4FDF-BF21-16380B5E0DEB</key>
 		<dict>
+			<key>colorindex</key>
+			<integer>8</integer>
+			<key>note</key>
+			<string>end</string>
 			<key>xpos</key>
 			<real>775</real>
 			<key>ypos</key>
@@ -228,10 +263,21 @@ https://www.flaticon.com/free-icon/laurel_362599</string>
 		</dict>
 		<key>07F3DDBE-52E0-42CB-B500-14EE562DDB8C</key>
 		<dict>
+			<key>colorindex</key>
+			<integer>3</integer>
+			<key>note</key>
+			<string>start</string>
 			<key>xpos</key>
 			<real>775</real>
 			<key>ypos</key>
 			<real>50</real>
+		</dict>
+		<key>40A1963B-DAC7-4FEF-9A22-7500E8581A89</key>
+		<dict>
+			<key>xpos</key>
+			<real>1225</real>
+			<key>ypos</key>
+			<real>180</real>
 		</dict>
 		<key>6629522C-A717-4AD9-9118-BCF6C6B34239</key>
 		<dict>
@@ -249,8 +295,12 @@ https://www.flaticon.com/free-icon/laurel_362599</string>
 		</dict>
 		<key>9C706140-CECC-4899-9AEC-C284A655F24E</key>
 		<dict>
+			<key>colorindex</key>
+			<integer>5</integer>
+			<key>note</key>
+			<string>rulers list</string>
 			<key>xpos</key>
-			<real>775</real>
+			<real>785</real>
 			<key>ypos</key>
 			<real>180</real>
 		</dict>
