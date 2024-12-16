@@ -39,7 +39,9 @@ def by_ruler(conn,searchStringList,queryType):
 		t.titlePlural as titlePlural,
 		
 		
-		GROUP_CONCAT(t.title || ' (' || per.period || ')', '; ') AS concatenated_titles
+		GROUP_CONCAT(t.title || ' (' || per.period || ')', '; ') AS concatenated_titles,
+		GROUP_CONCAT(per.notes) AS concatenated_notes
+
 
 		FROM
 			rulers ru
@@ -92,14 +94,22 @@ def by_ruler(conn,searchStringList,queryType):
 			rulerStar = "🌟"
 		else:
 			rulerStar = ""
-
+		
+		if r['epithet']:
+			epithetString = f" ({r['epithet']})"
+		else:
+			epithetString = ""
 		if queryType == "searchRuler":
-			myTitle = f"{r['name']} "
-			subtitleString = f"{r['personal_name']}, {r['concatenated_titles']}" if r['personal_name'] else f"{r['concatenated_titles']}"
+			if r['concatenated_notes']:
+				notesString = f" – {r['concatenated_notes']}"
+			else:
+				notesString = ""
+			myTitle = f"{r['name']}{epithetString}"
+			subtitleString = f"{r['personal_name']}, {r['concatenated_titles']}{notesString}" if r['personal_name'] else f"{r['concatenated_titles']}{notesString}"
 
 		else:
 			myTitle = f"{r['name']} ({r['period']}) {rulerStar}"
-			subtitleString = f"({r['progrTitle']}/{r['titleCount']}) {r['personal_name']}, {r['title']} ({r['period']})" if r['personal_name'] else f"({r['progrTitle']}/{r['titleCount']}) {r['title']}"
+			subtitleString = f"({r['progrTitle']}/{r['titleCount']}) {r['personal_name']}, {r['title']} ({r['period']}) – {r['notes']}" if r['personal_name'] else f"({r['progrTitle']}/{r['titleCount']}) {r['title']} – {r['notes']}"
 
 		
 		wikilink = r['wikipedia'] if r['wikipedia'] else f"https://en.wikipedia.org/wiki/{r['name']}"
@@ -255,7 +265,11 @@ def by_year(conn,search_terms):
 		else:
 			yearString = r['year'] 
 		
-		myTitle = f"{yearString}: {r['name']} ({r['period']})"
+		if r['epithet']:
+			epithetString = f" ({r['epithet']})"
+		else:
+			epithetString = ""
+		myTitle = f"{yearString}: {r['name']}{epithetString} ({r['period']})"
 		
 		subtitleString = f"{myCounter}/{totalCount} {r['personal_name']}, {r['title']} ({r['progrTitle']}/{r['titleCount']}) {r['notes']}" if r ['personal_name'] else f"{myCounter}/{totalCount} {r['title']} ({r['progrTitle']}/{r['titleCount']}) {r['notes']}"
 		
