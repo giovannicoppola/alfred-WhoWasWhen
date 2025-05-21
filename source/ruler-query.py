@@ -8,6 +8,7 @@ from time import time
 import sys
 from config import log, MYYEARS, MYRULERS, MYRULERSLISTS, MYICONDICT, MY_DB
 import sqlite3
+import re
 
 mySource = os.getenv('mySource')
 myRulerID = os.getenv('myRulerID')
@@ -181,6 +182,8 @@ def by_ruler(conn,searchStringList,queryType):
 	
 	print (json.dumps(result)) 
 
+
+
 def is_year_range(string):
     # Check if the string contains exactly one hyphen and both parts are numbers
     if string.count('-') == 1:
@@ -189,34 +192,71 @@ def is_year_range(string):
             return True
     return False
 
+def extractRange(term):
+	"""
+	Extract start and end years from a term.
+	Handles BC years (e.g., -20), ranges (e.g., -20--10, -20-5, 20-40), 
+	and single years (e.g., 20, -20).
+	"""
+	pattern = r"^(-?\d+)-(-?\d+)$|^-?(\d+)$"
+	match = re.match(pattern, term)
+	log (f"extracting range")
 
-def by_year(conn,search_terms):
+	if match:
+		if match.group(1) and match.group(2):  # Year range
+			return match.group(1), match.group(2)
+		elif match.group(3):  # Single year
+			return int(match.group(3)), None  # Single year has no end
+	return None  # Not a valid year or range
+
+
+
+def is_number_like(term):
+	"""
+	Check if the term is a number, BC year, or a range.
+	Valid formats:
+	- Single year (e.g., 20 or -20)
+	- Year range (e.g., -20--10, -20-10, 20-40)
+	"""
+	log ("running the function")
+	# Regex for single year or valid range
+	pattern = r"^-?\d*\**$|^-?\d*\**--?\d*\**$"
+	if re.match(pattern, term):
+		log(f"matching term: {term}")
+	return bool(re.match(pattern, term))
+
+
+def by_year(conn,search_terms, yearTerm):
 	
-	if len(search_terms) > 1:
+	if len(search_terms) > 0:
 		junctionString =   " AND "
 	else:
 		junctionString = ""
 
-	# identifying the element containing the year
-	year = next((term for term in search_terms if term.isdigit() or term.endswith('*') or is_year_range(term)), None)
-		
-	# rest of the search terms
-	search_terms_wn = [
-		term for term in search_terms 
-			if not (term.isdigit() or term.endswith('*') or is_year_range(term))]
-
+	
+	year= yearTerm
+	search_terms_wn = search_terms
+	
 	# processing wildcards
 	asteriskCount = len(year) - len(year.rstrip('*'))
 	
 	prefix = year[:len(year) - asteriskCount]
 	wildcards = "_" * asteriskCount
 	
-	# processing a year range
-	if is_year_range(year):
+	if year.count('-') == 1 and not year.startswith('-'):
+		# a year range
+		log ("year range")
 		start, end = year.split('-')
 		yearSQLstring = f"(y.year BETWEEN '{start}' AND '{end}'){junctionString}"
+	elif year.count('-') > 1:
+		# a year range including a negative
+		start, end = extractRange(year)
+		log (f"start: {start}, end: {end}")
+		yearSQLstring = f"(y.year BETWEEN '{start}' AND '{end}'){junctionString}"
 	else:
-		yearSQLstring = f"(CAST (y.year as TEXT) LIKE '{prefix}{wildcards}'){junctionString}"	
+		yearSQLstring = f"(CAST (y.year as TEXT) LIKE '{prefix}{wildcards}'){junctionString}"
+		
+	
 	
 	textSQLstring = " AND ".join(
 	[f"((r.name LIKE '%{s}%') OR (t.title LIKE '%{s}%'))" for s in search_terms_wn])
@@ -252,7 +292,7 @@ def by_year(conn,search_terms):
 		;
 	'''
 	cursor = conn.cursor()
-	
+	# log (query)	
 	cursor.execute(query)
 	rs = cursor.fetchall()
 	result= {"items": []}
@@ -356,12 +396,24 @@ def main():
 
 	search_terms = MYINPUT.split()
 
+	# checking if the query contains a year or a range
+
+	criteria_met = [term for term in search_terms if is_number_like(term)]
+	log (f"criteria_met: {criteria_met}")
+	contains_number = bool(criteria_met)
 	# Check for the presence of numbers in the search terms
-	contains_number = any(term.isdigit() or (term.endswith('*')) or is_year_range (term) for term in search_terms)
+	# contains_number = any(term.isdigit() or (term.endswith('*')) or is_number_like (term) for term in search_terms)
 	
 
 	if contains_number:
-		by_year(conn, search_terms) # search for a year
+		# rest of the search terms
+		matched_term = criteria_met[0]
+		
+		# remaining search terms
+		search_terms_wn = [term for term in search_terms if term != matched_term]
+		log (f"search_terms_wn: {search_terms_wn}")
+		log(f"Matched Term: {matched_term}")
+		by_year(conn, search_terms_wn,matched_term) # search for a year
 	else:
 		by_ruler(conn, search_terms, "searchRuler")	 # search for a ruler
 	

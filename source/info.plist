@@ -202,7 +202,7 @@
 				<key>runningsubtext</key>
 				<string>Please wait while I update the database ...⏳</string>
 				<key>script</key>
-				<string>/Users/giovanni/anaconda3/bin/python WhoWasWhen.py </string>
+				<string>python3 WhoWasWhen.py </string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>

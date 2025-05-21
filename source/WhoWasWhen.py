@@ -1,79 +1,75 @@
-# WhoWasWhen generator
-## This script is to create the database for the WhoWasWhen workflow, starting from a google spreadsheet
-# it can be (it used to be actually) simplified to use a tab-delimited local file, but since my main file is a google sheet I didn't want to export and save all the time
-# the script creates a JSON object with keys = year and values a nested dict with all the rulers
+#!/usr/bin/env python3
+"""WhoWasWhen Database Generator.
 
-#Sunny ☀️   🌡️+76°F (feels +76°F, 32%) 🌬️↘6mph 🌘&m Sat Jun  1 11:17:32 2024
-#W22Q2 – 153 ➡️ 212 – 21 ❇️ 343
+This script creates a SQLite database for the WhoWasWhen workflow, starting from a Google spreadsheet.
 
+Usage:
+  whowaswhen.py [options]
+  whowaswhen.py -h | --help
 
+Options:
+  -h --help                Show this help message and exit.
+  --keyfile=<keyfile>      Path to Google API service account key file [default from config].
+  --sheet-url=<url>        Google Sheet URL [default from config].
+  --rulers-sheet=<name>    Name of the sheet containing rulers data [default from config].
+  --periods-sheet=<name>   Name of the sheet containing periods data [default from config].
+  --db=<dbname>            Output SQLite database name [default from config].
+  --alfred                 Output JSON result for Alfred workflow.
+  --verbose                Show verbose output.
+
+"""
 import pickle
 import json
-import re
+import sqlite3
 import gspread
 import gspread.exceptions
 from oauth2client.service_account import ServiceAccountCredentials
 from google.oauth2 import service_account
 from time import time
-from config import KEYFILE, log, GSHEET_URL, MY_PERIOD_SHEET, MY_RULERS_SHEET, MY_DB
+from docopt import docopt
+import sys
+import os
 
-# Function to expand the years field (by ChatGPT)
-def expand_years(years):
-    if '-' in years:
-        start_year, end_year = years.split('-')
+# Try to import from config, but provide defaults if not available
+try:
+    from config import KEYFILE, log, GSHEET_URL, MY_PERIOD_SHEET, MY_RULERS_SHEET, MY_DB
+except ImportError:
+    # Default values if config.py is not available
+    KEYFILE = "keyfile.json"
+    GSHEET_URL = None
+    MY_PERIOD_SHEET = "Periods"
+    MY_RULERS_SHEET = "Rulers"
+    MY_DB = "whowaswhen.db"
+    
+    def log(message):
+        """Default log function if not imported from config."""
+        print(message, file=sys.stderr)
+
+def getSheet(keyfile, mysheetURL, myPeriodSheet, myColumns):
+    """Retrieve tables from a Google Sheet and convert them into a nested dictionary.
+    
+    Args:
+        keyfile: Path to the Google API service account key file
+        mysheetURL: URL of the Google Sheet
+        myPeriodSheet: Name of the sheet to retrieve
+        myColumns: List of column names to include
         
-        # Convert start year
-        if 'BC' in start_year:
-            start_year = -int(start_year.replace('BC', ''))
-        else:
-            start_year = int(start_year)
+    Returns:
+        A nested dictionary with data from the sheet
+    """
+    def list_to_nested_dict(all_values, selected_columns):
+        headers = all_values[0]  # The first row is the header
+        indices = [headers.index(col) for col in selected_columns if col in headers]  # Indices of selected columns
+        data_dict = {}
+        
+        for row in all_values[1:]:
+            # Create a dictionary for each row with selected columns only
+            row_dict = {headers[i]: row[i] for i in indices}
+            # Use the first column as the key for the main dictionary
+            data_dict[row[0]] = row_dict
+        
+        return data_dict
 
-        # Convert end year
-        if 'BC' in end_year:
-            end_year = -int(end_year.replace('BC', ''))
-        else:
-            if 'AD' in end_year:
-                end_year = int(end_year.replace('AD', ''))
-            elif len(end_year) <= 2:
-                # Handle short form end year like '95' in '1981-95'
-                end_year = int(f"{str(start_year)[:-len(end_year)]}{end_year}")
-            else:
-                end_year = int(end_year)
-
-        # Handle wraparounds around centuries
-        if start_year > end_year:
-            if start_year > 0 and end_year < 0:
-                # BC to AD wraparound
-                return list(range(start_year, 0)) + list(range(1, end_year + 1))
-            elif start_year < 0 and end_year > 0:
-                # AD to BC wraparound
-                return list(range(start_year, 1)) + list(range(-1, end_year - 1, -1))
-            else:
-                return list(range(start_year, end_year - 1, -1))
-        else:
-            return list(range(start_year, end_year + 1))
-    else:
-        if 'BC' in years:
-            return [-int(years.replace('BC', ''))]
-        elif 'AD' in years:
-            return [int(years.replace('AD', ''))]
-        else:
-            return [int(years)]
-
-def list_to_nested_dict(all_values, selected_columns):
-    headers = all_values[0]  # The first row is the header
-    indices = [headers.index(col) for col in selected_columns if col in headers]  # Indices of selected columns
-    data_dict = {}
-    
-    for row in all_values[1:]:
-        # Create a dictionary for each row with selected columns only
-        row_dict = {headers[i]: row[i] for i in indices}
-        # Use the first column as the key for the main dictionary
-        data_dict[row[0]] = row_dict
-    
-    return data_dict
-
-def getSheet(keyfile,mysheetURL, myPeriodSheet, myColumns):
     scopes = [
     'https://www.googleapis.com/auth/spreadsheets',
     'https://www.googleapis.com/auth/drive'
@@ -86,15 +82,19 @@ def getSheet(keyfile,mysheetURL, myPeriodSheet, myColumns):
         sheet = file.open_by_url(mysheetURL)
     
     except gspread.exceptions.NoValidUrlKeyFound as e:
-        log ("URL not valid")
+        log("URL not valid")
+        raise
     except ValueError as e:
-        log ("ValueError")
+        log("ValueError")
+        raise
     except IOError as e:
     # Handle input/output errors
-        log ("IOError")
+        log("IOError")
+        raise
     except Exception as e:
     # Catch any remaining errors
-        log ("Exception")
+        log("Exception")
+        raise
 
     
     # fetching the worksheet
@@ -102,104 +102,26 @@ def getSheet(keyfile,mysheetURL, myPeriodSheet, myColumns):
         worksheet = sheet.worksheet(myPeriodSheet) 
     
     except gspread.exceptions.WorksheetNotFound as e:
-        log ("Sheet Not Found")
-
+        log("Sheet Not Found")
+        raise
 
     # Get all values from the worksheet
     all_values = worksheet.get_all_values()
 
-   
-    # convertint into a dictionary with key = counter and value = all values
+    # converting into a dictionary with key = counter and value = all values
     data_dict = list_to_nested_dict(all_values, myColumns)
     
-
     return data_dict
 
-def createRulersSearch (data,searchFields=['personal name','name']):
-    rulers_search = {}
-
-    for key,row in data.items(): #year level
-        rulers_search[key] = {}
-        for title, value in row.items(): #ruler level
-            for mytitle in value: #list of rulers
-                titleStringList = []
-                titleStringList.append (key.casefold())
-                titleStringList.append (title.casefold())
-                for key2, value2, in mytitle.items(): #multiple ites per ruler
-                    if key2 in searchFields and value2:
-                        titleStringList.append (value2.casefold())
-                
-                rulers_search[key][title] = (" ".join(titleStringList))
-                    
-
-    # Export the resulting dictionary to a JSON file
-    with open('rulersSearch.json', 'w') as json_file:
-        json.dump(rulers_search, json_file, indent=4)
-
- 
-
-def insert_title(title):
-# Function to insert a unique title and get its titleID
-    cursor.execute('''
-    INSERT OR IGNORE INTO titles (title)
-    VALUES (?)
-    ''', (title,))
-    conn.commit()
-    
-
-    cursor.execute('''
-        SELECT titleID FROM titles WHERE title = ?
-    ''', (title,))
-    title_id = cursor.fetchone()
-    
-    # Return the yearID
-    return title_id[0] if title_id else None
-
-def insert_year(year):
-# Function to insert unique year and get its yearID
-    cursor.execute('''
-    INSERT OR IGNORE INTO years (year)
-    VALUES (?)
-    ''', (year,))
-    conn.commit()
-    # Retrieve the yearID for the given year
-    
-    cursor.execute('''
-        SELECT yearID FROM years WHERE year = ?
-    ''', (year,))
-    year_id = cursor.fetchone()
-    
-    # Return the yearID
-    return year_id[0] if year_id else None
-
-
-def populateByYear (rulerID, titleID, startYear, endYear):
-# Function to insert ruler title relationships for each year
-
-    for year in range(startYear, endYear + 1):
-
-        # Insert each year into the years table and get the yearID
-        yearID = insert_year(year)
-
-
-        # Insert ruler's title for each year in the period into the junction table
-        cursor.execute('''
-        INSERT OR IGNORE INTO byYear (rulerID, titleID, yearID)
-        VALUES (?, ?, ?)
-        ''', (rulerID, titleID, yearID))
-    conn.commit()
-
-def populate_byPeriod (rulerID, titleID, period, startYear, endYear):
-
-    # Insert ruler's title for each year in the period into the junction table
-    cursor.execute('''
-    INSERT OR IGNORE INTO byPeriod (rulerID, titleID, period, startYear, endYear)
-    VALUES (?, ?, ?, ?, ?)
-    ''', (rulerID, titleID, period, startYear, endYear))
-    conn.commit()    
-
 def parse_period(years):
-# Function to expand the years field (by ChatGPT)
+    """Parse a period string into start and end years.
+    
+    Args:
+        years: A string representing a time period (e.g., "1509-1547" or "44BC")
+        
+    Returns:
+        A tuple of (start_year, end_year) as integers
+    """
     if '-' in years:
         start_year, end_year = years.split('-')
         
@@ -220,205 +142,233 @@ def parse_period(years):
                 end_year = int(f"{str(start_year)[:-len(end_year)]}{end_year}")
             else:
                 end_year = int(end_year)
-        
-
-        
     else:
         if 'BC' in years:
             start_year = end_year = -int(years.replace('BC', ''))
         elif 'AD' in years:
-            start_year = end_year = -int(years.replace('AD', ''))
+            start_year = end_year = int(years.replace('AD', ''))
         else:
             start_year = end_year = int(years)
     return start_year, end_year
-        
-def populateTables(myData, db_name):
 
+def populateTables(myData, db_name):
+    """Populate the titles, years, byPeriod, and byYear tables in the database.
     
-    
+    Args:
+        myData: Dictionary containing the periods data
+        db_name: Name of the SQLite database
+    """
+    def creatingTables():
+        
+        # Drop tables if they exist
+        cursor.execute('DROP TABLE IF EXISTS titles;')
+        cursor.execute('DROP TABLE IF EXISTS years;')
+        cursor.execute('DROP TABLE IF EXISTS byPeriod;')
+        cursor.execute('DROP TABLE IF EXISTS byYear;')
+
+
+        # Create the tables
+        cursor.execute('''
+        CREATE TABLE IF NOT EXISTS titles (
+            titleID INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT UNIQUE,
+            maxCount INTEGER,
+            titlePlural TEXT
+        );
+        ''')
+
+        cursor.execute('''
+        CREATE TABLE IF NOT EXISTS years (
+            yearID INTEGER PRIMARY KEY AUTOINCREMENT,
+            year INTEGER UNIQUE
+        );
+        ''')
+
+
+        cursor.execute('''
+        CREATE TABLE IF NOT EXISTS byPeriod (
+            periodID INTEGER PRIMARY KEY AUTOINCREMENT,
+            rulerID INTEGER,
+            titleID INTEGER,
+            progrTitle INTEGER,
+            period TEXT,
+            startYear INTEGER,
+            endYear INTEGER,
+            notes TEXT,
+                FOREIGN KEY (rulerID) REFERENCES rulers (rulerID),
+                FOREIGN KEY (titleID) REFERENCES titles (titleID)
+            );
+        ''')
+
+
+        cursor.execute('''
+        CREATE TABLE IF NOT EXISTS byYear (
+            yearID INTEGER,
+            periodID INTEGER,
+                FOREIGN KEY (yearID) REFERENCES years (yearID),
+                FOREIGN KEY (periodID) REFERENCES byPeriod (periodID),
+                PRIMARY KEY (yearID, periodID)
+        );
+        ''')
+    def fetchTitleID(title):
+        # Function to get the titleID for a given title
+        cursor.execute('''
+            SELECT titleID FROM titles WHERE title = ?
+        ''', (title,))
+        title_id = cursor.fetchone()
+        return title_id[0] if title_id else None
+
+    def insert_title(title):
+    # Function to insert a unique title and get its titleID
+        cursor.execute('''
+            INSERT OR IGNORE INTO titles (title)
+            VALUES (?)
+            ''', (title,))
+        conn.commit()
+        
+
+        # Retrieve the titleID for the given title
+        title_id = fetchTitleID(title)
+        
+        return title_id if title_id else None
+
+    def populate_byPeriod (rulerID, titleID, progrTitle, period, startYear, endYear,notes):
+
+        # Insert each period in the byPeriod table and get the periodID
+        cursor.execute('''
+            INSERT INTO byPeriod (rulerID, titleID, progrTitle, period, startYear, endYear,notes)
+            VALUES (?, ?, ?, ?, ?, ?,?)
+            ''', (rulerID, titleID, progrTitle, period, startYear, endYear,notes))
+        conn.commit()    
+        return cursor.lastrowid
+
+    def insert_year(year):
+    # Function to insert unique year and get its yearID
+        cursor.execute('''
+        INSERT OR IGNORE INTO years (year)
+        VALUES (?)
+        ''', (year,))
+        conn.commit()
+        # Retrieve the yearID for the given year
+        
+        cursor.execute('''
+            SELECT yearID FROM years WHERE year = ?
+        ''', (year,))
+        year_id = cursor.fetchone()
+        
+        # Return the yearID
+        return year_id[0] if year_id else None
+
+    def populateByYear (periodID, startYear, endYear):
+        # Function to insert ruler title relationships for each year
+
+        for year in range(startYear, endYear + 1):
+
+            # Insert each year into the years table and get the yearID
+            yearID = insert_year(year)
+
+
+            # Insert periodID and yearID into the byYear table
+            cursor.execute('''
+            INSERT OR IGNORE INTO byYear (periodID, yearID)
+            VALUES (?, ?)
+            ''', (periodID, yearID))
+        conn.commit()
 
     # Connect to SQLite database
     conn = sqlite3.connect(db_name)
     cursor = conn.cursor()
-
-
-    # Drop tables if they exist
-    cursor.execute('DROP TABLE IF EXISTS titles;')
-    cursor.execute('DROP TABLE IF EXISTS byYear;')
-    cursor.execute('DROP TABLE IF EXISTS years;')
-    cursor.execute('DROP TABLE IF EXISTS byPeriod;')
-
-
-    # Create the tables
-    cursor.execute('''
-    CREATE TABLE IF NOT EXISTS titles (
-        titleID INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT UNIQUE
-    );
-    ''')
-
-    cursor.execute('''
-    CREATE TABLE IF NOT EXISTS years (
-        yearID INTEGER PRIMARY KEY AUTOINCREMENT,
-        year INTEGER UNIQUE
-    );
-    ''')
-
-    cursor.execute('''
-    CREATE TABLE IF NOT EXISTS byYear (
-        rulerID INTEGER,
-        titleID INTEGER,
-        yearID INTEGER,
-        FOREIGN KEY (rulerID) REFERENCES rulers (rulerID),
-        FOREIGN KEY (titleID) REFERENCES titles (titleID),
-        FOREIGN KEY (yearID) REFERENCES years (yearID),
-        PRIMARY KEY (rulerID, titleID, yearID)
-    );
-    ''')
-
-    cursor.execute('''
-    CREATE TABLE IF NOT EXISTS byPeriod (
-        periodID INTEGER PRIMARY KEY AUTOINCREMENT,
-        rulerID INTEGER,
-        titleID INTEGER,
-        period TEXT,
-        startYear INTEGER,
-        endYear INTEGER,
-        FOREIGN KEY (rulerID) REFERENCES rulers (rulerID),
-        FOREIGN KEY (titleID) REFERENCES titles (titleID),
-        
-    );
-    ''')
-   
-
+    
+    # Create tables
+    creatingTables()
+    
     # processing the dictionary
-    titleCheck = []
+    titleCheck = {}
     for key,row in myData.items():
         title = row['Title']
         rulerID = row['RulerID']
-        period = row['Period']  # e.g. "1509-1547"
+        period = row['Period'].strip()  # e.g. "1509-1547"
+        notes = row['Notes']
         startYear, endYear = parse_period(period)
 
-        # Insert the title into the titles table and get its titleID
+        if title not in titleCheck:
+            titleCheck[title] = 1
+            titleID = insert_title(title)
+            # Insert the title into the titles table and get its titleID
+        else:
+            titleCheck[title] += 1
+            titleID = fetchTitleID(title)
+            
+        
+        periodID = populate_byPeriod(rulerID, titleID, titleCheck[title], period, startYear, endYear, notes)        
+        
+        # Insert year and period relationships into the byYear table
+        populateByYear (periodID, startYear, endYear)
+        
+    for myTitle in titleCheck:
+        cursor.execute('''
+            UPDATE titles
+            SET maxCount = ?
+            WHERE title = ?
+        ''', (titleCheck[myTitle], myTitle))
+        conn.commit()
 
-        titleID = insert_title(title)
-        
-        
-        
 
-        # Insert ruler's title for each year in the period into the junction table
-        populateByYear (rulerID, titleID, startYear, endYear)
-        populate_byPeriod(rulerID, titleID, period, startYear, endYear)
+    # adding plurals
+    myPlurals = {'Pope': 'Popes', 
+                 'English Monarch': 'English Monarchs', 
+                 'US president': 'US presidents', 
+                 'British Prime Minister': 'British Prime Ministers', 
+                 'French Monarch': 'French Monarchs', 
+                 'King of the West Franks': 'Kings of the West Franks', 
+                 'King of the East Franks': 'Kings of the East Franks', 
+                 'King of the Franks': 'Kings of the Franks', 
+                 'King of France': 'Kings of France', 
+                 'French Government': 'French Governments', 
+                 'French Emperor': 'French Emperors', 
+                 'French President': 'French Presidents', 
+                 'Byzantine Emperor': 'Byzantine Emperors', 
+                 'Emperor of China': 'Emperors of China', 
+                 'Holy Roman Emperor': 'Holy Roman Emperors', 
+                 'Emperor of the Carolingian Empire': 'Emperors of the Carolingian Empire', 
+                 'Roman Emperor': 'Roman Emperors', 
+                 'Roman Emperor (East)': 'Roman Emperors (East)', 
+                 'Roman Emperor (West)': 'Roman Emperors (West)', 
+                 'Russian Emperor': 'Russian Emperors', 
+                 'Prince of Moscow': 'Princes of Moscow', 
+                 'Tsar of Russia': 'Tsars of Russia', 
+                 'Chairman of the Communist Party of the Soviet Union': 'Chairmen of the Communist Party of the Soviet Union', 
+                 'Russian President': 'Russian Presidents',
+                 'Antipope': 'Antipopes',
+                 'Scottish Monarch': 'Scottish Monarchs',
+                 'Neapolitan ruler': 'Neapolitan rulers',
+                 'Spanish Monarch': 'Spanish Monarchs'}
+    
+    for myTitle in myPlurals:
+        cursor.execute('''
+            UPDATE titles
+            SET titlePlural = ?
+            WHERE title = ?
+        ''', (myPlurals[myTitle], myTitle))
+    conn.commit()
 
     log("Titles and junction table successfully exported to SQLite database")
+    
     # Close the connection
     conn.close()
 
-
-    
-def exportRulersYears (myData,myRulers):
-    # Initialize the dictionary
-    rulerYears_dict = {}
-    rulers_dict = {}
-    myCounter = 0
-    for key,row in myData.items():
-        
-        ruler_type = row['Ruler']
-        myCounter += 1
-       
-        name = row['Name']
-        years_field = row['Year'].strip()
-        personalName = row['Personal Name']
-        years = expand_years(years_field)
-        year_max = max(years)
-        year_min = min(years)
-
-        if ruler_type in rulers_dict:
-            rulers_dict[ruler_type].append({'progr': myCounter,
-                                            'name': row['Name'],
-                                            'personal name': row['Personal Name'],
-                                            'period': row['Year'],
-                                            'startYear': year_min,
-                                            'endYear': year_max,
-                                            'rulerID': row['RulerID']
-                                            })
-        else:
-            # initialize ruler type
-            myCounter = 1
-            rulers_dict[ruler_type] = [{'progr': myCounter,
-                                        'name': row['Name'],
-                                        'personal name': row['Personal Name'],
-                                        'period': row['Year'],
-                                        'startYear': year_min,
-                                        'endYear': year_max,
-                                        'rulerID': row['RulerID']
-
-                                        }]
-        if row['RulerID'] in myRulers.keys():
-            if row['Ruler'] not in myRulers[row['RulerID']]['title']:
-                myRulers[row['RulerID']]['title'].append ((row['Ruler'],row['Year']))
-            
-        
-        for year in years:
-            year_str = str(year)
-            if year_str not in rulerYears_dict:
-                rulerYears_dict[year_str] = {
-                    ruler_type: [{
-                        'rulerID': row['RulerID'],
-                        'name': name, 
-                        'period': years_field, 
-                        'startYear': year_min,
-                        'endYear': year_max,
-                        'searchString': f"{year_str} {ruler_type} {name} {personalName}".lower().strip(),
-                        'personal name': personalName}]}  # Save the ruler as a list
-            else:
-                if ruler_type in rulerYears_dict[year_str]:
-                    rulerYears_dict[year_str][ruler_type].append({
-                        'rulerID': row['RulerID'],
-                        'name': name, 
-                        'period': years_field, 
-                        'startYear': year_min,
-                        'endYear': year_max,
-                        'searchString': f"{year_str} {ruler_type} {name} {personalName}".lower().strip(),
-                        'personal name': personalName})  # Append to the existing list
-                else:
-                    rulerYears_dict[year_str][ruler_type] = [{
-                        'rulerID': row['RulerID'],
-                        'name': name, 
-                        'period': years_field,
-                        'startYear': year_min,
-                        'endYear': year_max,
-                        'searchString': f"{year_str} {ruler_type} {name} {personalName}".lower().strip(),
-                        'personal name': personalName}]  # Create a new list
-
-    # Export the resulting dictionary to a JSON file
-    with open('rulersYears.pkl', 'wb') as json_file:
-        pickle.dump(rulerYears_dict, json_file)
-    
-    # Export the resulting dictionary to a JSON file
-    with open('rulersLists.pkl', 'wb') as json_file:
-        pickle.dump(rulers_dict, json_file)
-    
-    with open('rulersInfo.pkl', 'wb') as json_file:
-        pickle.dump(myRulers, json_file)
-    
-# Export the resulting dictionary to a JSON file
-    with open('rulersYears.json', 'w') as json_file:
-        json.dump(rulerYears_dict, json_file, indent=4)
-    
-    # Export the resulting dictionary to a JSON file
-    with open('rulersLists.json', 'w') as json_file:
-        json.dump(rulers_dict, json_file, indent=4)
-    
-    with open('rulersInfo.json', 'w') as json_file:
-        json.dump(myRulers, json_file, indent=4)
-    
-
 def populateRulers(myData, db_name):
+    """Populate the rulers table in the database.
+    
+    Args:
+        myData: Dictionary containing the rulers data
+        db_name: Name of the SQLite database
+    """
     # Connect to SQLite database (or create it if it doesn't exist)
     conn = sqlite3.connect(db_name)
     cursor = conn.cursor()
-
+    
+    cursor.execute('DROP TABLE IF EXISTS rulers;')
     # Create the rulers table
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS rulers (
@@ -452,83 +402,66 @@ def populateRulers(myData, db_name):
 
     log(f"Rulers table successfully exported to SQLite database")
 
-
-def createIconDict():
-    iconDict = {
-        "Pope": "icons/pope.png",
-        "Roman Emperor": "icons/laurel.png",
-        "French Monarch": "icons/france.png",
-        "Byzantine Emperor": "icons/chi-rho.png",
-        "English Monarch": "icons/british.png",
-        "Holy Roman Emperor": "icons/holy-roman.png",
-        "US president": "icons/usa.png",
-        "British PM": "icons/uk-pm.png"
-
-    }
-    with open('iconDict.json', 'w') as json_file:
-        json.dump(iconDict, json_file, indent=4)
-
-
-def main ():
+def main():
+    """Main function to run the database creation process."""
+    args = docopt(__doc__)
+    
+    # Override config values with command line arguments if provided
+    keyfile = args['--keyfile'] if args['--keyfile'] else KEYFILE
+    sheet_url = args['--sheet-url'] if args['--sheet-url'] else GSHEET_URL
+    rulers_sheet = args['--rulers-sheet'] if args['--rulers-sheet'] else MY_RULERS_SHEET
+    periods_sheet = args['--periods-sheet'] if args['--periods-sheet'] else MY_PERIOD_SHEET
+    db_name = args['--db'] if args['--db'] else MY_DB
+    alfred_output = args['--alfred']
+    verbose = args['--verbose']
+    
+    if not sheet_url:
+        log("Error: No Google Sheet URL provided. Use --sheet-url or set GSHEET_URL in config.py")
+        sys.exit(1)
+    
+    if not os.path.exists(keyfile):
+        log(f"Error: Keyfile {keyfile} not found")
+        sys.exit(1)
+        
     main_start_time = time()
-    # first, I need to get the 2 spreadheets from the google sheet: 1) rulers and 2) periods
     
-    # get rulers
-    allRulers = getSheet(KEYFILE, GSHEET_URL, MY_RULERS_SHEET, ["RulerID","Name","Personal Name","Wikipedia", "Epithet","Personal Name", "Notes"])
+    # Get rulers data
+    log(f"Fetching rulers data from sheet '{rulers_sheet}'...")
+    allRulers = getSheet(
+        keyfile, 
+        sheet_url, 
+        rulers_sheet, 
+        ["RulerID", "Name", "Personal Name", "Wikipedia", "Epithet", "Personal Name", "Notes"]
+    )
     
-    # get periods
-    selected_columns = ["Title", "RulerID", "Period", "Notes"] #columns to be fetched from the gsheet
-    allValues = getSheet(KEYFILE, GSHEET_URL, MY_PERIOD_SHEET, selected_columns)
+    # Get periods data
+    log(f"Fetching periods data from sheet '{periods_sheet}'...")
+    selected_columns = ["Title", "RulerID", "Period", "Notes"]
+    allValues = getSheet(keyfile, sheet_url, periods_sheet, selected_columns)
     
+    # Create the database
+    log(f"Creating database '{db_name}'...")
+    populateRulers(allRulers, db_name)
+    populateTables(allValues, db_name)
     
-    # exportRulersYears(allValues,allRulers)
-    # createIconDict()
-
-    # second, I create the sqlite tables
-    populateRulers(allRulers, MY_DB)
-    populateTables(allValues, MY_DB)
+    main_timeElapsed = time() - main_start_time
+    log(f"Script completed in {round(main_timeElapsed, 3)} seconds")
     
-    
-    
-
-    result= {"items": [{
-        "title": "Done!" ,
-        "subtitle": "ready to use WhoWhasWhen now 👍️",
-        "arg": "",
-        "icon": {
-
+    # For Alfred workflow, output JSON result
+    if alfred_output:
+        result = {"items": [{
+            "title": "Done!" ,
+            "subtitle": f"WhoWasWhen database created successfully in {round(main_timeElapsed, 1)} seconds",
+            "arg": "",
+            "icon": {
                 "path": "icons/done.png"
             }
         }]}
-    print (json.dumps(result))
-    log("Done 👍️")
-
-    main_timeElapsed = time() - main_start_time
-    log(f"\nscript duration: {round (main_timeElapsed,3)} seconds")
-
-
-
-if __name__ == '__main__':
-    main ()
-
-'''
-OLDER CODE TO DELETE
-def exportRulers (myData):
-    # Initialize the dictionary
-    rulers = {}
-    for key,row in myData.items():
-        
-        rulers [row['RulerID']] = {
-            "name": row['Name'],
-            "personal name": row['Personal Name'],
-            "epithet": row['Epithet'],
-            "wikipedia": row['Wikipedia'],
-            "title": [],
-            "notes": row['Notes']
-        }
+        print(json.dumps(result))
+    else:
+        log("Done 👍️")
     
-    # # Export the resulting dictionary to a JSON file
-    return rulers
-    
+    return 0
 
-'''
+if __name__ == "__main__":
+    sys.exit(main())
