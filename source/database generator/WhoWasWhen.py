@@ -228,11 +228,12 @@ def parse_period(years):
 
 def populateTables(myData, db_name):
     """Populate the titles, years, byPeriod, and byYear tables in the database.
-    
+
     Args:
         myData: Dictionary containing the periods data
         db_name: Name of the SQLite database
     """
+
     def creatingTables():
         # Drop tables if they exist
         cursor.execute("DROP TABLE IF EXISTS titles;")
@@ -241,23 +242,28 @@ def populateTables(myData, db_name):
         cursor.execute("DROP TABLE IF EXISTS byYear;")
 
         # Create the tables with the same schema
-        cursor.execute("""
+        cursor.execute(
+            """
         CREATE TABLE IF NOT EXISTS titles (
             titleID INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT UNIQUE,
             maxCount INTEGER,
             titlePlural TEXT
         );
-        """)
+        """
+        )
 
-        cursor.execute("""
+        cursor.execute(
+            """
         CREATE TABLE IF NOT EXISTS years (
             yearID INTEGER PRIMARY KEY AUTOINCREMENT,
             year INTEGER UNIQUE
         );
-        """)
+        """
+        )
 
-        cursor.execute("""
+        cursor.execute(
+            """
         CREATE TABLE IF NOT EXISTS byPeriod (
             periodID INTEGER PRIMARY KEY AUTOINCREMENT,
             rulerID INTEGER,
@@ -270,9 +276,11 @@ def populateTables(myData, db_name):
             FOREIGN KEY (rulerID) REFERENCES rulers (rulerID),
             FOREIGN KEY (titleID) REFERENCES titles (titleID)
         );
-        """)
+        """
+        )
 
-        cursor.execute("""
+        cursor.execute(
+            """
         CREATE TABLE IF NOT EXISTS byYear (
             yearID INTEGER,
             periodID INTEGER,
@@ -280,34 +288,41 @@ def populateTables(myData, db_name):
             FOREIGN KEY (periodID) REFERENCES byPeriod (periodID),
             PRIMARY KEY (yearID, periodID)
         );
-        """)
+        """
+        )
 
     def batch_insert_titles(titles_data):
         # Batch insert titles
         cursor.executemany(
             "INSERT OR IGNORE INTO titles (title) VALUES (?)",
-            [(title,) for title in titles_data]
+            [(title,) for title in titles_data],
         )
         conn.commit()
 
         # Get all titleIDs in one query
-        cursor.execute("SELECT title, titleID FROM titles WHERE title IN ({})".format(
-            ','.join('?' * len(titles_data))
-        ), list(titles_data))
+        cursor.execute(
+            "SELECT title, titleID FROM titles WHERE title IN ({})".format(
+                ",".join("?" * len(titles_data))
+            ),
+            list(titles_data),
+        )
         return dict(cursor.fetchall())
 
     def batch_insert_years(all_years):
         # Batch insert years
         cursor.executemany(
             "INSERT OR IGNORE INTO years (year) VALUES (?)",
-            [(year,) for year in all_years]
+            [(year,) for year in all_years],
         )
         conn.commit()
 
         # Get all yearIDs in one query
-        cursor.execute("SELECT year, yearID FROM years WHERE year IN ({})".format(
-            ','.join('?' * len(all_years))
-        ), list(all_years))
+        cursor.execute(
+            "SELECT year, yearID FROM years WHERE year IN ({})".format(
+                ",".join("?" * len(all_years))
+            ),
+            list(all_years),
+        )
         return dict(cursor.fetchall())
 
     # Connect to SQLite database
@@ -317,7 +332,7 @@ def populateTables(myData, db_name):
     # Enable faster inserts
     cursor.execute("PRAGMA synchronous = OFF")
     cursor.execute("PRAGMA journal_mode = MEMORY")
-    
+
     # Create tables
     creatingTables()
 
@@ -332,44 +347,51 @@ def populateTables(myData, db_name):
         title = row["Title"]
         titles.add(title)
         titleCheck[title] = titleCheck.get(title, 0) + 1
-        
+
         period = row["Period"].strip()
         startYear, endYear = parse_period(period)
         all_years.update(range(startYear, endYear + 1))
-        
-        periods_data.append({
-            'title': title,
-            'rulerID': row["RulerID"],
-            'period': period,
-            'startYear': startYear,
-            'endYear': endYear,
-            'notes': row["Notes"],
-            'progrTitle': titleCheck[title]
-        })
+
+        periods_data.append(
+            {
+                "title": title,
+                "rulerID": row["RulerID"],
+                "period": period,
+                "startYear": startYear,
+                "endYear": endYear,
+                "notes": row["Notes"],
+                "progrTitle": titleCheck[title],
+            }
+        )
 
     # Batch insert titles and get title mappings
     title_mappings = batch_insert_titles(titles)
-    
+
     # Batch insert years and get year mappings
     year_mappings = batch_insert_years(all_years)
 
     # Batch insert periods
     byPeriod_data = []
     for period in periods_data:
-        byPeriod_data.append((
-            period['rulerID'],
-            title_mappings[period['title']],
-            period['progrTitle'],
-            period['period'],
-            period['startYear'],
-            period['endYear'],
-            period['notes']
-        ))
+        byPeriod_data.append(
+            (
+                period["rulerID"],
+                title_mappings[period["title"]],
+                period["progrTitle"],
+                period["period"],
+                period["startYear"],
+                period["endYear"],
+                period["notes"],
+            )
+        )
 
-    cursor.executemany("""
+    cursor.executemany(
+        """
         INSERT INTO byPeriod (rulerID, titleID, progrTitle, period, startYear, endYear, notes)
         VALUES (?, ?, ?, ?, ?, ?, ?)
-    """, byPeriod_data)
+    """,
+        byPeriod_data,
+    )
     conn.commit()
 
     # Get all periodIDs
@@ -383,17 +405,23 @@ def populateTables(myData, db_name):
             byYear_data.append((year_mappings[year], periodID))
 
     # Batch insert byYear data
-    cursor.executemany("""
+    cursor.executemany(
+        """
         INSERT OR IGNORE INTO byYear (yearID, periodID)
         VALUES (?, ?)
-    """, byYear_data)
+    """,
+        byYear_data,
+    )
 
     # Update maxCount for titles
-    cursor.executemany("""
+    cursor.executemany(
+        """
         UPDATE titles
         SET maxCount = ?
         WHERE title = ?
-    """, [(count, title) for title, count in titleCheck.items()])
+    """,
+        [(count, title) for title, count in titleCheck.items()],
+    )
 
     # Update plurals
     myPlurals = {
@@ -427,13 +455,21 @@ def populateTables(myData, db_name):
         "Spanish Monarch": "Spanish Monarchs",
         "King of the Lombards": "Kings of the Lombards",
         "Emperor of Austria": "Emperors of Austria",
+        "Roman Consul": "Roman Consuls",
+        "Decemvir": "Decemviri",
+        "Dictator": "Dictators",
+        "King of Italy": "Kings of Italy",
+        "Consular Tribune": "Consular Tribunes",
     }
 
-    cursor.executemany("""
+    cursor.executemany(
+        """
         UPDATE titles
         SET titlePlural = ?
         WHERE title = ?
-    """, [(plural, title) for title, plural in myPlurals.items()])
+    """,
+        [(plural, title) for title, plural in myPlurals.items()],
+    )
 
     conn.commit()
     conn.close()
@@ -468,7 +504,24 @@ def populateRulers(myData, db_name):
     )
 
     # Insert data into the rulers table
+    skipped_count = 0
     for key, row in myData.items():
+        # Skip rows where RulerID is empty, null, or not a valid number
+        ruler_id = row.get("RulerID", "").strip()
+        if not ruler_id:
+            skipped_count += 1
+            log(f"Skipping row with empty RulerID: {row.get('Name', 'Unknown')}")
+            continue
+
+        try:
+            ruler_id_int = int(ruler_id)
+        except ValueError:
+            skipped_count += 1
+            log(
+                f"Skipping row with invalid RulerID '{ruler_id}': {row.get('Name', 'Unknown')}"
+            )
+            continue
+
         cursor.execute(
             """
             INSERT OR IGNORE INTO rulers (
@@ -476,7 +529,7 @@ def populateRulers(myData, db_name):
             ) VALUES (?, ?, ?, ?, ?, ?)
         """,
             (
-                int(row["RulerID"]),
+                ruler_id_int,
                 row["Name"],
                 row["Personal Name"],
                 row["Epithet"],
@@ -489,7 +542,12 @@ def populateRulers(myData, db_name):
     conn.commit()
     conn.close()
 
-    log(f"Rulers table successfully exported to SQLite database")
+    if skipped_count > 0:
+        log(
+            f"Rulers table successfully exported to SQLite database (skipped {skipped_count} rows with invalid RulerID)"
+        )
+    else:
+        log(f"Rulers table successfully exported to SQLite database")
 
 
 def main():
@@ -500,7 +558,9 @@ def main():
     keyfile = args["--keyfile"] if args["--keyfile"] else KEYFILE
     sheet_url = args["--sheet-url"] if args["--sheet-url"] else GSHEET_URL
     rulers_sheet = args["--rulers-sheet"] if args["--rulers-sheet"] else MY_RULERS_SHEET
-    periods_sheet = args["--periods-sheet"] if args["--periods-sheet"] else MY_PERIOD_SHEET
+    periods_sheet = (
+        args["--periods-sheet"] if args["--periods-sheet"] else MY_PERIOD_SHEET
+    )
     db_name = args["--db"] if args["--db"] else MY_DB
     from_file = not args["--no-from-file"]  # This will be True by default
     alfred_output = args["--alfred"]
@@ -514,7 +574,14 @@ def main():
     main_start_time = time()
 
     # Define column structures
-    rulers_columns = ["RulerID", "Name", "Personal Name", "Wikipedia", "Epithet", "Notes"]
+    rulers_columns = [
+        "RulerID",
+        "Name",
+        "Personal Name",
+        "Wikipedia",
+        "Epithet",
+        "Notes",
+    ]
     periods_columns = ["Title", "RulerID", "Period", "Notes"]
 
     if from_file:
@@ -532,7 +599,9 @@ def main():
     if not from_file:
         # Make API calls and save to TSV files
         if not sheet_url:
-            log("Error: No Google Sheet URL provided. Use --sheet-url or set GSHEET_URL in config.py")
+            log(
+                "Error: No Google Sheet URL provided. Use --sheet-url or set GSHEET_URL in config.py"
+            )
             sys.exit(1)
 
         if not os.path.exists(keyfile):
@@ -541,11 +610,15 @@ def main():
 
         # Get rulers data
         log(f"Fetching rulers data from sheet '{rulers_sheet}'...")
-        allRulers = getSheet(keyfile, sheet_url, rulers_sheet, rulers_columns, rulers_tsv)
+        allRulers = getSheet(
+            keyfile, sheet_url, rulers_sheet, rulers_columns, rulers_tsv
+        )
 
         # Get periods data
         log(f"Fetching periods data from sheet '{periods_sheet}'...")
-        allValues = getSheet(keyfile, sheet_url, periods_sheet, periods_columns, periods_tsv)
+        allValues = getSheet(
+            keyfile, sheet_url, periods_sheet, periods_columns, periods_tsv
+        )
 
     # Create the database
     log(f"Creating database '{db_name}'...")

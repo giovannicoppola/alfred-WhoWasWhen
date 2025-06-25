@@ -50,6 +50,16 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
+				<string>CE27BBD9-C66D-4191-B4F8-824AB2988CD0</string>
+				<key>modifiers</key>
+				<integer>131072</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
 				<string>8513CCE5-7A93-409D-B693-2504E1AC3B6D</string>
 				<key>modifiers</key>
 				<integer>1572864</integer>
@@ -254,6 +264,25 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>CE27BBD9-C66D-4191-B4F8-824AB2988CD0</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>externaltriggerid</key>
 				<string>mainQuery</string>
 				<key>passinputasargument</key>
@@ -339,6 +368,13 @@
 			<real>785</real>
 			<key>ypos</key>
 			<real>180</real>
+		</dict>
+		<key>CE27BBD9-C66D-4191-B4F8-824AB2988CD0</key>
+		<dict>
+			<key>xpos</key>
+			<real>545</real>
+			<key>ypos</key>
+			<real>320</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
