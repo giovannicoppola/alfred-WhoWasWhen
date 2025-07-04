@@ -1,6 +1,12 @@
 # alfred-WhoWasWhen 👑
 
 Travel through history with Alfred
+
+<a href="https://github.com/giovannicoppola/alfred-whowaswhen/releases/latest/">
+<img alt="Downloads"
+src="https://img.shields.io/github/downloads/giovannicoppola/alfred-whowaswhen/total?color=purple&label=Downloads"><br/>
+</a>
+
 ![](screenshot.png)
 
 # Motivation
@@ -14,7 +20,7 @@ Travel through history with Alfred
 # Installation
 
 1. Import this workflow into Alfred (double-click the .alfredworkflow file)
-2. Use the keyword `wwho-go` (or set your own in `Workflow Configuration`) to start a search.
+2. Use the keyword `wwho` (or set your own in `Workflow Configuration`) to start a search.
    Optional: set a hotkey for faster access.
 
 # Usage
