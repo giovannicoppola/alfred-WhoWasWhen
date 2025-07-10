@@ -92,7 +92,7 @@
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>WhoWhasWhen 👑</string>
+	<string>WhoWasWhen 👑</string>
 	<key>objects</key>
 	<array>
 		<dict>
@@ -261,6 +261,55 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>{var:REFRESH_KEYWORD}</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>⏳️...please wait while I rebuild the database...</string>
+				<key>script</key>
+				<string>./ruler-query --force-refresh</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>WhoWasWhen: Database Refresh 👀</string>
+				<key>type</key>
+				<integer>11</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>C9C13FD2-372A-4C6A-97FE-95138A86249A</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>autopaste</key>
 				<false/>
 				<key>clipboardtext</key>
@@ -312,7 +361,7 @@ Query search terms can be:
 2. 📍 a number and a string (will search for the string in that year, for example `1789 france` or `1323 pope`)
    - Note: wilcards can be combined with text searches, e.g. if you wonder who were the Popes of the 1500s, you can search for `15** pope`.
 3. 🫅 a string only (will search for a matching ruler, e.g. `catherine`) 
-4. 📰 an event (will search for a matching event, e.g. `french revolution`) if the checkbox "Show Events?" is enabled in `Workflow Configuration`. 
+4. 📰 an event (will search for a matching event, e.g. `french revolution`) if the checkbox "Show Events?" is enabled in `Workflow Configuration`, or the search flag `--e` is used. If both rulers and events are returned, the `--e` search flag (e.g. entering "1939 --e" will restrict the output to events only 
 
 Once a result is identified, it can be actioned in one of five ways:
 
@@ -321,6 +370,8 @@ Once a result is identified, it can be actioned in one of five ways:
 3. ⌘↩️ `cmd+enter` will 'travel' to the last year of the ruling period or event
 4. ⌥↩️ `opt+enter` will show the list of rulers with that title (e.g. 'English monarch')
 5. ⇧↩️ `shift+enter` will copy the info about the ruler or event to the clipboard
+
+*Note*: ⌘⌥↩️ `cmd+option+enter` will return to the main search
 
 # Feedback
 If you notice a bug, incorrect information, or have ideas for new features, please feel free to get in touch either on [Github](https://github.com/giovannicoppola/alfred-WhoWasWhen), on the [Alfred forum](https://www.alfredforum.com/).</string>
@@ -384,6 +435,17 @@ If you notice a bug, incorrect information, or have ideas for new features, plea
 			<key>ypos</key>
 			<real>245</real>
 		</dict>
+		<key>C9C13FD2-372A-4C6A-97FE-95138A86249A</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>1</integer>
+			<key>note</key>
+			<string>force database refresh</string>
+			<key>xpos</key>
+			<real>145</real>
+			<key>ypos</key>
+			<real>455</real>
+		</dict>
 		<key>CDC4D2A4-25EC-4D10-845F-27C7CE67F442</key>
 		<dict>
 			<key>xpos</key>
@@ -433,7 +495,7 @@ If you notice a bug, incorrect information, or have ideas for new features, plea
 				<string></string>
 			</dict>
 			<key>description</key>
-			<string>Return notable events in addition to rulers?</string>
+			<string>Return notable events in addition to rulers? If unchecked, events will be shown only if using the `--e` flag</string>
 			<key>label</key>
 			<string>Show events?</string>
 			<key>type</key>
@@ -441,11 +503,53 @@ If you notice a bug, incorrect information, or have ideas for new features, plea
 			<key>variable</key>
 			<string>SHOW_EVENTS</string>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>30</string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<true/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>Frequency at which WhoWasWhen checks for changes in the master database. Set to 0 to never update.</string>
+			<key>label</key>
+			<string>Refresh rate (in days)</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>CHECK_RATE</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>::whoWasWhen-refresh</string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<true/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>Keyword to force a database refresh</string>
+			<key>label</key>
+			<string>Refresh Keyword</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>REFRESH_KEYWORD</string>
+		</dict>
 	</array>
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>0.1.1</string>
+	<string>0.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/giovannicoppola/alfred-WhoWasWhen</string>
 </dict>

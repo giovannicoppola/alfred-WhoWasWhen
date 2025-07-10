@@ -8,6 +8,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"regexp"
 	"strconv"
@@ -25,6 +26,14 @@ type Config struct {
 	MyTitleProg string
 	DBPath      string
 	ShowEvents  bool
+	CheckRate   int
+}
+
+// CommandArgs holds parsed command line arguments
+type CommandArgs struct {
+	Query        string
+	ForceRefresh bool
+	EventsOnly   bool
 }
 
 // AlfredResult represents the JSON output structure for Alfred
@@ -104,6 +113,15 @@ func getConfig() Config {
 		showEvents = false
 	}
 
+	// Parse CHECK_RATE from environment variable
+	checkRate := 0
+	checkRateEnv := os.Getenv("CHECK_RATE")
+	if checkRateEnv != "" {
+		if parsed, err := strconv.Atoi(checkRateEnv); err == nil {
+			checkRate = parsed
+		}
+	}
+
 	return Config{
 		MySource:    os.Getenv("mySource"),
 		MyRulerID:   os.Getenv("myRulerID"),
@@ -111,7 +129,48 @@ func getConfig() Config {
 		MyTitleProg: os.Getenv("mytitleProg"),
 		DBPath:      filepath.Join(dataFolder, "whoWasWhen.db"),
 		ShowEvents:  showEvents,
+		CheckRate:   checkRate,
 	}
+}
+
+// parseCommandArgs parses command line arguments and returns both args and query
+func parseCommandArgs() (CommandArgs, error) {
+	args := CommandArgs{}
+
+	if len(os.Args) < 2 {
+		return args, nil
+	}
+
+	// First pass: parse command-line flags like --force-refresh
+	var queryArgs []string
+	for i := 1; i < len(os.Args); i++ {
+		arg := os.Args[i]
+		switch arg {
+		case "--force-refresh":
+			args.ForceRefresh = true
+		default:
+			queryArgs = append(queryArgs, arg)
+		}
+	}
+
+	// Second pass: parse --e flag from within the query string
+	if len(queryArgs) > 0 {
+		fullQuery := strings.Join(queryArgs, " ")
+		var queryParts []string
+		words := strings.Fields(fullQuery)
+
+		for _, word := range words {
+			switch word {
+			case "--e":
+				args.EventsOnly = true
+			default:
+				queryParts = append(queryParts, word)
+			}
+		}
+		args.Query = strings.Join(queryParts, " ")
+	}
+
+	return args, nil
 }
 
 // Log messages to stderr
@@ -159,7 +218,7 @@ func ensureDatabase(dataFolder string) error {
 		}
 	}
 
-	const zipName = "whoWasWhen.db.zip"
+	const zipName = "whoWasWhen.zip"
 	const dbName = "whoWasWhen.db"
 
 	cwd, err := os.Getwd()
@@ -467,11 +526,44 @@ func getHighestRankedTitle(periods []PeriodInfo) string {
 func main() {
 	startTime := time.Now()
 
+	// Parse command line arguments
+	cmdArgs, err := parseCommandArgs()
+	if err != nil {
+		logMsg("Error parsing command line arguments: %v", err)
+		return
+	}
+
 	// Get configuration
 	config := getConfig()
 
+	// Check for database updates first (before database validation)
+	dataFolder := filepath.Dir(config.DBPath)
+	wasUpdated, err := checkDatabaseUpdate(config, dataFolder, cmdArgs.ForceRefresh)
+	if err != nil {
+		// Log detailed error to stderr for Alfred debugger
+		logMsg("Database update error: %v", err)
+
+		// Emit Alfred-compatible JSON error and exit (stdout)
+		errorResult := AlfredResult{Items: []AlfredItem{{
+			Title:    "⚠️ Database Update Error",
+			Subtitle: fmt.Sprintf("Update failed: %v", err),
+			Valid:    false,
+			Arg:      "",
+			Icon:     map[string]string{"path": "icons/hopeless.png"},
+		}}}
+		jsonOut, _ := json.Marshal(errorResult)
+		fmt.Println(string(jsonOut))
+		return
+	}
+
+	// If database was updated, show completion message and exit
+	if wasUpdated {
+		showDatabaseUpdateComplete()
+		return
+	}
+
 	// Validate database presence / perform extraction if needed
-	if err := ensureDatabase(filepath.Dir(config.DBPath)); err != nil {
+	if err := ensureDatabase(dataFolder); err != nil {
 		// Log detailed error to stderr for Alfred debugger
 		logMsg("Database initialization error: %v", err)
 
@@ -490,8 +582,8 @@ func main() {
 
 	// Check if we have input argument or a restored query
 	var input string
-	if len(os.Args) >= 2 {
-		input = strings.TrimSpace(strings.ToLower(os.Args[1]))
+	if cmdArgs.Query != "" {
+		input = strings.TrimSpace(strings.ToLower(cmdArgs.Query))
 	}
 
 	// Check for restored query from go back action
@@ -536,6 +628,62 @@ func main() {
 
 	// Split search terms
 	searchTerms := strings.Fields(input)
+
+	// Handle events-only mode
+	if cmdArgs.EventsOnly {
+		// Search events only
+		result := AlfredResult{Items: []AlfredItem{}}
+
+		// Check if any term looks like a number or year range
+		criteriaTerms := []string{}
+		for _, term := range searchTerms {
+			if isNumberLike(term) {
+				criteriaTerms = append(criteriaTerms, term)
+			}
+		}
+
+		if len(criteriaTerms) > 0 {
+			// Use the first matched term as the year
+			matchedTerm := criteriaTerms[0]
+
+			// Remove the matched term from search terms
+			var searchTermsWN []string
+			for _, term := range searchTerms {
+				if term != matchedTerm {
+					searchTermsWN = append(searchTermsWN, term)
+				}
+			}
+
+			// Get events by year
+			eventItems := getEventsByYear(db, searchTermsWN, matchedTerm, config, input)
+			result.Items = append(result.Items, eventItems...)
+		} else {
+			// Get events by text search
+			eventItems := byEvent(db, searchTerms, config, input)
+			result.Items = append(result.Items, eventItems...)
+		}
+
+		// If no results found, show "No results" message
+		if len(result.Items) == 0 {
+			result.Items = append(result.Items, AlfredItem{
+				Title:    "No events found 🫤",
+				Subtitle: "Try a different query or remove --e flag",
+				Arg:      "",
+				Icon: map[string]string{
+					"path": "icons/hopeless.png",
+				},
+			})
+		}
+
+		// Output JSON for Alfred
+		jsonOut, err := json.Marshal(result)
+		if err != nil {
+			logMsg("Error creating JSON output: %v", err)
+			return
+		}
+		fmt.Println(string(jsonOut))
+		return
+	}
 
 	// Check if any term looks like a number or year range
 	criteriaTerms := []string{}
@@ -2169,4 +2317,106 @@ func getEventsByYear(db *sql.DB, searchTerms []string, yearTerm string, config C
 	}
 
 	return eventItems
+}
+
+// checkDatabaseUpdate checks if the database needs updating based on CHECK_RATE and timestamp
+// Returns (wasUpdated, error) where wasUpdated indicates if a database update occurred
+func checkDatabaseUpdate(config Config, dataFolder string, forceRefresh bool) (bool, error) {
+	// If force refresh is requested, always update
+	if forceRefresh {
+		logMsg("Force refresh requested, updating database...")
+		err := runUpdateScript(config, dataFolder)
+		return true, err
+	}
+
+	// If CHECK_RATE is 0 or not set, skip automatic updates
+	if config.CheckRate <= 0 {
+		logMsg("CHECK_RATE is %d, skipping automatic updates", config.CheckRate)
+		return false, nil
+	}
+
+	timestampFile := filepath.Join(dataFolder, "timestamp.txt")
+
+	// Check if timestamp file exists
+	if _, err := os.Stat(timestampFile); os.IsNotExist(err) {
+		logMsg("No timestamp file found, updating database...")
+		err := runUpdateScript(config, dataFolder)
+		return true, err
+	}
+
+	// Read timestamp file
+	timestampData, err := os.ReadFile(timestampFile)
+	if err != nil {
+		logMsg("Error reading timestamp file: %v", err)
+		err := runUpdateScript(config, dataFolder)
+		return true, err
+	}
+
+	// Parse timestamp
+	lastUpdateStr := strings.TrimSpace(string(timestampData))
+	lastUpdate, err := time.Parse("2006-01-02 15:04:05", lastUpdateStr)
+	if err != nil {
+		logMsg("Error parsing timestamp: %v", err)
+		err := runUpdateScript(config, dataFolder)
+		return true, err
+	}
+
+	// Check if enough days have passed
+	daysSinceUpdate := int(time.Since(lastUpdate).Hours() / 24)
+	logMsg("Days since last update: %d, CHECK_RATE: %d", daysSinceUpdate, config.CheckRate)
+
+	if daysSinceUpdate >= config.CheckRate {
+		logMsg("Database needs updating (last update: %s)", lastUpdate.Format("2006-01-02"))
+		err := runUpdateScript(config, dataFolder)
+		return true, err
+	}
+
+	logMsg("Database is up to date (last update: %s)", lastUpdate.Format("2006-01-02"))
+	return false, nil
+}
+
+// runUpdateScript executes the database update script
+func runUpdateScript(config Config, dataFolder string) error {
+	logMsg("Running database update script...")
+
+	// Execute the whowaswhen script with alfred flag for JSON output
+	// The script automatically uses the correct data folder and creates timestamp file
+	cmd := exec.Command("./whowaswhen", "-alfred")
+
+	// Capture both stdout and stderr
+	output, err := cmd.CombinedOutput()
+	if err != nil {
+		return fmt.Errorf("error running whowaswhen script: %w\nOutput: %s", err, string(output))
+	}
+
+	logMsg("Database update completed successfully")
+	logMsg("whowaswhen output: %s", string(output))
+
+	return nil
+}
+
+// showDatabaseUpdateComplete displays the completion message after database update
+func showDatabaseUpdateComplete() {
+	// Create the result object similar to hardcover script
+	result := AlfredResult{
+		Items: []AlfredItem{{
+			Title:    "Done!",
+			Subtitle: "Database update successful. Ready to search rulers and events.",
+			Valid:    true,
+			Arg:      "",
+			Icon: map[string]string{
+				"path": "icons/crown.png",
+			},
+		}},
+	}
+
+	// Convert the result to JSON
+	jsonResult, err := json.Marshal(result)
+	if err != nil {
+		logMsg("Error encoding JSON: %v", err)
+		return
+	}
+
+	// Output the JSON to stdout
+	fmt.Println(string(jsonResult))
 }
