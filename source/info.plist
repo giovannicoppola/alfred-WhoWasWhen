@@ -506,13 +506,17 @@ If you notice a bug, incorrect information, or have ideas for new features, plea
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>default</key>
-				<string>30</string>
-				<key>placeholder</key>
-				<string></string>
-				<key>required</key>
-				<true/>
-				<key>trim</key>
+				<key>defaultvalue</key>
+				<integer>30</integer>
+				<key>markercount</key>
+				<integer>9</integer>
+				<key>maxvalue</key>
+				<integer>90</integer>
+				<key>minvalue</key>
+				<integer>0</integer>
+				<key>onlystoponmarkers</key>
+				<false/>
+				<key>showmarkers</key>
 				<true/>
 			</dict>
 			<key>description</key>
@@ -520,7 +524,7 @@ If you notice a bug, incorrect information, or have ideas for new features, plea
 			<key>label</key>
 			<string>Refresh rate (in days)</string>
 			<key>type</key>
-			<string>textfield</string>
+			<string>slider</string>
 			<key>variable</key>
 			<string>CHECK_RATE</string>
 		</dict>
@@ -549,7 +553,7 @@ If you notice a bug, incorrect information, or have ideas for new features, plea
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>0.2</string>
+	<string>0.3</string>
 	<key>webaddress</key>
 	<string>https://github.com/giovannicoppola/alfred-WhoWasWhen</string>
 </dict>
