@@ -1,0 +1,112 @@
+# Example batch: main battles of the Thirty Years' War (1618–1648).
+# Parent war event already on sheet (progr 801). Treaty of Westphalia exists separately.
+# Applied by sheet-maintenance/add_events.py — dry-run before apply.
+
+spreadsheet_id: "1GKI1744hxSBmB75CrIYssK6Y8-Hd48kpaggvOG1kUM8"
+
+sheets:
+  events: Events
+
+events_columns:
+  progr: A
+  name: B
+  sorting_year: C
+  numerical_year: D
+  notes: E
+  wikipedia: F
+  category: G
+  year_display_1: H
+  year_display_2: I
+  year_display_3: J
+
+batch:
+  war: "Thirty Years' War"
+
+events:
+  - name: "Battle of White Mountain (November 8)"
+    start_year: 1620
+    end_year: 1620
+    notes: "Decisive Catholic victory near Prague; ended the Bohemian phase of the Thirty Years' War."
+    wikipedia: "https://en.wikipedia.org/wiki/Battle_of_White_Mountain"
+    category: "European History"
+    tier: TYW
+
+  - name: "Battle of Wimpfen (May 6)"
+    start_year: 1622
+    end_year: 1622
+    notes: "Catholic League victory over Protestant forces in the Palatinate campaign."
+    wikipedia: "https://en.wikipedia.org/wiki/Battle_of_Wimpfen"
+    category: "European History"
+    tier: TYW
+
+  - name: "Battle of Breitenfeld (September 17)"
+    start_year: 1631
+    end_year: 1631
+    notes: "Gustavus Adolphus and Saxon allies routed the Imperial army; major Protestant turning point."
+    wikipedia: "https://en.wikipedia.org/wiki/Battle_of_Breitenfeld_(1631)"
+    category: "European History"
+    tier: TYW
+
+  - name: "Sack of Magdeburg (May 20)"
+    start_year: 1631
+    end_year: 1631
+    notes: "Imperial troops captured and devastated the Protestant city; shocked Europe."
+    wikipedia: "https://en.wikipedia.org/wiki/Sack_of_Magdeburg"
+    category: "European History"
+    tier: TYW
+
+  - name: "Battle of Lützen (November 16)"
+    start_year: 1632
+    end_year: 1632
+    notes: "Swedish tactical victory but Gustavus Adolphus was killed in action."
+    wikipedia: "https://en.wikipedia.org/wiki/Battle_of_L%C3%BCtzen_(1632)"
+    category: "European History"
+    tier: TYW
+
+  - name: "Battle of Nördlingen (September 6)"
+    start_year: 1634
+    end_year: 1634
+    notes: "Decisive Catholic victory; Sweden lost control of southern Germany for years."
+    wikipedia: "https://en.wikipedia.org/wiki/Battle_of_N%C3%B6rdlingen_(1634)"
+    category: "European History"
+    tier: TYW
+
+  - name: "Battle of Wittstock (October 4)"
+    start_year: 1636
+    end_year: 1636
+    notes: "Swedish victory over Imperial-Saxon forces in Brandenburg."
+    wikipedia: "https://en.wikipedia.org/wiki/Battle_of_Wittstock"
+    category: "European History"
+    tier: TYW
+
+  - name: "Battle of Rocroi (May 19)"
+    start_year: 1643
+    end_year: 1643
+    notes: "French victory ending Spanish military supremacy in Europe."
+    wikipedia: "https://en.wikipedia.org/wiki/Battle_of_Rocroi"
+    category: "European History"
+    tier: TYW
+
+  - name: "Battle of Jankau (March 6)"
+    start_year: 1645
+    end_year: 1645
+    notes: "Swedish victory in Bohemia; weakened Imperial forces in the final phase of the war."
+    wikipedia: "https://en.wikipedia.org/wiki/Battle_of_Jankau"
+    category: "European History"
+    tier: TYW
+
+  - name: "Battle of Zusmarshausen (May 17)"
+    start_year: 1645
+    end_year: 1645
+    notes: "French victory in Bavaria; death of the Bavarian commander Franz von Mercy."
+    wikipedia: "https://en.wikipedia.org/wiki/Battle_of_Zusmarshausen"
+    category: "European History"
+    tier: TYW
+
+  - name: "Battle of Prague (July 25)"
+    start_year: 1648
+    end_year: 1648
+    notes: "Last major battle of the war; Swedish forces stormed Prague Castle before peace negotiations concluded."
+    wikipedia: "https://en.wikipedia.org/wiki/Battle_of_Prague_(1648)"
+    category: "European History"
+    tier: TYW

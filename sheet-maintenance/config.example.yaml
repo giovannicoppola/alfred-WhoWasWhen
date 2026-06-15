@@ -1,0 +1,13 @@
+# Copy to config.yaml and adjust paths (config.yaml is gitignored).
+
+# Reuse the same service account JSON as alfred-gsheets (Workflow Configuration → Key File).
+# Easiest: export KEYFILE from your shell (see tools/README.md).
+credentials: "~/path/to/your-service-account.json"
+
+# Optional: override spreadsheet id from patches file.
+# spreadsheet_id: "1GKI1744hxSBmB75CrIYssK6Y8-Hd48kpaggvOG1kUM8"
+
+# Tab names — leave null to auto-detect from headers (recommended first run: --discover).
+sheets:
+  by_period: null
+  rulers: null

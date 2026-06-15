@@ -1,0 +1,129 @@
+# Merged-ruler fixes for WhoWasWhen master spreadsheet.
+# Applied by sheet-maintenance/apply_merged_ruler_patches.py
+# See sheet-maintenance/AGENT_INSTRUCTIONS.md for agent workflow.
+
+spreadsheet_id: "1GKI1744hxSBmB75CrIYssK6Y8-Hd48kpaggvOG1kUM8"
+
+# Tab names from --discover (2026-06-05).
+sheets:
+  by_period: Periods
+  rulers: Rulers
+
+by_period_columns:
+  progr: A
+  ruler_id: E
+
+# Rulers tab: no biography column; bio is built when generating the DB.
+rulers_columns:
+  ruler_id: D
+  name: C
+  personal_name: M
+  epithet: I
+  wikipedia: J
+  birth_death: L
+  notes: P
+
+# --- Tier A: move period to existing orphan rulerID ---
+
+ruler_id_moves:
+  - { progr: 1075, from_ruler_id: 673, to_ruler_id: 1009, tier: A, note: "Ferdinand I — Austria off HRE" }
+  - { progr: 969,  from_ruler_id: 784, to_ruler_id: 918,  tier: A, note: "Alexander I — Scotland off Russia" }
+  - { progr: 973,  from_ruler_id: 786, to_ruler_id: 922,  tier: A, note: "Alexander II — Scotland off Russia" }
+  - { progr: 974,  from_ruler_id: 787, to_ruler_id: 923,  tier: A, note: "Alexander III — Scotland off Russia" }
+  - { progr: 979,  from_ruler_id: 444, to_ruler_id: 926,  tier: A, note: "Robert I — Bruce off West Franks" }
+  - { progr: 981,  from_ruler_id: 450, to_ruler_id: 928,  tier: A, note: "Robert II — Scotland off Franks" }
+  - { progr: 983,  from_ruler_id: 309, to_ruler_id: 930,  tier: A, note: "James I of Scotland off James VI/I" }
+  - { progr: 984,  from_ruler_id: 312, to_ruler_id: 931,  tier: A, note: "James II of Scotland off James VII/II" }
+  - { progr: 988,  from_ruler_id: 307, to_ruler_id: 935,  tier: A, note: "Mary Queen of Scots off Mary I England" }
+  - { progr: 968,  from_ruler_id: 276, to_ruler_id: 917,  tier: A, note: "Edgar of Scotland off Edgar the Peaceful" }
+  - { progr: 958,  from_ruler_id: 526, to_ruler_id: 908,  tier: A, note: "Constantine III Scotland off Byzantine" }
+  - { progr: 698,  from_ruler_id: 311, to_ruler_id: 434,  tier: A, note: "Charles the Bald off Charles II Stuart" }
+  - { progr: 1025, from_ruler_id: 948, to_ruler_id: 838,  tier: A, note: "Carlos II Spain/Naples off Carlo II Anjou" }
+
+  # Tier B: move to newly assigned rulerIDs (rows created below)
+  - { progr: 948,  from_ruler_id: 898, to_ruler_id: 3425, tier: B, note: "Constantine I Scotland off Constantine the Great" }
+  - { progr: 1022, from_ruler_id: 455, to_ruler_id: 3426, tier: B, note: "Philip II Spain/Naples off Philip II Capet" }
+  - { progr: 1023, from_ruler_id: 458, to_ruler_id: 3427, tier: B, note: "Philip IV Spain/Naples off Philip III Capet" }
+  - { progr: 1024, from_ruler_id: 459, to_ruler_id: 3428, tier: B, note: "Philip IV Spain/Naples off Philip IV Capet" }
+  - { progr: 1026, from_ruler_id: 462, to_ruler_id: 3429, tier: B, note: "Philip V Spain/Naples off Philip V Capet" }
+
+  # Tier C: antipope periods to new IDs
+  - { progr: 915, from_ruler_id: 107, to_ruler_id: 3430, tier: C, note: "John VIII antipope" }
+  - { progr: 916, from_ruler_id: 120, to_ruler_id: 3431, tier: C, note: "Anastasius III antipope" }
+  - { progr: 921, from_ruler_id: 147, to_ruler_id: 3432, tier: C, note: "Gregory VI antipope" }
+  - { progr: 930, from_ruler_id: 163, to_ruler_id: 3433, tier: C, note: "Celestine II antipope" }
+  - { progr: 929, from_ruler_id: 171, to_ruler_id: 3434, tier: C, note: "Gregory VIII antipope" }
+  - { progr: 924, from_ruler_id: 172, to_ruler_id: 3435, tier: C, note: "Clement III antipope 1080" }
+  - { progr: 925, from_ruler_id: 172, to_ruler_id: 3435, tier: C, note: "Clement III antipope 1084-1100" }
+  - { progr: 936, from_ruler_id: 174, to_ruler_id: 3436, tier: C, note: "Innocent III antipope" }
+  - { progr: 937, from_ruler_id: 206, to_ruler_id: 3437, tier: C, note: "Nicholas V antipope" }
+  - { progr: 938, from_ruler_id: 217, to_ruler_id: 3438, tier: C, note: "Clement VII antipope" }
+  - { progr: 942, from_ruler_id: 229, to_ruler_id: 3439, tier: C, note: "Clement VIII antipope" }
+  - { progr: 939, from_ruler_id: 243, to_ruler_id: 3440, tier: C, note: "Benedict XIII antipope" }
+
+  # Tier D: Constantine II — Roman emperor vs antipope vs Scotland
+  - { progr: 913, from_ruler_id: 744, to_ruler_id: 865, tier: D, note: "Constantine II antipope off Roman emperor" }
+  - { progr: 952, from_ruler_id: 744, to_ruler_id: 902, tier: D, note: "Constantine II of Scotland off Roman emperor" }
+
+ruler_updates:
+  # Tier A — stay-behind rulers
+  - { ruler_id: 673, biography: "Holy Roman Emperor (1558-64)", wikipedia: "https://en.wikipedia.org/wiki/Ferdinand_I,_Holy_Roman_Emperor", tier: A }
+  - { ruler_id: 1009, biography: "Habsburg-Lorraine, Emperor of Austria (1835-1848, Abdicated after the Revolutions of 1848)", wikipedia: "https://en.wikipedia.org/wiki/Ferdinand_I_of_Austria", tier: A }
+  - { ruler_id: 784, biography: "Russian Emperor (1801-25)", wikipedia: "https://en.wikipedia.org/wiki/Alexander_I_of_Russia", tier: A }
+  - { ruler_id: 918, biography: "Dunkeld, Scottish Monarch (1107-24)", wikipedia: "https://en.wikipedia.org/wiki/Alexander_I_of_Scotland", tier: A }
+  - { ruler_id: 786, biography: "Russian Emperor (1855-81)", wikipedia: "https://en.wikipedia.org/wiki/Alexander_II_of_Russia", tier: A }
+  - { ruler_id: 922, biography: "Dunkeld, Scottish Monarch (1214-49)", wikipedia: "https://en.wikipedia.org/wiki/Alexander_II_of_Scotland", tier: A }
+  - { ruler_id: 787, biography: "Russian Emperor (1881-94)", wikipedia: "https://en.wikipedia.org/wiki/Alexander_III_of_Russia", tier: A }
+  - { ruler_id: 923, biography: "Dunkeld, Scottish Monarch (1249-86)", wikipedia: "https://en.wikipedia.org/wiki/Alexander_III_of_Scotland", tier: A }
+  - { ruler_id: 444, biography: "Robertian, King of the West Franks (922-923)", wikipedia: "https://en.wikipedia.org/wiki/Robert_I_of_France", tier: A }
+  - { ruler_id: 926, biography: "Bruce, Scottish Monarch (1306-29)", wikipedia: "https://en.wikipedia.org/wiki/Robert_the_Bruce", tier: A }
+  - { ruler_id: 450, biography: "Capet, King of the Franks (996-1031)", wikipedia: "https://en.wikipedia.org/wiki/Robert_II_of_France", tier: A }
+  - { ruler_id: 928, biography: "Stuart, Scottish Monarch (1371-90)", wikipedia: "https://en.wikipedia.org/wiki/Robert_II_of_Scotland", tier: A }
+  - { ruler_id: 309, biography: "Stuart, Scottish Monarch (1567-1625); English Monarch (1603-25)", wikipedia: "https://en.wikipedia.org/wiki/James_VI_and_I", tier: A }
+  - { ruler_id: 930, biography: "Stuart, Scottish Monarch (1406-37)", wikipedia: "https://en.wikipedia.org/wiki/James_I_of_Scotland", tier: A }
+  - { ruler_id: 312, biography: "Stuart, English Monarch (1685-88); Scottish Monarch (1685-1688)", wikipedia: "https://en.wikipedia.org/wiki/James_II_of_England", tier: A }
+  - { ruler_id: 931, biography: "Stuart, Scottish Monarch (1437-60)", wikipedia: "https://en.wikipedia.org/wiki/James_II_of_Scotland", tier: A }
+  - { ruler_id: 307, biography: "English Monarch (1553-58)", wikipedia: "https://en.wikipedia.org/wiki/Mary_I_of_England", tier: A }
+  - { ruler_id: 935, biography: "Stuart, Scottish Monarch (1542-67)", wikipedia: "https://en.wikipedia.org/wiki/Mary,_Queen_of_Scots", tier: A }
+  - { ruler_id: 276, biography: "House of Wessex, English Monarch (959-975)", wikipedia: "https://en.wikipedia.org/wiki/Edgar_the_Peaceful", tier: A }
+  - { ruler_id: 917, biography: "Dunkeld, Scottish Monarch (1097-1107)", wikipedia: "https://en.wikipedia.org/wiki/Edgar,_King_of_Scotland", tier: A }
+  - { ruler_id: 526, biography: "Byzantine Emperor (641)", wikipedia: "https://en.wikipedia.org/wiki/Constantine_III_(Byzantine_emperor)", tier: A }
+  - { ruler_id: 908, biography: "Alpin, Scottish Monarch (995-997)", wikipedia: "https://en.wikipedia.org/wiki/Constantine_III_of_Scotland", tier: A }
+  - { ruler_id: 311, biography: "Stuart, English Monarch (1660-85); Scottish Monarch (1649-1651; 1660-1685)", wikipedia: "https://en.wikipedia.org/wiki/Charles_II_of_England", tier: A }
+  - { ruler_id: 434, biography: "Carolingian, King of the West Franks (843-875); Emperor of the Carolingian Empire (875-877)", wikipedia: "https://en.wikipedia.org/wiki/Charles_the_Bald", tier: A }
+  - { ruler_id: 948, biography: "Anjou, Neapolitan ruler (1285-1309)", wikipedia: "https://en.wikipedia.org/wiki/Charles_II_of_Naples", tier: A }
+  - { ruler_id: 838, biography: "Spanish Monarch (1665-1700); Neapolitan ruler (1665-1700)", wikipedia: "https://en.wikipedia.org/wiki/Charles_II_of_Spain", tier: A }
+
+  # Tier B — stay-behind
+  - { ruler_id: 898, biography: "Roman Emperor (306-337); Roman Consul (307; 309)", wikipedia: "https://en.wikipedia.org/wiki/Constantine_the_Great", tier: B }
+  - { ruler_id: 455, biography: "Capet, King of France (1180-1223)", wikipedia: "https://en.wikipedia.org/wiki/Philip_II_of_France", tier: B }
+  - { ruler_id: 458, biography: "Capet, King of France (1270-85)", wikipedia: "https://en.wikipedia.org/wiki/Philip_III_of_France", tier: B }
+  - { ruler_id: 459, biography: "Capet, King of France (1285-1314)", wikipedia: "https://en.wikipedia.org/wiki/Philip_IV_of_France", tier: B }
+  - { ruler_id: 462, biography: "Capet, King of France (1316-22)", wikipedia: "https://en.wikipedia.org/wiki/Philip_V_of_France", tier: B }
+
+  # Tier D
+  - { ruler_id: 744, wikipedia: "https://en.wikipedia.org/wiki/Constantine_II_(emperor)", tier: D }
+  - { ruler_id: 865, wikipedia: "https://en.wikipedia.org/wiki/Antipope_Constantine_II", tier: D }
+  - { ruler_id: 902, wikipedia: "https://en.wikipedia.org/wiki/Constantine_II_of_Scotland", tier: D }
+
+new_rulers:
+  - { ruler_id: 3425, name: "Constantine I", personal_name: "Alpin", wikipedia: "https://en.wikipedia.org/wiki/Constantine_I_of_Scotland", biography: "Alpin, Scottish Monarch (862-877)", tier: B }
+  - { ruler_id: 3426, name: "Philip II", personal_name: "Habsburg", wikipedia: "https://en.wikipedia.org/wiki/Philip_II_of_Spain", biography: "Neapolitan ruler (1554-1598)", tier: B }
+  - { ruler_id: 3427, name: "Philip IV", personal_name: "Habsburg", wikipedia: "https://en.wikipedia.org/wiki/Philip_IV_of_Spain", biography: "Neapolitan ruler (1598-1621)", tier: B }
+  - { ruler_id: 3428, name: "Philip IV", personal_name: "Habsburg", wikipedia: "https://en.wikipedia.org/wiki/Philip_IV_of_Spain", biography: "Neapolitan ruler (1621-1665)", tier: B }
+  - { ruler_id: 3429, name: "Philip V", personal_name: "Bourbon", wikipedia: "https://en.wikipedia.org/wiki/Philip_V_of_Spain", biography: "Neapolitan ruler (1700-1714)", tier: B }
+  - { ruler_id: 3430, name: "John VIII (antipope)", wikipedia: "https://en.wikipedia.org/wiki/Antipope_John_VIII", biography: "Antipope (844)", tier: C }
+  - { ruler_id: 3431, name: "Anastasius III (antipope)", wikipedia: "https://en.wikipedia.org/wiki/Antipope_Anastasius", biography: "Antipope (855)", tier: C }
+  - { ruler_id: 3432, name: "Gregory VI (antipope)", wikipedia: "https://en.wikipedia.org/wiki/Antipope_Gregory_VI", biography: "Antipope (1012)", tier: C }
+  - { ruler_id: 3433, name: "Celestine II (antipope)", biography: "Antipope (1124)", tier: C }
+  - { ruler_id: 3434, name: "Gregory VIII (antipope)", wikipedia: "https://en.wikipedia.org/wiki/Antipope_Gregory_VIII", biography: "Antipope (1118-1121)", tier: C }
+  - { ruler_id: 3435, name: "Clement III (antipope)", wikipedia: "https://en.wikipedia.org/wiki/Antipope_Clement_III", biography: "Antipope (1080; 1084-1100)", tier: C }
+  - { ruler_id: 3436, name: "Innocent III (antipope)", biography: "Antipope (1179-80)", tier: C }
+  - { ruler_id: 3437, name: "Nicholas V (antipope)", wikipedia: "https://en.wikipedia.org/wiki/Antipope_Nicholas_V", biography: "Antipope (1328-30)", tier: C }
+  - { ruler_id: 3438, name: "Clement VII (antipope)", wikipedia: "https://en.wikipedia.org/wiki/Antipope_Clement_VII", biography: "Antipope (1378-1394)", tier: C }
+  - { ruler_id: 3439, name: "Clement VIII (antipope)", wikipedia: "https://en.wikipedia.org/wiki/Antipope_Clement_VIII", biography: "Antipope (1423-29)", tier: C }
+  - { ruler_id: 3440, name: "Benedict XIII (antipope)", wikipedia: "https://en.wikipedia.org/wiki/Antipope_Benedict_XIII", biography: "Antipope (1394-1423)", tier: C }
+
+  # Tier E — Rulers metadata left merged after period split (Constantine I Scotland off 898)
+  - { ruler_id: 898, epithet: "", birth_death: "c. 272-337", personal_name: "", tier: E }
+  - { ruler_id: 3425, epithet: 'An Finn-Shoichleach, "The Wine-Bountiful"', birth_death: "836-877", personal_name: "Alpin", tier: E }
