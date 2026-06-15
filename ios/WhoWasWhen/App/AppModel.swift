@@ -27,11 +27,6 @@ final class AppModel {
         } catch {
             loadError = String(describing: error)
         }
-        // Debug hook: WWW_JUMP deep-links straight to a jumped-year screen
-        // (used for UI verification). Inert in normal use.
-        if let jump = ProcessInfo.processInfo.environment["WWW_JUMP"] {
-            self.path = [.query(jump)]
-        }
     }
 
     func results(for query: String) async -> [SearchResult] {

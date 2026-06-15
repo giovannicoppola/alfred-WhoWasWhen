@@ -4,8 +4,7 @@ import SwiftUI
 /// Alfred workflow. Year jumps and "show all" push onto the navigation stack.
 struct SearchView: View {
     @Environment(AppModel.self) private var app
-    // Debug hook: WWW_QUERY pre-fills the search box (used for UI verification).
-    @State private var query = ProcessInfo.processInfo.environment["WWW_QUERY"] ?? ""
+    @State private var query = ""
     @State private var results: [SearchResult] = []
 
     var body: some View {

@@ -88,9 +88,8 @@ The optional "use a newer DB from iCloud" feature needs the iCloud capability:
 ## Notes
 
 - Read-only by design — the app never modifies the data.
-- `SearchView` honors a `WWW_QUERY` environment variable to pre-fill the search
-  box; this is a debug/testing hook only and is inert in normal use.
-- App icon and accent color are placeholders in `Assets.xcassets`.
+- App icon reuses the Alfred workflow's crowned globe; the accent color is in
+  `Assets.xcassets`.
 
 ## Distribution
 
