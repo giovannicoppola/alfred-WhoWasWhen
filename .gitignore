@@ -4,3 +4,15 @@ __pycache__
 prefs.plist
 lib
 sandbox
+tools/.venv/
+sheet-maintenance/.venv/
+sheet-maintenance/config.yaml
+tools/config.yaml
+**/service-account*.json
+**/*credentials*.json
+
+# iOS companion app (Xcode project is generated from project.yml via XcodeGen)
+ios/.build/
+ios/WhoWasWhen.xcodeproj/
+ios/DerivedData/
+**/xcuserdata/
