@@ -583,18 +583,18 @@ func main() {
 	// Check if we have input argument or a restored query
 	var input string
 	if cmdArgs.Query != "" {
-		input = strings.TrimSpace(strings.ToLower(cmdArgs.Query))
+		input = normalizeSearchInput(cmdArgs.Query)
 	}
 
 	// Check for restored query from go back action
 	restoredQuery := os.Getenv("restoredQuery")
 	if input == "" && restoredQuery != "" {
-		input = strings.TrimSpace(strings.ToLower(restoredQuery))
+		input = normalizeSearchInput(restoredQuery)
 		logMsg("Restored query: %s", input)
 	}
 
 	// Connect to SQLite database
-	db, err := sql.Open("sqlite3", config.DBPath)
+	db, err := openWhoWasWhenDB(config.DBPath)
 	if err != nil {
 		logMsg("Error opening database: %v", err)
 		return
@@ -846,16 +846,11 @@ func byRuler(db *sql.DB, searchStringList interface{}, queryType string, config 
 		}
 
 		// Build the SQL conditions for text search
-		conditions := []string{}
-		for _, s := range terms {
-			condition := fmt.Sprintf(`(ru.name LIKE '%%%s%%' OR 
-				ru.personal_name LIKE '%%%s%%' OR 
-				ru.epithet LIKE '%%%s%%' OR 
-				ru.notes LIKE '%%%s%%' OR 
-				t.title LIKE '%%%s%%')`, s, s, s, s, s)
-			conditions = append(conditions, condition)
-		}
-		textSQLString := strings.Join(conditions, " AND ")
+		textSQLString := buildFoldedTextSQL(
+			[]string{"ru.name", "ru.personal_name", "ru.epithet", "ru.notes", "t.title"},
+			terms,
+			" AND ",
+		)
 
 		// TODO: searchRuler functionality needs to be implemented
 		_ = textSQLString
@@ -1087,12 +1082,7 @@ func byYear(db *sql.DB, searchTerms []string, yearTerm string, config Config, or
 	}
 
 	// Build text search conditions
-	textConditions := []string{}
-	for _, s := range searchTerms {
-		condition := fmt.Sprintf("((r.name LIKE '%%%s%%') OR (t.title LIKE '%%%s%%'))", s, s)
-		textConditions = append(textConditions, condition)
-	}
-	textSQLString := strings.Join(textConditions, " AND ")
+	textSQLString := buildFoldedTextSQL([]string{"r.name", "t.title"}, searchTerms, " AND ")
 
 	query := fmt.Sprintf(`
 		SELECT 
@@ -1307,12 +1297,7 @@ func byYear(db *sql.DB, searchTerms []string, yearTerm string, config Config, or
 // Search events by name
 func byEvent(db *sql.DB, searchTerms []string, config Config, originalQuery string) []AlfredItem {
 	// Build the SQL conditions for text search
-	conditions := []string{}
-	for _, s := range searchTerms {
-		condition := fmt.Sprintf(`(e.eventName LIKE '%%%s%%' OR e.notes LIKE '%%%s%%')`, s, s)
-		conditions = append(conditions, condition)
-	}
-	textSQLString := strings.Join(conditions, " AND ")
+	textSQLString := buildFoldedTextSQL([]string{"e.eventName", "e.notes"}, searchTerms, " AND ")
 
 	query := fmt.Sprintf(`
 		SELECT 
@@ -1469,12 +1454,7 @@ func getEventsByYearWithoutCounters(db *sql.DB, searchTerms []string, yearTerm s
 	}
 
 	// Build text search conditions for events
-	textConditions := []string{}
-	for _, s := range searchTerms {
-		condition := fmt.Sprintf("(e.eventName LIKE '%%%s%%' OR e.notes LIKE '%%%s%%')", s, s)
-		textConditions = append(textConditions, condition)
-	}
-	textSQLString := strings.Join(textConditions, " AND ")
+	textSQLString := buildFoldedTextSQL([]string{"e.eventName", "e.notes"}, searchTerms, " AND ")
 
 	query := fmt.Sprintf(`
 		SELECT 
@@ -1608,16 +1588,11 @@ func getEventsByYearWithoutCounters(db *sql.DB, searchTerms []string, yearTerm s
 // Helper function to get ruler results without printing
 func getRulerResults(db *sql.DB, searchTerms []string, config Config, originalQuery string) []AlfredItem {
 	// Build the SQL conditions for text search
-	conditions := []string{}
-	for _, s := range searchTerms {
-		condition := fmt.Sprintf(`(ru.name LIKE '%%%s%%' OR 
-			ru.personal_name LIKE '%%%s%%' OR 
-			ru.epithet LIKE '%%%s%%' OR 
-			ru.notes LIKE '%%%s%%' OR 
-			t.title LIKE '%%%s%%')`, s, s, s, s, s)
-		conditions = append(conditions, condition)
-	}
-	textSQLString := strings.Join(conditions, " AND ")
+	textSQLString := buildFoldedTextSQL(
+		[]string{"ru.name", "ru.personal_name", "ru.epithet", "ru.notes", "t.title"},
+		searchTerms,
+		" AND ",
+	)
 
 	query := fmt.Sprintf(`
 		SELECT 
@@ -1808,16 +1783,11 @@ func getRulerResults(db *sql.DB, searchTerms []string, config Config, originalQu
 // Helper function to get ruler results without counters
 func getRulerResultsWithoutCounters(db *sql.DB, searchTerms []string, config Config, originalQuery string) []AlfredItem {
 	// Build the SQL conditions for text search
-	conditions := []string{}
-	for _, s := range searchTerms {
-		condition := fmt.Sprintf(`(ru.name LIKE '%%%s%%' OR 
-			ru.personal_name LIKE '%%%s%%' OR 
-			ru.epithet LIKE '%%%s%%' OR 
-			ru.notes LIKE '%%%s%%' OR 
-			t.title LIKE '%%%s%%')`, s, s, s, s, s)
-		conditions = append(conditions, condition)
-	}
-	textSQLString := strings.Join(conditions, " AND ")
+	textSQLString := buildFoldedTextSQL(
+		[]string{"ru.name", "ru.personal_name", "ru.epithet", "ru.notes", "t.title"},
+		searchTerms,
+		" AND ",
+	)
 
 	query := fmt.Sprintf(`
 		SELECT 
@@ -2021,12 +1991,7 @@ func getRulerResultsWithoutCounters(db *sql.DB, searchTerms []string, config Con
 // Helper function to get event results without counters
 func byEventWithoutCounters(db *sql.DB, searchTerms []string, config Config, originalQuery string) []AlfredItem {
 	// Build the SQL conditions for text search
-	conditions := []string{}
-	for _, s := range searchTerms {
-		condition := fmt.Sprintf(`(e.eventName LIKE '%%%s%%' OR e.notes LIKE '%%%s%%')`, s, s)
-		conditions = append(conditions, condition)
-	}
-	textSQLString := strings.Join(conditions, " AND ")
+	textSQLString := buildFoldedTextSQL([]string{"e.eventName", "e.notes"}, searchTerms, " AND ")
 
 	query := fmt.Sprintf(`
 		SELECT 
@@ -2171,12 +2136,7 @@ func getEventsByYear(db *sql.DB, searchTerms []string, yearTerm string, config C
 	}
 
 	// Build text search conditions for events
-	textConditions := []string{}
-	for _, s := range searchTerms {
-		condition := fmt.Sprintf("(e.eventName LIKE '%%%s%%' OR e.notes LIKE '%%%s%%')", s, s)
-		textConditions = append(textConditions, condition)
-	}
-	textSQLString := strings.Join(textConditions, " AND ")
+	textSQLString := buildFoldedTextSQL([]string{"e.eventName", "e.notes"}, searchTerms, " AND ")
 
 	query := fmt.Sprintf(`
 		SELECT 
