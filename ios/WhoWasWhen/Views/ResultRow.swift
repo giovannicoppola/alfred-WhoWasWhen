@@ -40,17 +40,32 @@ struct ResultRow: View {
     }
 
     private var content: some View {
-        HStack(spacing: 12) {
-            Image(systemName: Icon.symbol(for: result))
-                .font(.title3)
-                .foregroundStyle(Icon.tint(for: result))
-                .frame(width: 30)
+        HStack(alignment: .top, spacing: 12) {
+            // Icon + result-position counter. The counter is a distinct,
+            // monospaced badge so it reads as "where you are in the results"
+            // rather than data about the ruler (whose own reign progression
+            // may also appear, as "27/28", inside the subtitle).
+            VStack(spacing: 4) {
+                Image(systemName: Icon.symbol(for: result))
+                    .font(.title3)
+                    .foregroundStyle(Icon.tint(for: result))
+                Text("\(formatNumber(index + 1))/\(formatNumber(total))")
+                    .font(.caption2.weight(.semibold))
+                    .monospacedDigit()
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.6)
+                    .padding(.horizontal, 5)
+                    .padding(.vertical, 1)
+                    .background(Capsule().fill(Color.secondary.opacity(0.14)))
+            }
+            .frame(width: 52)
             VStack(alignment: .leading, spacing: 2) {
                 Text(result.title)
                     .font(.body.weight(result.isCurrent ? .bold : .regular))
                     .lineLimit(2)
                 if !result.subtitle.isEmpty {
-                    Text("\(formatNumber(index + 1))/\(formatNumber(total))  \(result.subtitle)")
+                    Text(result.subtitle)
                         .font(.caption)
                         .foregroundStyle(.secondary)
                         .lineLimit(2)
@@ -77,8 +92,11 @@ struct ResultActions: View {
     @Environment(\.openURL) private var openURL
 
     var body: some View {
-        if let url = result.wikipediaURL {
-            Button { openURL(url) } label: { Label("Open Wikipedia", systemImage: "safari") }
+        if result.kind == .ruler, let title = result.titleName, !title.isEmpty {
+            Button { app.showLineage(for: result) } label: {
+                Label("Show all \(titlePluralOrDefault(result.titlePlural, title: title))",
+                      systemImage: "list.bullet")
+            }
         }
         Button { app.travel(toYear: result.startYear) } label: {
             Label("Travel to \(formatYear(result.startYear))", systemImage: "arrow.backward.to.line")
@@ -88,14 +106,12 @@ struct ResultActions: View {
                 Label("Travel to \(formatYear(result.endYear))", systemImage: "arrow.forward.to.line")
             }
         }
-        if result.kind == .ruler, let title = result.titleName, !title.isEmpty {
-            Button { app.showLineage(for: result) } label: {
-                Label("Show all \(titlePluralOrDefault(result.titlePlural, title: title))",
-                      systemImage: "list.bullet")
-            }
-        }
         Button { UIPasteboard.general.string = result.copyText } label: {
             Label("Copy", systemImage: "doc.on.doc")
         }
+        if let url = result.wikipediaURL {
+            Button { openURL(url) } label: { Label("Open Wikipedia", systemImage: "safari") }
+        }
+        ReportMenu(result: result)
     }
 }

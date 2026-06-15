@@ -163,7 +163,7 @@ actor Database {
         for p in yearParams { bindAny(stmt, idx, p); idx += 1 }
         for p in textParams { bindText(stmt, idx, p); idx += 1 }
 
-        let span = QueryParser.isSpan(yearTerm)
+        // The matched year is shown once as a header by the UI, not per row.
         var rows: [SearchResult] = []
         while sqlite3_step(stmt) == SQLITE_ROW {
             let rulerID = col(stmt, 0).int
@@ -179,11 +179,9 @@ actor Database {
             let titleName = col(stmt, 11).string
             let maxCount = col(stmt, 12).int
             let titlePlural = col(stmt, 13).optString
-            let year = col(stmt, 14).int
 
-            let yearString = span ? yearTerm : formatYear(year)
             let epithetString = (epithet?.isEmpty == false) ? " (\(epithet!))" : ""
-            let displayTitle = "\(yearString): \(name)\(epithetString) (\(period))"
+            let displayTitle = "\(name)\(epithetString) (\(period))"
             let counter = "\(formatNumber(prog))/\(formatNumber(maxCount))"
             let subtitle = (personal?.isEmpty == false)
                 ? "\(personal!), \(titleName) (\(counter)) \(notes)"
@@ -286,7 +284,7 @@ actor Database {
         for p in yearParams { bindAny(stmt, idx, p); idx += 1 }
         for p in textParams { bindText(stmt, idx, p); idx += 1 }
 
-        let span = QueryParser.isSpan(yearTerm)
+        // The matched year is shown once as a header by the UI, not per row.
         var rows: [SearchResult] = []
         while sqlite3_step(stmt) == SQLITE_ROW {
             let name = col(stmt, 1).string
@@ -294,12 +292,10 @@ actor Database {
             let endYear = col(stmt, 3).int
             let notes = col(stmt, 4).optString ?? ""
             let wiki = col(stmt, 5).optString
-            let year = col(stmt, 6).int
 
-            let yearString = span ? yearTerm : formatYear(year)
             let rangeStr = startYear != endYear ? " (\(formatYear(startYear))-\(formatYear(endYear)))" : ""
             rows.append(SearchResult(
-                kind: .event, title: "\(yearString): \(name)\(rangeStr)", subtitle: notes,
+                kind: .event, title: "\(name)\(rangeStr)", subtitle: notes,
                 wikipediaURL: wikipediaLink(wiki, name: name),
                 startYear: startYear, endYear: endYear, iconAsset: "event"))
         }

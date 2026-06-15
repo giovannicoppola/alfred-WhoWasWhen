@@ -11,7 +11,9 @@ struct SearchView: View {
     var body: some View {
         @Bindable var app = app
         NavigationStack(path: $app.path) {
-            ResultsList(results: results, isIdle: query.trimmingCharacters(in: .whitespaces).isEmpty)
+            ResultsList(results: results,
+                        isIdle: query.trimmingCharacters(in: .whitespaces).isEmpty,
+                        yearHeader: QueryParser.displayYear(for: query))
                 .navigationTitle("WhoWasWhen")
                 .navigationBarTitleDisplayMode(.inline)
                 .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always),

@@ -46,8 +46,15 @@ private struct ResultActionsList: View {
     @Environment(\.openURL) private var openURL
 
     var body: some View {
-        if let url = result.wikipediaURL {
-            Button { openURL(url) } label: { Label("Open Wikipedia", systemImage: "safari") }
+        // The list of rulers (lineage) is the primary action, so it comes first.
+        if result.kind == .ruler, let title = result.titleName, !title.isEmpty {
+            Button {
+                dismiss()
+                app.showLineage(for: result)
+            } label: {
+                Label("Show all \(titlePluralOrDefault(result.titlePlural, title: title))",
+                      systemImage: "list.bullet")
+            }
         }
         Button {
             dismiss()
@@ -63,17 +70,13 @@ private struct ResultActionsList: View {
                 Label("Travel to \(formatYear(result.endYear))", systemImage: "arrow.forward.to.line")
             }
         }
-        if result.kind == .ruler, let title = result.titleName, !title.isEmpty {
-            Button {
-                dismiss()
-                app.showLineage(for: result)
-            } label: {
-                Label("Show all \(titlePluralOrDefault(result.titlePlural, title: title))",
-                      systemImage: "list.bullet")
-            }
-        }
         Button { UIPasteboard.general.string = result.copyText } label: {
             Label("Copy to clipboard", systemImage: "doc.on.doc")
         }
+        // Wikipedia link last.
+        if let url = result.wikipediaURL {
+            Button { openURL(url) } label: { Label("Open Wikipedia", systemImage: "safari") }
+        }
+        ReportMenu(result: result)
     }
 }

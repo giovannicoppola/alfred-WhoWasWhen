@@ -101,6 +101,15 @@ enum QueryParser {
         if term.contains("*") { return true }
         return parseRange(term) != nil
     }
+
+    /// The year label to show once at the top of year-search results
+    /// (e.g. "1789", "44 BC", "177*", "1500-1600"), or nil for a text-only query.
+    static func displayYear(for query: String) -> String? {
+        guard let term = parse(query).yearTerm else { return nil }
+        if isSpan(term) { return term }
+        if let y = Int(term) { return formatYear(y) }
+        return term
+    }
 }
 
 /// Formats a year with BC/AD, matching the Go `formatYear`.
