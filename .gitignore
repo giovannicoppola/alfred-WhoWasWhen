@@ -4,3 +4,11 @@ __pycache__
 prefs.plist
 lib
 sandbox
+
+# Secrets & local config for sheet-maintenance / tools (never commit)
+tools/.venv/
+sheet-maintenance/.venv/
+sheet-maintenance/config.yaml
+tools/config.yaml
+**/service-account*.json
+**/*credentials*.json
