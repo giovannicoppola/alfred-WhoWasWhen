@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WhoWasWhen — Travel through history on your iPhone</title>
+<meta name="description" content="WhoWasWhen answers ‘who ruled in a given year?’ in an instant. Search 3,300+ rulers and 900+ events by year, ruler, or event — rulers, popes, consuls, presidents and more — right from your iPhone.">
+<meta property="og:title" content="WhoWasWhen — Travel through history on your iPhone">
+<meta property="og:description" content="Who was king, pope, consul or president in any given year? Search 3,300+ rulers and 900+ events instantly.">
+<meta property="og:image" content="icon.png">
+<meta property="og:type" content="website">
+<style>
+  :root {
+    --indigo: #4338ca;
+    --indigo-soft: #eef0ff;
+    --globe: #1f9bd6;
+    --gold: #f5b800;
+    --ink: #161823;
+    --muted: #5b6072;
+    --line: #e6e7ee;
+    --bg: #ffffff;
+    --bg-alt: #f7f8fc;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--indigo); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; }
+
+  /* Hero */
+  header.hero {
+    background: radial-gradient(1200px 500px at 80% -10%, var(--indigo-soft), transparent 60%),
+                linear-gradient(180deg, #ffffff, var(--bg-alt));
+    border-bottom: 1px solid var(--line);
+    padding: 64px 0 48px;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .badge-row { display: flex; align-items: center; gap: 16px; margin-bottom: 22px; }
+  .app-icon {
+    width: 92px; height: 92px; border-radius: 21px;
+    box-shadow: 0 10px 30px rgba(31,40,80,.18);
+    border: 1px solid rgba(0,0,0,.04);
+  }
+  .eyebrow {
+    display: inline-block; font-weight: 600; font-size: 13px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--indigo);
+    background: var(--indigo-soft); padding: 6px 12px; border-radius: 999px;
+  }
+  .hero h1 { font-size: 52px; margin: 8px 0 14px; }
+  .hero h1 .accent { color: var(--indigo); }
+  .hero p.lede { font-size: 20px; color: var(--muted); margin: 0 0 28px; max-width: 32ch; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-weight: 600; font-size: 16px; padding: 13px 22px; border-radius: 12px;
+    border: 1px solid var(--line); background: #fff; color: var(--ink);
+  }
+  .btn.primary { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .btn:hover { text-decoration: none; transform: translateY(-1px); }
+  .btn { transition: transform .12s ease; }
+
+  .hero-shot { display: flex; justify-content: center; }
+  .phone {
+    width: 300px; max-width: 100%;
+    border-radius: 42px; padding: 10px; background: #0d0f18;
+    box-shadow: 0 30px 70px rgba(20,24,50,.28);
+  }
+  .phone img { width: 100%; display: block; border-radius: 32px; }
+
+  /* Stats */
+  .stats { background: var(--ink); color: #fff; padding: 30px 0; }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; text-align: center; }
+  .stat .num { font-size: 30px; font-weight: 700; letter-spacing: -.02em; }
+  .stat .num .u { color: var(--gold); }
+  .stat .lbl { font-size: 13px; color: #aeb3c7; text-transform: uppercase; letter-spacing: .06em; }
+
+  /* Sections */
+  section { padding: 72px 0; }
+  section.alt { background: var(--bg-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .section-head { text-align: center; max-width: 720px; margin: 0 auto 48px; }
+  .section-head h2 { font-size: 36px; margin: 0 0 12px; }
+  .section-head p { font-size: 18px; color: var(--muted); margin: 0; }
+
+  /* Features */
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .feature {
+    background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 26px;
+  }
+  .feature .ic {
+    width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
+    background: var(--indigo-soft); margin-bottom: 16px; font-size: 22px;
+  }
+  .feature h3 { font-size: 19px; margin: 0 0 8px; }
+  .feature p { margin: 0; color: var(--muted); font-size: 15px; }
+
+  /* Screenshot gallery */
+  .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .gallery figure { margin: 0; text-align: center; }
+  .gallery .phone { width: 100%; padding: 8px; border-radius: 30px; }
+  .gallery .phone img { border-radius: 24px; }
+  .gallery figcaption { margin-top: 14px; font-size: 14px; color: var(--muted); }
+
+  /* Syntax table */
+  .syntax { max-width: 720px; margin: 0 auto; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background:#fff; }
+  .syntax .row { display: grid; grid-template-columns: 180px 1fr; gap: 16px; padding: 16px 22px; border-top: 1px solid var(--line); }
+  .syntax .row:first-child { border-top: 0; }
+  .syntax code { background: var(--indigo-soft); color: var(--indigo); padding: 3px 9px; border-radius: 7px; font-size: 14px; font-weight:600; }
+  .syntax .desc { color: var(--muted); }
+
+  /* Footer */
+  footer { padding: 48px 0 64px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+  .foot-grid { display:flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; align-items: center; }
+  .foot-links { display:flex; gap: 22px; flex-wrap: wrap; }
+
+  @media (max-width: 880px) {
+    .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    .hero p.lede { margin-left:auto; margin-right:auto; }
+    .badge-row, .cta-row { justify-content: center; }
+    .hero h1 { font-size: 40px; }
+    .features { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 26px; }
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+    .syntax .row { grid-template-columns: 1fr; gap: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="badge-row">
+        <img class="app-icon" src="icon.png" alt="WhoWasWhen app icon">
+        <span class="eyebrow">For iPhone</span>
+      </div>
+      <h1>Who was <span class="accent">when?</span></h1>
+      <p class="lede">Answer “who ruled in this year?” in an instant — kings, popes, consuls, emperors and presidents, plus the events that shaped their times.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#screenshots">See it in action</a>
+        <a class="btn" href="https://github.com/giovannicoppola/alfred-WhoWasWhen">View on GitHub</a>
+      </div>
+    </div>
+    <div class="hero-shot">
+      <div class="phone"><img src="screenshots/moon.png" alt="WhoWasWhen showing the rulers and events of 1969"></div>
+    </div>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat"><div class="num">3,300<span class="u">+</span></div><div class="lbl">Rulers</div></div>
+    <div class="stat"><div class="num">2,877</div><div class="lbl">Roman Consuls</div></div>
+    <div class="stat"><div class="num">267</div><div class="lbl">Popes</div></div>
+    <div class="stat"><div class="num">900<span class="u">+</span></div><div class="lbl">Events</div></div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Everything the question needs</h2>
+      <p>A single search box, three ways to ask, and instant answers — even offline.</p>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <div class="ic">📆</div>
+        <h3>Search by year</h3>
+        <p>Type a year to see who ruled it. Use wildcards like <code>177*</code> for a decade, ranges like <code>1500-1600</code>, or a minus sign for BC, e.g. <code>-44</code>.</p>
+      </div>
+      <div class="feature">
+        <div class="ic">🫅</div>
+        <h3>Search by ruler</h3>
+        <p>Find a person by name across every reign and title — accent- and case-insensitive, so <em>napoleon</em> finds Napoléon.</p>
+      </div>
+      <div class="feature">
+        <div class="ic">📜</div>
+        <h3>Search by event</h3>
+        <p>Look up historical events by name and see exactly when they happened and what surrounded them.</p>
+      </div>
+      <div class="feature">
+        <div class="ic">⏩</div>
+        <h3>Jump between years</h3>
+        <p>Travel to the start or end year of any reign or event and keep exploring — one tap moves you through time.</p>
+      </div>
+      <div class="feature">
+        <div class="ic">👑</div>
+        <h3>See the whole lineage</h3>
+        <p>Show every holder of a title — all the Popes, all the English Monarchs — with the one you started from highlighted.</p>
+      </div>
+      <div class="feature">
+        <div class="ic">🔗</div>
+        <h3>Open & share</h3>
+        <p>Jump to the Wikipedia article, or copy a clean summary to the clipboard — straight from any result.</p>
+      </div>
+      <div class="feature">
+        <div class="ic">⚡️</div>
+        <h3>Instant & offline</h3>
+        <p>The full history database ships inside the app, so every search is local and immediate — no network required.</p>
+      </div>
+      <div class="feature">
+        <div class="ic">🎚️</div>
+        <h3>Filter the view</h3>
+        <p>Switch between All, Rulers, and Events to focus your results exactly where you want them.</p>
+      </div>
+      <div class="feature">
+        <div class="ic">🔒</div>
+        <h3>Private by design</h3>
+        <p>Read-only and account-free. WhoWasWhen collects no data and tracks nothing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="screenshots">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>A look inside</h2>
+      <p>The same fast, no-friction search whether you ask with a year, a name, or an event.</p>
+    </div>
+    <div class="gallery">
+      <figure>
+        <div class="phone"><img src="screenshots/year.png" alt="Search results for the year 1789"></div>
+        <figcaption>Who ruled in <strong>1789</strong></figcaption>
+      </figure>
+      <figure>
+        <div class="phone"><img src="screenshots/ruler.png" alt="Search results for Napoleon"></div>
+        <figcaption>Find a ruler — <strong>Napoleon</strong></figcaption>
+      </figure>
+      <figure>
+        <div class="phone"><img src="screenshots/bc.png" alt="Search results for 44 BC"></div>
+        <figcaption>Back to <strong>44&nbsp;BC</strong></figcaption>
+      </figure>
+      <figure>
+        <div class="phone"><img src="screenshots/moon.png" alt="Search results for the year 1969"></div>
+        <figcaption>Rulers &amp; events of <strong>1969</strong></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The search syntax</h2>
+      <p>One box understands all of these.</p>
+    </div>
+    <div class="syntax">
+      <div class="row"><div><code>1789</code></div><div class="desc">A single year — see every ruler in office and every event that year.</div></div>
+      <div class="row"><div><code>177*</code></div><div class="desc">A wildcard — matches the whole decade (1770–1779).</div></div>
+      <div class="row"><div><code>1500-1600</code></div><div class="desc">A range of years.</div></div>
+      <div class="row"><div><code>-44</code></div><div class="desc">A BC year (44 BC).</div></div>
+      <div class="row"><div><code>1789 france</code></div><div class="desc">A year plus text — narrow a year to a place or title.</div></div>
+      <div class="row"><div><code>napoleon</code></div><div class="desc">A name — every reign and title of that person.</div></div>
+      <div class="row"><div><code>french revolution</code></div><div class="desc">An event by name.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <strong>WhoWasWhen</strong> · companion to the
+      <a href="https://github.com/giovannicoppola/alfred-WhoWasWhen">Alfred workflow</a>.<br>
+      © 2026 Giovanni Coppola.
+    </div>
+    <nav class="foot-links">
+      <a href="https://github.com/giovannicoppola/alfred-WhoWasWhen">GitHub</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="mailto:giovannicoppola@gmail.com">Support</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
