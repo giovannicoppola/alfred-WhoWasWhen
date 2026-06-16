@@ -55,6 +55,9 @@ struct ResultRow: View {
                     .foregroundStyle(.secondary)
                     .lineLimit(1)
                     .minimumScaleFactor(0.6)
+                    // The badge is a fixed-meaning chip; cap its growth so large
+                    // accessibility text sizes don't truncate "1/11" to "1/…".
+                    .dynamicTypeSize(...DynamicTypeSize.xLarge)
                     .padding(.horizontal, 5)
                     .padding(.vertical, 1)
                     .background(Capsule().fill(Color.secondary.opacity(0.14)))

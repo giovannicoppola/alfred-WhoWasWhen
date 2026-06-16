@@ -106,7 +106,10 @@ enum QueryParser {
     /// (e.g. "1789", "44 BC", "177*", "1500-1600"), or nil for a text-only query.
     static func displayYear(for query: String) -> String? {
         guard let term = parse(query).yearTerm else { return nil }
-        if isSpan(term) { return term }
+        if term.contains("*") { return term }                 // wildcard, e.g. "177*"
+        if let r = parseRange(term) {                         // range — show sorted, formatted bounds
+            return "\(formatYear(r.0))–\(formatYear(r.1))"
+        }
         if let y = Int(term) { return formatYear(y) }
         return term
     }
