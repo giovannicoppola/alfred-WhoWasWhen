@@ -109,7 +109,7 @@ struct ResultActions: View {
                 Label("Travel to \(formatYear(result.endYear))", systemImage: "arrow.forward.to.line")
             }
         }
-        Button { UIPasteboard.general.string = result.copyText } label: {
+        Button { app.copyToClipboard(result) } label: {
             Label("Copy", systemImage: "doc.on.doc")
         }
         if let url = result.wikipediaURL {

@@ -7,6 +7,9 @@ struct ResultsList: View {
     let results: [SearchResult]
     let isIdle: Bool             // true when there is no active query yet
     var yearHeader: String? = nil
+    /// When set, the list scrolls this row into view once on appear (used by
+    /// the lineage view to focus the currently selected ruler).
+    var scrollToID: SearchResult.ID? = nil
 
     var body: some View {
         if results.isEmpty {
@@ -16,18 +19,25 @@ struct ResultsList: View {
                 ContentUnavailableView.search
             }
         } else {
-            List {
-                if let yearHeader {
-                    Section {
+            ScrollViewReader { proxy in
+                List {
+                    if let yearHeader {
+                        Section {
+                            rows
+                        } header: {
+                            YearHeader(text: yearHeader)
+                        }
+                    } else {
                         rows
-                    } header: {
-                        YearHeader(text: yearHeader)
                     }
-                } else {
-                    rows
+                }
+                .listStyle(.plain)
+                .onAppear {
+                    if let scrollToID {
+                        proxy.scrollTo(scrollToID, anchor: .center)
+                    }
                 }
             }
-            .listStyle(.plain)
         }
     }
 

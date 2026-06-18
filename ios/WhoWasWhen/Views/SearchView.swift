@@ -30,6 +30,7 @@ struct SearchView: View {
                     }
                 }
         }
+        .toastOverlay(app.toast)
     }
 
     /// Debounced live search. Cancels in-flight work when the query/scope changes.
@@ -48,4 +49,38 @@ struct SearchView: View {
 private struct SearchKey: Hashable {
     let query: String
     let scope: SearchScope
+}
+
+/// A small, self-dismissing confirmation banner shown over the content.
+struct ToastBanner: View {
+    let text: String
+
+    var body: some View {
+        HStack(spacing: 8) {
+            Image(systemName: "checkmark.circle.fill")
+            Text(text).font(.subheadline.weight(.semibold))
+        }
+        .foregroundStyle(.white)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 10)
+        .background(Capsule().fill(.black.opacity(0.8)))
+        .shadow(radius: 6, y: 2)
+        .accessibilityElement(children: .combine)
+    }
+}
+
+extension View {
+    /// Overlays a self-dismissing toast at the bottom. Apply it inside each
+    /// presentation layer (root and any sheet) so the banner renders in front
+    /// of that layer rather than behind a covering sheet.
+    func toastOverlay(_ message: String?) -> some View {
+        overlay(alignment: .bottom) {
+            if let message {
+                ToastBanner(text: message)
+                    .padding(.bottom, 32)
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
+        }
+        .animation(.spring(duration: 0.3), value: message)
+    }
 }

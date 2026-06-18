@@ -4,6 +4,7 @@ import SwiftUI
 struct ResultDetailView: View {
     let result: SearchResult
     @Environment(\.dismiss) private var dismiss
+    @Environment(AppModel.self) private var app
 
     var body: some View {
         NavigationStack {
@@ -35,6 +36,7 @@ struct ResultDetailView: View {
                 }
             }
         }
+        .toastOverlay(app.toast)
     }
 }
 
@@ -70,7 +72,7 @@ private struct ResultActionsList: View {
                 Label("Travel to \(formatYear(result.endYear))", systemImage: "arrow.forward.to.line")
             }
         }
-        Button { UIPasteboard.general.string = result.copyText } label: {
+        Button { app.copyToClipboard(result) } label: {
             Label("Copy to clipboard", systemImage: "doc.on.doc")
         }
         // Wikipedia link last.

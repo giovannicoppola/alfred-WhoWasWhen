@@ -84,7 +84,6 @@ actor Database {
         bindText(stmt, 1, title)
 
         var rows: [SearchResult] = []
-        var focusIndex: Int?
         while sqlite3_step(stmt) == SQLITE_ROW {
             let rulerID = col(stmt, 0).int
             let name = col(stmt, 1).string
@@ -101,7 +100,6 @@ actor Database {
             let titlePlural = col(stmt, 13).optString
 
             let isCurrent = focusRulerID == rulerID && focusProg == prog
-            if isCurrent { focusIndex = rows.count }
 
             let star = (focusRulerID == rulerID) ? " 🌟" : ""
             let displayTitle = "\(name) (\(period))\(star)"
@@ -128,11 +126,9 @@ actor Database {
                 iconAsset: titleName))
         }
 
-        // Match the workflow: start the window 3 before the focused ruler.
-        if let idx = focusIndex {
-            let start = max(0, idx - 3)
-            return Array(rows[start...])
-        }
+        // Unlike the Alfred workflow (which starts a few before the focused
+        // ruler), the app returns the whole lineage so the user can scroll the
+        // full list; the focused ruler is highlighted and scrolled into view.
         return rows
     }
 

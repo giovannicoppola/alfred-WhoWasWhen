@@ -18,6 +18,10 @@ final class AppModel {
     private(set) var db: Database?
     private(set) var loadError: String?
 
+    /// A transient confirmation banner (e.g. "Copied to clipboard"); nil when hidden.
+    private(set) var toast: String?
+    private var toastTask: Task<Void, Never>?
+
     /// Opens the database (bundled, or a newer iCloud copy). Safe to call repeatedly.
     func load() async {
         guard db == nil, loadError == nil else { return }
@@ -47,5 +51,23 @@ final class AppModel {
     func showLineage(for result: SearchResult) {
         guard let title = result.titleName, !title.isEmpty else { return }
         path.append(.lineage(title: title, rulerID: result.rulerID, prog: result.progrTitle))
+    }
+
+    /// Copies a result to the clipboard and confirms with a haptic + brief banner.
+    func copyToClipboard(_ result: SearchResult) {
+        UIPasteboard.general.string = result.copyText
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
+        showToast("Copied to clipboard")
+    }
+
+    /// Shows a transient banner that auto-dismisses after a short delay.
+    private func showToast(_ message: String) {
+        toast = message
+        toastTask?.cancel()
+        toastTask = Task { [weak self] in
+            try? await Task.sleep(for: .seconds(1.6))
+            guard !Task.isCancelled else { return }
+            self?.toast = nil
+        }
     }
 }

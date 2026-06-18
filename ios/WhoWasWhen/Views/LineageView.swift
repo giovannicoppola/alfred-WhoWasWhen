@@ -12,7 +12,8 @@ struct LineageView: View {
     @State private var loaded = false
 
     var body: some View {
-        ResultsList(results: results, isIdle: false)
+        ResultsList(results: results, isIdle: false,
+                    scrollToID: results.first(where: \.isCurrent)?.id)
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
             .overlay { if !loaded { ProgressView() } }
