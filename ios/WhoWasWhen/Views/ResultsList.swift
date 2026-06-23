@@ -74,6 +74,7 @@ private struct IdleHome: View {
                 .font(.footnote)
                 .padding(.top, 8)
         }
+        .offset(y: -32)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
