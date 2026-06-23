@@ -51,30 +51,33 @@ struct ResultsList: View {
 /// The home/empty state, showing the app logo and a hint.
 private struct IdleHome: View {
     var body: some View {
-        VStack(spacing: 18) {
-            Image("AppLogo")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 104, height: 104)
-            Text("WhoWasWhen")
-                .font(.title2.weight(.bold))
-            VStack(alignment: .leading, spacing: 6) {
-                Text("Search:")
+        VStack(spacing: 0) {
+            Spacer()
+            VStack(spacing: 18) {
+                Image("AppLogo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 104, height: 104)
+                Text("WhoWasWhen")
+                    .font(.title2.weight(.bold))
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("a year (e.g. 1789, 177*, -44)")
-                    Text("a ruler")
-                    Text("or an event")
+                    Text("Search:")
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("a year (e.g. 1789, 177*, -44)")
+                        Text("a ruler")
+                        Text("or an event")
+                    }
+                    .padding(.leading, 20)
                 }
-                .padding(.leading, 20)
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 44)
             }
-            .font(.subheadline)
-            .foregroundStyle(.secondary)
-            .padding(.horizontal, 44)
+            Spacer()
             ReportMenu(label: "Report an issue or suggest data", systemImage: "plus.bubble")
                 .font(.footnote)
-                .padding(.top, 8)
+                .padding(.bottom, 8)
         }
-        .offset(y: -32)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
