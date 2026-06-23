@@ -63,7 +63,7 @@ private struct IdleHome: View {
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 44)
-            ReportMenu()
+            ReportMenu(label: "Report an issue or suggest data", systemImage: "plus.bubble")
                 .font(.footnote)
                 .padding(.top, 8)
         }

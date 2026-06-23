@@ -16,8 +16,10 @@ enum Reporting {
 
     /// Subject + body, pre-filled with the entry's identifying details when
     /// reporting a specific result (so it can be located in the source sheet).
+    /// With no result, the message invites general feedback or suggestions for
+    /// additional rulers, events, or other data to include.
     private static func subjectAndBody(for result: SearchResult?) -> (String, String) {
-        var subject = "WhoWasWhen feedback"
+        var subject = "WhoWasWhen feedback or data suggestion"
         var lines: [String] = []
         if let r = result {
             subject = "WhoWasWhen data issue: \(r.title)"
@@ -33,7 +35,11 @@ enum Reporting {
         }
         lines.append("App: WhoWasWhen \(appVersion)")
         lines.append("")
-        lines.append("Describe the problem:")
+        if result == nil {
+            lines.append("Report an issue, or suggest additional rulers, events, or other data to include:")
+        } else {
+            lines.append("Describe the problem:")
+        }
         lines.append("")
         return (subject, lines.joined(separator: "\n"))
     }
@@ -57,10 +63,14 @@ enum Reporting {
     }
 }
 
-/// A single "Report an issue" control that expands to Email / GitHub choices.
-/// Pass a `result` for a per-entry report, or nil for general feedback.
+/// A single control that expands to Email / GitHub choices for feedback.
+/// Pass a `result` for a per-entry report, or nil for general feedback and
+/// data suggestions. `label`/`systemImage` let callers tailor the prompt — the
+/// home screen invites suggestions, while per-entry views report a problem.
 struct ReportMenu: View {
     var result: SearchResult? = nil
+    var label: String = "Report an issue"
+    var systemImage: String = "flag"
     @Environment(\.openURL) private var openURL
 
     var body: some View {
@@ -72,7 +82,7 @@ struct ReportMenu: View {
                 Button { openURL(url) } label: { Label("On GitHub", systemImage: "ladybug") }
             }
         } label: {
-            Label("Report an issue", systemImage: "flag")
+            Label(label, systemImage: systemImage)
         }
     }
 }
