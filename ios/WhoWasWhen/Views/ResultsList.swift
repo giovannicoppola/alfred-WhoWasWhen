@@ -58,15 +58,17 @@ private struct IdleHome: View {
                 .frame(width: 104, height: 104)
             Text("WhoWasWhen")
                 .font(.title2.weight(.bold))
-            VStack(spacing: 6) {
-                Text("Search")
-                Text("a year (e.g. 1789, 177*, -44)")
-                Text("a ruler")
-                Text("or an event")
+            VStack(alignment: .leading, spacing: 6) {
+                Text("Search:")
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("a year (e.g. 1789, 177*, -44)")
+                    Text("a ruler")
+                    Text("or an event")
+                }
+                .padding(.leading, 20)
             }
             .font(.subheadline)
             .foregroundStyle(.secondary)
-            .multilineTextAlignment(.center)
             .padding(.horizontal, 44)
             ReportMenu(label: "Report an issue or suggest data", systemImage: "plus.bubble")
                 .font(.footnote)
