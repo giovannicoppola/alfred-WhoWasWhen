@@ -25,9 +25,16 @@ final class AppModel {
     /// Opens the database (bundled, or a newer iCloud copy). Safe to call repeatedly.
     func load() async {
         guard db == nil, loadError == nil else { return }
-        let path = DatabaseProvider.resolveDatabasePath()
         do {
-            db = try Database(path: path)
+            // Resolve the path and open the database off the main thread.
+            // `resolveDatabasePath()` does file I/O and queries iCloud via
+            // `FileManager.url(forUbiquityContainerIdentifier:)`, which Apple
+            // warns must never run on the main thread — it can block for a
+            // nontrivial time while iCloud is set up, freezing the UI at launch.
+            db = try await Task.detached(priority: .userInitiated) {
+                let path = DatabaseProvider.resolveDatabasePath()
+                return try Database(path: path)
+            }.value
         } catch {
             loadError = String(describing: error)
         }
