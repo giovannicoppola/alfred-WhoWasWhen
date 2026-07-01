@@ -7,7 +7,7 @@ The project is already configured for distribution:
 | Team (`DEVELOPMENT_TEAM`) | `VDG762YNX9` |
 | Bundle ID | `com.giovannicoppola.WhoWasWhen` |
 | Signing | Automatic |
-| Version / Build | `0.1` / `8` (`MARKETING_VERSION` / `CURRENT_PROJECT_VERSION`) |
+| Version / Build | `1.0` / `10` (`MARKETING_VERSION` / `CURRENT_PROJECT_VERSION`) |
 | Export compliance | `ITSAppUsesNonExemptEncryption = NO` (HTTPS only) |
 | App icon | 1024×1024, present (required by TestFlight) |
 
