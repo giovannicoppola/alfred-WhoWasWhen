@@ -19,16 +19,26 @@ answers, available instantly and **offline**.
   - **By event** — `french revolution`.
 - **Filter what you see** — All, Rulers only, or Events only.
 - **Act on any result** — swipe, long‑press, or tap to open it:
-  - Read more on **Wikipedia**
+  - Read more on **Wikipedia** — portraits and a summary paragraph appear right
+    in the app when you're online
   - **Travel** to a result's start or end year to keep exploring
   - See **everyone who held a title** (the full lineage, with the one you tapped
-    highlighted 🌟)
-  - **Copy** it to share
+    highlighted 🌟) — as a list or a visual **timeline**
+  - **Save it to Favorites** ⭐ or **copy** it to share
+- **Discover** — a featured ruler and event (shuffle for more), plus what
+  happened 100, 200, 300… years ago.
+- **Quiz** — endless multiple‑choice trivia generated from the data: *Who was
+  Pope in 1500? When did the French Revolution begin?* Play mixed rounds,
+  events only, or any title with enough holders; best scores are tracked.
+- **Timelines** — any title's lineage as a scrollable timeline with century
+  markers; every ruler's detail shows where their reign sits in the title's
+  whole history.
 
 ## Good to know
 
-- **Works offline.** All the history lives on your phone, so it's instant and
-  needs no connection.
+- **Works offline.** All the history lives on your phone, so search, quiz,
+  timelines, and favorites need no connection. (Wikipedia portraits and
+  summaries appear when online, and the app falls back gracefully without.)
 - **Read‑only and private.** The app only ever shows you the data — it never
   changes it, and it doesn't collect anything about you. See the
   [privacy policy](../docs/privacy.html).

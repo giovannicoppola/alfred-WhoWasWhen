@@ -8,6 +8,7 @@ struct ResultRow: View {
     let total: Int
 
     @Environment(AppModel.self) private var app
+    @Environment(FavoritesStore.self) private var favorites
     @Environment(\.openURL) private var openURL
     @State private var showDetail = false
 
@@ -23,6 +24,8 @@ struct ResultRow: View {
                 }.tint(.teal)
             }
             .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                FavoriteButton(result: result)
+                    .tint(.yellow)
                 if result.wikipediaURL != nil {
                     Button { openWikipedia() } label: { Label("Wikipedia", systemImage: "safari") }
                         .tint(.indigo)
@@ -46,9 +49,7 @@ struct ResultRow: View {
             // rather than data about the ruler (whose own reign progression
             // may also appear, as "27/28", inside the subtitle).
             VStack(spacing: 4) {
-                Image(systemName: Icon.symbol(for: result))
-                    .font(.title3)
-                    .foregroundStyle(Icon.tint(for: result))
+                PortraitView(result: result, size: 36)
                 Text("\(formatNumber(index + 1))/\(formatNumber(total))")
                     .font(.caption2.weight(.semibold))
                     .monospacedDigit()
@@ -112,9 +113,29 @@ struct ResultActions: View {
         Button { app.copyToClipboard(result) } label: {
             Label("Copy", systemImage: "doc.on.doc")
         }
+        FavoriteButton(result: result)
         if let url = result.wikipediaURL {
             Button { openURL(url) } label: { Label("Open Wikipedia", systemImage: "safari") }
         }
         ReportMenu(result: result)
+    }
+}
+
+/// Add/remove-favorite button shared by swipe actions, context menus, and the
+/// detail sheet. Confirms with the standard toast.
+struct FavoriteButton: View {
+    let result: SearchResult
+    @Environment(AppModel.self) private var app
+    @Environment(FavoritesStore.self) private var favorites
+
+    var body: some View {
+        let saved = favorites.isFavorite(result)
+        Button {
+            guard let nowSaved = favorites.toggle(result) else { return }
+            app.showToast(nowSaved ? "Added to Favorites" : "Removed from Favorites")
+        } label: {
+            Label(saved ? "Remove Favorite" : "Add to Favorites",
+                  systemImage: saved ? "star.slash" : "star")
+        }
     }
 }

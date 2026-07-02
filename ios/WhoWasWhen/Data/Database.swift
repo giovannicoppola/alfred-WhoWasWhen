@@ -211,7 +211,13 @@ actor Database {
         defer { sqlite3_finalize(stmt) }
         var idx: Int32 = 1
         for p in textParams { bindText(stmt, idx, p); idx += 1 }
+        return collectRulerRows(stmt)
+    }
 
+    /// Steps a rulers+periods statement (the 13-column SELECT used by
+    /// `rulersByText` and `ruler(byID:)`) into one row per ruler, grouping
+    /// multiple reign periods into a single subtitle.
+    private func collectRulerRows(_ stmt: OpaquePointer?) -> [SearchResult] {
         // Group periods by ruler, preserving first-seen order.
         var order: [Int] = []
         var periodsByRuler: [Int: [PeriodInfo]] = [:]
@@ -283,6 +289,7 @@ actor Database {
         // The matched year is shown once as a header by the UI, not per row.
         var rows: [SearchResult] = []
         while sqlite3_step(stmt) == SQLITE_ROW {
+            let eventID = col(stmt, 0).int
             let name = col(stmt, 1).string
             let startYear = col(stmt, 2).int
             let endYear = col(stmt, 3).int
@@ -293,7 +300,8 @@ actor Database {
             rows.append(SearchResult(
                 kind: .event, title: "\(name)\(rangeStr)", subtitle: notes,
                 wikipediaURL: wikipediaLink(wiki, name: name),
-                startYear: startYear, endYear: endYear, iconAsset: "event"))
+                startYear: startYear, endYear: endYear, eventID: eventID,
+                iconAsset: "event"))
         }
         return rows
     }
@@ -313,19 +321,170 @@ actor Database {
 
         var rows: [SearchResult] = []
         while sqlite3_step(stmt) == SQLITE_ROW {
-            let name = col(stmt, 1).string
-            let startYear = col(stmt, 2).int
-            let endYear = col(stmt, 3).int
-            let notes = col(stmt, 4).optString ?? ""
-            let wiki = col(stmt, 5).optString
+            rows.append(eventRow(stmt))
+        }
+        return rows
+    }
 
-            let yearString = startYear == endYear
-                ? formatYear(startYear)
-                : "\(formatYear(startYear))-\(formatYear(endYear))"
-            rows.append(SearchResult(
-                kind: .event, title: "\(yearString): \(name)", subtitle: notes,
-                wikipediaURL: wikipediaLink(wiki, name: name),
-                startYear: startYear, endYear: endYear, iconAsset: "event"))
+    /// Builds the "«years»: «name»" event row shared by text search and the
+    /// by-ID / random lookups (which all SELECT the same six columns).
+    private func eventRow(_ stmt: OpaquePointer?) -> SearchResult {
+        let eventID = col(stmt, 0).int
+        let name = col(stmt, 1).string
+        let startYear = col(stmt, 2).int
+        let endYear = col(stmt, 3).int
+        let notes = col(stmt, 4).optString ?? ""
+        let wiki = col(stmt, 5).optString
+
+        let yearString = startYear == endYear
+            ? formatYear(startYear)
+            : "\(formatYear(startYear))-\(formatYear(endYear))"
+        return SearchResult(
+            kind: .event, title: "\(yearString): \(name)", subtitle: notes,
+            wikipediaURL: wikipediaLink(wiki, name: name),
+            startYear: startYear, endYear: endYear, eventID: eventID,
+            iconAsset: "event")
+    }
+
+    // MARK: - Discovery / favorites / quiz queries
+
+    /// One ruler by database ID, in the same shape as a text-search row
+    /// (used to rehydrate Favorites and the Discover card).
+    func ruler(byID id: Int) -> SearchResult? {
+        let sql = """
+            SELECT ru.rulerID, ru.name, ru.personal_name, ru.epithet, ru.wikipedia,
+                   ru.biography, per.progrTitle, per.period, per.startYear, per.endYear,
+                   per.notes, t.title, t.titlePlural
+            FROM rulers ru
+            JOIN byPeriod per ON ru.rulerID = per.rulerID
+            JOIN titles t ON per.titleID = t.titleID
+            WHERE ru.rulerID = ?
+            ORDER BY ru.rulerID, per.startYear;
+            """
+        guard let stmt = prepare(sql) else { return nil }
+        defer { sqlite3_finalize(stmt) }
+        sqlite3_bind_int64(stmt, 1, Int64(id))
+        return collectRulerRows(stmt).first
+    }
+
+    /// One event by database ID (used to rehydrate Favorites).
+    func event(byID id: Int) -> SearchResult? {
+        let sql = """
+            SELECT e.eventID, e.eventName, e.startYear, e.endYear, e.notes, e.wikipedia
+            FROM byEvents e WHERE e.eventID = ?;
+            """
+        guard let stmt = prepare(sql) else { return nil }
+        defer { sqlite3_finalize(stmt) }
+        sqlite3_bind_int64(stmt, 1, Int64(id))
+        guard sqlite3_step(stmt) == SQLITE_ROW else { return nil }
+        return eventRow(stmt)
+    }
+
+    /// A random ruler for the Discover screen. Excludes plain consuls and
+    /// tribunes (~85% of the table, mostly bare names) so the featured card
+    /// usually has a story to tell; emperors who were also consuls still
+    /// qualify through their other title.
+    func randomRuler() -> SearchResult? {
+        let sql = """
+            SELECT DISTINCT ru.rulerID
+            FROM rulers ru
+            JOIN byPeriod per ON ru.rulerID = per.rulerID
+            JOIN titles t ON per.titleID = t.titleID
+            WHERE t.title NOT LIKE '%Consul%' AND t.title NOT LIKE '%Tribune%'
+            ORDER BY RANDOM() LIMIT 1;
+            """
+        guard let stmt = prepare(sql) else { return nil }
+        defer { sqlite3_finalize(stmt) }
+        guard sqlite3_step(stmt) == SQLITE_ROW else { return nil }
+        return ruler(byID: col(stmt, 0).int)
+    }
+
+    /// A random event for the Discover screen.
+    func randomEvent() -> SearchResult? {
+        let sql = """
+            SELECT e.eventID, e.eventName, e.startYear, e.endYear, e.notes, e.wikipedia
+            FROM byEvents e ORDER BY RANDOM() LIMIT 1;
+            """
+        guard let stmt = prepare(sql) else { return nil }
+        defer { sqlite3_finalize(stmt) }
+        guard sqlite3_step(stmt) == SQLITE_ROW else { return nil }
+        return eventRow(stmt)
+    }
+
+    /// Titles with enough holders to make a quiz category with plausible
+    /// wrong answers.
+    func quizTitles(minHolders: Int = 15) -> [TitleInfo] {
+        let sql = """
+            SELECT titleID, title, titlePlural, maxCount FROM titles
+            WHERE maxCount >= ? ORDER BY title;
+            """
+        guard let stmt = prepare(sql) else { return [] }
+        defer { sqlite3_finalize(stmt) }
+        sqlite3_bind_int64(stmt, 1, Int64(minHolders))
+
+        var rows: [TitleInfo] = []
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            rows.append(TitleInfo(
+                titleID: col(stmt, 0).int, title: col(stmt, 1).string,
+                titlePlural: col(stmt, 2).optString, maxCount: col(stmt, 3).int))
+        }
+        return rows
+    }
+
+    /// Every reign of a title, in progression order (quiz question material
+    /// and the detail view's mini-timeline).
+    func holders(ofTitle title: String) -> [HolderRow] {
+        let sql = """
+            SELECT ru.rulerID, ru.name, per.period, per.startYear, per.endYear, per.progrTitle
+            FROM rulers ru
+            JOIN byPeriod per ON ru.rulerID = per.rulerID
+            JOIN titles t ON per.titleID = t.titleID
+            WHERE t.title = ?
+            ORDER BY per.progrTitle ASC;
+            """
+        guard let stmt = prepare(sql) else { return [] }
+        defer { sqlite3_finalize(stmt) }
+        bindText(stmt, 1, title)
+
+        var rows: [HolderRow] = []
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            rows.append(HolderRow(
+                rulerID: col(stmt, 0).int, name: col(stmt, 1).string,
+                period: col(stmt, 2).string, startYear: col(stmt, 3).int,
+                endYear: col(stmt, 4).int, progrTitle: col(stmt, 5).int))
+        }
+        return rows
+    }
+
+    /// The first and last year any holder of `title` reigned.
+    func titleSpan(_ title: String) -> ClosedRange<Int>? {
+        let sql = """
+            SELECT MIN(per.startYear), MAX(per.endYear)
+            FROM byPeriod per JOIN titles t ON per.titleID = t.titleID
+            WHERE t.title = ?;
+            """
+        guard let stmt = prepare(sql) else { return nil }
+        defer { sqlite3_finalize(stmt) }
+        bindText(stmt, 1, title)
+        guard sqlite3_step(stmt) == SQLITE_ROW,
+              sqlite3_column_type(stmt, 0) != SQLITE_NULL else { return nil }
+        let lo = col(stmt, 0).int, hi = col(stmt, 1).int
+        return lo <= hi ? lo...hi : nil
+    }
+
+    /// Random events reduced to what a quiz question needs (no formatted
+    /// title, which would leak the answer year).
+    func randomQuizEvents(limit: Int) -> [QuizEventRow] {
+        let sql = "SELECT eventName, startYear, endYear FROM byEvents ORDER BY RANDOM() LIMIT ?;"
+        guard let stmt = prepare(sql) else { return [] }
+        defer { sqlite3_finalize(stmt) }
+        sqlite3_bind_int64(stmt, 1, Int64(limit))
+
+        var rows: [QuizEventRow] = []
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            rows.append(QuizEventRow(
+                name: col(stmt, 0).string, startYear: col(stmt, 1).int,
+                endYear: col(stmt, 2).int))
         }
         return rows
     }
@@ -394,6 +553,32 @@ actor Database {
         let slug = name.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? name
         return URL(string: "https://en.wikipedia.org/wiki/\(slug)")
     }
+}
+
+/// A quiz-eligible title, doubling as a quiz category.
+struct TitleInfo: Sendable, Identifiable, Hashable {
+    let titleID: Int
+    let title: String
+    let titlePlural: String?
+    let maxCount: Int
+    var id: Int { titleID }
+}
+
+/// One reign of one holder of a title (quiz distractors + timelines).
+struct HolderRow: Sendable, Hashable {
+    let rulerID: Int
+    let name: String
+    let period: String
+    let startYear: Int
+    let endYear: Int
+    let progrTitle: Int
+}
+
+/// An event stripped to what a quiz question needs.
+struct QuizEventRow: Sendable, Hashable {
+    let name: String
+    let startYear: Int
+    let endYear: Int
 }
 
 /// Adds thousands separators, matching the Go `formatNumber`.

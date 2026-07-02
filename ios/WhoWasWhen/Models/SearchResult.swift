@@ -23,6 +23,9 @@ struct SearchResult: Identifiable, Sendable, Hashable {
     var rulerID: Int?
     var progrTitle: Int?
 
+    /// For events: the stable database key (used by Favorites).
+    var eventID: Int? = nil
+
     /// Marks the focused ruler in a lineage list (the 🌟 in the workflow).
     var isCurrent: Bool = false
 

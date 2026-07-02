@@ -8,6 +8,29 @@ Reuse the project config already documented in TESTFLIGHT.md (team `VDG762YNX9`,
 bundle id `com.giovannicoppola.WhoWasWhen`, automatic signing, build/version in
 `ios/project.yml`).
 
+## Resubmission after the 4.2 rejection (v1.1)
+
+Build 1.0 (10) was rejected under **Guideline 4.2 Minimum Functionality**
+("primarily offers content to view… not enough content/features"). v1.1 answers
+it with four tabs of functionality on top of search:
+
+- **Discover** — featured ruler & event with shuffle, plus "100/200/300… years
+  ago" anniversary sections.
+- **Quiz** — endless multiple-choice trivia generated on-device from the
+  database (mixed, events-only, or per-title rounds; scores and bests tracked).
+- **Favorites** — save any ruler or event; persists across launches.
+- **Timeline** — every title's lineage as a visual timeline with century
+  markers; ruler details show a reign-position bar within the title's era.
+- **Wikipedia enrichment** — portraits and summary paragraphs load inline
+  (graceful offline fallback), on top of the existing 3,351 rulers and ~900
+  events spanning 776 BC–today.
+
+When resubmitting, use the **App Review notes** field to summarize the above,
+mention the app works fully offline (the quiz alone generates thousands of
+distinct questions from the bundled data), and refresh the screenshots to show
+Discover, Quiz, and a timeline — not just search. Reply in the rejection thread
+in App Store Connect so the resolution is tracked against the original review.
+
 ## 0. Decide how the app makes money (or not)
 
 Pick this **before** you fill in pricing, because it changes which agreements and
