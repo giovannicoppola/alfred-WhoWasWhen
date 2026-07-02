@@ -74,14 +74,26 @@ struct DiscoverView: View {
 
     /// Walks back a century at a time from the current year, keeping the
     /// first centuries that have something to show: up to 3 events plus a
-    /// couple of rulers in office that year.
+    /// couple of rulers in office that year. Events with an exact date are
+    /// preferred, closest to today's date first, so anniversaries land near
+    /// their actual day.
     private func buildAnniversaries() async {
+        let today = Calendar.current.dateComponents([.month, .day], from: .now)
+        let todayKey = (today.month ?? 1) * 31 + (today.day ?? 1)
+        func distanceFromToday(_ r: SearchResult) -> Int {
+            guard let m = r.startMonth, let d = r.startDay else { return .max }
+            let delta = abs(m * 31 + d - todayKey)
+            return min(delta, 12 * 31 - delta)   // wrap around new year
+        }
+
         let currentYear = Calendar.current.component(.year, from: .now)
         var sections: [AnniversarySection] = []
         var yearsAgo = 100
         while sections.count < 8 && currentYear - yearsAgo >= -776 {
             let year = currentYear - yearsAgo
-            let events = await app.events(inYear: year).prefix(3)
+            let events = await app.events(inYear: year)
+                .sorted { distanceFromToday($0) < distanceFromToday($1) }
+                .prefix(3)
             let rulers = await app.rulers(inYear: year).prefix(2)
             let results = Array(events) + Array(rulers)
             if !results.isEmpty {
@@ -133,6 +145,7 @@ struct FeaturedCard: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+        .resultRowActions(for: result)
         .sheet(isPresented: $showDetail) {
             ResultDetailView(result: result).presentationDetents([.medium, .large])
         }

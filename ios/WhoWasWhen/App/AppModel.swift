@@ -92,6 +92,15 @@ final class AppModel {
     func ruler(byID id: Int) async -> SearchResult? { await database()?.ruler(byID: id) }
     func event(byID id: Int) async -> SearchResult? { await database()?.event(byID: id) }
 
+    /// Events whose exact date matches today — the Search tab's
+    /// "On this day" card. Empty when the database has no dated events.
+    func eventsOnToday() async -> [SearchResult] {
+        let parts = Calendar.current.dateComponents([.month, .day], from: .now)
+        guard let month = parts.month, let day = parts.day,
+              let db = await database() else { return [] }
+        return await db.eventsOn(month: month, day: day)
+    }
+
     func quizTitles() async -> [TitleInfo] { await database()?.quizTitles() ?? [] }
     func holders(ofTitle title: String) async -> [HolderRow] {
         await database()?.holders(ofTitle: title) ?? []

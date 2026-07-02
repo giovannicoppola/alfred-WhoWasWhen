@@ -7,36 +7,12 @@ struct ResultRow: View {
     let index: Int
     let total: Int
 
-    @Environment(AppModel.self) private var app
-    @Environment(FavoritesStore.self) private var favorites
-    @Environment(\.openURL) private var openURL
     @State private var showDetail = false
 
     var body: some View {
         Button { showDetail = true } label: { content }
             .buttonStyle(.plain)
-            .swipeActions(edge: .leading, allowsFullSwipe: false) {
-                Button { app.travel(toYear: result.startYear) } label: {
-                    Label("Start \(formatYear(result.startYear))", systemImage: "arrow.backward.to.line")
-                }.tint(.blue)
-                Button { app.travel(toYear: result.endYear) } label: {
-                    Label("End \(formatYear(result.endYear))", systemImage: "arrow.forward.to.line")
-                }.tint(.teal)
-            }
-            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                FavoriteButton(result: result)
-                    .tint(.yellow)
-                if result.wikipediaURL != nil {
-                    Button { openWikipedia() } label: { Label("Wikipedia", systemImage: "safari") }
-                        .tint(.indigo)
-                }
-                if canShowLineage {
-                    Button { app.showLineage(for: result) } label: {
-                        Label("All", systemImage: "list.bullet")
-                    }.tint(.purple)
-                }
-            }
-            .contextMenu { ResultActions(result: result) }
+            .resultRowActions(for: result)
             .sheet(isPresented: $showDetail) {
                 ResultDetailView(result: result).presentationDetents([.medium, .large])
             }
@@ -80,12 +56,45 @@ struct ResultRow: View {
         .contentShape(Rectangle())
     }
 
-    private var canShowLineage: Bool {
-        result.kind == .ruler && (result.titleName?.isEmpty == false)
-    }
+}
 
-    private func openWikipedia() {
-        if let url = result.wikipediaURL { openURL(url) }
+/// The swipe gestures + long-press context menu every result-style row
+/// shares — used by ResultRow and the Discover tab's featured cards.
+private struct ResultRowActionsModifier: ViewModifier {
+    let result: SearchResult
+    @Environment(AppModel.self) private var app
+    @Environment(\.openURL) private var openURL
+
+    func body(content: Content) -> some View {
+        content
+            .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                Button { app.travel(toYear: result.startYear) } label: {
+                    Label("Start \(formatYear(result.startYear))", systemImage: "arrow.backward.to.line")
+                }.tint(.blue)
+                Button { app.travel(toYear: result.endYear) } label: {
+                    Label("End \(formatYear(result.endYear))", systemImage: "arrow.forward.to.line")
+                }.tint(.teal)
+            }
+            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                FavoriteButton(result: result)
+                    .tint(.yellow)
+                if let url = result.wikipediaURL {
+                    Button { openURL(url) } label: { Label("Wikipedia", systemImage: "safari") }
+                        .tint(.indigo)
+                }
+                if result.kind == .ruler, result.titleName?.isEmpty == false {
+                    Button { app.showLineage(for: result) } label: {
+                        Label("All", systemImage: "list.bullet")
+                    }.tint(.purple)
+                }
+            }
+            .contextMenu { ResultActions(result: result) }
+    }
+}
+
+extension View {
+    func resultRowActions(for result: SearchResult) -> some View {
+        modifier(ResultRowActionsModifier(result: result))
     }
 }
 

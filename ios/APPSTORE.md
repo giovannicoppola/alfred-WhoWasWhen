@@ -14,10 +14,13 @@ Build 1.0 (10) was rejected under **Guideline 4.2 Minimum Functionality**
 ("primarily offers content to view… not enough content/features"). v1.1 answers
 it with four tabs of functionality on top of search:
 
+- **On this day** — the search home shows an event that happened on today's
+  date (300+ events now carry exact dates), linked to its detail view.
 - **Discover** — featured ruler & event with shuffle, plus "100/200/300… years
-  ago" anniversary sections.
+  ago" anniversary sections, date-aware where the data allows.
 - **Quiz** — endless multiple-choice trivia generated on-device from the
-  database (mixed, events-only, or per-title rounds; scores and bests tracked).
+  database (mixed, rulers, events, or per-title rounds; scores and bests
+  tracked, with a confetti celebration for new records).
 - **Favorites** — save any ruler or event; persists across launches.
 - **Timeline** — every title's lineage as a visual timeline with century
   markers; ruler details show a reign-position bar within the title's era.

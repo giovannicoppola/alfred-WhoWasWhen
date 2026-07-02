@@ -2,23 +2,38 @@ import Foundation
 
 /// One multiple-choice question, fully self-contained.
 struct QuizQuestion: Identifiable, Hashable {
+    /// The ruler or event the question (and its correct answer) is about,
+    /// so the reveal can link to the full detail view.
+    enum SubjectID: Hashable {
+        case ruler(Int)
+        case event(Int)
+    }
+
     let id = UUID()
     var prompt: String
+    /// Second prompt line — the event name for event questions ("When did
+    /// this happen" / the event, per the requested two-line layout).
+    var subject: String? = nil
     var options: [String]
     var correctIndex: Int
     /// Shown after answering, e.g. "Julius Caesar — Roman Consul (59 BC)".
     var explanation: String
+    var subjectID: SubjectID? = nil
+    /// Year options read better centered; names stay leading-aligned.
+    var centerOptions: Bool = false
 }
 
 /// What a round draws its questions from.
 enum QuizCategory: Hashable, Identifiable {
     case mixed
+    case rulers
     case events
     case title(TitleInfo)
 
     var id: String {
         switch self {
         case .mixed: "mixed"
+        case .rulers: "rulers"
         case .events: "events"
         case .title(let t): "title-\(t.titleID)"
         }
@@ -27,6 +42,7 @@ enum QuizCategory: Hashable, Identifiable {
     var label: String {
         switch self {
         case .mixed: "Mixed"
+        case .rulers: "Rulers"
         case .events: "Events"
         case .title(let t): titlePluralOrDefault(t.titlePlural, title: t.title)
         }
@@ -51,6 +67,11 @@ enum QuizEngine {
             let holders = await app.holders(ofTitle: t.title)
             return rulerQuestions(for: t, holders: holders, count: roundSize)
 
+        case .rulers:
+            let titles = (await app.quizTitles()).shuffled()
+            let questions = await rulerRound(titles: titles, count: roundSize, app: app)
+            return questions.shuffled()
+
         case .mixed:
             let titles = (await app.quizTitles()).shuffled()
             guard !titles.isEmpty else { return [] }
@@ -59,15 +80,26 @@ enum QuizEngine {
             let eventTarget = roundSize / 3
             let events = await app.randomQuizEvents(limit: eventTarget * 3)
             var questions = eventQuestions(from: events, count: eventTarget)
-            var i = 0
-            while questions.count < roundSize && i < roundSize * 3 {
-                let t = titles[i % titles.count]
-                let holders = await app.holders(ofTitle: t.title)
-                questions += rulerQuestions(for: t, holders: holders, count: 1)
-                i += 1
-            }
+            questions += await rulerRound(titles: titles,
+                                          count: roundSize - questions.count, app: app)
             return questions.shuffled()
         }
+    }
+
+    /// Ruler questions spread over random titles (the Mixed and Rulers rounds).
+    @MainActor
+    private static func rulerRound(titles: [TitleInfo], count: Int,
+                                   app: AppModel) async -> [QuizQuestion] {
+        guard !titles.isEmpty, count > 0 else { return [] }
+        var questions: [QuizQuestion] = []
+        var i = 0
+        while questions.count < count && i < count * 3 {
+            let t = titles[i % titles.count]
+            let holders = await app.holders(ofTitle: t.title)
+            questions += rulerQuestions(for: t, holders: holders, count: 1)
+            i += 1
+        }
+        return questions
     }
 
     // MARK: - Ruler questions
@@ -115,7 +147,8 @@ enum QuizEngine {
             prompt: "Who was \(title.title) in \(formatYear(year))?",
             options: options,
             correctIndex: options.firstIndex(of: h.name)!,
-            explanation: "\(h.name) — \(title.title) (\(h.period))")
+            explanation: "\(h.name) — \(title.title) (\(h.period))",
+            subjectID: .ruler(h.rulerID))
     }
 
     /// "When was «name» «title»?" — wrong answers are other holders' periods
@@ -140,7 +173,9 @@ enum QuizEngine {
             prompt: "When was \(h.name) \(title.title)?",
             options: options,
             correctIndex: options.firstIndex(of: h.period)!,
-            explanation: "\(h.name) — \(title.title) (\(h.period))")
+            explanation: "\(h.name) — \(title.title) (\(h.period))",
+            subjectID: .ruler(h.rulerID),
+            centerOptions: true)
     }
 
     // MARK: - Event questions
@@ -148,17 +183,22 @@ enum QuizEngine {
     static func eventQuestions(from events: [QuizEventRow], count: Int) -> [QuizQuestion] {
         var out: [QuizQuestion] = []
         for e in events where out.count < count {
-            if let q = eventQuestion(e), !out.contains(where: { $0.prompt == q.prompt }) {
+            // The prompt is now generic ("When did this begin?"), so the
+            // subject is what makes an event question unique in a round.
+            if let q = eventQuestion(e), !out.contains(where: { $0.subject == q.subject }) {
                 out.append(q)
             }
         }
         return out
     }
 
-    /// "When did this happen: «event»?" — the wrong years are offset from the
-    /// right one, never in the future, and shown in chronological order.
+    /// "When did this happen / begin / end" + the event on its own line —
+    /// the wrong years are offset from the right one, never in the future,
+    /// and shown in chronological order.
     private static func eventQuestion(_ e: QuizEventRow) -> QuizQuestion? {
-        let correct = e.startYear
+        // Single-year events ask "happen"; ranged events ask start or end.
+        let asksEnd = e.startYear != e.endYear && Bool.random()
+        let correct = asksEnd ? e.endYear : e.startYear
         // Skip events that leak the answer in their name ("Panic of 1837").
         guard !e.name.contains(String(abs(correct))) else { return nil }
         let currentYear = Calendar.current.component(.year, from: .now)
@@ -175,15 +215,18 @@ enum QuizEngine {
         guard years.count == 4 else { return nil }
 
         let sorted = years.sorted()
-        let verb = e.startYear == e.endYear ? "happen" : "begin"
+        let verb = e.startYear == e.endYear ? "happen" : (asksEnd ? "end" : "begin")
         let answer = e.startYear == e.endYear
             ? formatYear(e.startYear)
             : "\(formatYear(e.startYear))-\(formatYear(e.endYear))"
         return QuizQuestion(
-            prompt: "When did this \(verb): \(e.name)?",
+            prompt: "When did this \(verb)?",
+            subject: e.name,
             options: sorted.map(formatYear),
             correctIndex: sorted.firstIndex(of: correct)!,
-            explanation: "\(e.name) — \(answer)")
+            explanation: "\(e.name) — \(answer)",
+            subjectID: .event(e.eventID),
+            centerOptions: true)
     }
 }
 

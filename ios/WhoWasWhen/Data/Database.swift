@@ -15,6 +15,10 @@ actor Database {
     // close the handle under Swift 6 strict concurrency.
     private nonisolated(unsafe) var handle: OpaquePointer?
 
+    /// Whether byEvents carries startMonth/startDay. Older databases (e.g. a
+    /// stale iCloud copy) predate the columns; queries must not assume them.
+    private let hasEventDates: Bool
+
     init(path: String) throws {
         var db: OpaquePointer?
         // Open read-only; the app never mutates the data.
@@ -25,7 +29,22 @@ actor Database {
             throw DBError.openFailed(msg)
         }
         self.handle = db
+        self.hasEventDates = Database.columnExists(db, table: "byEvents", column: "startMonth")
         Database.registerFoldFunction(db)
+    }
+
+    private nonisolated static func columnExists(_ db: OpaquePointer, table: String,
+                                                 column: String) -> Bool {
+        var stmt: OpaquePointer?
+        guard sqlite3_prepare_v2(db, "PRAGMA table_info(\(table));", -1, &stmt, nil) == SQLITE_OK
+        else { return false }
+        defer { sqlite3_finalize(stmt) }
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            if let c = sqlite3_column_text(stmt, 1), String(cString: c) == column {
+                return true
+            }
+        }
+        return false
     }
 
     deinit { sqlite3_close(handle) }
@@ -265,13 +284,21 @@ actor Database {
         return rows
     }
 
+    /// The SELECT list every event query shares; positions are fixed so
+    /// `eventRow` can read them (month/day only exist on newer databases).
+    private var eventColumns: String {
+        var cols = "e.eventID, e.eventName, e.startYear, e.endYear, e.notes, e.wikipedia"
+        if hasEventDates { cols += ", e.startMonth, e.startDay" }
+        return cols
+    }
+
     private func eventsByYear(yearTerm: String, textTerms: [String]) -> [SearchResult] {
         let yc = QueryParser.yearClause(for: yearTerm)
         let (yearSQL, yearParams) = yearClauseSQL(yc, yearColumn: "y.year")
         let (textSQL, textParams) = foldedTextSQL(columns: ["e.eventName", "e.notes"], terms: textTerms)
 
         var sql = """
-            SELECT e.eventID, e.eventName, e.startYear, e.endYear, e.notes, e.wikipedia, y.year
+            SELECT \(eventColumns)
             FROM byYear rt
             JOIN byEvents e ON rt.eventID = e.eventID
             JOIN years y ON rt.yearID = y.yearID
@@ -286,22 +313,18 @@ actor Database {
         for p in yearParams { bindAny(stmt, idx, p); idx += 1 }
         for p in textParams { bindText(stmt, idx, p); idx += 1 }
 
-        // The matched year is shown once as a header by the UI, not per row.
+        // The matched year is shown once as a header by the UI, not per row,
+        // so this row style leads with the name, not the year.
         var rows: [SearchResult] = []
         while sqlite3_step(stmt) == SQLITE_ROW {
-            let eventID = col(stmt, 0).int
             let name = col(stmt, 1).string
             let startYear = col(stmt, 2).int
             let endYear = col(stmt, 3).int
-            let notes = col(stmt, 4).optString ?? ""
-            let wiki = col(stmt, 5).optString
-
-            let rangeStr = startYear != endYear ? " (\(formatYear(startYear))-\(formatYear(endYear)))" : ""
-            rows.append(SearchResult(
-                kind: .event, title: "\(name)\(rangeStr)", subtitle: notes,
-                wikipediaURL: wikipediaLink(wiki, name: name),
-                startYear: startYear, endYear: endYear, eventID: eventID,
-                iconAsset: "event"))
+            let rangeStr = startYear != endYear
+                ? " (\(formatYear(startYear))-\(formatYear(endYear)))" : ""
+            var row = eventRow(stmt)
+            row.title = "\(name)\(rangeStr)"
+            rows.append(row)
         }
         return rows
     }
@@ -309,7 +332,7 @@ actor Database {
     private func eventsByText(terms: [String]) -> [SearchResult] {
         let (textSQL, textParams) = foldedTextSQL(columns: ["e.eventName", "e.notes"], terms: terms)
         let sql = """
-            SELECT e.eventID, e.eventName, e.startYear, e.endYear, e.notes, e.wikipedia
+            SELECT \(eventColumns)
             FROM byEvents e
             WHERE \(textSQL)
             ORDER BY e.startYear;
@@ -326,8 +349,8 @@ actor Database {
         return rows
     }
 
-    /// Builds the "«years»: «name»" event row shared by text search and the
-    /// by-ID / random lookups (which all SELECT the same six columns).
+    /// Builds the "«years»: «name»" event row shared by every event query
+    /// (they all SELECT `eventColumns`, so the positions line up).
     private func eventRow(_ stmt: OpaquePointer?) -> SearchResult {
         let eventID = col(stmt, 0).int
         let name = col(stmt, 1).string
@@ -335,6 +358,8 @@ actor Database {
         let endYear = col(stmt, 3).int
         let notes = col(stmt, 4).optString ?? ""
         let wiki = col(stmt, 5).optString
+        let month = hasEventDates ? col(stmt, 6).optInt : nil
+        let day = hasEventDates ? col(stmt, 7).optInt : nil
 
         let yearString = startYear == endYear
             ? formatYear(startYear)
@@ -343,7 +368,29 @@ actor Database {
             kind: .event, title: "\(yearString): \(name)", subtitle: notes,
             wikipediaURL: wikipediaLink(wiki, name: name),
             startYear: startYear, endYear: endYear, eventID: eventID,
+            startMonth: month, startDay: day,
             iconAsset: "event")
+    }
+
+    /// Events whose exact start date matches a calendar day — "On this day".
+    func eventsOn(month: Int, day: Int) -> [SearchResult] {
+        guard hasEventDates else { return [] }
+        let sql = """
+            SELECT \(eventColumns)
+            FROM byEvents e
+            WHERE e.startMonth = ? AND e.startDay = ?
+            ORDER BY e.startYear;
+            """
+        guard let stmt = prepare(sql) else { return [] }
+        defer { sqlite3_finalize(stmt) }
+        sqlite3_bind_int64(stmt, 1, Int64(month))
+        sqlite3_bind_int64(stmt, 2, Int64(day))
+
+        var rows: [SearchResult] = []
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            rows.append(eventRow(stmt))
+        }
+        return rows
     }
 
     // MARK: - Discovery / favorites / quiz queries
@@ -370,7 +417,7 @@ actor Database {
     /// One event by database ID (used to rehydrate Favorites).
     func event(byID id: Int) -> SearchResult? {
         let sql = """
-            SELECT e.eventID, e.eventName, e.startYear, e.endYear, e.notes, e.wikipedia
+            SELECT \(eventColumns)
             FROM byEvents e WHERE e.eventID = ?;
             """
         guard let stmt = prepare(sql) else { return nil }
@@ -402,7 +449,7 @@ actor Database {
     /// A random event for the Discover screen.
     func randomEvent() -> SearchResult? {
         let sql = """
-            SELECT e.eventID, e.eventName, e.startYear, e.endYear, e.notes, e.wikipedia
+            SELECT \(eventColumns)
             FROM byEvents e ORDER BY RANDOM() LIMIT 1;
             """
         guard let stmt = prepare(sql) else { return nil }
@@ -475,7 +522,7 @@ actor Database {
     /// Random events reduced to what a quiz question needs (no formatted
     /// title, which would leak the answer year).
     func randomQuizEvents(limit: Int) -> [QuizEventRow] {
-        let sql = "SELECT eventName, startYear, endYear FROM byEvents ORDER BY RANDOM() LIMIT ?;"
+        let sql = "SELECT eventID, eventName, startYear, endYear FROM byEvents ORDER BY RANDOM() LIMIT ?;"
         guard let stmt = prepare(sql) else { return [] }
         defer { sqlite3_finalize(stmt) }
         sqlite3_bind_int64(stmt, 1, Int64(limit))
@@ -483,8 +530,8 @@ actor Database {
         var rows: [QuizEventRow] = []
         while sqlite3_step(stmt) == SQLITE_ROW {
             rows.append(QuizEventRow(
-                name: col(stmt, 0).string, startYear: col(stmt, 1).int,
-                endYear: col(stmt, 2).int))
+                eventID: col(stmt, 0).int, name: col(stmt, 1).string,
+                startYear: col(stmt, 2).int, endYear: col(stmt, 3).int))
         }
         return rows
     }
@@ -540,6 +587,10 @@ actor Database {
     /// Lightweight typed column accessor.
     private struct Column { let stmt: OpaquePointer?; let i: Int32
         var int: Int { Int(sqlite3_column_int64(stmt, i)) }
+        var optInt: Int? {
+            sqlite3_column_type(stmt, i) == SQLITE_NULL
+                ? nil : Int(sqlite3_column_int64(stmt, i))
+        }
         var optString: String? {
             sqlite3_column_type(stmt, i) == SQLITE_NULL
                 ? nil : sqlite3_column_text(stmt, i).map { String(cString: $0) }
@@ -576,6 +627,7 @@ struct HolderRow: Sendable, Hashable {
 
 /// An event stripped to what a quiz question needs.
 struct QuizEventRow: Sendable, Hashable {
+    let eventID: Int
     let name: String
     let startYear: Int
     let endYear: Int

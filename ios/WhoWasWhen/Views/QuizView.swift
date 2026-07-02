@@ -14,6 +14,8 @@ struct QuizView: View {
     @State private var selection: Int?
     @State private var score = 0
     @State private var newBest = false
+    @State private var subjectDetail: SearchResult?
+    @State private var trophyScale: CGFloat = 0.3
 
     var body: some View {
         NavigationStack {
@@ -42,11 +44,25 @@ struct QuizView: View {
                 await app.load()   // wait for the database on a cold tab open
                 titles = await app.quizTitles()
                 #if DEBUG
-                // Automation hook: jump straight into a round for screenshots.
-                if ProcessInfo.processInfo.environment["WWW_QUIZ"] != nil, phase == .picking {
-                    await start(.mixed)
+                // Automation hooks: jump straight into a round (WWW_QUIZ=1|
+                // events|rulers) or onto a new-best score screen (WWW_SCORE)
+                // for screenshots.
+                if let hook = ProcessInfo.processInfo.environment["WWW_QUIZ"], phase == .picking {
+                    switch hook {
+                    case "events": await start(.events)
+                    case "rulers": await start(.rulers)
+                    default: await start(.mixed)
+                    }
+                }
+                if ProcessInfo.processInfo.environment["WWW_SCORE"] != nil, phase == .playing {
+                    score = 9
+                    newBest = true
+                    phase = .finished
                 }
                 #endif
+            }
+            .sheet(item: $subjectDetail) { result in
+                ResultDetailView(result: result).presentationDetents([.medium, .large])
             }
         }
         .toastOverlay(app.toast)
@@ -59,6 +75,8 @@ struct QuizView: View {
             Section("Play") {
                 categoryRow(.mixed, subtitle: "Rulers and events from all of history",
                             symbol: "sparkles")
+                categoryRow(.rulers, subtitle: "Who ruled when, across every title",
+                            symbol: "crown.fill")
                 categoryRow(.events, subtitle: "When did it happen?",
                             symbol: "calendar")
             }
@@ -127,6 +145,7 @@ struct QuizView: View {
         score = 0
         selection = nil
         newBest = false
+        trophyScale = 0.3
         phase = .playing
     }
 
@@ -146,9 +165,19 @@ struct QuizView: View {
                         .font(.subheadline.weight(.semibold))
                         .foregroundStyle(.yellow)
                 }
-                Text(q.prompt)
-                    .font(.title3.weight(.semibold))
-                    .fixedSize(horizontal: false, vertical: true)
+                // Event questions read as two lines: a generic "When did
+                // this begin?" and then the event itself, undecorated.
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(q.prompt)
+                        .font(q.subject == nil ? .title3.weight(.semibold) : .headline)
+                        .foregroundStyle(q.subject == nil ? .primary : .secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                    if let subject = q.subject {
+                        Text(subject)
+                            .font(.title3.weight(.semibold))
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
 
                 VStack(spacing: 10) {
                     ForEach(q.options.indices, id: \.self) { i in
@@ -157,10 +186,7 @@ struct QuizView: View {
                 }
 
                 if selection != nil {
-                    Text(q.explanation)
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                        .fixedSize(horizontal: false, vertical: true)
+                    revealRow(q)
                     Button(index + 1 < questions.count ? "Next question" : "See score") {
                         advance()
                     }
@@ -177,17 +203,12 @@ struct QuizView: View {
             select(i, in: q)
         } label: {
             HStack {
+                if q.centerOptions { Spacer(minLength: 0) }
                 Text(q.options[i])
-                    .multilineTextAlignment(.leading)
+                    .multilineTextAlignment(q.centerOptions ? .center : .leading)
                     .fixedSize(horizontal: false, vertical: true)
-                Spacer(minLength: 8)
-                if selection != nil {
-                    if i == q.correctIndex {
-                        Image(systemName: "checkmark.circle.fill").foregroundStyle(.green)
-                    } else if i == selection {
-                        Image(systemName: "xmark.circle.fill").foregroundStyle(.red)
-                    }
-                }
+                Spacer(minLength: q.centerOptions ? 0 : 8)
+                if !q.centerOptions { statusIcon(q, i) }
             }
             .padding(.horizontal, 14)
             .padding(.vertical, 12)
@@ -197,9 +218,60 @@ struct QuizView: View {
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(Color.secondary.opacity(0.25), lineWidth: 1))
+            // Centered options (years) keep their symmetry: the verdict icon
+            // floats at the trailing edge instead of sitting in the row.
+            .overlay(alignment: .trailing) {
+                if q.centerOptions { statusIcon(q, i).padding(.trailing, 14) }
+            }
         }
         .buttonStyle(.plain)
         .disabled(selection != nil)
+    }
+
+    @ViewBuilder private func statusIcon(_ q: QuizQuestion, _ i: Int) -> some View {
+        if selection != nil {
+            if i == q.correctIndex {
+                Image(systemName: "checkmark.circle.fill").foregroundStyle(.green)
+            } else if i == selection {
+                Image(systemName: "xmark.circle.fill").foregroundStyle(.red)
+            }
+        }
+    }
+
+    /// The post-answer explanation; tappable when we know which ruler or
+    /// event it is about, opening the same detail sheet as a search result.
+    @ViewBuilder private func revealRow(_ q: QuizQuestion) -> some View {
+        if q.subjectID != nil {
+            Button {
+                Task { await openSubject(q) }
+            } label: {
+                HStack(spacing: 8) {
+                    Text(q.explanation)
+                        .multilineTextAlignment(.leading)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Spacer(minLength: 8)
+                    Image(systemName: "chevron.right")
+                        .foregroundStyle(.tertiary)
+                }
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+        } else {
+            Text(q.explanation)
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+
+    private func openSubject(_ q: QuizQuestion) async {
+        switch q.subjectID {
+        case .ruler(let id): subjectDetail = await app.ruler(byID: id)
+        case .event(let id): subjectDetail = await app.event(byID: id)
+        case nil: break
+        }
     }
 
     private func optionFill(_ q: QuizQuestion, _ i: Int) -> Color {
@@ -244,6 +316,12 @@ struct QuizView: View {
                 Label("New best for \(category.label)!", systemImage: "trophy.fill")
                     .font(.headline)
                     .foregroundStyle(.yellow)
+                    .scaleEffect(trophyScale)
+                    .onAppear {
+                        withAnimation(.spring(response: 0.45, dampingFraction: 0.5)
+                            .delay(0.2)) { trophyScale = 1 }
+                        UINotificationFeedbackGenerator().notificationOccurred(.success)
+                    }
             } else {
                 Text("Best for \(category.label): \(QuizStats.bestScore(for: category))/\(QuizEngine.roundSize)")
                     .font(.subheadline)
@@ -267,6 +345,9 @@ struct QuizView: View {
             .padding(.horizontal, 32)
             .padding(.bottom, 24)
         }
+        .overlay {
+            if newBest { ConfettiView().ignoresSafeArea() }
+        }
     }
 
     private var scoreEmoji: String {
@@ -276,5 +357,57 @@ struct QuizView: View {
         case 0.4..<0.7: "📜"
         default: "🏺"
         }
+    }
+}
+
+/// A short, dependency-free confetti burst for new personal records: colored
+/// flakes fall, drift, and spin across the screen for ~3 seconds.
+private struct ConfettiView: View {
+    private struct Flake {
+        let x: Double          // 0...1 across the width
+        let delay: Double
+        let duration: Double
+        let drift: Double      // horizontal wander, in points
+        let size: Double
+        let spin: Double       // total rotation over the fall, in radians
+        let color: Color
+    }
+
+    private let flakes: [Flake]
+    private let start = Date()
+
+    init(count: Int = 48) {
+        let palette: [Color] = [.yellow, .indigo, .teal, .pink, .orange, .green]
+        flakes = (0..<count).map { _ in
+            Flake(x: .random(in: 0...1),
+                  delay: .random(in: 0...0.7),
+                  duration: .random(in: 1.8...3.0),
+                  drift: .random(in: -70...70),
+                  size: .random(in: 6...11),
+                  spin: .random(in: -6...6),
+                  color: palette.randomElement()!)
+        }
+    }
+
+    var body: some View {
+        TimelineView(.animation) { timeline in
+            Canvas { context, size in
+                let t = timeline.date.timeIntervalSince(start)
+                for flake in flakes {
+                    let life = (t - flake.delay) / flake.duration
+                    guard life > 0, life < 1 else { continue }
+                    let x = flake.x * size.width + flake.drift * life
+                    let y = life * life * (size.height + 60) - 30
+                    var layer = context
+                    layer.opacity = life > 0.75 ? (1 - life) / 0.25 : 1
+                    layer.translateBy(x: x, y: y)
+                    layer.rotate(by: .radians(flake.spin * life))
+                    let rect = CGRect(x: -flake.size / 2, y: -flake.size * 0.3,
+                                      width: flake.size, height: flake.size * 0.6)
+                    layer.fill(Path(rect), with: .color(flake.color))
+                }
+            }
+        }
+        .allowsHitTesting(false)
     }
 }

@@ -234,8 +234,25 @@ Use **`add_events.py`** for the **Events** tab (append-only). Ruler logic stays 
 | **Wikipedia** | Enter action URL |
 | **Event Category** | e.g. `European History` |
 | **Year or Year Range** (×3) | Display strings (`1631 CE`, etc.) — auto-filled by script |
+| **Month** / **Day** | Exact start date (integers, blank = unknown) — feeds the iOS "On this day" |
 
-SQLite `byEvents`: `eventName`, `startYear`, `endYear`, `notes`, `wikipedia`.
+SQLite `byEvents`: `eventName`, `startYear`, `endYear`, `notes`, `wikipedia`,
+`startMonth`, `startDay` (the last two NULL when Month/Day are blank).
+
+### Event dates (Month/Day)
+
+Use **`add_event_dates.py`** to fill Month/Day from Wikidata (P585 "point in
+time", else P580 "start time"), resolved through each row's Wikipedia URL —
+or by en.wikipedia title/search match when there is no URL. Dates embedded in
+names ("Battle of Rocroi (May 19)") are a second source and win on conflict.
+A Wikidata year that doesn't match Sorting year (±1) is skipped as MISMATCH.
+
+```bash
+python add_event_dates.py --dry-run          # writes event-dates-report.tsv
+python add_event_dates.py --apply            # after the user reviews the report
+```
+
+Rows with a Month already set are skipped, so re-runs only fill new events.
 
 ### Events workflow
 

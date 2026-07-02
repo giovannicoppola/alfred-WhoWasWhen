@@ -21,6 +21,14 @@ struct SearchView: View {
                     ForEach(SearchScope.allCases) { Text($0.rawValue).tag($0) }
                 }
                 .task(id: SearchKey(query: query, scope: app.scope)) { await runSearch() }
+                #if DEBUG
+                // Automation hook: pre-fill the search box for screenshots.
+                .task {
+                    if let q = ProcessInfo.processInfo.environment["WWW_QUERY"], query.isEmpty {
+                        query = q
+                    }
+                }
+                #endif
                 .navigationDestination(for: Route.self) { route in
                     switch route {
                     case .query(let q):

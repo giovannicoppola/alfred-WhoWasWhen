@@ -25,8 +25,10 @@ answers, available instantly and **offline**.
   - See **everyone who held a title** (the full lineage, with the one you tapped
     highlighted 🌟) — as a list or a visual **timeline**
   - **Save it to Favorites** ⭐ or **copy** it to share
+- **On this day** — the search screen greets you with an event that happened
+  on today's date (when the data has one), a tap away from its full story.
 - **Discover** — a featured ruler and event (shuffle for more), plus what
-  happened 100, 200, 300… years ago.
+  happened 100, 200, 300… years ago — favoring events dated closest to today.
 - **Quiz** — endless multiple‑choice trivia generated from the data: *Who was
   Pope in 1500? When did the French Revolution begin?* Play mixed rounds,
   events only, or any title with enough holders; best scores are tracked.

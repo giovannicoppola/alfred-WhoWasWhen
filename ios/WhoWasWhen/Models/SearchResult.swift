@@ -26,6 +26,11 @@ struct SearchResult: Identifiable, Sendable, Hashable {
     /// For events: the stable database key (used by Favorites).
     var eventID: Int? = nil
 
+    /// For events with an exact date: the calendar month/day of the start
+    /// ("On this day", date-aware anniversaries). Nil for undated events.
+    var startMonth: Int? = nil
+    var startDay: Int? = nil
+
     /// Marks the focused ruler in a lineage list (the 🌟 in the workflow).
     var isCurrent: Bool = false
 
