@@ -341,7 +341,30 @@ Cursor skill: `.cursor/skills/whowaswhen-events/SKILL.md`
 
 ---
 
-## 10. Extending scripts
+## 10. Corrections queue (phone-submitted curation)
+
+The **Corrections** tab is an append-only queue filled by the iOS admin app
+(edit a person/event field, delete a duplicate event, or leave a free-text
+note about a record). Review and apply with **`apply_corrections.py`**:
+
+```bash
+python apply_corrections.py --list       # what's pending
+python apply_corrections.py --dry-run    # writes corrections-report.tsv
+python apply_corrections.py --apply      # after the user reviews
+```
+
+- Queue columns: `Timestamp, Action, Tab, Key, Field, Snapshot, Proposed,
+  Note, Status, Applied`. Actions: `edit`, `delete-event`, `note`.
+- Keys: `rulerID:<n>` (Rulers) or `event:<name>|<sorting year>` (Events,
+  fold-matched). Editable fields are whitelisted per tab in the script.
+- The `Snapshot` column is the value the phone saw; if the live cell has
+  changed since, the correction is flagged **STALE** and skipped.
+- `note` rows are never auto-applied — they're to-dos, listed by `--list`
+  until the user resolves them (set Status by hand or via a data edit).
+- `--apply` marks queue rows `applied` + date; deletes run bottom-up so row
+  numbers stay valid. Afterwards: `::whoWasWhen-refresh` + iOS DB sync.
+
+## 11. Extending scripts
 
 - **Events tab:** `add_events.py` + `patches/events/` (see §9).
 - **Consuls / other tabs:** add script + YAML schema; keep Periods logic separate.
@@ -350,7 +373,7 @@ Cursor skill: `.cursor/skills/whowaswhen-events/SKILL.md`
 
 ---
 
-## 11. Related repos
+## 12. Related repos
 
 - [alfred-WhoWasWhen](https://github.com/giovannicoppola/alfred-WhoWasWhen) — Alfred workflow + `ruler-query.go`
 - [alfred-gsheets](https://github.com/giovannicoppola/alfred-gsheets) — service account setup, sheet browsing
