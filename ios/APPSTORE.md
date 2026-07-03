@@ -41,7 +41,7 @@ into the **App Review notes** field for the new build.
 
 > Thank you for reviewing build 1.0 (10), which was rejected under
 > Guideline 4.2 – Design – Minimum Functionality as primarily offering
-> content to view. Version 1.1 (build 14) addresses this directly by adding
+> content to view. Version 1.1 (build 15) addresses this directly by adding
 > substantial interactive functionality around the reference database:
 >
 > • QUIZ — an endless multiple-choice history quiz generated on-device from
