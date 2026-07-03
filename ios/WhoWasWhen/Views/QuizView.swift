@@ -324,6 +324,15 @@ struct QuizView: View {
 
     // MARK: - Score screen
 
+    /// Premade text for the score screen's share sheet.
+    private var shareMessage: String {
+        var text = "I just scored \(score)/\(questions.count) on the "
+            + "\(category.label) round of the WhoWasWhen history quiz!"
+        if newBest { text += " New personal best 🏆" }
+        return text + " Who ruled — and who painted, composed, and discovered — "
+            + "in any year of history? 👑 https://giovannicoppola.github.io/alfred-WhoWasWhen/"
+    }
+
     private var scoreScreen: some View {
         VStack(spacing: 20) {
             Spacer()
@@ -347,6 +356,14 @@ struct QuizView: View {
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
+            ShareLink(item: shareMessage) {
+                Label("Share your score", systemImage: "square.and.arrow.up")
+                    .font(.subheadline.weight(.semibold))
+            }
+            .buttonStyle(.bordered)
+            .buttonBorderShape(.capsule)
+            .tint(.indigo)
+            .padding(.top, 4)
             Spacer()
             VStack(spacing: 12) {
                 Button {
