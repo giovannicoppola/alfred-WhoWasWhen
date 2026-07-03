@@ -60,6 +60,12 @@ struct QuizView: View {
                     case "people": await start(.people)
                     default: await start(.mixed)
                     }
+                    // WWW_ANSWER=1 answers the first question correctly, to
+                    // screenshot the reveal state.
+                    if ProcessInfo.processInfo.environment["WWW_ANSWER"] != nil,
+                       let q = questions.first {
+                        select(q.correctIndex, in: q)
+                    }
                 }
                 if ProcessInfo.processInfo.environment["WWW_SCORE"] != nil, phase == .playing {
                     score = 9
@@ -249,26 +255,29 @@ struct QuizView: View {
         }
     }
 
-    /// The post-answer explanation; tappable when we know which ruler or
-    /// event it is about, opening the same detail sheet as a search result.
+    /// The post-answer explanation, with a pill button to the ruler or
+    /// event it is about (the same detail sheet as a search result) —
+    /// a bare tappable caption didn't read as a link.
     @ViewBuilder private func revealRow(_ q: QuizQuestion) -> some View {
         if q.subjectID != nil {
-            Button {
-                Task { await openSubject(q) }
-            } label: {
-                HStack(spacing: 8) {
-                    Text(q.explanation)
-                        .multilineTextAlignment(.leading)
-                        .fixedSize(horizontal: false, vertical: true)
-                    Spacer(minLength: 8)
-                    Image(systemName: "chevron.right")
-                        .foregroundStyle(.tertiary)
+            VStack(alignment: .leading, spacing: 8) {
+                Text(q.explanation)
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
+                Button {
+                    Task { await openSubject(q) }
+                } label: {
+                    Label("Read more", systemImage: "info.circle")
+                        .font(.footnote.weight(.semibold))
                 }
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-                .contentShape(Rectangle())
+                .buttonStyle(.bordered)
+                .buttonBorderShape(.capsule)
+                .tint(.indigo)
+                .controlSize(.small)
             }
-            .buttonStyle(.plain)
+            .frame(maxWidth: .infinity, alignment: .leading)
         } else {
             Text(q.explanation)
                 .font(.footnote)
