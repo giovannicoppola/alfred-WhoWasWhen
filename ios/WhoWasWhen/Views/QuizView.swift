@@ -9,6 +9,7 @@ struct QuizView: View {
     @State private var phase: Phase = .picking
     @State private var category: QuizCategory = .mixed
     @State private var titles: [TitleInfo] = []
+    @State private var hasPeople = false
     @State private var questions: [QuizQuestion] = []
     @State private var index = 0
     @State private var selection: Int?
@@ -44,6 +45,9 @@ struct QuizView: View {
                 print("[WWW] quiz tab task: awaiting db…")
                 await app.load()   // wait for the database on a cold tab open
                 titles = await app.quizTitles()
+                // Older databases predate the notable people; hide the
+                // category rather than offer an empty round.
+                hasPeople = !(await app.holders(ofTitle: Database.lifespanTitles[0])).isEmpty
                 print("[WWW] quiz titles loaded: \(titles.count)")
                 #if DEBUG
                 // Automation hooks: jump straight into a round (WWW_QUIZ=1|
@@ -53,6 +57,7 @@ struct QuizView: View {
                     switch hook {
                     case "events": await start(.events)
                     case "rulers": await start(.rulers)
+                    case "people": await start(.people)
                     default: await start(.mixed)
                     }
                 }
@@ -81,6 +86,10 @@ struct QuizView: View {
                             symbol: "crown.fill")
                 categoryRow(.events, subtitle: "When did it happen?",
                             symbol: "calendar")
+                if hasPeople {
+                    categoryRow(.people, subtitle: "Artists, writers, scientists — when they lived",
+                                symbol: "person.2.fill")
+                }
             }
             Section("By title") {
                 ForEach(titles) { t in

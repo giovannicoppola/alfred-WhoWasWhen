@@ -28,6 +28,7 @@ enum QuizCategory: Hashable, Identifiable {
     case mixed
     case rulers
     case events
+    case people
     case title(TitleInfo)
 
     var id: String {
@@ -35,6 +36,7 @@ enum QuizCategory: Hashable, Identifiable {
         case .mixed: "mixed"
         case .rulers: "rulers"
         case .events: "events"
+        case .people: "people"
         case .title(let t): "title-\(t.titleID)"
         }
     }
@@ -44,6 +46,7 @@ enum QuizCategory: Hashable, Identifiable {
         case .mixed: "Mixed"
         case .rulers: "Rulers"
         case .events: "Events"
+        case .people: "Notable people"
         case .title(let t): titlePluralOrDefault(t.titlePlural, title: t.title)
         }
     }
@@ -72,18 +75,37 @@ enum QuizEngine {
             let questions = await rulerRound(titles: titles, count: roundSize, app: app)
             return questions.shuffled()
 
+        case .people:
+            let people = await notablePeople(app: app)
+            return peopleQuestions(from: people, count: roundSize)
+
         case .mixed:
             let titles = (await app.quizTitles()).shuffled()
             guard !titles.isEmpty else { return [] }
-            // Roughly a third event questions, the rest ruler questions
-            // spread over random titles.
+            // Roughly a third event questions, a couple about notable
+            // people, the rest ruler questions spread over random titles.
             let eventTarget = roundSize / 3
             let events = await app.randomQuizEvents(limit: eventTarget * 3)
             var questions = eventQuestions(from: events, count: eventTarget)
+            let people = await notablePeople(app: app)
+            questions += peopleQuestions(from: people, count: roundSize / 5)
             questions += await rulerRound(titles: titles,
                                           count: roundSize - questions.count, app: app)
             return questions.shuffled()
         }
+    }
+
+    /// Every holder of a lifespan title, tagged with it — the Notable people
+    /// question pool. Empty on databases that predate the notable people.
+    @MainActor
+    private static func notablePeople(app: AppModel) async -> [(category: String, person: HolderRow)] {
+        var people: [(String, HolderRow)] = []
+        for title in Database.lifespanTitles {
+            for h in await app.holders(ofTitle: title) {
+                people.append((title, h))
+            }
+        }
+        return people.shuffled()
     }
 
     /// Ruler questions spread over random titles (the Mixed and Rulers rounds).
@@ -175,6 +197,72 @@ enum QuizEngine {
             correctIndex: options.firstIndex(of: h.period)!,
             explanation: "\(h.name) — \(title.title) (\(h.period))",
             subjectID: .ruler(h.rulerID),
+            centerOptions: true)
+    }
+
+    // MARK: - Notable-people questions
+
+    /// "Who was Artist in 1503?" would have many right answers, so people
+    /// questions ask what only one option can answer: when a person was
+    /// born or died, or which calling they're known for.
+    static func peopleQuestions(from people: [(category: String, person: HolderRow)],
+                                count: Int) -> [QuizQuestion] {
+        var out: [QuizQuestion] = []
+        for (category, person) in people where out.count < count {
+            let q = Int.random(in: 0..<3) == 0
+                ? whatWasQuestion(category: category, person: person)
+                : lifeYearQuestion(category: category, person: person)
+            if let q, !out.contains(where: { $0.subject == q.subject }) {
+                out.append(q)
+            }
+        }
+        return out
+    }
+
+    /// "When was this person born?" / "…die?" — same shape as the event
+    /// year questions; a lifespan period's bounds are the birth/death years.
+    private static func lifeYearQuestion(category: String, person: HolderRow) -> QuizQuestion? {
+        let asksDeath = Bool.random()
+        let correct = asksDeath ? person.endYear : person.startYear
+        guard person.startYear < person.endYear,
+              !person.name.contains(String(abs(correct))) else { return nil }
+        let currentYear = Calendar.current.component(.year, from: .now)
+
+        var years: Set<Int> = [correct]
+        var attempts = 0
+        while years.count < 4 && attempts < 40 {
+            attempts += 1
+            let magnitude = [2...8, 10...30, 40...90].randomElement()!
+            let offset = Int.random(in: magnitude)
+            let y = Bool.random() ? correct + offset : correct - offset
+            if y <= currentYear { years.insert(y) }
+        }
+        guard years.count == 4 else { return nil }
+
+        let sorted = years.sorted()
+        return QuizQuestion(
+            prompt: asksDeath ? "When did this person die?" : "When was this person born?",
+            subject: person.name,
+            options: sorted.map(formatYear),
+            correctIndex: sorted.firstIndex(of: correct)!,
+            explanation: "\(person.name) — \(category) (\(person.period))",
+            subjectID: .ruler(person.rulerID),
+            centerOptions: true)
+    }
+
+    /// "What was this person?" — the four options are lifespan callings,
+    /// only one of which the person held.
+    private static func whatWasQuestion(category: String, person: HolderRow) -> QuizQuestion? {
+        let others = Database.lifespanTitles.filter { $0 != category }.shuffled()
+        guard others.count >= 3 else { return nil }
+        let options = (others.prefix(3) + [category]).shuffled()
+        return QuizQuestion(
+            prompt: "What was this person?",
+            subject: person.name,
+            options: Array(options),
+            correctIndex: options.firstIndex(of: category)!,
+            explanation: "\(person.name) — \(category) (\(person.period))",
+            subjectID: .ruler(person.rulerID),
             centerOptions: true)
     }
 

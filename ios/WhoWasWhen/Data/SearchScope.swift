@@ -1,10 +1,12 @@
 import Foundation
 
 /// Filters the search the way the Alfred workflow's "Show Events?" option and
-/// the `--e` flag do: everything, rulers only, or events only.
+/// the `--e` flag do: everything, people only, or events only. ("People", not
+/// "Rulers" — the table also holds artists, writers, scientists, and the rest
+/// of the notable people.)
 enum SearchScope: String, CaseIterable, Identifiable, Sendable {
     case all = "All"
-    case rulers = "Rulers"
+    case rulers = "People"
     case events = "Events"
 
     var id: String { rawValue }

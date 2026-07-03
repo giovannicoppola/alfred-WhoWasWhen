@@ -17,7 +17,7 @@ answers, available instantly and **offline**.
   - **By ruler** — `napoleon` (accents and case don't matter — it still finds
     *Napoléon*).
   - **By event** — `french revolution`.
-- **Filter what you see** — All, Rulers only, or Events only.
+- **Filter what you see** — All, People only, or Events only.
 - **Act on any result** — swipe, long‑press, or tap to open it:
   - Read more on **Wikipedia** — portraits and a summary paragraph appear right
     in the app when you're online

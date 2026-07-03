@@ -224,9 +224,18 @@ actor Database {
 
             let born = hasLifespans ? col(stmt, 15).optInt : nil
             let died = hasLifespans ? col(stmt, 16).optInt : nil
-            if let born, let year = searchedYear, year >= born {
-                subtitle = subtitle.trimmingCharacters(in: .whitespaces)
-                    + " — age \(year - born)"
+            if let year = searchedYear {
+                var suffix: String?
+                if let born, born == year {
+                    suffix = "born this year"
+                } else if let died, died == year {
+                    suffix = "died this year"
+                } else if let born, year > born {
+                    suffix = "age \(year - born)"
+                }
+                if let suffix {
+                    subtitle = subtitle.trimmingCharacters(in: .whitespaces) + " — \(suffix)"
+                }
             }
 
             rows.append(SearchResult(
