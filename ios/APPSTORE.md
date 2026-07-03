@@ -24,8 +24,13 @@ it with four tabs of functionality on top of search:
 - **Favorites** — save any ruler or event; persists across launches.
 - **Timeline** — every title's lineage as a visual timeline with century
   markers; ruler details show a reign-position bar within the title's era.
+- **Ages & lifespans** — 1,600+ people carry birth/death years: single-year
+  searches show each ruler's age that year, and details show the lifespan.
+- **Notable people** — 200 of history's most famous artists, composers,
+  writers, scientists, and philosophers join the rulers, searchable by year
+  (e.g. "1888 artist" → van Gogh, Monet, Degas…).
 - **Wikipedia enrichment** — portraits and summary paragraphs load inline
-  (graceful offline fallback), on top of the existing 3,351 rulers and ~900
+  (graceful offline fallback), on top of the existing 3,500+ rulers and ~900
   events spanning 776 BC–today.
 
 When resubmitting, use the **App Review notes** field to summarize the above,

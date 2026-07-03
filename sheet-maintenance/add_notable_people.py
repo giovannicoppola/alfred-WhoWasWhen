@@ -71,16 +71,21 @@ MIN_LIFESPAN = 10
 
 
 def http_get(url: str, params: dict[str, Any], timeout: int = 120) -> requests.Response:
+    last_error: Exception | None = None
     for attempt in range(4):
-        resp = requests.get(url, params=params,
-                            headers={"User-Agent": USER_AGENT}, timeout=timeout)
+        try:
+            resp = requests.get(url, params=params,
+                                headers={"User-Agent": USER_AGENT}, timeout=timeout)
+        except requests.exceptions.RequestException as e:
+            last_error = e
+            time.sleep(10 * (attempt + 1))
+            continue
         if resp.status_code in (429, 500, 502, 503, 504):
             time.sleep(10 * (attempt + 1))
             continue
         resp.raise_for_status()
         return resp
-    resp.raise_for_status()
-    return resp
+    raise last_error or RuntimeError(f"giving up on {url}")
 
 
 def chunked(seq: list, size: int):
@@ -316,6 +321,42 @@ def build_plan(state, per_category: int) -> list[dict[str, Any]]:
     return plan
 
 
+def plan_from_report(path: Path, state) -> list[dict[str, Any]]:
+    """Rebuild the plan from a reviewed dry-run TSV so --apply writes
+    exactly what was approved (no Wikidata refetch, no ranking drift).
+    NEW rulerIDs/Progr are re-assigned from the live sheet maxima."""
+    plan: list[dict[str, Any]] = []
+    next_ruler_id = state["max_ruler_id"] + 1
+    next_progr = state["max_progr"] + 1
+    with path.open(encoding="utf-8") as f:
+        header = f.readline().rstrip("\n").split("\t")
+        for line in f:
+            row = dict(zip(header, line.rstrip("\n").split("\t")))
+            entry = {
+                "title": row["category"], "name": row["name"],
+                "born": int(row["born"]), "died": int(row["died"]),
+                "desc": row["desc"], "url": row["url"],
+                "sitelinks": int(row["sitelinks"]),
+                "ruler_id": None, "progr": None, "status": row["status"],
+            }
+            if row["status"].startswith("SKIP"):
+                plan.append(entry)
+                continue
+            if row["status"].startswith("REUSE"):
+                entry["ruler_id"] = int(row["rulerID"])
+                if (entry["ruler_id"], entry["title"]) in state["existing_titles"]:
+                    entry["status"] = "SKIP already has this title"
+                    plan.append(entry)
+                    continue
+            else:
+                entry["ruler_id"] = next_ruler_id
+                next_ruler_id += 1
+            entry["progr"] = next_progr
+            next_progr += 1
+            plan.append(entry)
+    return plan
+
+
 def write_report(plan: list[dict[str, Any]], path: Path) -> None:
     with path.open("w", encoding="utf-8") as f:
         f.write("category\tname\tborn\tdied\tsitelinks\trulerID\tprogr\tdesc\turl\tstatus\n")
@@ -402,6 +443,8 @@ def main() -> None:
     parser.add_argument("--per-category", type=int, default=40,
                         help="People per category (default 40)")
     parser.add_argument("--report", type=Path, default=Path("notable-people-report.tsv"))
+    parser.add_argument("--from-report", type=Path,
+                        help="Apply a reviewed dry-run TSV verbatim instead of refetching")
     args = parser.parse_args()
 
     config, _, spreadsheet_id = load_spreadsheet_config(args.config)
@@ -409,8 +452,11 @@ def main() -> None:
     state = read_sheet_state(service, spreadsheet_id)
     print(f"Sheet: max rulerID {state['max_ruler_id']}, max Progr {state['max_progr']}")
 
-    plan = build_plan(state, args.per_category)
-    write_report(plan, args.report)
+    if args.from_report:
+        plan = plan_from_report(args.from_report, state)
+    else:
+        plan = build_plan(state, args.per_category)
+        write_report(plan, args.report)
 
     counts: dict[str, int] = {}
     for e in plan:
