@@ -33,11 +33,110 @@ it with four tabs of functionality on top of search:
   (graceful offline fallback), on top of the existing 3,500+ rulers and ~900
   events spanning 776 BC–today.
 
-When resubmitting, use the **App Review notes** field to summarize the above,
-mention the app works fully offline (the quiz alone generates thousands of
-distinct questions from the bundled data), and refresh the screenshots to show
-Discover, Quiz, and a timeline — not just search. Reply in the rejection thread
-in App Store Connect so the resolution is tracked against the original review.
+When resubmitting, reply in the rejection thread in App Store Connect so the
+resolution is tracked against the original review, and paste the same text
+into the **App Review notes** field for the new build.
+
+### Reply to App Review (paste into the rejection thread / review notes)
+
+> Thank you for reviewing build 1.0 (10), which was rejected under
+> Guideline 4.2 – Design – Minimum Functionality as primarily offering
+> content to view. Version 1.1 (build 13) addresses this directly by adding
+> substantial interactive functionality around the reference database:
+>
+> • QUIZ — an endless multiple-choice history quiz generated on-device from
+> the database: mixed rounds, rulers-only, events-only, or any specific
+> title ("Who was Pope in 1500?", "When did the French Revolution begin?").
+> The bundled data yields thousands of distinct questions; per-category best
+> scores are tracked, with a celebration animation for new records.
+> • DISCOVER — a featured ruler and event with shuffle, plus "100/200/300…
+> years ago" anniversary sections that favor events dated closest to today.
+> • ON THIS DAY — the search home surfaces an event that happened on
+> today's calendar date (300+ events now carry exact dates), linked to its
+> detail view.
+> • TIMELINES — every title's lineage as a scrollable visual timeline with
+> century markers; each ruler's detail shows where the reign sits within
+> the title's whole era.
+> • FAVORITES — save any ruler or event; persists across launches.
+>
+> The dataset itself was also expanded for this release: 1,600+ figures now
+> carry birth/death years — searching a year shows how old every ruler was
+> at that moment — and 200 of history's most famous artists, composers,
+> writers, scientists, and philosophers join the rulers, searchable by year
+> like everyone else (e.g. "1888 artist" finds van Gogh, Monet, and Degas
+> with their ages that year).
+>
+> Everything works fully offline, with no account, no ads, and no data
+> collection. Screenshots have been refreshed to show the new Quiz,
+> Discover, and Timeline surfaces rather than search alone. We believe the
+> app now offers rich interactive functionality well beyond viewing
+> content, and we appreciate your taking another look.
+
+### App Store description (paste into the Description field)
+
+```
+Who was king of France in 1789? Who was Pope when the Black Death struck?
+How old was van Gogh in 1888 — and who was painting alongside him?
+
+WhoWasWhen answers questions like these in an instant, from a single search
+box, entirely offline.
+
+SEARCH ANY YEAR
+Type a year — 1789, a decade like 177*, a range like 1500-1600, or -44 for
+BC — and see every ruler in office, how old each of them was that year, and
+the events happening around them. Add a word to narrow it: "1789 france",
+"15** pope", "1888 artist".
+
+3,500+ HISTORICAL FIGURES
+Kings, queens, emperors, popes, Roman consuls, presidents and prime
+ministers — joined by 200 of history's most famous artists, composers,
+writers, scientists, and philosophers. Portraits and summary paragraphs
+load from Wikipedia when you're online; everything else lives on your
+phone.
+
+ON THIS DAY
+The search screen greets you with an event that happened on today's date,
+one tap from its full story.
+
+DISCOVER
+A featured ruler and event every visit (shuffle for more), plus what
+happened 100, 200, 300… years ago today.
+
+QUIZ
+Endless multiple-choice trivia generated from the database — mixed rounds,
+events, or any title with enough holders. Best scores are tracked, and new
+records earn confetti.
+
+TIMELINES
+Every title's lineage as a scrollable visual timeline: all 267 Popes, all
+66 English Monarchs, every Roman consul — with century markers and each
+reign's place in the era.
+
+FAVORITES
+Save any ruler or event to your own collection. No account needed.
+
+PRIVATE AND OFFLINE BY DESIGN
+The full history database ships inside the app. Search, quiz, timelines,
+and favorites all work with no connection, no account, no ads, and no data
+collection of any kind.
+```
+
+### Screenshots (6.9" set, 1320×2868 — ready to upload)
+
+The refreshed set lives in `ios/screenshots-appstore/` (captured on the
+iPhone 16 Pro Max simulator, clean 9:41 status bar):
+
+1. `01-onthisday.png` — search home with the "On this day" card
+2. `02-year-1789.png` — who ruled in 1789, with portraits and ages
+3. `03-artists.png` — "1888 artist": the painters of 1888
+4. `04-einstein.png` — detail view: lifespan line + era position bar
+5. `05-discover.png` — Discover with featured cards and anniversaries
+6. `06-quiz.png` — an event quiz question
+7. `07-newbest.png` — new-best score screen with confetti
+8. `08-timeline.png` — the English Monarchs timeline
+
+Suggested upload order: 02, 03, 06, 05, 04, 08, 01, 07 (lead with the two
+strongest data screens, then interactivity).
 
 ## 0. Decide how the app makes money (or not)
 
