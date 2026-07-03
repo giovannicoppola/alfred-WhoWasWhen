@@ -19,8 +19,8 @@ it with four tabs of functionality on top of search:
 - **Discover** — featured ruler & event with shuffle, plus "100/200/300… years
   ago" anniversary sections, date-aware where the data allows.
 - **Quiz** — endless multiple-choice trivia generated on-device from the
-  database (mixed, rulers, events, or per-title rounds; scores and bests
-  tracked, with a confetti celebration for new records).
+  database (mixed, rulers, events, notable-people, or per-title rounds;
+  scores and bests tracked, with a confetti celebration for new records).
 - **Favorites** — save any ruler or event; persists across launches.
 - **Timeline** — every title's lineage as a visual timeline with century
   markers; ruler details show a reign-position bar within the title's era.
@@ -41,14 +41,15 @@ into the **App Review notes** field for the new build.
 
 > Thank you for reviewing build 1.0 (10), which was rejected under
 > Guideline 4.2 – Design – Minimum Functionality as primarily offering
-> content to view. Version 1.1 (build 13) addresses this directly by adding
+> content to view. Version 1.1 (build 14) addresses this directly by adding
 > substantial interactive functionality around the reference database:
 >
 > • QUIZ — an endless multiple-choice history quiz generated on-device from
-> the database: mixed rounds, rulers-only, events-only, or any specific
-> title ("Who was Pope in 1500?", "When did the French Revolution begin?").
-> The bundled data yields thousands of distinct questions; per-category best
-> scores are tracked, with a celebration animation for new records.
+> the database: mixed rounds, rulers, events, notable people, or any
+> specific title ("Who was Pope in 1500?", "When did the French Revolution
+> begin?", "When was van Gogh born?"). The bundled data yields thousands of
+> distinct questions; per-category best scores are tracked, with a
+> celebration animation for new records.
 > • DISCOVER — a featured ruler and event with shuffle, plus "100/200/300…
 > years ago" anniversary sections that favor events dated closest to today.
 > • ON THIS DAY — the search home surfaces an event that happened on
@@ -61,10 +62,11 @@ into the **App Review notes** field for the new build.
 >
 > The dataset itself was also expanded for this release: 1,600+ figures now
 > carry birth/death years — searching a year shows how old every ruler was
-> at that moment — and 200 of history's most famous artists, composers,
-> writers, scientists, and philosophers join the rulers, searchable by year
-> like everyone else (e.g. "1888 artist" finds van Gogh, Monet, and Degas
-> with their ages that year).
+> at that moment (or that they were born or died that year) — and 200 of
+> history's most famous artists, composers, writers, scientists, and
+> philosophers join the rulers, searchable by year like everyone else
+> (e.g. "1888 artist" finds van Gogh, Monet, and Degas with their ages that
+> year, and the search filter offers All / People / Events).
 >
 > Everything works fully offline, with no account, no ads, and no data
 > collection. Screenshots have been refreshed to show the new Quiz,
@@ -104,8 +106,9 @@ happened 100, 200, 300… years ago today.
 
 QUIZ
 Endless multiple-choice trivia generated from the database — mixed rounds,
-events, or any title with enough holders. Best scores are tracked, and new
-records earn confetti.
+rulers, events, notable people ("When was van Gogh born?"), or any title
+with enough holders. Best scores are tracked, and new records earn
+confetti.
 
 TIMELINES
 Every title's lineage as a scrollable visual timeline: all 267 Popes, all
@@ -126,7 +129,8 @@ collection of any kind.
 The refreshed set lives in `ios/screenshots-appstore/` (captured on the
 iPhone 16 Pro Max simulator, clean 9:41 status bar):
 
-1. `01-onthisday.png` — search home with the "On this day" card
+1. `01-onthisday-gettysburg.png` / `01-onthisday-hattin.png` — search home
+   with the "On this day" card (two variants for the July 3 slot; pick one)
 2. `02-year-1789.png` — who ruled in 1789, with portraits and ages
 3. `03-artists.png` — "1888 artist": the painters of 1888
 4. `04-einstein.png` — detail view: lifespan line + era position bar
@@ -134,9 +138,10 @@ iPhone 16 Pro Max simulator, clean 9:41 status bar):
 6. `06-quiz.png` — an event quiz question
 7. `07-newbest.png` — new-best score screen with confetti
 8. `08-timeline.png` — the English Monarchs timeline
+9. `09-quiz-people.png` — a Notable people quiz question
 
-Suggested upload order: 02, 03, 06, 05, 04, 08, 01, 07 (lead with the two
-strongest data screens, then interactivity).
+Suggested upload order: 02, 03, 06, 09, 05, 04, 08, 01, 07 (lead with the
+two strongest data screens, then interactivity).
 
 ## 0. Decide how the app makes money (or not)
 

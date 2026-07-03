@@ -289,9 +289,12 @@ python add_notable_people.py --dry-run [--per-category 40]
 python add_notable_people.py --apply         # after the user reviews the report
 ```
 
-These titles have overlapping periods, so the iOS app excludes them from
-the quiz (`Database.lifespanTitles`); search, lineage, and timeline include
-them. Idempotent via URL and (RulerID, Title) dedup.
+These titles have overlapping periods, so "Who was Artist in 1503?" has no
+single right answer — the iOS app keeps them out of the ruler-style quiz
+rounds (`Database.lifespanTitles`) and instead gives them their own
+"Notable people" quiz category (birth/death years and "What was this
+person?"). Search, lineage, and timeline include them like anyone else.
+Idempotent via URL and (RulerID, Title) dedup.
 
 ### Events workflow
 

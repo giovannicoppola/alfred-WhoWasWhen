@@ -28,8 +28,8 @@ answers, available instantly and **offline**.
 - **On this day** — the search screen greets you with an event that happened
   on today's date (when the data has one), a tap away from its full story.
 - **Ages and lifespans** — search a single year and see how old each ruler
-  was right then; details show when they lived and how long
-  ("Lived 1491–1547, aged 56").
+  was right then ("born this year" and "died this year" at the edges);
+  details show when they lived and how long ("Lived 1491–1547, aged 56").
 - **Beyond rulers** — the most famous artists, composers, writers,
   scientists, and philosophers in history, searchable by year like everyone
   else: `1888 artist` finds van Gogh at 35 painting alongside Monet and
@@ -37,8 +37,9 @@ answers, available instantly and **offline**.
 - **Discover** — a featured ruler and event (shuffle for more), plus what
   happened 100, 200, 300… years ago — favoring events dated closest to today.
 - **Quiz** — endless multiple‑choice trivia generated from the data: *Who was
-  Pope in 1500? When did the French Revolution begin?* Play mixed rounds,
-  events only, or any title with enough holders; best scores are tracked.
+  Pope in 1500? When did the French Revolution begin? When was van Gogh
+  born?* Play mixed rounds, rulers, events, notable people, or any title
+  with enough holders; best scores are tracked.
 - **Timelines** — any title's lineage as a scrollable timeline with century
   markers; every ruler's detail shows where their reign sits in the title's
   whole history.
