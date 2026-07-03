@@ -68,12 +68,20 @@ private struct ResultRowActionsModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .swipeActions(edge: .leading, allowsFullSwipe: false) {
-                Button { app.travel(toYear: result.startYear) } label: {
-                    Label("Start \(formatYear(result.startYear))", systemImage: "arrow.backward.to.line")
-                }.tint(.blue)
-                Button { app.travel(toYear: result.endYear) } label: {
-                    Label("End \(formatYear(result.endYear))", systemImage: "arrow.forward.to.line")
-                }.tint(.teal)
+                // Single-year results get one travel button, not a
+                // duplicated Start/End pair pointing at the same year.
+                if result.startYear == result.endYear {
+                    Button { app.travel(toYear: result.startYear) } label: {
+                        Label(formatYear(result.startYear), systemImage: "arrow.right.to.line")
+                    }.tint(.blue)
+                } else {
+                    Button { app.travel(toYear: result.startYear) } label: {
+                        Label("Start \(formatYear(result.startYear))", systemImage: "arrow.backward.to.line")
+                    }.tint(.blue)
+                    Button { app.travel(toYear: result.endYear) } label: {
+                        Label("End \(formatYear(result.endYear))", systemImage: "arrow.forward.to.line")
+                    }.tint(.teal)
+                }
             }
             .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                 FavoriteButton(result: result)
