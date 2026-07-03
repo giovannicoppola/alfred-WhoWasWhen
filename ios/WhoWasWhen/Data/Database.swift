@@ -589,6 +589,56 @@ actor Database {
         return rows
     }
 
+    /// Raw editable fields for the admin build's curation UI, named after
+    /// the sheet columns so a correction can address them directly. The
+    /// values double as the STALE-detection snapshot (they reflect this
+    /// database build, which is what the curator was looking at).
+    func rulerRawFields(byID id: Int) -> RawRecord? {
+        let cols = hasLifespans
+            ? "name, personal_name, epithet, wikipedia, notes, born, died"
+            : "name, personal_name, epithet, wikipedia, notes"
+        guard let stmt = prepare("SELECT \(cols) FROM rulers WHERE rulerID = ?;") else { return nil }
+        defer { sqlite3_finalize(stmt) }
+        sqlite3_bind_int64(stmt, 1, Int64(id))
+        guard sqlite3_step(stmt) == SQLITE_ROW else { return nil }
+        var fields: [RawRecord.Field] = [
+            .init(name: "Name", value: col(stmt, 0).string),
+            .init(name: "Personal Name or House", value: col(stmt, 1).string),
+            .init(name: "Epithet", value: col(stmt, 2).string),
+            .init(name: "Wikipedia", value: col(stmt, 3).string),
+            .init(name: "Notes", value: col(stmt, 4).string),
+        ]
+        if hasLifespans {
+            fields.append(.init(name: "Born", value: col(stmt, 5).optInt.map(String.init) ?? ""))
+            fields.append(.init(name: "Died", value: col(stmt, 6).optInt.map(String.init) ?? ""))
+        }
+        return RawRecord(tab: "Rulers", key: "rulerID:\(id)",
+                         displayName: fields[0].value, fields: fields)
+    }
+
+    func eventRawFields(byID id: Int) -> RawRecord? {
+        let cols = hasEventDates
+            ? "eventName, startYear, notes, wikipedia, startMonth, startDay"
+            : "eventName, startYear, notes, wikipedia"
+        guard let stmt = prepare("SELECT \(cols) FROM byEvents WHERE eventID = ?;") else { return nil }
+        defer { sqlite3_finalize(stmt) }
+        sqlite3_bind_int64(stmt, 1, Int64(id))
+        guard sqlite3_step(stmt) == SQLITE_ROW else { return nil }
+        let name = col(stmt, 0).string
+        let year = col(stmt, 1).int
+        var fields: [RawRecord.Field] = [
+            .init(name: "Event Name", value: name),
+            .init(name: "Notes", value: col(stmt, 2).string),
+            .init(name: "Wikipedia", value: col(stmt, 3).string),
+        ]
+        if hasEventDates {
+            fields.append(.init(name: "Month", value: col(stmt, 4).optInt.map(String.init) ?? ""))
+            fields.append(.init(name: "Day", value: col(stmt, 5).optInt.map(String.init) ?? ""))
+        }
+        return RawRecord(tab: "Events", key: "event:\(name)|\(year)",
+                         displayName: name, fields: fields)
+    }
+
     /// A cheap end-to-end sanity query. False means the file opened but
     /// isn't a usable WhoWasWhen database (e.g. a copy truncated by an app
     /// kill mid-seed) — the caller should fall back to the bundled DB.
@@ -686,6 +736,19 @@ struct HolderRow: Sendable, Hashable {
     let startYear: Int
     let endYear: Int
     let progrTitle: Int
+}
+
+/// One record's sheet-addressable fields, for the admin curation UI.
+struct RawRecord: Sendable, Hashable {
+    struct Field: Sendable, Hashable, Identifiable {
+        let name: String
+        let value: String
+        var id: String { name }
+    }
+    let tab: String          // "Rulers" | "Events"
+    let key: String          // "rulerID:305" | "event:<name>|<year>"
+    let displayName: String
+    let fields: [Field]
 }
 
 /// An event stripped to what a quiz question needs.

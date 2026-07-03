@@ -82,3 +82,17 @@ project is configured to sign with team `VDG762YNX9` and bundle id
   archiving in Xcode, uploading, and adding internal testers.
 - **[APPSTORE.md](APPSTORE.md)** — taking a tested build through App Review to a
   public listing, plus monetization options.
+
+## The admin build (WhoWasWhenAdmin)
+
+A curator-only second target: the same app plus an **Admin** tab and a
+per-record **Curate** sheet (edit a person/event field, delete a duplicate
+event, note to self) that appends to the master sheet's Corrections tab
+(reviewed at the desk with `sheet-maintenance/apply_corrections.py`).
+
+- Bundle id `com.giovannicoppola.WhoWasWhen.admin`, display name "WWW Admin";
+  distribute via **internal TestFlight only** — never submit it for review.
+- Writes authenticate with the sheet-maintenance service account: paste its
+  JSON key once into the Admin tab (Keychain only; never bundled or committed).
+- The public target excludes `WhoWasWhen/Admin/` entirely, so none of this
+  code ships in the App Store binary.

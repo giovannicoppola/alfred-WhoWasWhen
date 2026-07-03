@@ -51,8 +51,19 @@ struct RootTabView: View {
             case "discover": app.selectedTab = .discover
             case "quiz": app.selectedTab = .quiz
             case "favorites": app.selectedTab = .favorites
+            #if ADMIN
+            case "admin": app.selectedTab = .admin
+            #endif
             default: break
             }
+            #if ADMIN
+            // WWW_ADMIN_KEY=<path> loads a service-account key file into the
+            // Keychain (simulator screenshots of the configured state).
+            if let path = ProcessInfo.processInfo.environment["WWW_ADMIN_KEY"],
+               let json = FileManager.default.contents(atPath: path) {
+                _ = AdminCredentials.save(json: json)
+            }
+            #endif
             if let title = ProcessInfo.processInfo.environment["WWW_LINEAGE"] {
                 app.path.append(.lineage(title: title, rulerID: nil, prog: nil))
             }
@@ -73,5 +84,10 @@ struct RootTabView: View {
         FavoritesView()
             .tabItem { Label("Favorites", systemImage: "star") }
             .tag(AppTab.favorites)
+        #if ADMIN
+        AdminView()
+            .tabItem { Label("Admin", systemImage: "key") }
+            .tag(AppTab.admin)
+        #endif
     }
 }

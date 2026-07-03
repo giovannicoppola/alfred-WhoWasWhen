@@ -20,7 +20,9 @@ targets:
     type: application
     platform: iOS
     sources:
+      # Admin sources ship only in the WhoWasWhenAdmin target.
       - path: WhoWasWhen
+        excludes: ["Admin"]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.giovannicoppola.WhoWasWhen
@@ -38,6 +40,29 @@ targets:
         INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: NO
     dependencies:
       - sdk: libsqlite3.tbd
+  # Curator-only build, distributed via internal TestFlight and never
+  # submitted for App Review: adds the Admin tab (service-account key) and
+  # the per-record curation sheet feeding the sheet's Corrections queue.
+  WhoWasWhenAdmin:
+    type: application
+    platform: iOS
+    sources:
+      - path: WhoWasWhen
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.giovannicoppola.WhoWasWhen.admin
+        TARGETED_DEVICE_FAMILY: "1"
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait"
+        INFOPLIST_KEY_CFBundleDisplayName: WWW Admin
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: NO
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) ADMIN"
+    dependencies:
+      - sdk: libsqlite3.tbd
+
     # To enable the optional iCloud Drive database refresh for a signed
     # release build, uncomment the entitlements below and add the iCloud
     # capability (with a ubiquity container) in your Apple Developer account.

@@ -8,8 +8,8 @@ enum Route: Hashable {
     case lineage(title: String, rulerID: Int?, prog: Int?)
 }
 
-/// The app's top-level tabs.
-enum AppTab: Hashable { case search, discover, quiz, favorites }
+/// The app's top-level tabs (`admin` exists only in the admin build).
+enum AppTab: Hashable { case search, discover, quiz, favorites, admin }
 
 /// App-wide state: the open database, the navigation path, and the search scope.
 @MainActor
@@ -114,6 +114,14 @@ final class AppModel {
         guard let month = parts.month, let day = parts.day,
               let db = await database() else { return [] }
         return await db.eventsOn(month: month, day: day)
+    }
+
+    /// Raw sheet-addressable fields for the admin build's curation UI.
+    func rulerRawFields(byID id: Int) async -> RawRecord? {
+        await database()?.rulerRawFields(byID: id)
+    }
+    func eventRawFields(byID id: Int) async -> RawRecord? {
+        await database()?.eventRawFields(byID: id)
     }
 
     func quizTitles() async -> [TitleInfo] { await database()?.quizTitles() ?? [] }
