@@ -47,7 +47,10 @@ struct SearchView: View {
         guard !q.isEmpty else { results = []; return }
         try? await Task.sleep(for: .milliseconds(200))
         if Task.isCancelled { return }
+        let t0 = Date()
+        print("[WWW] search '\(q)' starting…")
         let r = await app.results(for: q)
+        print("[WWW] search '\(q)' -> \(r.count) rows in \(Date().timeIntervalSince(t0))s")
         if Task.isCancelled { return }
         results = r
     }

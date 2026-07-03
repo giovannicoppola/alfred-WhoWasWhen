@@ -38,12 +38,17 @@ final class AppModel {
                     // Resolve the path and open the database off the main thread —
                     // `resolveDatabasePath()` does file I/O that must not block the UI.
                     db = try await Task.detached(priority: .userInitiated) {
+                        let t0 = Date()
+                        print("[WWW] resolving database path…")
                         let path = DatabaseProvider.resolveDatabasePath()
+                        print("[WWW] resolved in \(Date().timeIntervalSince(t0))s: \(path)")
                         let bundled = DatabaseProvider.bundledDatabaseURL().path
                         if let candidate = try? Database(path: path),
                            await candidate.isHealthy() {
+                            print("[WWW] opened healthy db in \(Date().timeIntervalSince(t0))s")
                             return candidate
                         }
+                        print("[WWW] working copy unhealthy — falling back to bundle")
                         guard path != bundled else {
                             throw DatabaseProvider.LoadFailure.bundledUnreadable
                         }
@@ -54,6 +59,7 @@ final class AppModel {
                         return try Database(path: bundled)
                     }.value
                 } catch {
+                    print("[WWW] database load FAILED: \(error)")
                     loadError = String(describing: error)
                 }
             }

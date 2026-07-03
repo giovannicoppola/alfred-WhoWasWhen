@@ -41,8 +41,10 @@ struct QuizView: View {
                 }
             }
             .task {
+                print("[WWW] quiz tab task: awaiting db…")
                 await app.load()   // wait for the database on a cold tab open
                 titles = await app.quizTitles()
+                print("[WWW] quiz titles loaded: \(titles.count)")
                 #if DEBUG
                 // Automation hooks: jump straight into a round (WWW_QUIZ=1|
                 // events|rulers) or onto a new-best score screen (WWW_SCORE)
