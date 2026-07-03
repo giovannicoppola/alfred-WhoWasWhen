@@ -35,14 +35,23 @@ final class AppModel {
         if loadTask == nil {
             loadTask = Task {
                 do {
-                    // Resolve the path and open the database off the main thread.
-                    // `resolveDatabasePath()` does file I/O and queries iCloud via
-                    // `FileManager.url(forUbiquityContainerIdentifier:)`, which Apple
-                    // warns must never run on the main thread — it can block for a
-                    // nontrivial time while iCloud is set up, freezing the UI at launch.
+                    // Resolve the path and open the database off the main thread —
+                    // `resolveDatabasePath()` does file I/O that must not block the UI.
                     db = try await Task.detached(priority: .userInitiated) {
                         let path = DatabaseProvider.resolveDatabasePath()
-                        return try Database(path: path)
+                        let bundled = DatabaseProvider.bundledDatabaseURL().path
+                        if let candidate = try? Database(path: path),
+                           await candidate.isHealthy() {
+                            return candidate
+                        }
+                        guard path != bundled else {
+                            throw DatabaseProvider.LoadFailure.bundledUnreadable
+                        }
+                        // The working copy opened but isn't usable (or didn't
+                        // open) — e.g. a seed copy interrupted by an app kill.
+                        // Reset it and serve the read-only bundled database.
+                        DatabaseProvider.discardWorkingCopy()
+                        return try Database(path: bundled)
                     }.value
                 } catch {
                     loadError = String(describing: error)

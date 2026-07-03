@@ -10,14 +10,31 @@ import Foundation
 enum DatabaseProvider {
     static let dbName = "whoWasWhen.db"
 
+    enum LoadFailure: Error { case bundledUnreadable }
+
+    /// The iCloud refresh stays off while the app ships without the iCloud
+    /// entitlement (commented out in project.yml). The lookup can't find
+    /// anything without it, but `url(forUbiquityContainerIdentifier:)` can
+    /// still block for a long time on a real device while iCloud state is
+    /// resolved — with every tab awaiting the first open, that reads as
+    /// "search stuck, nothing loads". Flip this only together with the
+    /// entitlement.
+    static let iCloudRefreshEnabled = false
+
+    /// The bundled read-only database — the fallback that must always work.
+    static func bundledDatabaseURL() -> URL {
+        guard let bundled = Bundle.main.url(forResource: "whoWasWhen", withExtension: "db") else {
+            fatalError("Bundled \(dbName) is missing from the app bundle")
+        }
+        return bundled
+    }
+
     /// Returns a filesystem path to the best available database, copying the
     /// bundled DB into Application Support on first run so it is writable-adjacent
     /// and stable across launches.
     static func resolveDatabasePath() -> String {
         let fm = FileManager.default
-        guard let bundled = Bundle.main.url(forResource: "whoWasWhen", withExtension: "db") else {
-            fatalError("Bundled \(dbName) is missing from the app bundle")
-        }
+        let bundled = bundledDatabaseURL()
 
         // Working copy lives in Application Support.
         let support = (try? fm.url(for: .applicationSupportDirectory, in: .userDomainMask,
@@ -31,7 +48,8 @@ enum DatabaseProvider {
                 try? fm.copyItem(at: bundled, to: working)
             }
             // If iCloud has a newer DB, copy it over the working copy.
-            if let cloud = newerICloudDatabase(thanWorking: working, fm: fm) {
+            if iCloudRefreshEnabled,
+               let cloud = newerICloudDatabase(thanWorking: working, fm: fm) {
                 try? fm.removeItem(at: working)
                 try? fm.copyItem(at: cloud, to: working)
             }
@@ -40,6 +58,15 @@ enum DatabaseProvider {
 
         // Fallback: open the bundled DB directly.
         return bundled.path
+    }
+
+    /// Deletes a working copy that failed to open or validate (e.g. a copy
+    /// interrupted by an app kill), so the next resolve re-seeds it.
+    static func discardWorkingCopy() {
+        let fm = FileManager.default
+        guard let support = try? fm.url(for: .applicationSupportDirectory, in: .userDomainMask,
+                                        appropriateFor: nil, create: false) else { return }
+        try? fm.removeItem(at: support.appendingPathComponent(dbName))
     }
 
     private static func shouldReplace(destination: URL, with source: URL, fm: FileManager) -> Bool {

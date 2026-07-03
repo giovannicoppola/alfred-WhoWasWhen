@@ -580,6 +580,16 @@ actor Database {
         return rows
     }
 
+    /// A cheap end-to-end sanity query. False means the file opened but
+    /// isn't a usable WhoWasWhen database (e.g. a copy truncated by an app
+    /// kill mid-seed) — the caller should fall back to the bundled DB.
+    func isHealthy() -> Bool {
+        guard let stmt = prepare("SELECT COUNT(*) FROM rulers;") else { return false }
+        defer { sqlite3_finalize(stmt) }
+        guard sqlite3_step(stmt) == SQLITE_ROW else { return false }
+        return col(stmt, 0).int > 0
+    }
+
     // MARK: - SQL helpers
 
     private func prepare(_ sql: String) -> OpaquePointer? {
