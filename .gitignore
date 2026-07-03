@@ -18,3 +18,4 @@ ios/.build/
 ios/WhoWasWhen.xcodeproj/
 ios/DerivedData/
 **/xcuserdata/
+ios/build/
