@@ -19,6 +19,9 @@ actor Database {
     /// stale iCloud copy) predate the columns; queries must not assume them.
     private let hasEventDates: Bool
 
+    /// Whether rulers carries born/died years — same schema tolerance.
+    private let hasLifespans: Bool
+
     init(path: String) throws {
         var db: OpaquePointer?
         // Open read-only; the app never mutates the data.
@@ -30,6 +33,7 @@ actor Database {
         }
         self.handle = db
         self.hasEventDates = Database.columnExists(db, table: "byEvents", column: "startMonth")
+        self.hasLifespans = Database.columnExists(db, table: "rulers", column: "born")
         Database.registerFoldFunction(db)
     }
 
@@ -91,7 +95,7 @@ actor Database {
         let sql = """
             SELECT ru.rulerID, ru.name, ru.personal_name, ru.epithet, ru.wikipedia,
                    ru.biography, per.progrTitle, per.period, per.startYear, per.endYear,
-                   per.notes, t.title, t.maxCount, t.titlePlural
+                   per.notes, t.title, t.maxCount, t.titlePlural\(lifespanColumns("ru"))
             FROM rulers ru
             JOIN byPeriod per ON ru.rulerID = per.rulerID
             JOIN titles t ON per.titleID = t.titleID
@@ -141,7 +145,10 @@ actor Database {
                 wikipediaURL: wikipediaLink(wiki, name: name),
                 startYear: startYear, endYear: endYear,
                 titleName: titleName, titlePlural: titlePlural,
-                rulerID: rulerID, progrTitle: prog, isCurrent: isCurrent,
+                rulerID: rulerID, progrTitle: prog,
+                born: hasLifespans ? col(stmt, 14).optInt : nil,
+                died: hasLifespans ? col(stmt, 15).optInt : nil,
+                isCurrent: isCurrent,
                 iconAsset: titleName))
         }
 
@@ -158,10 +165,23 @@ actor Database {
         let (yearSQL, yearParams) = yearClauseSQL(yc, yearColumn: "y.year")
         let (textSQL, textParams) = foldedTextSQL(columns: ["r.name", "t.title"], terms: textTerms)
 
+        // For a single-year search, rows can say how old the ruler was then;
+        // ranges and wildcards match many years, so no age there. A plain
+        // year parses as a LIKE pattern with no wildcard placeholders.
+        var searchedYear: Int?
+        switch yc {
+        case .range(let lo, let hi) where lo == hi:
+            searchedYear = lo
+        case .like(let pattern) where !pattern.contains("_"):
+            searchedYear = Int(pattern)
+        default:
+            break
+        }
+
         var sql = """
             SELECT r.rulerID, r.name, r.personal_name, r.epithet, r.wikipedia, r.notes,
                    per.progrTitle, per.period, per.startYear, per.endYear, per.notes,
-                   t.title, t.maxCount, t.titlePlural, y.year
+                   t.title, t.maxCount, t.titlePlural, y.year\(lifespanColumns("r"))
             FROM byYear rt
             JOIN byPeriod per ON rt.periodID = per.periodID
             JOIN rulers r ON per.rulerID = r.rulerID
@@ -198,16 +218,24 @@ actor Database {
             let epithetString = (epithet?.isEmpty == false) ? " (\(epithet!))" : ""
             let displayTitle = "\(name)\(epithetString) (\(period))"
             let counter = "\(formatNumber(prog))/\(formatNumber(maxCount))"
-            let subtitle = (personal?.isEmpty == false)
+            var subtitle = (personal?.isEmpty == false)
                 ? "\(personal!), \(titleName) (\(counter)) \(notes)"
                 : "\(titleName) (\(counter)) \(notes)"
+
+            let born = hasLifespans ? col(stmt, 15).optInt : nil
+            let died = hasLifespans ? col(stmt, 16).optInt : nil
+            if let born, let year = searchedYear, year >= born {
+                subtitle = subtitle.trimmingCharacters(in: .whitespaces)
+                    + " — age \(year - born)"
+            }
 
             rows.append(SearchResult(
                 kind: .ruler, title: displayTitle, subtitle: subtitle,
                 wikipediaURL: wikipediaLink(wiki, name: name),
                 startYear: startYear, endYear: endYear,
                 titleName: titleName, titlePlural: titlePlural,
-                rulerID: rulerID, progrTitle: prog, iconAsset: titleName))
+                rulerID: rulerID, progrTitle: prog,
+                born: born, died: died, iconAsset: titleName))
         }
         return rows
     }
@@ -219,7 +247,7 @@ actor Database {
         let sql = """
             SELECT ru.rulerID, ru.name, ru.personal_name, ru.epithet, ru.wikipedia,
                    ru.biography, per.progrTitle, per.period, per.startYear, per.endYear,
-                   per.notes, t.title, t.titlePlural
+                   per.notes, t.title, t.titlePlural\(lifespanColumns("ru"))
             FROM rulers ru
             JOIN byPeriod per ON ru.rulerID = per.rulerID
             JOIN titles t ON per.titleID = t.titleID
@@ -242,7 +270,7 @@ actor Database {
         var periodsByRuler: [Int: [PeriodInfo]] = [:]
         struct RulerMeta { var name: String; var personal: String?; var epithet: String?
                            var wiki: String?; var biography: String?; var titlePlural: String?
-                           var titleName: String }
+                           var titleName: String; var born: Int?; var died: Int? }
         var meta: [Int: RulerMeta] = [:]
 
         while sqlite3_step(stmt) == SQLITE_ROW {
@@ -252,7 +280,9 @@ actor Database {
                 name: col(stmt, 1).string, personal: col(stmt, 2).optString,
                 epithet: col(stmt, 3).optString, wiki: col(stmt, 4).optString,
                 biography: col(stmt, 5).optString, titlePlural: col(stmt, 12).optString,
-                titleName: col(stmt, 11).string)
+                titleName: col(stmt, 11).string,
+                born: hasLifespans ? col(stmt, 13).optInt : nil,
+                died: hasLifespans ? col(stmt, 14).optInt : nil)
             periodsByRuler[rulerID, default: []].append(PeriodInfo(
                 period: col(stmt, 7).string, notes: col(stmt, 10).optString ?? "",
                 title: col(stmt, 11).string, startYear: col(stmt, 8).int,
@@ -279,9 +309,16 @@ actor Database {
                 startYear: earliest, endYear: latest,
                 titleName: topTitle, titlePlural: m.titlePlural,
                 rulerID: rulerID, progrTitle: periods.first?.progrTitle,
+                born: m.born, died: m.died,
                 iconAsset: topTitle))
         }
         return rows
+    }
+
+    /// Appends `, «alias».born, «alias».died` to a ruler SELECT when the
+    /// database has the columns; callers read them past the fixed columns.
+    private func lifespanColumns(_ alias: String) -> String {
+        hasLifespans ? ", \(alias).born, \(alias).died" : ""
     }
 
     /// The SELECT list every event query shares; positions are fixed so
@@ -401,7 +438,7 @@ actor Database {
         let sql = """
             SELECT ru.rulerID, ru.name, ru.personal_name, ru.epithet, ru.wikipedia,
                    ru.biography, per.progrTitle, per.period, per.startYear, per.endYear,
-                   per.notes, t.title, t.titlePlural
+                   per.notes, t.title, t.titlePlural\(lifespanColumns("ru"))
             FROM rulers ru
             JOIN byPeriod per ON ru.rulerID = per.rulerID
             JOIN titles t ON per.titleID = t.titleID
@@ -458,12 +495,19 @@ actor Database {
         return eventRow(stmt)
     }
 
+    /// Titles whose "periods" are overlapping lifespans, not successive
+    /// reigns. "Who was Painter in 1503?" has many right answers, so these
+    /// are kept out of the quiz (search/lineage/timeline still show them).
+    static let lifespanTitles = ["Artist", "Composer", "Writer", "Scientist", "Philosopher"]
+
     /// Titles with enough holders to make a quiz category with plausible
     /// wrong answers.
     func quizTitles(minHolders: Int = 15) -> [TitleInfo] {
+        let excluded = Database.lifespanTitles
+            .map { "'\($0)'" }.joined(separator: ", ")
         let sql = """
             SELECT titleID, title, titlePlural, maxCount FROM titles
-            WHERE maxCount >= ? ORDER BY title;
+            WHERE maxCount >= ? AND title NOT IN (\(excluded)) ORDER BY title;
             """
         guard let stmt = prepare(sql) else { return [] }
         defer { sqlite3_finalize(stmt) }

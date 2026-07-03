@@ -31,6 +31,10 @@ struct SearchResult: Identifiable, Sendable, Hashable {
     var startMonth: Int? = nil
     var startDay: Int? = nil
 
+    /// For rulers: birth/death years where known (negative = BC).
+    var born: Int? = nil
+    var died: Int? = nil
+
     /// Marks the focused ruler in a lineage list (the 🌟 in the workflow).
     var isCurrent: Bool = false
 

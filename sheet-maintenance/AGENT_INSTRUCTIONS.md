@@ -254,6 +254,45 @@ python add_event_dates.py --apply            # after the user reviews the report
 
 Rows with a Month already set are skipped, so re-runs only fill new events.
 
+### Ruler birth/death years (Born/Died)
+
+Use **`add_birth_death.py`** to fill integer `Born`/`Died` year columns on
+the **Rulers** tab (negative = BC) from Wikidata P569/P570, resolved via each
+row's Wikipedia URL (exact en.wikipedia title match for rows without one — no
+fuzzy search; consul homonyms make that unsafe). The curator `BirthDeath`
+column is a fallback source; Wikidata wins conflicts but they stay visible in
+the report. Sanity checks against the local DB's reign spans reject
+implausible years (born after reign start, died before reign end, lifespan
+> 110) — MISMATCH rows in the report often flag real merged-ruler bugs.
+
+```bash
+python add_birth_death.py --dry-run          # writes birth-death-report.tsv
+python add_birth_death.py --apply            # after the user reviews the report
+```
+
+SQLite `rulers` gains `born`, `died` (NULL when unknown). Rows with a Born
+value are skipped on re-runs.
+
+### Notable people (Artist / Composer / Writer / Scientist / Philosopher)
+
+Use **`add_notable_people.py`** to add famous non-rulers as lifespan
+"titles": one Rulers row (Name, RulerID, Wikipedia, Notes = description,
+Born, Died) plus one Periods row whose Period is the lifespan
+("1853-1890", "427 BC - 348 BC"). Candidates are ranked by Wikipedia
+sitelinks per Wikidata occupation; living people are excluded; the English
+description must back the category (whole-word match) or the row is
+skipped. People already on the Rulers tab (Marcus Aurelius → Philosopher)
+get only the Periods row under their existing RulerID.
+
+```bash
+python add_notable_people.py --dry-run [--per-category 40]
+python add_notable_people.py --apply         # after the user reviews the report
+```
+
+These titles have overlapping periods, so the iOS app excludes them from
+the quiz (`Database.lifespanTitles`); search, lineage, and timeline include
+them. Idempotent via URL and (RulerID, Title) dedup.
+
 ### Events workflow
 
 ```bash

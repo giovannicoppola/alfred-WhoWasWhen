@@ -11,6 +11,10 @@ struct ResultsList: View {
     /// the lineage view to focus the currently selected ruler).
     var scrollToID: SearchResult.ID? = nil
 
+    #if DEBUG
+    @State private var debugDetail: SearchResult?
+    #endif
+
     var body: some View {
         if results.isEmpty {
             if isIdle {
@@ -37,6 +41,18 @@ struct ResultsList: View {
                         proxy.scrollTo(scrollToID, anchor: .center)
                     }
                 }
+                #if DEBUG
+                // Automation hook: open the first result (or first whose
+                // title contains $WWW_DETAIL) in the detail sheet.
+                .task(id: results.first?.id) {
+                    guard let want = ProcessInfo.processInfo.environment["WWW_DETAIL"],
+                          !results.isEmpty else { return }
+                    debugDetail = results.first {
+                        $0.title.localizedCaseInsensitiveContains(want)
+                    } ?? results.first
+                }
+                .sheet(item: $debugDetail) { ResultDetailView(result: $0) }
+                #endif
             }
         }
     }
