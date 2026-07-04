@@ -132,12 +132,9 @@ actor Database {
             if let bio = biography, !bio.isEmpty {
                 subtitle = "\(counter) \(bio)"
             } else {
+                // Personal name / house is its own row line, not part of the subtitle.
                 let notePart = (notes.isEmpty || notes == ",") ? "" : notes
-                if let pn = personal, !pn.isEmpty {
-                    subtitle = "\(counter) \(pn), \(titleName) \(notePart)"
-                } else {
-                    subtitle = "\(counter) \(titleName) \(notePart)"
-                }
+                subtitle = "\(counter) \(titleName) \(notePart)"
             }
 
             rows.append(SearchResult(
@@ -146,6 +143,7 @@ actor Database {
                 startYear: startYear, endYear: endYear,
                 titleName: titleName, titlePlural: titlePlural,
                 rulerID: rulerID, progrTitle: prog,
+                personalName: personal,
                 born: hasLifespans ? col(stmt, 14).optInt : nil,
                 died: hasLifespans ? col(stmt, 15).optInt : nil,
                 isCurrent: isCurrent,
@@ -218,9 +216,8 @@ actor Database {
             let epithetString = (epithet?.isEmpty == false) ? " (\(epithet!))" : ""
             let displayTitle = "\(name)\(epithetString) (\(period))"
             let counter = "\(formatNumber(prog))/\(formatNumber(maxCount))"
-            var subtitle = (personal?.isEmpty == false)
-                ? "\(personal!), \(titleName) (\(counter)) \(notes)"
-                : "\(titleName) (\(counter)) \(notes)"
+            // Personal name / house is shown on its own row line, not in the subtitle.
+            var subtitle = "\(titleName) (\(counter)) \(notes)"
 
             let born = hasLifespans ? col(stmt, 15).optInt : nil
             let died = hasLifespans ? col(stmt, 16).optInt : nil
@@ -244,6 +241,7 @@ actor Database {
                 startYear: startYear, endYear: endYear,
                 titleName: titleName, titlePlural: titlePlural,
                 rulerID: rulerID, progrTitle: prog,
+                personalName: personal,
                 born: born, died: died, iconAsset: titleName))
         }
         return rows
@@ -303,9 +301,10 @@ actor Database {
             guard let m = meta[rulerID], let periods = periodsByRuler[rulerID] else { continue }
             let epithetString = (m.epithet?.isEmpty == false) ? " (\(m.epithet!))" : ""
             let displayTitle = "\(m.name)\(epithetString)"
+            // Personal name / house is its own row line, so keep it out of the subtitle.
             let subtitle = (m.biography?.isEmpty == false)
                 ? m.biography!
-                : formatRulerSubtitle(periods: periods, personalName: m.personal)
+                : formatRulerSubtitle(periods: periods, personalName: nil)
 
             let earliest = periods.map(\.startYear).min() ?? 0
             let latest = periods.map(\.endYear).max() ?? 0
@@ -318,6 +317,7 @@ actor Database {
                 startYear: earliest, endYear: latest,
                 titleName: topTitle, titlePlural: m.titlePlural,
                 rulerID: rulerID, progrTitle: periods.first?.progrTitle,
+                personalName: m.personal,
                 born: m.born, died: m.died,
                 iconAsset: topTitle))
         }

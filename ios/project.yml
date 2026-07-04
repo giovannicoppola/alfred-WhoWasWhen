@@ -57,7 +57,8 @@ targets:
         INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait"
         INFOPLIST_KEY_CFBundleDisplayName: WWW Admin
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
-        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        # Red globe icon so the admin build is distinct from the blue release app.
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIconAdmin
         INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: NO
         SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) ADMIN"
     dependencies:

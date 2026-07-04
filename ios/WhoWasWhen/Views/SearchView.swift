@@ -20,6 +20,18 @@ struct SearchView: View {
                 .searchScopes($app.scope) {
                     ForEach(SearchScope.allCases) { Text($0.rawValue).tag($0) }
                 }
+                // An explicit way to drop the keyboard (in addition to scrolling
+                // the results), for when a query returns too few rows to scroll.
+                .toolbar {
+                    ToolbarItemGroup(placement: .keyboard) {
+                        Spacer()
+                        Button("Done") {
+                            UIApplication.shared.sendAction(
+                                #selector(UIResponder.resignFirstResponder),
+                                to: nil, from: nil, for: nil)
+                        }
+                    }
+                }
                 .task(id: SearchKey(query: query, scope: app.scope)) { await runSearch() }
                 #if DEBUG
                 // Automation hook: pre-fill the search box for screenshots.

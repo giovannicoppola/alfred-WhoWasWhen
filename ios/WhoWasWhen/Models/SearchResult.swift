@@ -23,6 +23,11 @@ struct SearchResult: Identifiable, Sendable, Hashable {
     var rulerID: Int?
     var progrTitle: Int?
 
+    /// For rulers: the personal name (e.g. a pope's birth name) or house/dynasty
+    /// (e.g. "House of Tudor"), shown as its own line. Nil when the source
+    /// sheet has no value for this ruler.
+    var personalName: String? = nil
+
     /// For events: the stable database key (used by Favorites).
     var eventID: Int? = nil
 

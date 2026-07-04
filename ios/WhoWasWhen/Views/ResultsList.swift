@@ -36,6 +36,9 @@ struct ResultsList: View {
                     }
                 }
                 .listStyle(.plain)
+                // Flicking the results drops the search keyboard so it stops
+                // covering the list once you've reached the year/name you want.
+                .scrollDismissesKeyboard(.immediately)
                 .onAppear {
                     if let scrollToID {
                         proxy.scrollTo(scrollToID, anchor: .center)

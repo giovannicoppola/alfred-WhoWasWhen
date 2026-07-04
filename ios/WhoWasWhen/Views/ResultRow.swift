@@ -6,6 +6,9 @@ struct ResultRow: View {
     let result: SearchResult
     let index: Int
     let total: Int
+    /// The position badge ("3/11") only makes sense in a ranked list; single
+    /// highlights (e.g. the Discover "N years ago" pick) hide it.
+    var showCounter: Bool = true
 
     @State private var showDetail = false
 
@@ -26,24 +29,32 @@ struct ResultRow: View {
             // may also appear, as "27/28", inside the subtitle).
             VStack(spacing: 4) {
                 PortraitView(result: result, size: 36)
-                Text("\(formatNumber(index + 1))/\(formatNumber(total))")
-                    .font(.caption2.weight(.semibold))
-                    .monospacedDigit()
-                    .foregroundStyle(.secondary)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.6)
-                    // The badge is a fixed-meaning chip; cap its growth so large
-                    // accessibility text sizes don't truncate "1/11" to "1/…".
-                    .dynamicTypeSize(...DynamicTypeSize.xLarge)
-                    .padding(.horizontal, 5)
-                    .padding(.vertical, 1)
-                    .background(Capsule().fill(Color.secondary.opacity(0.14)))
+                if showCounter {
+                    Text("\(formatNumber(index + 1))/\(formatNumber(total))")
+                        .font(.caption2.weight(.semibold))
+                        .monospacedDigit()
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.6)
+                        // The badge is a fixed-meaning chip; cap its growth so large
+                        // accessibility text sizes don't truncate "1/11" to "1/…".
+                        .dynamicTypeSize(...DynamicTypeSize.xLarge)
+                        .padding(.horizontal, 5)
+                        .padding(.vertical, 1)
+                        .background(Capsule().fill(Color.secondary.opacity(0.14)))
+                }
             }
             .frame(width: 52)
             VStack(alignment: .leading, spacing: 2) {
                 Text(result.title)
                     .font(.body.weight(result.isCurrent ? .bold : .regular))
                     .lineLimit(2)
+                if let personal = result.personalName, !personal.isEmpty {
+                    Text(personal)
+                        .font(.caption.italic())
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                }
                 if !result.subtitle.isEmpty {
                     Text(result.subtitle)
                         .font(.caption)
@@ -75,11 +86,13 @@ private struct ResultRowActionsModifier: ViewModifier {
                         Label(formatYear(result.startYear), systemImage: "arrow.right.to.line")
                     }.tint(.blue)
                 } else {
+                    // Just the year — the back/forward icons and tints already
+                    // convey which is the start and which is the end.
                     Button { app.travel(toYear: result.startYear) } label: {
-                        Label("Start \(formatYear(result.startYear))", systemImage: "arrow.backward.to.line")
+                        Label(formatYear(result.startYear), systemImage: "arrow.backward.to.line")
                     }.tint(.blue)
                     Button { app.travel(toYear: result.endYear) } label: {
-                        Label("End \(formatYear(result.endYear))", systemImage: "arrow.forward.to.line")
+                        Label(formatYear(result.endYear), systemImage: "arrow.forward.to.line")
                     }.tint(.teal)
                 }
             }

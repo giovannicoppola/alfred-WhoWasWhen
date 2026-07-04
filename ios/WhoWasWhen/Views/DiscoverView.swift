@@ -35,9 +35,7 @@ struct DiscoverView: View {
 
                 ForEach(anniversaries) { section in
                     Section {
-                        ForEach(Array(section.results.enumerated()), id: \.element.id) { idx, result in
-                            ResultRow(result: result, index: idx, total: section.results.count)
-                        }
+                        ResultRow(result: section.result, index: 0, total: 1, showCounter: false)
                     } header: {
                         HStack(spacing: 6) {
                             Image(systemName: "clock.arrow.circlepath")
@@ -72,33 +70,32 @@ struct DiscoverView: View {
         featuredEvent = await app.randomEvent()
     }
 
-    /// Walks back a century at a time from the current year, keeping the
-    /// first centuries that have something to show: up to 3 events plus a
-    /// couple of rulers in office that year. Events with an exact date are
-    /// preferred, closest to today's date first, so anniversaries land near
-    /// their actual day.
+    /// Walks back a century at a time from the current year, keeping the first
+    /// centuries that have something to show. Each section surfaces a single
+    /// highlight — an event or a person from that year — chosen deterministically
+    /// from today's date, so the picks are stable through the day but rotate to
+    /// new ones each day rather than showing the same thing year-round.
     private func buildAnniversaries() async {
-        let today = Calendar.current.dateComponents([.month, .day], from: .now)
-        let todayKey = (today.month ?? 1) * 31 + (today.day ?? 1)
-        func distanceFromToday(_ r: SearchResult) -> Int {
-            guard let m = r.startMonth, let d = r.startDay else { return .max }
-            let delta = abs(m * 31 + d - todayKey)
-            return min(delta, 12 * 31 - delta)   // wrap around new year
-        }
+        let cal = Calendar.current
+        let dayOfYear = cal.ordinality(of: .day, in: .year, for: .now) ?? 0
+        let currentYear = cal.component(.year, from: .now)
+        // Stable within a calendar day, changes daily.
+        let daySeed = currentYear &+ dayOfYear
 
-        let currentYear = Calendar.current.component(.year, from: .now)
         var sections: [AnniversarySection] = []
         var yearsAgo = 100
         while sections.count < 8 && currentYear - yearsAgo >= -776 {
             let year = currentYear - yearsAgo
             let events = await app.events(inYear: year)
-                .sorted { distanceFromToday($0) < distanceFromToday($1) }
-                .prefix(3)
-            let rulers = await app.rulers(inYear: year).prefix(2)
-            let results = Array(events) + Array(rulers)
-            if !results.isEmpty {
-                sections.append(AnniversarySection(yearsAgo: yearsAgo, year: year,
-                                                   results: results))
+            // Events first (usually the more notable anniversaries); cap the
+            // rulers so a year full of Roman consuls doesn't crowd the rotation.
+            let rulers = await app.rulers(inYear: year).prefix(6)
+            let pool = events + Array(rulers)
+            if !pool.isEmpty {
+                // Offset per century so the sections don't all land on the same
+                // index on a given day.
+                let pick = pool[(daySeed &+ yearsAgo) % pool.count]
+                sections.append(AnniversarySection(yearsAgo: yearsAgo, year: year, result: pick))
             }
             yearsAgo += 100
         }
@@ -109,7 +106,7 @@ struct DiscoverView: View {
 private struct AnniversarySection: Identifiable {
     let yearsAgo: Int
     let year: Int
-    let results: [SearchResult]
+    let result: SearchResult
     var id: Int { year }
 }
 

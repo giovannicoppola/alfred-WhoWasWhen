@@ -129,8 +129,10 @@ collection of any kind.
 The refreshed set lives in `ios/screenshots-appstore/` (captured on the
 iPhone 16 Pro Max simulator, clean 9:41 status bar):
 
-1. `01-onthisday-gettysburg.png` / `01-onthisday-hattin.png` — search home
-   with the "On this day" card (two variants for the July 3 slot; pick one)
+1. `01-onthisday-independence.png` (July 4 — Declaration of Independence) /
+   `01-onthisday-gettysburg.png` / `01-onthisday-hattin.png` — search home
+   with the "On this day" card (pick one; the Independence Day shot is the
+   timeliest for a July launch)
 2. `02-year-1789.png` — who ruled in 1789, with portraits and ages
 3. `03-artists.png` — "1888 artist": the painters of 1888
 4. `04-einstein.png` — detail view: lifespan line + era position bar

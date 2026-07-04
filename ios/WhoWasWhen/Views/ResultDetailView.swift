@@ -23,6 +23,9 @@ struct ResultDetailView: View {
                         PortraitView(result: result, size: 64)
                         VStack(alignment: .leading, spacing: 6) {
                             Text(result.title).font(.headline)
+                            if let personal = result.personalName, !personal.isEmpty {
+                                Text(personal).font(.subheadline.italic()).foregroundStyle(.secondary)
+                            }
                             if !result.subtitle.isEmpty {
                                 Text(result.subtitle).font(.subheadline).foregroundStyle(.secondary)
                             }
