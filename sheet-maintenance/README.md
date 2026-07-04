@@ -31,11 +31,25 @@ Copy `config.example.yaml` → `config.yaml` if you prefer a file over `KEYFILE`
 
 After sheet changes, rebuild the Alfred database: `::whoWasWhen-refresh`.
 
+**Then, every rebuild, re-open the still-living reigns** (the build stubs them to
+the build year, which reads as if the reign ended and hides them from a
+current-year search):
+
+```bash
+python mark_living_present.py --dry-run    # review who is treated as ongoing
+python mark_living_present.py --apply       # patches the shipped DB copies
+```
+
+This is a post-build DB patch, not a sheet edit — the Period column stays
+numeric so the build parser is never fed the word "present".
+
 ## Files
 
 | File | Purpose |
 |------|---------|
 | `apply_merged_ruler_patches.py` | Apply fixes from `patches/merged-rulers.yaml` |
+| `mark_living_present.py` | Post-build: re-open still-living reigns to "…-present" |
+| `load_art_works.py` | Load creative roster "key works" as events from `patches/events/art-works.tsv` |
 | `add_events.py` | Append events from `patches/events/*.yaml` |
 | `audit_event_duplicates.py` | Find duplicate Events rows (year-aware) |
 | `merge_event_duplicates.py` | Merge duplicates: enrich keeper, delete extras |

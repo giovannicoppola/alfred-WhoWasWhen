@@ -199,7 +199,10 @@ def match_existing_event(
         {"name": name, "sorting_year": str(sorting_year), "progr": 0, "row_idx": 0},
     )
     for row in existing:
-        if should_merge_events(candidate, row):
+        # should_merge_events returns (bool, reason); a bare 2-tuple is always
+        # truthy, so the boolean must be unpacked before testing it.
+        merge, _ = should_merge_events(candidate, row)
+        if merge:
             return row
     return None
 
