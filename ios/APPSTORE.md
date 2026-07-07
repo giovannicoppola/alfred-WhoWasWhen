@@ -39,40 +39,47 @@ into the **App Review notes** field for the new build.
 
 ### Reply to App Review (paste into the rejection thread / review notes)
 
-> Thank you for reviewing build 1.0 (10), which was rejected under
-> Guideline 4.2 – Design – Minimum Functionality as primarily offering
-> content to view. Version 1.1 (build 15) addresses this directly by adding
-> substantial interactive functionality around the reference database:
->
-> • QUIZ — an endless multiple-choice history quiz generated on-device from
-> the database: mixed rounds, rulers, events, notable people, or any
-> specific title ("Who was Pope in 1500?", "When did the French Revolution
-> begin?", "When was van Gogh born?"). The bundled data yields thousands of
-> distinct questions; per-category best scores are tracked, with a
-> celebration animation for new records.
-> • DISCOVER — a featured ruler and event with shuffle, plus "100/200/300…
-> years ago" anniversary sections that favor events dated closest to today.
-> • ON THIS DAY — the search home surfaces an event that happened on
-> today's calendar date (300+ events now carry exact dates), linked to its
-> detail view.
-> • TIMELINES — every title's lineage as a scrollable visual timeline with
-> century markers; each ruler's detail shows where the reign sits within
-> the title's whole era.
-> • FAVORITES — save any ruler or event; persists across launches.
->
-> The dataset itself was also expanded for this release: 1,600+ figures now
-> carry birth/death years — searching a year shows how old every ruler was
-> at that moment (or that they were born or died that year) — and 200 of
-> history's most famous artists, composers, writers, scientists, and
-> philosophers join the rulers, searchable by year like everyone else
-> (e.g. "1888 artist" finds van Gogh, Monet, and Degas with their ages that
-> year, and the search filter offers All / People / Events).
->
-> Everything works fully offline, with no account, no ads, and no data
-> collection. Screenshots have been refreshed to show the new Quiz,
-> Discover, and Timeline surfaces rather than search alone. We believe the
-> app now offers rich interactive functionality well beyond viewing
-> content, and we appreciate your taking another look.
+Paste the text between the lines below (fenced as a code block so it copies
+without Markdown `>` quote marks). Update the build number to match the build
+you actually submit.
+
+```
+Thank you for reviewing build 1.0 (10), which was rejected under
+Guideline 4.2 – Design – Minimum Functionality as primarily offering
+content to view. Version 1.1 addresses this directly by adding
+substantial interactive functionality around the reference database:
+
+• QUIZ — an endless multiple-choice history quiz generated on-device from
+the database: mixed rounds, rulers, events, notable people, works and
+their creators ("Who painted the Mona Lisa?"), or any specific title
+("Who was Pope in 1500?", "When did the French Revolution begin?", "When
+was van Gogh born?"). The bundled data yields thousands of distinct
+questions; per-category best scores are tracked, with a celebration
+animation for new records.
+• DISCOVER — a featured ruler and event with shuffle, plus "100/200/300…
+years ago" anniversary sections that favor events dated closest to today.
+• ON THIS DAY — the search home surfaces an event that happened on
+today's calendar date (300+ events now carry exact dates), linked to its
+detail view.
+• TIMELINES — every title's lineage as a scrollable visual timeline with
+century markers; each ruler's detail shows where the reign sits within
+the title's whole era.
+• FAVORITES — save any ruler or event; persists across launches.
+
+The dataset itself was also expanded for this release: 1,600+ figures now
+carry birth/death years — searching a year shows how old every ruler was
+at that moment (or that they were born or died that year) — and 200 of
+history's most famous artists, composers, writers, scientists, and
+philosophers join the rulers, searchable by year like everyone else
+(e.g. "1888 artist" finds van Gogh, Monet, and Degas with their ages that
+year, and the search filter offers All / People / Events).
+
+Everything works fully offline, with no account, no ads, and no data
+collection. Screenshots have been refreshed to show the new Quiz,
+Discover, and Timeline surfaces rather than search alone. We believe the
+app now offers rich interactive functionality well beyond viewing
+content, and we appreciate your taking another look.
+```
 
 ### App Store description (paste into the Description field)
 
@@ -106,9 +113,9 @@ happened 100, 200, 300… years ago today.
 
 QUIZ
 Endless multiple-choice trivia generated from the database — mixed rounds,
-rulers, events, notable people ("When was van Gogh born?"), or any title
-with enough holders. Best scores are tracked, and new records earn
-confetti.
+rulers, events, notable people ("When was van Gogh born?"), works and their
+creators ("Who composed Messiah?"), or any title with enough holders. Best
+scores are tracked, and new records earn confetti.
 
 TIMELINES
 Every title's lineage as a scrollable visual timeline: all 267 Popes, all

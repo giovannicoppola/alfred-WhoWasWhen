@@ -19,3 +19,6 @@ ios/WhoWasWhen.xcodeproj/
 ios/DerivedData/
 **/xcuserdata/
 ios/build/
+
+# Personal feature brain-dump / wishlist (local only)
+ios/new-features.md

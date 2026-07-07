@@ -38,8 +38,9 @@ answers, available instantly and **offline**.
   happened 100, 200, 300… years ago — favoring events dated closest to today.
 - **Quiz** — endless multiple‑choice trivia generated from the data: *Who was
   Pope in 1500? When did the French Revolution begin? When was van Gogh
-  born?* Play mixed rounds, rulers, events, notable people, or any title
-  with enough holders; best scores are tracked.
+  born? Who painted the Mona Lisa?* Play mixed rounds, rulers, events,
+  notable people, works & authors, or any title with enough holders; best
+  scores are tracked.
 - **Timelines** — any title's lineage as a scrollable timeline with century
   markers; every ruler's detail shows where their reign sits in the title's
   whole history.

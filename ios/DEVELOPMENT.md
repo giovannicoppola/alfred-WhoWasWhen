@@ -50,11 +50,25 @@ xcodebuild -project ios/WhoWasWhen.xcodeproj -scheme WhoWasWhen \
 
 ## Updating the bundled database
 
-Copy the latest DB into the app resources and rebuild:
+The shipped `whoWasWhen.db` is maintained in place by the `sheet-maintenance/`
+scripts, which each write **both** committed copies (`releases/whoWasWhen.db`
+and `ios/WhoWasWhen/Resources/whoWasWhen.db`). If you only touched one, sync it:
 
 ```bash
 cp releases/whoWasWhen.db ios/WhoWasWhen/Resources/whoWasWhen.db
 ```
+
+Two derived/enrichment steps feed app features and must be (re)run after the
+data they depend on changes — both are idempotent and take `--dry-run`/`--apply`:
+
+- **`sheet-maintenance/build_works_table.py`** — builds the `works` table that
+  powers the Quiz's "Works & authors" round, linking each "Artist: Work" event
+  to its creator's `rulers` row. **Re-run after the art-works roster changes**
+  (e.g. after `load_art_works.py`); it drops and rebuilds the table.
+- **`sheet-maintenance/set_ruler_wikipedia.py`** — fills empty `rulers.wikipedia`
+  links from the reviewed `patches/rulers/wikipedia-links.tsv`, so ambiguous
+  names (e.g. "Frederick II") get a specific article instead of a Wikipedia
+  disambiguation page. Only fills blank links; never overwrites curated ones.
 
 ## Enabling the iCloud Drive refresh (for signed/release builds)
 
@@ -69,8 +83,10 @@ The optional "use a newer DB from iCloud" feature needs the iCloud capability:
 
 ## App icon
 
-The app icon reuses the Alfred workflow's crowned globe; the accent color is in
-`Assets.xcassets`.
+The app icon reuses the Alfred workflow's crowned globe (blue for the public app,
+red for the admin build). Each `AppIcon*.appiconset` carries a **light** variant
+and a **dark** variant (same artwork on a dark-gray gradient background, per iOS's
+`luminosity` appearance) so it matches the home screen's dark icon style.
 
 ## Distribution
 
