@@ -131,26 +131,30 @@ and favorites all work with no connection, no account, no ads, and no data
 collection of any kind.
 ```
 
-### Screenshots (6.9" set, 1320×2868 — ready to upload)
+### Screenshots — upload the 6.7" set
 
-The refreshed set lives in `ios/screenshots-appstore/` (captured on the
-iPhone 16 Pro Max simulator, clean 9:41 status bar):
+**Upload `ios/screenshots-appstore/6.7-inch/`** — nine PNGs at **1284×2778**,
+already renamed `1_…`–`9_…` so Finder's Select-All → drag lands them in display
+order. This 6.7" size is what App Store Connect accepts (it rejected the 6.9"
+1320×2868 originals for the 1.0 version's slot) and it scales down to cover all
+smaller iPhones, so no separate 6.5" set is needed.
 
-1. `01-onthisday-independence.png` (July 4 — Declaration of Independence) /
-   `01-onthisday-gettysburg.png` / `01-onthisday-hattin.png` — search home
-   with the "On this day" card (pick one; the Independence Day shot is the
-   timeliest for a July launch)
-2. `02-year-1789.png` — who ruled in 1789, with portraits and ages
-3. `03-artists.png` — "1888 artist": the painters of 1888
-4. `04-einstein.png` — detail view: lifespan line + era position bar
-5. `05-discover.png` — Discover with featured cards and anniversaries
-6. `06-quiz.png` — an event quiz question
-7. `07-newbest.png` — new-best score screen with confetti
-8. `08-timeline.png` — the English Monarchs timeline
-9. `09-quiz-people.png` — a Notable people quiz question
+The 6.9" originals (1320×2868, captured on the iPhone 16 Pro Max simulator with
+a clean 9:41 status bar) remain in `ios/screenshots-appstore/` as the masters;
+the 6.7" set is downscaled from them. Display order (data screens first, then
+interactivity):
 
-Suggested upload order: 02, 03, 06, 09, 05, 04, 08, 01, 07 (lead with the
-two strongest data screens, then interactivity).
+1. `1_year-1789.png` — who ruled in 1789, with portraits and ages
+2. `2_artists.png` — "1888 artist": the painters of 1888
+3. `3_quiz.png` — an event quiz question
+4. `4_quiz-people.png` — a Notable people quiz question
+5. `5_discover.png` — Discover with featured cards and anniversaries
+6. `6_einstein.png` — detail view: lifespan line + era position bar
+7. `7_timeline.png` — the English Monarchs timeline
+8. `8_onthisday-independence.png` — search home with the "On this day" card
+   (the Independence Day shot is the timeliest for a July launch; alternative
+   Gettysburg/Hattin variants are in `6.7-inch/unused/`)
+9. `9_newbest.png` — new-best score screen with confetti
 
 ## 0. Decide how the app makes money (or not)
 
