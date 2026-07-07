@@ -15,6 +15,13 @@ actor Database {
     // close the handle under Swift 6 strict concurrency.
     private nonisolated(unsafe) var handle: OpaquePointer?
 
+    /// Whether byEvents carries startMonth/startDay. Older databases (e.g. a
+    /// stale iCloud copy) predate the columns; queries must not assume them.
+    private let hasEventDates: Bool
+
+    /// Whether rulers carries born/died years — same schema tolerance.
+    private let hasLifespans: Bool
+
     init(path: String) throws {
         var db: OpaquePointer?
         // Open read-only; the app never mutates the data.
@@ -25,7 +32,23 @@ actor Database {
             throw DBError.openFailed(msg)
         }
         self.handle = db
+        self.hasEventDates = Database.columnExists(db, table: "byEvents", column: "startMonth")
+        self.hasLifespans = Database.columnExists(db, table: "rulers", column: "born")
         Database.registerFoldFunction(db)
+    }
+
+    private nonisolated static func columnExists(_ db: OpaquePointer, table: String,
+                                                 column: String) -> Bool {
+        var stmt: OpaquePointer?
+        guard sqlite3_prepare_v2(db, "PRAGMA table_info(\(table));", -1, &stmt, nil) == SQLITE_OK
+        else { return false }
+        defer { sqlite3_finalize(stmt) }
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            if let c = sqlite3_column_text(stmt, 1), String(cString: c) == column {
+                return true
+            }
+        }
+        return false
     }
 
     deinit { sqlite3_close(handle) }
@@ -72,7 +95,7 @@ actor Database {
         let sql = """
             SELECT ru.rulerID, ru.name, ru.personal_name, ru.epithet, ru.wikipedia,
                    ru.biography, per.progrTitle, per.period, per.startYear, per.endYear,
-                   per.notes, t.title, t.maxCount, t.titlePlural
+                   per.notes, t.title, t.maxCount, t.titlePlural\(lifespanColumns("ru"))
             FROM rulers ru
             JOIN byPeriod per ON ru.rulerID = per.rulerID
             JOIN titles t ON per.titleID = t.titleID
@@ -109,12 +132,9 @@ actor Database {
             if let bio = biography, !bio.isEmpty {
                 subtitle = "\(counter) \(bio)"
             } else {
+                // Personal name / house is its own row line, not part of the subtitle.
                 let notePart = (notes.isEmpty || notes == ",") ? "" : notes
-                if let pn = personal, !pn.isEmpty {
-                    subtitle = "\(counter) \(pn), \(titleName) \(notePart)"
-                } else {
-                    subtitle = "\(counter) \(titleName) \(notePart)"
-                }
+                subtitle = "\(counter) \(titleName) \(notePart)"
             }
 
             rows.append(SearchResult(
@@ -122,7 +142,11 @@ actor Database {
                 wikipediaURL: wikipediaLink(wiki, name: name),
                 startYear: startYear, endYear: endYear,
                 titleName: titleName, titlePlural: titlePlural,
-                rulerID: rulerID, progrTitle: prog, isCurrent: isCurrent,
+                rulerID: rulerID, progrTitle: prog,
+                personalName: personal,
+                born: hasLifespans ? col(stmt, 14).optInt : nil,
+                died: hasLifespans ? col(stmt, 15).optInt : nil,
+                isCurrent: isCurrent,
                 iconAsset: titleName))
         }
 
@@ -139,10 +163,23 @@ actor Database {
         let (yearSQL, yearParams) = yearClauseSQL(yc, yearColumn: "y.year")
         let (textSQL, textParams) = foldedTextSQL(columns: ["r.name", "t.title"], terms: textTerms)
 
+        // For a single-year search, rows can say how old the ruler was then;
+        // ranges and wildcards match many years, so no age there. A plain
+        // year parses as a LIKE pattern with no wildcard placeholders.
+        var searchedYear: Int?
+        switch yc {
+        case .range(let lo, let hi) where lo == hi:
+            searchedYear = lo
+        case .like(let pattern) where !pattern.contains("_"):
+            searchedYear = Int(pattern)
+        default:
+            break
+        }
+
         var sql = """
             SELECT r.rulerID, r.name, r.personal_name, r.epithet, r.wikipedia, r.notes,
                    per.progrTitle, per.period, per.startYear, per.endYear, per.notes,
-                   t.title, t.maxCount, t.titlePlural, y.year
+                   t.title, t.maxCount, t.titlePlural, y.year\(lifespanColumns("r"))
             FROM byYear rt
             JOIN byPeriod per ON rt.periodID = per.periodID
             JOIN rulers r ON per.rulerID = r.rulerID
@@ -179,16 +216,33 @@ actor Database {
             let epithetString = (epithet?.isEmpty == false) ? " (\(epithet!))" : ""
             let displayTitle = "\(name)\(epithetString) (\(period))"
             let counter = "\(formatNumber(prog))/\(formatNumber(maxCount))"
-            let subtitle = (personal?.isEmpty == false)
-                ? "\(personal!), \(titleName) (\(counter)) \(notes)"
-                : "\(titleName) (\(counter)) \(notes)"
+            // Personal name / house is shown on its own row line, not in the subtitle.
+            var subtitle = "\(titleName) (\(counter)) \(notes)"
+
+            let born = hasLifespans ? col(stmt, 15).optInt : nil
+            let died = hasLifespans ? col(stmt, 16).optInt : nil
+            if let year = searchedYear {
+                var suffix: String?
+                if let born, born == year {
+                    suffix = "born this year"
+                } else if let died, died == year {
+                    suffix = "died this year"
+                } else if let born, year > born {
+                    suffix = "age \(year - born)"
+                }
+                if let suffix {
+                    subtitle = subtitle.trimmingCharacters(in: .whitespaces) + " — \(suffix)"
+                }
+            }
 
             rows.append(SearchResult(
                 kind: .ruler, title: displayTitle, subtitle: subtitle,
                 wikipediaURL: wikipediaLink(wiki, name: name),
                 startYear: startYear, endYear: endYear,
                 titleName: titleName, titlePlural: titlePlural,
-                rulerID: rulerID, progrTitle: prog, iconAsset: titleName))
+                rulerID: rulerID, progrTitle: prog,
+                personalName: personal,
+                born: born, died: died, iconAsset: titleName))
         }
         return rows
     }
@@ -200,7 +254,7 @@ actor Database {
         let sql = """
             SELECT ru.rulerID, ru.name, ru.personal_name, ru.epithet, ru.wikipedia,
                    ru.biography, per.progrTitle, per.period, per.startYear, per.endYear,
-                   per.notes, t.title, t.titlePlural
+                   per.notes, t.title, t.titlePlural\(lifespanColumns("ru"))
             FROM rulers ru
             JOIN byPeriod per ON ru.rulerID = per.rulerID
             JOIN titles t ON per.titleID = t.titleID
@@ -211,13 +265,19 @@ actor Database {
         defer { sqlite3_finalize(stmt) }
         var idx: Int32 = 1
         for p in textParams { bindText(stmt, idx, p); idx += 1 }
+        return collectRulerRows(stmt)
+    }
 
+    /// Steps a rulers+periods statement (the 13-column SELECT used by
+    /// `rulersByText` and `ruler(byID:)`) into one row per ruler, grouping
+    /// multiple reign periods into a single subtitle.
+    private func collectRulerRows(_ stmt: OpaquePointer?) -> [SearchResult] {
         // Group periods by ruler, preserving first-seen order.
         var order: [Int] = []
         var periodsByRuler: [Int: [PeriodInfo]] = [:]
         struct RulerMeta { var name: String; var personal: String?; var epithet: String?
                            var wiki: String?; var biography: String?; var titlePlural: String?
-                           var titleName: String }
+                           var titleName: String; var born: Int?; var died: Int? }
         var meta: [Int: RulerMeta] = [:]
 
         while sqlite3_step(stmt) == SQLITE_ROW {
@@ -227,7 +287,9 @@ actor Database {
                 name: col(stmt, 1).string, personal: col(stmt, 2).optString,
                 epithet: col(stmt, 3).optString, wiki: col(stmt, 4).optString,
                 biography: col(stmt, 5).optString, titlePlural: col(stmt, 12).optString,
-                titleName: col(stmt, 11).string)
+                titleName: col(stmt, 11).string,
+                born: hasLifespans ? col(stmt, 13).optInt : nil,
+                died: hasLifespans ? col(stmt, 14).optInt : nil)
             periodsByRuler[rulerID, default: []].append(PeriodInfo(
                 period: col(stmt, 7).string, notes: col(stmt, 10).optString ?? "",
                 title: col(stmt, 11).string, startYear: col(stmt, 8).int,
@@ -239,9 +301,10 @@ actor Database {
             guard let m = meta[rulerID], let periods = periodsByRuler[rulerID] else { continue }
             let epithetString = (m.epithet?.isEmpty == false) ? " (\(m.epithet!))" : ""
             let displayTitle = "\(m.name)\(epithetString)"
+            // Personal name / house is its own row line, so keep it out of the subtitle.
             let subtitle = (m.biography?.isEmpty == false)
                 ? m.biography!
-                : formatRulerSubtitle(periods: periods, personalName: m.personal)
+                : formatRulerSubtitle(periods: periods, personalName: nil)
 
             let earliest = periods.map(\.startYear).min() ?? 0
             let latest = periods.map(\.endYear).max() ?? 0
@@ -254,9 +317,25 @@ actor Database {
                 startYear: earliest, endYear: latest,
                 titleName: topTitle, titlePlural: m.titlePlural,
                 rulerID: rulerID, progrTitle: periods.first?.progrTitle,
+                personalName: m.personal,
+                born: m.born, died: m.died,
                 iconAsset: topTitle))
         }
         return rows
+    }
+
+    /// Appends `, «alias».born, «alias».died` to a ruler SELECT when the
+    /// database has the columns; callers read them past the fixed columns.
+    private func lifespanColumns(_ alias: String) -> String {
+        hasLifespans ? ", \(alias).born, \(alias).died" : ""
+    }
+
+    /// The SELECT list every event query shares; positions are fixed so
+    /// `eventRow` can read them (month/day only exist on newer databases).
+    private var eventColumns: String {
+        var cols = "e.eventID, e.eventName, e.startYear, e.endYear, e.notes, e.wikipedia"
+        if hasEventDates { cols += ", e.startMonth, e.startDay" }
+        return cols
     }
 
     private func eventsByYear(yearTerm: String, textTerms: [String]) -> [SearchResult] {
@@ -265,7 +344,7 @@ actor Database {
         let (textSQL, textParams) = foldedTextSQL(columns: ["e.eventName", "e.notes"], terms: textTerms)
 
         var sql = """
-            SELECT e.eventID, e.eventName, e.startYear, e.endYear, e.notes, e.wikipedia, y.year
+            SELECT \(eventColumns)
             FROM byYear rt
             JOIN byEvents e ON rt.eventID = e.eventID
             JOIN years y ON rt.yearID = y.yearID
@@ -280,20 +359,18 @@ actor Database {
         for p in yearParams { bindAny(stmt, idx, p); idx += 1 }
         for p in textParams { bindText(stmt, idx, p); idx += 1 }
 
-        // The matched year is shown once as a header by the UI, not per row.
+        // The matched year is shown once as a header by the UI, not per row,
+        // so this row style leads with the name, not the year.
         var rows: [SearchResult] = []
         while sqlite3_step(stmt) == SQLITE_ROW {
             let name = col(stmt, 1).string
             let startYear = col(stmt, 2).int
             let endYear = col(stmt, 3).int
-            let notes = col(stmt, 4).optString ?? ""
-            let wiki = col(stmt, 5).optString
-
-            let rangeStr = startYear != endYear ? " (\(formatYear(startYear))-\(formatYear(endYear)))" : ""
-            rows.append(SearchResult(
-                kind: .event, title: "\(name)\(rangeStr)", subtitle: notes,
-                wikipediaURL: wikipediaLink(wiki, name: name),
-                startYear: startYear, endYear: endYear, iconAsset: "event"))
+            let rangeStr = startYear != endYear
+                ? " (\(formatYear(startYear))-\(formatYear(endYear)))" : ""
+            var row = eventRow(stmt)
+            row.title = "\(name)\(rangeStr)"
+            rows.append(row)
         }
         return rows
     }
@@ -301,7 +378,7 @@ actor Database {
     private func eventsByText(terms: [String]) -> [SearchResult] {
         let (textSQL, textParams) = foldedTextSQL(columns: ["e.eventName", "e.notes"], terms: terms)
         let sql = """
-            SELECT e.eventID, e.eventName, e.startYear, e.endYear, e.notes, e.wikipedia
+            SELECT \(eventColumns)
             FROM byEvents e
             WHERE \(textSQL)
             ORDER BY e.startYear;
@@ -313,21 +390,319 @@ actor Database {
 
         var rows: [SearchResult] = []
         while sqlite3_step(stmt) == SQLITE_ROW {
-            let name = col(stmt, 1).string
-            let startYear = col(stmt, 2).int
-            let endYear = col(stmt, 3).int
-            let notes = col(stmt, 4).optString ?? ""
-            let wiki = col(stmt, 5).optString
-
-            let yearString = startYear == endYear
-                ? formatYear(startYear)
-                : "\(formatYear(startYear))-\(formatYear(endYear))"
-            rows.append(SearchResult(
-                kind: .event, title: "\(yearString): \(name)", subtitle: notes,
-                wikipediaURL: wikipediaLink(wiki, name: name),
-                startYear: startYear, endYear: endYear, iconAsset: "event"))
+            rows.append(eventRow(stmt))
         }
         return rows
+    }
+
+    /// Builds the "«years»: «name»" event row shared by every event query
+    /// (they all SELECT `eventColumns`, so the positions line up).
+    private func eventRow(_ stmt: OpaquePointer?) -> SearchResult {
+        let eventID = col(stmt, 0).int
+        let name = col(stmt, 1).string
+        let startYear = col(stmt, 2).int
+        let endYear = col(stmt, 3).int
+        let notes = col(stmt, 4).optString ?? ""
+        let wiki = col(stmt, 5).optString
+        let month = hasEventDates ? col(stmt, 6).optInt : nil
+        let day = hasEventDates ? col(stmt, 7).optInt : nil
+
+        let yearString = startYear == endYear
+            ? formatYear(startYear)
+            : "\(formatYear(startYear))-\(formatYear(endYear))"
+        return SearchResult(
+            kind: .event, title: "\(yearString): \(name)", subtitle: notes,
+            wikipediaURL: wikipediaLink(wiki, name: name),
+            startYear: startYear, endYear: endYear, eventID: eventID,
+            startMonth: month, startDay: day,
+            iconAsset: "event")
+    }
+
+    /// Events whose exact start date matches a calendar day — "On this day".
+    func eventsOn(month: Int, day: Int) -> [SearchResult] {
+        guard hasEventDates else { return [] }
+        let sql = """
+            SELECT \(eventColumns)
+            FROM byEvents e
+            WHERE e.startMonth = ? AND e.startDay = ?
+            ORDER BY e.startYear;
+            """
+        guard let stmt = prepare(sql) else { return [] }
+        defer { sqlite3_finalize(stmt) }
+        sqlite3_bind_int64(stmt, 1, Int64(month))
+        sqlite3_bind_int64(stmt, 2, Int64(day))
+
+        var rows: [SearchResult] = []
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            rows.append(eventRow(stmt))
+        }
+        return rows
+    }
+
+    // MARK: - Discovery / favorites / quiz queries
+
+    /// One ruler by database ID, in the same shape as a text-search row
+    /// (used to rehydrate Favorites and the Discover card).
+    func ruler(byID id: Int) -> SearchResult? {
+        let sql = """
+            SELECT ru.rulerID, ru.name, ru.personal_name, ru.epithet, ru.wikipedia,
+                   ru.biography, per.progrTitle, per.period, per.startYear, per.endYear,
+                   per.notes, t.title, t.titlePlural\(lifespanColumns("ru"))
+            FROM rulers ru
+            JOIN byPeriod per ON ru.rulerID = per.rulerID
+            JOIN titles t ON per.titleID = t.titleID
+            WHERE ru.rulerID = ?
+            ORDER BY ru.rulerID, per.startYear;
+            """
+        guard let stmt = prepare(sql) else { return nil }
+        defer { sqlite3_finalize(stmt) }
+        sqlite3_bind_int64(stmt, 1, Int64(id))
+        return collectRulerRows(stmt).first
+    }
+
+    /// One event by database ID (used to rehydrate Favorites).
+    func event(byID id: Int) -> SearchResult? {
+        let sql = """
+            SELECT \(eventColumns)
+            FROM byEvents e WHERE e.eventID = ?;
+            """
+        guard let stmt = prepare(sql) else { return nil }
+        defer { sqlite3_finalize(stmt) }
+        sqlite3_bind_int64(stmt, 1, Int64(id))
+        guard sqlite3_step(stmt) == SQLITE_ROW else { return nil }
+        return eventRow(stmt)
+    }
+
+    /// A random ruler for the Discover screen. Excludes plain consuls and
+    /// tribunes (~85% of the table, mostly bare names) so the featured card
+    /// usually has a story to tell; emperors who were also consuls still
+    /// qualify through their other title.
+    func randomRuler() -> SearchResult? {
+        let sql = """
+            SELECT DISTINCT ru.rulerID
+            FROM rulers ru
+            JOIN byPeriod per ON ru.rulerID = per.rulerID
+            JOIN titles t ON per.titleID = t.titleID
+            WHERE t.title NOT LIKE '%Consul%' AND t.title NOT LIKE '%Tribune%'
+            ORDER BY RANDOM() LIMIT 1;
+            """
+        guard let stmt = prepare(sql) else { return nil }
+        defer { sqlite3_finalize(stmt) }
+        guard sqlite3_step(stmt) == SQLITE_ROW else { return nil }
+        return ruler(byID: col(stmt, 0).int)
+    }
+
+    /// A random event for the Discover screen.
+    func randomEvent() -> SearchResult? {
+        let sql = """
+            SELECT \(eventColumns)
+            FROM byEvents e ORDER BY RANDOM() LIMIT 1;
+            """
+        guard let stmt = prepare(sql) else { return nil }
+        defer { sqlite3_finalize(stmt) }
+        guard sqlite3_step(stmt) == SQLITE_ROW else { return nil }
+        return eventRow(stmt)
+    }
+
+    /// Titles whose "periods" are overlapping lifespans, not successive
+    /// reigns. "Who was Painter in 1503?" has many right answers, so these
+    /// are kept out of the quiz (search/lineage/timeline still show them).
+    static let lifespanTitles = ["Artist", "Composer", "Writer", "Scientist", "Philosopher"]
+
+    /// Titles with enough holders to make a quiz category with plausible
+    /// wrong answers.
+    func quizTitles(minHolders: Int = 15) -> [TitleInfo] {
+        let excluded = Database.lifespanTitles
+            .map { "'\($0)'" }.joined(separator: ", ")
+        let sql = """
+            SELECT titleID, title, titlePlural, maxCount FROM titles
+            WHERE maxCount >= ? AND title NOT IN (\(excluded)) ORDER BY title;
+            """
+        guard let stmt = prepare(sql) else { return [] }
+        defer { sqlite3_finalize(stmt) }
+        sqlite3_bind_int64(stmt, 1, Int64(minHolders))
+
+        var rows: [TitleInfo] = []
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            rows.append(TitleInfo(
+                titleID: col(stmt, 0).int, title: col(stmt, 1).string,
+                titlePlural: col(stmt, 2).optString, maxCount: col(stmt, 3).int))
+        }
+        return rows
+    }
+
+    /// The lifespan callings (Artist, Composer, …) as quiz categories. These
+    /// are kept out of `quizTitles` — the Rulers/Mixed rounds would build
+    /// ambiguous "Who was Painter in 1503?" questions from them — but they make
+    /// fine standalone "By title" rounds when asked as birth/death-year
+    /// questions instead (see QuizEngine's people questions).
+    func peopleTitles(minHolders: Int = 10) -> [TitleInfo] {
+        let included = Database.lifespanTitles
+            .map { "'\($0)'" }.joined(separator: ", ")
+        let sql = """
+            SELECT titleID, title, titlePlural, maxCount FROM titles
+            WHERE maxCount >= ? AND title IN (\(included)) ORDER BY title;
+            """
+        guard let stmt = prepare(sql) else { return [] }
+        defer { sqlite3_finalize(stmt) }
+        sqlite3_bind_int64(stmt, 1, Int64(minHolders))
+
+        var rows: [TitleInfo] = []
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            rows.append(TitleInfo(
+                titleID: col(stmt, 0).int, title: col(stmt, 1).string,
+                titlePlural: col(stmt, 2).optString, maxCount: col(stmt, 3).int))
+        }
+        return rows
+    }
+
+    /// Every reign of a title, in progression order (quiz question material
+    /// and the detail view's mini-timeline).
+    func holders(ofTitle title: String) -> [HolderRow] {
+        let sql = """
+            SELECT ru.rulerID, ru.name, per.period, per.startYear, per.endYear, per.progrTitle
+            FROM rulers ru
+            JOIN byPeriod per ON ru.rulerID = per.rulerID
+            JOIN titles t ON per.titleID = t.titleID
+            WHERE t.title = ?
+            ORDER BY per.progrTitle ASC;
+            """
+        guard let stmt = prepare(sql) else { return [] }
+        defer { sqlite3_finalize(stmt) }
+        bindText(stmt, 1, title)
+
+        var rows: [HolderRow] = []
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            rows.append(HolderRow(
+                rulerID: col(stmt, 0).int, name: col(stmt, 1).string,
+                period: col(stmt, 2).string, startYear: col(stmt, 3).int,
+                endYear: col(stmt, 4).int, progrTitle: col(stmt, 5).int))
+        }
+        return rows
+    }
+
+    /// The first and last year any holder of `title` reigned.
+    func titleSpan(_ title: String) -> ClosedRange<Int>? {
+        let sql = """
+            SELECT MIN(per.startYear), MAX(per.endYear)
+            FROM byPeriod per JOIN titles t ON per.titleID = t.titleID
+            WHERE t.title = ?;
+            """
+        guard let stmt = prepare(sql) else { return nil }
+        defer { sqlite3_finalize(stmt) }
+        bindText(stmt, 1, title)
+        guard sqlite3_step(stmt) == SQLITE_ROW,
+              sqlite3_column_type(stmt, 0) != SQLITE_NULL else { return nil }
+        let lo = col(stmt, 0).int, hi = col(stmt, 1).int
+        return lo <= hi ? lo...hi : nil
+    }
+
+    /// Every linked key work with its creator's name — the "Works & authors"
+    /// quiz pool. Empty on databases built before the `works` table existed.
+    func quizWorks() -> [WorkRow] {
+        // The table may not exist in an older shipped DB; tolerate that.
+        guard tableExists("works") else { return [] }
+        let sql = """
+            SELECT w.workTitle, w.year, w.category, w.creatorRulerID, ru.name
+            FROM works w JOIN rulers ru ON w.creatorRulerID = ru.rulerID;
+            """
+        guard let stmt = prepare(sql) else { return [] }
+        defer { sqlite3_finalize(stmt) }
+        var rows: [WorkRow] = []
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            rows.append(WorkRow(
+                title: col(stmt, 0).string, year: col(stmt, 1).int,
+                category: col(stmt, 2).string, creatorRulerID: col(stmt, 3).int,
+                creatorName: col(stmt, 4).string))
+        }
+        return rows
+    }
+
+    /// Whether a table is present — guards features that depend on a newer
+    /// database schema than a given shipped copy might have.
+    private func tableExists(_ name: String) -> Bool {
+        let sql = "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?;"
+        guard let stmt = prepare(sql) else { return false }
+        defer { sqlite3_finalize(stmt) }
+        bindText(stmt, 1, name)
+        return sqlite3_step(stmt) == SQLITE_ROW
+    }
+
+    /// Random events reduced to what a quiz question needs (no formatted
+    /// title, which would leak the answer year).
+    func randomQuizEvents(limit: Int) -> [QuizEventRow] {
+        let sql = "SELECT eventID, eventName, startYear, endYear FROM byEvents ORDER BY RANDOM() LIMIT ?;"
+        guard let stmt = prepare(sql) else { return [] }
+        defer { sqlite3_finalize(stmt) }
+        sqlite3_bind_int64(stmt, 1, Int64(limit))
+
+        var rows: [QuizEventRow] = []
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            rows.append(QuizEventRow(
+                eventID: col(stmt, 0).int, name: col(stmt, 1).string,
+                startYear: col(stmt, 2).int, endYear: col(stmt, 3).int))
+        }
+        return rows
+    }
+
+    /// Raw editable fields for the admin build's curation UI, named after
+    /// the sheet columns so a correction can address them directly. The
+    /// values double as the STALE-detection snapshot (they reflect this
+    /// database build, which is what the curator was looking at).
+    func rulerRawFields(byID id: Int) -> RawRecord? {
+        let cols = hasLifespans
+            ? "name, personal_name, epithet, wikipedia, notes, born, died"
+            : "name, personal_name, epithet, wikipedia, notes"
+        guard let stmt = prepare("SELECT \(cols) FROM rulers WHERE rulerID = ?;") else { return nil }
+        defer { sqlite3_finalize(stmt) }
+        sqlite3_bind_int64(stmt, 1, Int64(id))
+        guard sqlite3_step(stmt) == SQLITE_ROW else { return nil }
+        var fields: [RawRecord.Field] = [
+            .init(name: "Name", value: col(stmt, 0).string),
+            .init(name: "Personal Name or House", value: col(stmt, 1).string),
+            .init(name: "Epithet", value: col(stmt, 2).string),
+            .init(name: "Wikipedia", value: col(stmt, 3).string),
+            .init(name: "Notes", value: col(stmt, 4).string),
+        ]
+        if hasLifespans {
+            fields.append(.init(name: "Born", value: col(stmt, 5).optInt.map(String.init) ?? ""))
+            fields.append(.init(name: "Died", value: col(stmt, 6).optInt.map(String.init) ?? ""))
+        }
+        return RawRecord(tab: "Rulers", key: "rulerID:\(id)",
+                         displayName: fields[0].value, fields: fields)
+    }
+
+    func eventRawFields(byID id: Int) -> RawRecord? {
+        let cols = hasEventDates
+            ? "eventName, startYear, notes, wikipedia, startMonth, startDay"
+            : "eventName, startYear, notes, wikipedia"
+        guard let stmt = prepare("SELECT \(cols) FROM byEvents WHERE eventID = ?;") else { return nil }
+        defer { sqlite3_finalize(stmt) }
+        sqlite3_bind_int64(stmt, 1, Int64(id))
+        guard sqlite3_step(stmt) == SQLITE_ROW else { return nil }
+        let name = col(stmt, 0).string
+        let year = col(stmt, 1).int
+        var fields: [RawRecord.Field] = [
+            .init(name: "Event Name", value: name),
+            .init(name: "Notes", value: col(stmt, 2).string),
+            .init(name: "Wikipedia", value: col(stmt, 3).string),
+        ]
+        if hasEventDates {
+            fields.append(.init(name: "Month", value: col(stmt, 4).optInt.map(String.init) ?? ""))
+            fields.append(.init(name: "Day", value: col(stmt, 5).optInt.map(String.init) ?? ""))
+        }
+        return RawRecord(tab: "Events", key: "event:\(name)|\(year)",
+                         displayName: name, fields: fields)
+    }
+
+    /// A cheap end-to-end sanity query. False means the file opened but
+    /// isn't a usable WhoWasWhen database (e.g. a copy truncated by an app
+    /// kill mid-seed) — the caller should fall back to the bundled DB.
+    func isHealthy() -> Bool {
+        guard let stmt = prepare("SELECT COUNT(*) FROM rulers;") else { return false }
+        defer { sqlite3_finalize(stmt) }
+        guard sqlite3_step(stmt) == SQLITE_ROW else { return false }
+        return col(stmt, 0).int > 0
     }
 
     // MARK: - SQL helpers
@@ -381,6 +756,10 @@ actor Database {
     /// Lightweight typed column accessor.
     private struct Column { let stmt: OpaquePointer?; let i: Int32
         var int: Int { Int(sqlite3_column_int64(stmt, i)) }
+        var optInt: Int? {
+            sqlite3_column_type(stmt, i) == SQLITE_NULL
+                ? nil : Int(sqlite3_column_int64(stmt, i))
+        }
         var optString: String? {
             sqlite3_column_type(stmt, i) == SQLITE_NULL
                 ? nil : sqlite3_column_text(stmt, i).map { String(cString: $0) }
@@ -394,6 +773,57 @@ actor Database {
         let slug = name.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? name
         return URL(string: "https://en.wikipedia.org/wiki/\(slug)")
     }
+}
+
+/// A quiz-eligible title, doubling as a quiz category.
+struct TitleInfo: Sendable, Identifiable, Hashable {
+    let titleID: Int
+    let title: String
+    let titlePlural: String?
+    let maxCount: Int
+    var id: Int { titleID }
+}
+
+/// One reign of one holder of a title (quiz distractors + timelines).
+struct HolderRow: Sendable, Hashable {
+    let rulerID: Int
+    let name: String
+    let period: String
+    let startYear: Int
+    let endYear: Int
+    let progrTitle: Int
+}
+
+/// One record's sheet-addressable fields, for the admin curation UI.
+struct RawRecord: Sendable, Hashable {
+    struct Field: Sendable, Hashable, Identifiable {
+        let name: String
+        let value: String
+        var id: String { name }
+    }
+    let tab: String          // "Rulers" | "Events"
+    let key: String          // "rulerID:305" | "event:<name>|<year>"
+    let displayName: String
+    let fields: [Field]
+}
+
+/// An event stripped to what a quiz question needs.
+struct QuizEventRow: Sendable, Hashable {
+    let eventID: Int
+    let name: String
+    let startYear: Int
+    let endYear: Int
+}
+
+/// A key work linked to its creator (the `works` table) — the "Who wrote
+/// «work»?" quiz material. `category` is the work's kind (Artist/Composer/…),
+/// which drives the question verb and the pool its distractors come from.
+struct WorkRow: Sendable, Hashable {
+    let title: String
+    let year: Int
+    let category: String
+    let creatorRulerID: Int
+    let creatorName: String
 }
 
 /// Adds thousands separators, matching the Go `formatNumber`.

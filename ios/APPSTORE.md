@@ -8,6 +8,154 @@ Reuse the project config already documented in TESTFLIGHT.md (team `VDG762YNX9`,
 bundle id `com.giovannicoppola.WhoWasWhen`, automatic signing, build/version in
 `ios/project.yml`).
 
+## Resubmission after the 4.2 rejection (v1.1)
+
+Build 1.0 (10) was rejected under **Guideline 4.2 Minimum Functionality**
+("primarily offers content to view… not enough content/features"). v1.1 answers
+it with four tabs of functionality on top of search:
+
+- **On this day** — the search home shows an event that happened on today's
+  date (300+ events now carry exact dates), linked to its detail view.
+- **Discover** — featured ruler & event with shuffle, plus "100/200/300… years
+  ago" anniversary sections, date-aware where the data allows.
+- **Quiz** — endless multiple-choice trivia generated on-device from the
+  database (mixed, rulers, events, notable-people, or per-title rounds;
+  scores and bests tracked, with a confetti celebration for new records).
+- **Favorites** — save any ruler or event; persists across launches.
+- **Timeline** — every title's lineage as a visual timeline with century
+  markers; ruler details show a reign-position bar within the title's era.
+- **Ages & lifespans** — 1,600+ people carry birth/death years: single-year
+  searches show each ruler's age that year, and details show the lifespan.
+- **Notable people** — 200 of history's most famous artists, composers,
+  writers, scientists, and philosophers join the rulers, searchable by year
+  (e.g. "1888 artist" → van Gogh, Monet, Degas…).
+- **Wikipedia enrichment** — portraits and summary paragraphs load inline
+  (graceful offline fallback), on top of the existing 3,500+ rulers and ~900
+  events spanning 776 BC–today.
+
+When resubmitting, reply in the rejection thread in App Store Connect so the
+resolution is tracked against the original review, and paste the same text
+into the **App Review notes** field for the new build.
+
+### Reply to App Review (paste into the rejection thread / review notes)
+
+Paste the text between the lines below (fenced as a code block so it copies
+without Markdown `>` quote marks). Update the build number to match the build
+you actually submit.
+
+```
+Thank you for reviewing build 1.0 (10), which was rejected under
+Guideline 4.2 – Design – Minimum Functionality as primarily offering
+content to view. Version 1.1 addresses this directly by adding
+substantial interactive functionality around the reference database:
+
+• QUIZ — an endless multiple-choice history quiz generated on-device from
+the database: mixed rounds, rulers, events, notable people, works and
+their creators ("Who painted the Mona Lisa?"), or any specific title
+("Who was Pope in 1500?", "When did the French Revolution begin?", "When
+was van Gogh born?"). The bundled data yields thousands of distinct
+questions; per-category best scores are tracked, with a celebration
+animation for new records.
+• DISCOVER — a featured ruler and event with shuffle, plus "100/200/300…
+years ago" anniversary sections that favor events dated closest to today.
+• ON THIS DAY — the search home surfaces an event that happened on
+today's calendar date (300+ events now carry exact dates), linked to its
+detail view.
+• TIMELINES — every title's lineage as a scrollable visual timeline with
+century markers; each ruler's detail shows where the reign sits within
+the title's whole era.
+• FAVORITES — save any ruler or event; persists across launches.
+
+The dataset itself was also expanded for this release: 1,600+ figures now
+carry birth/death years — searching a year shows how old every ruler was
+at that moment (or that they were born or died that year) — and 200 of
+history's most famous artists, composers, writers, scientists, and
+philosophers join the rulers, searchable by year like everyone else
+(e.g. "1888 artist" finds van Gogh, Monet, and Degas with their ages that
+year, and the search filter offers All / People / Events).
+
+Everything works fully offline, with no account, no ads, and no data
+collection. Screenshots have been refreshed to show the new Quiz,
+Discover, and Timeline surfaces rather than search alone. We believe the
+app now offers rich interactive functionality well beyond viewing
+content, and we appreciate your taking another look.
+```
+
+### App Store description (paste into the Description field)
+
+```
+Who was king of France in 1789? Who was Pope when the Black Death struck?
+How old was van Gogh in 1888 — and who was painting alongside him?
+
+WhoWasWhen answers questions like these in an instant, from a single search
+box, entirely offline.
+
+SEARCH ANY YEAR
+Type a year — 1789, a decade like 177*, a range like 1500-1600, or -44 for
+BC — and see every ruler in office, how old each of them was that year, and
+the events happening around them. Add a word to narrow it: "1789 france",
+"15** pope", "1888 artist".
+
+3,500+ HISTORICAL FIGURES
+Kings, queens, emperors, popes, Roman consuls, presidents and prime
+ministers — joined by 200 of history's most famous artists, composers,
+writers, scientists, and philosophers. Portraits and summary paragraphs
+load from Wikipedia when you're online; everything else lives on your
+phone.
+
+ON THIS DAY
+The search screen greets you with an event that happened on today's date,
+one tap from its full story.
+
+DISCOVER
+A featured ruler and event every visit (shuffle for more), plus what
+happened 100, 200, 300… years ago today.
+
+QUIZ
+Endless multiple-choice trivia generated from the database — mixed rounds,
+rulers, events, notable people ("When was van Gogh born?"), works and their
+creators ("Who composed Messiah?"), or any title with enough holders. Best
+scores are tracked, and new records earn confetti.
+
+TIMELINES
+Every title's lineage as a scrollable visual timeline: all 267 Popes, all
+66 English Monarchs, every Roman consul — with century markers and each
+reign's place in the era.
+
+FAVORITES
+Save any ruler or event to your own collection. No account needed.
+
+PRIVATE AND OFFLINE BY DESIGN
+The full history database ships inside the app. Search, quiz, timelines,
+and favorites all work with no connection, no account, no ads, and no data
+collection of any kind.
+```
+
+### Screenshots — upload the 6.7" set
+
+**Upload `ios/screenshots-appstore/6.7-inch/`** — nine PNGs at **1284×2778**,
+already renamed `1_…`–`9_…` so Finder's Select-All → drag lands them in display
+order. This 6.7" size is what App Store Connect accepts (it rejected the 6.9"
+1320×2868 originals for the 1.0 version's slot) and it scales down to cover all
+smaller iPhones, so no separate 6.5" set is needed.
+
+The 6.9" originals (1320×2868, captured on the iPhone 16 Pro Max simulator with
+a clean 9:41 status bar) remain in `ios/screenshots-appstore/` as the masters;
+the 6.7" set is downscaled from them. Display order (data screens first, then
+interactivity):
+
+1. `1_year-1789.png` — who ruled in 1789, with portraits and ages
+2. `2_artists.png` — "1888 artist": the painters of 1888
+3. `3_quiz.png` — an event quiz question
+4. `4_quiz-people.png` — a Notable people quiz question
+5. `5_discover.png` — Discover with featured cards and anniversaries
+6. `6_einstein.png` — detail view: lifespan line + era position bar
+7. `7_timeline.png` — the English Monarchs timeline
+8. `8_onthisday-independence.png` — search home with the "On this day" card
+   (the Independence Day shot is the timeliest for a July launch; alternative
+   Gettysburg/Hattin variants are in `6.7-inch/unused/`)
+9. `9_newbest.png` — new-best score screen with confetti
+
 ## 0. Decide how the app makes money (or not)
 
 Pick this **before** you fill in pricing, because it changes which agreements and

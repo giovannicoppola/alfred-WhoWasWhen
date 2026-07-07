@@ -234,8 +234,67 @@ Use **`add_events.py`** for the **Events** tab (append-only). Ruler logic stays 
 | **Wikipedia** | Enter action URL |
 | **Event Category** | e.g. `European History` |
 | **Year or Year Range** (×3) | Display strings (`1631 CE`, etc.) — auto-filled by script |
+| **Month** / **Day** | Exact start date (integers, blank = unknown) — feeds the iOS "On this day" |
 
-SQLite `byEvents`: `eventName`, `startYear`, `endYear`, `notes`, `wikipedia`.
+SQLite `byEvents`: `eventName`, `startYear`, `endYear`, `notes`, `wikipedia`,
+`startMonth`, `startDay` (the last two NULL when Month/Day are blank).
+
+### Event dates (Month/Day)
+
+Use **`add_event_dates.py`** to fill Month/Day from Wikidata (P585 "point in
+time", else P580 "start time"), resolved through each row's Wikipedia URL —
+or by en.wikipedia title/search match when there is no URL. Dates embedded in
+names ("Battle of Rocroi (May 19)") are a second source and win on conflict.
+A Wikidata year that doesn't match Sorting year (±1) is skipped as MISMATCH.
+
+```bash
+python add_event_dates.py --dry-run          # writes event-dates-report.tsv
+python add_event_dates.py --apply            # after the user reviews the report
+```
+
+Rows with a Month already set are skipped, so re-runs only fill new events.
+
+### Ruler birth/death years (Born/Died)
+
+Use **`add_birth_death.py`** to fill integer `Born`/`Died` year columns on
+the **Rulers** tab (negative = BC) from Wikidata P569/P570, resolved via each
+row's Wikipedia URL (exact en.wikipedia title match for rows without one — no
+fuzzy search; consul homonyms make that unsafe). The curator `BirthDeath`
+column is a fallback source; Wikidata wins conflicts but they stay visible in
+the report. Sanity checks against the local DB's reign spans reject
+implausible years (born after reign start, died before reign end, lifespan
+> 110) — MISMATCH rows in the report often flag real merged-ruler bugs.
+
+```bash
+python add_birth_death.py --dry-run          # writes birth-death-report.tsv
+python add_birth_death.py --apply            # after the user reviews the report
+```
+
+SQLite `rulers` gains `born`, `died` (NULL when unknown). Rows with a Born
+value are skipped on re-runs.
+
+### Notable people (Artist / Composer / Writer / Scientist / Philosopher)
+
+Use **`add_notable_people.py`** to add famous non-rulers as lifespan
+"titles": one Rulers row (Name, RulerID, Wikipedia, Notes = description,
+Born, Died) plus one Periods row whose Period is the lifespan
+("1853-1890", "427 BC - 348 BC"). Candidates are ranked by Wikipedia
+sitelinks per Wikidata occupation; living people are excluded; the English
+description must back the category (whole-word match) or the row is
+skipped. People already on the Rulers tab (Marcus Aurelius → Philosopher)
+get only the Periods row under their existing RulerID.
+
+```bash
+python add_notable_people.py --dry-run [--per-category 40]
+python add_notable_people.py --apply         # after the user reviews the report
+```
+
+These titles have overlapping periods, so "Who was Artist in 1503?" has no
+single right answer — the iOS app keeps them out of the ruler-style quiz
+rounds (`Database.lifespanTitles`) and instead gives them their own
+"Notable people" quiz category (birth/death years and "What was this
+person?"). Search, lineage, and timeline include them like anyone else.
+Idempotent via URL and (RulerID, Title) dedup.
 
 ### Events workflow
 
@@ -282,7 +341,30 @@ Cursor skill: `.cursor/skills/whowaswhen-events/SKILL.md`
 
 ---
 
-## 10. Extending scripts
+## 10. Corrections queue (phone-submitted curation)
+
+The **Corrections** tab is an append-only queue filled by the iOS admin app
+(edit a person/event field, delete a duplicate event, or leave a free-text
+note about a record). Review and apply with **`apply_corrections.py`**:
+
+```bash
+python apply_corrections.py --list       # what's pending
+python apply_corrections.py --dry-run    # writes corrections-report.tsv
+python apply_corrections.py --apply      # after the user reviews
+```
+
+- Queue columns: `Timestamp, Action, Tab, Key, Field, Snapshot, Proposed,
+  Note, Status, Applied`. Actions: `edit`, `delete-event`, `note`.
+- Keys: `rulerID:<n>` (Rulers) or `event:<name>|<sorting year>` (Events,
+  fold-matched). Editable fields are whitelisted per tab in the script.
+- The `Snapshot` column is the value the phone saw; if the live cell has
+  changed since, the correction is flagged **STALE** and skipped.
+- `note` rows are never auto-applied — they're to-dos, listed by `--list`
+  until the user resolves them (set Status by hand or via a data edit).
+- `--apply` marks queue rows `applied` + date; deletes run bottom-up so row
+  numbers stay valid. Afterwards: `::whoWasWhen-refresh` + iOS DB sync.
+
+## 11. Extending scripts
 
 - **Events tab:** `add_events.py` + `patches/events/` (see §9).
 - **Consuls / other tabs:** add script + YAML schema; keep Periods logic separate.
@@ -291,7 +373,7 @@ Cursor skill: `.cursor/skills/whowaswhen-events/SKILL.md`
 
 ---
 
-## 11. Related repos
+## 12. Related repos
 
 - [alfred-WhoWasWhen](https://github.com/giovannicoppola/alfred-WhoWasWhen) — Alfred workflow + `ruler-query.go`
 - [alfred-gsheets](https://github.com/giovannicoppola/alfred-gsheets) — service account setup, sheet browsing

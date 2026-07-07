@@ -67,6 +67,37 @@ When the **Organizer** opens after archiving:
 2. Choose **App Store Connect** → **Upload**.
 3. Keep the defaults (automatic signing, include symbols) → **Upload**.
 
+## 4b. Command-line archive & upload (no Xcode GUI)
+
+The whole archive + upload runs headless with an **App Store Connect API key**
+(role App Manager), so it needs no Xcode App Store Connect session. Store the
+`.p8` in `~/.appstoreconnect/private_keys/AuthKey_<KeyID>.p8` (chmod 600); the
+Key ID and Issuer ID live in your local notes, **not** in this public repo.
+
+```bash
+# 1. bump build, regenerate (avoid `cd` — the shell aliases it)
+xcodegen generate --spec ios/project.yml --project ios
+
+# 2. archive (Release)
+xcodebuild -project ios/WhoWasWhen.xcodeproj -scheme WhoWasWhen \
+  -configuration Release -destination 'generic/platform=iOS' \
+  -archivePath ios/build/WhoWasWhenNN.xcarchive archive -allowProvisioningUpdates
+
+# 3. export + upload with the API key (export.plist: method app-store-connect,
+#    destination upload, signingStyle automatic, teamID VDG762YNX9)
+xcodebuild -exportArchive -archivePath ios/build/WhoWasWhenNN.xcarchive \
+  -exportOptionsPlist export.plist -exportPath ios/build/exportNN \
+  -allowProvisioningUpdates \
+  -authenticationKeyID <KeyID> \
+  -authenticationKeyIssuerID <IssuerID> \
+  -authenticationKeyPath ~/.appstoreconnect/private_keys/AuthKey_<KeyID>.p8
+```
+
+For the admin build, swap the scheme to `WhoWasWhenAdmin` and the archive/app
+name accordingly. **Do not** open the archive in the Organizer *and* upload from
+the CLI for the same build — the Organizer auto-increments the build number, so
+you'd get two builds. Use the latest VALID build when attaching for review.
+
 ## 5. Add internal testers
 
 1. In App Store Connect → your app → **TestFlight** tab.

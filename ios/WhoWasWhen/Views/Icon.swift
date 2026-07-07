@@ -9,6 +9,11 @@ enum Icon {
         if t.contains("president") { return "person.crop.square.fill" }
         if t.contains("prime minister") || t.contains("chancellor") || t.contains("premier") { return "building.columns.fill" }
         if t.contains("consul") || t.contains("tribune") || t.contains("dictator") { return "laurel.leading" }
+        if t.contains("artist") || t.contains("painter") { return "paintpalette.fill" }
+        if t.contains("composer") { return "music.note" }
+        if t.contains("writer") { return "book.fill" }
+        if t.contains("scientist") { return "atom" }
+        if t.contains("philosopher") { return "brain.head.profile" }
         return "crown.fill"
     }
 

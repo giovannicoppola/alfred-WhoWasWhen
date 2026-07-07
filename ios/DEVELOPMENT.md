@@ -50,11 +50,25 @@ xcodebuild -project ios/WhoWasWhen.xcodeproj -scheme WhoWasWhen \
 
 ## Updating the bundled database
 
-Copy the latest DB into the app resources and rebuild:
+The shipped `whoWasWhen.db` is maintained in place by the `sheet-maintenance/`
+scripts, which each write **both** committed copies (`releases/whoWasWhen.db`
+and `ios/WhoWasWhen/Resources/whoWasWhen.db`). If you only touched one, sync it:
 
 ```bash
 cp releases/whoWasWhen.db ios/WhoWasWhen/Resources/whoWasWhen.db
 ```
+
+Two derived/enrichment steps feed app features and must be (re)run after the
+data they depend on changes — both are idempotent and take `--dry-run`/`--apply`:
+
+- **`sheet-maintenance/build_works_table.py`** — builds the `works` table that
+  powers the Quiz's "Works & authors" round, linking each "Artist: Work" event
+  to its creator's `rulers` row. **Re-run after the art-works roster changes**
+  (e.g. after `load_art_works.py`); it drops and rebuilds the table.
+- **`sheet-maintenance/set_ruler_wikipedia.py`** — fills empty `rulers.wikipedia`
+  links from the reviewed `patches/rulers/wikipedia-links.tsv`, so ambiguous
+  names (e.g. "Frederick II") get a specific article instead of a Wikipedia
+  disambiguation page. Only fills blank links; never overwrites curated ones.
 
 ## Enabling the iCloud Drive refresh (for signed/release builds)
 
@@ -69,8 +83,10 @@ The optional "use a newer DB from iCloud" feature needs the iCloud capability:
 
 ## App icon
 
-The app icon reuses the Alfred workflow's crowned globe; the accent color is in
-`Assets.xcassets`.
+The app icon reuses the Alfred workflow's crowned globe (blue for the public app,
+red for the admin build). Each `AppIcon*.appiconset` carries a **light** variant
+and a **dark** variant (same artwork on a dark-gray gradient background, per iOS's
+`luminosity` appearance) so it matches the home screen's dark icon style.
 
 ## Distribution
 
@@ -82,3 +98,17 @@ project is configured to sign with team `VDG762YNX9` and bundle id
   archiving in Xcode, uploading, and adding internal testers.
 - **[APPSTORE.md](APPSTORE.md)** — taking a tested build through App Review to a
   public listing, plus monetization options.
+
+## The admin build (WhoWasWhenAdmin)
+
+A curator-only second target: the same app plus an **Admin** tab and a
+per-record **Curate** sheet (edit a person/event field, delete a duplicate
+event, note to self) that appends to the master sheet's Corrections tab
+(reviewed at the desk with `sheet-maintenance/apply_corrections.py`).
+
+- Bundle id `com.giovannicoppola.WhoWasWhen.admin`, display name "WWW Admin";
+  distribute via **internal TestFlight only** — never submit it for review.
+- Writes authenticate with the sheet-maintenance service account: paste its
+  JSON key once into the Admin tab (Keychain only; never bundled or committed).
+- The public target excludes `WhoWasWhen/Admin/` entirely, so none of this
+  code ships in the App Store binary.

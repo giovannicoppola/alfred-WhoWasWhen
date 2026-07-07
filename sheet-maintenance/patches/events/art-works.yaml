@@ -1,0 +1,2137 @@
+events:
+- name: 'Giovanni Pierluigi da Palestrina: Missa Papae Marcelli'
+  start_year: 1562
+  end_year: 1562
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Giovanni_Pierluigi_da_Palestrina
+  category: Music
+- name: 'Antonio Vivaldi: The Four Seasons'
+  start_year: 1725
+  end_year: 1725
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Antonio_Vivaldi
+  category: Music
+- name: 'Antonio Vivaldi: L''estro armonico'
+  start_year: 1711
+  end_year: 1711
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Antonio_Vivaldi
+  category: Music
+- name: 'Johann Sebastian Bach: Brandenburg Concertos'
+  start_year: 1721
+  end_year: 1721
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Johann_Sebastian_Bach
+  category: Music
+- name: 'Johann Sebastian Bach: St Matthew Passion'
+  start_year: 1727
+  end_year: 1727
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Johann_Sebastian_Bach
+  category: Music
+- name: 'Johann Sebastian Bach: Mass in B minor'
+  start_year: 1749
+  end_year: 1749
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Johann_Sebastian_Bach
+  category: Music
+- name: 'George Frideric Handel: Messiah'
+  start_year: 1742
+  end_year: 1742
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/George_Frideric_Handel
+  category: Music
+- name: 'George Frideric Handel: Water Music'
+  start_year: 1717
+  end_year: 1717
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/George_Frideric_Handel
+  category: Music
+- name: 'George Frideric Handel: Music for the Royal Fireworks'
+  start_year: 1749
+  end_year: 1749
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/George_Frideric_Handel
+  category: Music
+- name: 'Joseph Haydn: The Creation'
+  start_year: 1798
+  end_year: 1798
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Joseph_Haydn
+  category: Music
+- name: 'Joseph Haydn: Symphony No. 94 "Surprise"'
+  start_year: 1791
+  end_year: 1791
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Joseph_Haydn
+  category: Music
+- name: 'Wolfgang Amadeus Mozart: The Marriage of Figaro'
+  start_year: 1786
+  end_year: 1786
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Wolfgang_Amadeus_Mozart
+  category: Music
+- name: 'Wolfgang Amadeus Mozart: Don Giovanni'
+  start_year: 1787
+  end_year: 1787
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Wolfgang_Amadeus_Mozart
+  category: Music
+- name: 'Wolfgang Amadeus Mozart: Requiem'
+  start_year: 1791
+  end_year: 1791
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Wolfgang_Amadeus_Mozart
+  category: Music
+- name: 'Ludwig van Beethoven: Symphony No. 5'
+  start_year: 1808
+  end_year: 1808
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Ludwig_van_Beethoven
+  category: Music
+- name: 'Ludwig van Beethoven: Symphony No. 9'
+  start_year: 1824
+  end_year: 1824
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Ludwig_van_Beethoven
+  category: Music
+- name: 'Ludwig van Beethoven: Moonlight Sonata'
+  start_year: 1801
+  end_year: 1801
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Ludwig_van_Beethoven
+  category: Music
+- name: 'Niccolò Paganini: 24 Caprices'
+  start_year: 1817
+  end_year: 1817
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Niccol%C3%B2_Paganini
+  category: Music
+- name: 'Gioachino Rossini: The Barber of Seville'
+  start_year: 1816
+  end_year: 1816
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Gioachino_Rossini
+  category: Music
+- name: 'Gioachino Rossini: William Tell'
+  start_year: 1829
+  end_year: 1829
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Gioachino_Rossini
+  category: Music
+- name: 'Franz Schubert: Symphony No. 8 "Unfinished"'
+  start_year: 1822
+  end_year: 1822
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Franz_Schubert
+  category: Music
+- name: 'Franz Schubert: Winterreise'
+  start_year: 1827
+  end_year: 1827
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Franz_Schubert
+  category: Music
+- name: 'Hector Berlioz: Symphonie fantastique'
+  start_year: 1830
+  end_year: 1830
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Hector_Berlioz
+  category: Music
+- name: 'Felix Mendelssohn: A Midsummer Night''s Dream (Wedding March)'
+  start_year: 1842
+  end_year: 1842
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Felix_Mendelssohn
+  category: Music
+- name: 'Felix Mendelssohn: Violin Concerto in E minor'
+  start_year: 1844
+  end_year: 1844
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Felix_Mendelssohn
+  category: Music
+- name: 'Frédéric Chopin: Nocturnes'
+  start_year: 1832
+  end_year: 1832
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Fr%C3%A9d%C3%A9ric_Chopin
+  category: Music
+- name: 'Frédéric Chopin: Études'
+  start_year: 1833
+  end_year: 1833
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Fr%C3%A9d%C3%A9ric_Chopin
+  category: Music
+- name: 'Robert Schumann: Carnaval'
+  start_year: 1835
+  end_year: 1835
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Robert_Schumann
+  category: Music
+- name: 'Robert Schumann: Piano Concerto in A minor'
+  start_year: 1845
+  end_year: 1845
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Robert_Schumann
+  category: Music
+- name: 'Franz Liszt: Hungarian Rhapsodies'
+  start_year: 1853
+  end_year: 1853
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Franz_Liszt
+  category: Music
+- name: 'Franz Liszt: Piano Sonata in B minor'
+  start_year: 1853
+  end_year: 1853
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Franz_Liszt
+  category: Music
+- name: 'Richard Wagner: The Ring of the Nibelung'
+  start_year: 1876
+  end_year: 1876
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Richard_Wagner
+  category: Music
+- name: 'Richard Wagner: Tristan und Isolde'
+  start_year: 1865
+  end_year: 1865
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Richard_Wagner
+  category: Music
+- name: 'Giuseppe Verdi: Rigoletto'
+  start_year: 1851
+  end_year: 1851
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Giuseppe_Verdi
+  category: Music
+- name: 'Giuseppe Verdi: La traviata'
+  start_year: 1853
+  end_year: 1853
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Giuseppe_Verdi
+  category: Music
+- name: 'Giuseppe Verdi: Aida'
+  start_year: 1871
+  end_year: 1871
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Giuseppe_Verdi
+  category: Music
+- name: 'Jacques Offenbach: Orpheus in the Underworld'
+  start_year: 1858
+  end_year: 1858
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Jacques_Offenbach
+  category: Music
+- name: 'Jacques Offenbach: The Tales of Hoffmann'
+  start_year: 1881
+  end_year: 1881
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Jacques_Offenbach
+  category: Music
+- name: 'Bedřich Smetana: The Moldau (Vltava)'
+  start_year: 1874
+  end_year: 1874
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Bed%C5%99ich_Smetana
+  category: Music
+- name: 'Bedřich Smetana: The Bartered Bride'
+  start_year: 1866
+  end_year: 1866
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Bed%C5%99ich_Smetana
+  category: Music
+- name: 'Johannes Brahms: Symphony No. 1'
+  start_year: 1876
+  end_year: 1876
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Johannes_Brahms
+  category: Music
+- name: 'Johannes Brahms: A German Requiem'
+  start_year: 1868
+  end_year: 1868
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Johannes_Brahms
+  category: Music
+- name: 'Alexander Borodin: In the Steppes of Central Asia'
+  start_year: 1880
+  end_year: 1880
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Alexander_Borodin
+  category: Music
+- name: 'Alexander Borodin: Prince Igor'
+  start_year: 1890
+  end_year: 1890
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Alexander_Borodin
+  category: Music
+- name: 'Georges Bizet: Carmen'
+  start_year: 1875
+  end_year: 1875
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Georges_Bizet
+  category: Music
+- name: 'Pyotr Ilyich Tchaikovsky: Swan Lake'
+  start_year: 1876
+  end_year: 1876
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Pyotr_Ilyich_Tchaikovsky
+  category: Music
+- name: 'Pyotr Ilyich Tchaikovsky: The Nutcracker'
+  start_year: 1892
+  end_year: 1892
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Pyotr_Ilyich_Tchaikovsky
+  category: Music
+- name: 'Pyotr Ilyich Tchaikovsky: 1812 Overture'
+  start_year: 1880
+  end_year: 1880
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Pyotr_Ilyich_Tchaikovsky
+  category: Music
+- name: 'Antonín Dvořák: Symphony No. 9 "From the New World"'
+  start_year: 1893
+  end_year: 1893
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Anton%C3%ADn_Dvo%C5%99%C3%A1k
+  category: Music
+- name: 'Edvard Grieg: Peer Gynt'
+  start_year: 1875
+  end_year: 1875
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Edvard_Grieg
+  category: Music
+- name: 'Edvard Grieg: Piano Concerto in A minor'
+  start_year: 1868
+  end_year: 1868
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Edvard_Grieg
+  category: Music
+- name: 'Nikolai Rimsky-Korsakov: Scheherazade'
+  start_year: 1888
+  end_year: 1888
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Nikolai_Rimsky-Korsakov
+  category: Music
+- name: 'Nikolai Rimsky-Korsakov: Flight of the Bumblebee'
+  start_year: 1900
+  end_year: 1900
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Nikolai_Rimsky-Korsakov
+  category: Music
+- name: 'Giacomo Puccini: La bohème'
+  start_year: 1896
+  end_year: 1896
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Giacomo_Puccini
+  category: Music
+- name: 'Giacomo Puccini: Tosca'
+  start_year: 1900
+  end_year: 1900
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Giacomo_Puccini
+  category: Music
+- name: 'Giacomo Puccini: Madama Butterfly'
+  start_year: 1904
+  end_year: 1904
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Giacomo_Puccini
+  category: Music
+- name: 'Gustav Mahler: Symphony No. 2 "Resurrection"'
+  start_year: 1894
+  end_year: 1894
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Gustav_Mahler
+  category: Music
+- name: 'Gustav Mahler: Das Lied von der Erde'
+  start_year: 1909
+  end_year: 1909
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Gustav_Mahler
+  category: Music
+- name: 'Claude Debussy: Prélude à l''après-midi d''un faune'
+  start_year: 1894
+  end_year: 1894
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Claude_Debussy
+  category: Music
+- name: 'Claude Debussy: La Mer'
+  start_year: 1905
+  end_year: 1905
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Claude_Debussy
+  category: Music
+- name: 'Claude Debussy: Clair de Lune'
+  start_year: 1905
+  end_year: 1905
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Claude_Debussy
+  category: Music
+- name: 'Richard Strauss: Also sprach Zarathustra'
+  start_year: 1896
+  end_year: 1896
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Richard_Strauss
+  category: Music
+- name: 'Richard Strauss: Der Rosenkavalier'
+  start_year: 1911
+  end_year: 1911
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Richard_Strauss
+  category: Music
+- name: 'Jean Sibelius: Finlandia'
+  start_year: 1900
+  end_year: 1900
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Jean_Sibelius
+  category: Music
+- name: 'Jean Sibelius: Violin Concerto in D minor'
+  start_year: 1904
+  end_year: 1904
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Jean_Sibelius
+  category: Music
+- name: 'Sergei Rachmaninoff: Piano Concerto No. 2'
+  start_year: 1901
+  end_year: 1901
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Sergei_Rachmaninoff
+  category: Music
+- name: 'Sergei Rachmaninoff: Rhapsody on a Theme of Paganini'
+  start_year: 1934
+  end_year: 1934
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Sergei_Rachmaninoff
+  category: Music
+- name: 'Maurice Ravel: Boléro'
+  start_year: 1928
+  end_year: 1928
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Maurice_Ravel
+  category: Music
+- name: 'Maurice Ravel: Daphnis et Chloé'
+  start_year: 1912
+  end_year: 1912
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Maurice_Ravel
+  category: Music
+- name: 'Béla Bartók: Concerto for Orchestra'
+  start_year: 1943
+  end_year: 1943
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/B%C3%A9la_Bart%C3%B3k
+  category: Music
+- name: 'Béla Bartók: Bluebeard''s Castle'
+  start_year: 1911
+  end_year: 1911
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/B%C3%A9la_Bart%C3%B3k
+  category: Music
+- name: 'Igor Stravinsky: The Rite of Spring'
+  start_year: 1913
+  end_year: 1913
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Igor_Stravinsky
+  category: Music
+- name: 'Igor Stravinsky: The Firebird'
+  start_year: 1910
+  end_year: 1910
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Igor_Stravinsky
+  category: Music
+- name: 'Igor Stravinsky: Petrushka'
+  start_year: 1911
+  end_year: 1911
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Igor_Stravinsky
+  category: Music
+- name: 'Sergei Prokofiev: Peter and the Wolf'
+  start_year: 1936
+  end_year: 1936
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Sergei_Prokofiev
+  category: Music
+- name: 'Sergei Prokofiev: Romeo and Juliet'
+  start_year: 1935
+  end_year: 1935
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Sergei_Prokofiev
+  category: Music
+- name: 'Dmitri Shostakovich: Symphony No. 5'
+  start_year: 1937
+  end_year: 1937
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Dmitri_Shostakovich
+  category: Music
+- name: 'Dmitri Shostakovich: Symphony No. 7 "Leningrad"'
+  start_year: 1941
+  end_year: 1941
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Dmitri_Shostakovich
+  category: Music
+- name: 'Miles Davis: Kind of Blue'
+  start_year: 1959
+  end_year: 1959
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Miles_Davis
+  category: Music
+- name: 'Miles Davis: Bitches Brew'
+  start_year: 1970
+  end_year: 1970
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Miles_Davis
+  category: Music
+- name: 'Ennio Morricone: The Good, the Bad and the Ugly (score)'
+  start_year: 1966
+  end_year: 1966
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Ennio_Morricone
+  category: Music
+- name: 'Ennio Morricone: The Mission (score)'
+  start_year: 1986
+  end_year: 1986
+  notes: Musical work
+  wikipedia: https://en.wikipedia.org/wiki/Ennio_Morricone
+  category: Music
+- name: 'Giotto: Scrovegni Chapel frescoes'
+  start_year: 1305
+  end_year: 1305
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Giotto
+  category: Art
+- name: 'Donatello: David (bronze)'
+  start_year: 1440
+  end_year: 1440
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Donatello
+  category: Art
+- name: 'Sandro Botticelli: The Birth of Venus'
+  start_year: 1485
+  end_year: 1485
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Sandro_Botticelli
+  category: Art
+- name: 'Sandro Botticelli: Primavera'
+  start_year: 1482
+  end_year: 1482
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Sandro_Botticelli
+  category: Art
+- name: 'Albrecht Dürer: Melencolia I'
+  start_year: 1514
+  end_year: 1514
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Albrecht_D%C3%BCrer
+  category: Art
+- name: 'Albrecht Dürer: Self-Portrait'
+  start_year: 1500
+  end_year: 1500
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Albrecht_D%C3%BCrer
+  category: Art
+- name: 'Michelangelo: David'
+  start_year: 1504
+  end_year: 1504
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Michelangelo
+  category: Art
+- name: 'Michelangelo: Sistine Chapel ceiling'
+  start_year: 1512
+  end_year: 1512
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Michelangelo
+  category: Art
+- name: 'Michelangelo: Pietà'
+  start_year: 1499
+  end_year: 1499
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Michelangelo
+  category: Art
+- name: 'Raphael: The School of Athens'
+  start_year: 1511
+  end_year: 1511
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Raphael
+  category: Art
+- name: 'Raphael: Sistine Madonna'
+  start_year: 1512
+  end_year: 1512
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Raphael
+  category: Art
+- name: 'Titian: Venus of Urbino'
+  start_year: 1538
+  end_year: 1538
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Titian
+  category: Art
+- name: 'Titian: Assumption of the Virgin'
+  start_year: 1518
+  end_year: 1518
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Titian
+  category: Art
+- name: 'El Greco: The Burial of the Count of Orgaz'
+  start_year: 1588
+  end_year: 1588
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/El_Greco
+  category: Art
+- name: 'El Greco: View of Toledo'
+  start_year: 1600
+  end_year: 1600
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/El_Greco
+  category: Art
+- name: 'Caravaggio: The Calling of Saint Matthew'
+  start_year: 1600
+  end_year: 1600
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Caravaggio
+  category: Art
+- name: 'Caravaggio: Judith Beheading Holofernes'
+  start_year: 1599
+  end_year: 1599
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Caravaggio
+  category: Art
+- name: 'Peter Paul Rubens: The Descent from the Cross'
+  start_year: 1614
+  end_year: 1614
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Peter_Paul_Rubens
+  category: Art
+- name: 'Peter Paul Rubens: The Garden of Love'
+  start_year: 1633
+  end_year: 1633
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Peter_Paul_Rubens
+  category: Art
+- name: 'Diego Velázquez: Las Meninas'
+  start_year: 1656
+  end_year: 1656
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Diego_Vel%C3%A1zquez
+  category: Art
+- name: 'Diego Velázquez: The Surrender of Breda'
+  start_year: 1635
+  end_year: 1635
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Diego_Vel%C3%A1zquez
+  category: Art
+- name: 'Rembrandt: The Night Watch'
+  start_year: 1642
+  end_year: 1642
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Rembrandt
+  category: Art
+- name: 'Rembrandt: The Anatomy Lesson of Dr. Nicolaes Tulp'
+  start_year: 1632
+  end_year: 1632
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Rembrandt
+  category: Art
+- name: 'Johannes Vermeer: Girl with a Pearl Earring'
+  start_year: 1665
+  end_year: 1665
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Johannes_Vermeer
+  category: Art
+- name: 'Johannes Vermeer: The Milkmaid'
+  start_year: 1658
+  end_year: 1658
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Johannes_Vermeer
+  category: Art
+- name: 'Francisco Goya: The Third of May 1808'
+  start_year: 1814
+  end_year: 1814
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Francisco_Goya
+  category: Art
+- name: 'Francisco Goya: Saturn Devouring His Son'
+  start_year: 1823
+  end_year: 1823
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Francisco_Goya
+  category: Art
+- name: 'Katsushika Hokusai: The Great Wave off Kanagawa'
+  start_year: 1831
+  end_year: 1831
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Hokusai
+  category: Art
+- name: 'Katsushika Hokusai: Thirty-six Views of Mount Fuji'
+  start_year: 1831
+  end_year: 1831
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Hokusai
+  category: Art
+- name: 'Jean-Auguste-Dominique Ingres: La Grande Odalisque'
+  start_year: 1814
+  end_year: 1814
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Jean-Auguste-Dominique_Ingres
+  category: Art
+- name: 'Jean-Auguste-Dominique Ingres: The Turkish Bath'
+  start_year: 1862
+  end_year: 1862
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Jean-Auguste-Dominique_Ingres
+  category: Art
+- name: 'Eugène Delacroix: Liberty Leading the People'
+  start_year: 1830
+  end_year: 1830
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Eug%C3%A8ne_Delacroix
+  category: Art
+- name: 'Eugène Delacroix: The Death of Sardanapalus'
+  start_year: 1827
+  end_year: 1827
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Eug%C3%A8ne_Delacroix
+  category: Art
+- name: 'Édouard Manet: Olympia'
+  start_year: 1863
+  end_year: 1863
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/%C3%89douard_Manet
+  category: Art
+- name: 'Édouard Manet: Le Déjeuner sur l''herbe'
+  start_year: 1863
+  end_year: 1863
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/%C3%89douard_Manet
+  category: Art
+- name: 'Édouard Manet: A Bar at the Folies-Bergère'
+  start_year: 1882
+  end_year: 1882
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/%C3%89douard_Manet
+  category: Art
+- name: 'Edgar Degas: The Ballet Class'
+  start_year: 1874
+  end_year: 1874
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Edgar_Degas
+  category: Art
+- name: 'Edgar Degas: The Little Fourteen-Year-Old Dancer'
+  start_year: 1881
+  end_year: 1881
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Edgar_Degas
+  category: Art
+- name: 'Paul Cézanne: The Card Players'
+  start_year: 1895
+  end_year: 1895
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Paul_C%C3%A9zanne
+  category: Art
+- name: 'Paul Cézanne: Mont Sainte-Victoire'
+  start_year: 1904
+  end_year: 1904
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Paul_C%C3%A9zanne
+  category: Art
+- name: 'Claude Monet: Impression, Sunrise'
+  start_year: 1872
+  end_year: 1872
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Claude_Monet
+  category: Art
+- name: 'Claude Monet: Water Lilies'
+  start_year: 1916
+  end_year: 1916
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Claude_Monet
+  category: Art
+- name: 'Auguste Rodin: The Thinker'
+  start_year: 1904
+  end_year: 1904
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Auguste_Rodin
+  category: Art
+- name: 'Auguste Rodin: The Kiss'
+  start_year: 1882
+  end_year: 1882
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Auguste_Rodin
+  category: Art
+- name: 'Pierre-Auguste Renoir: Luncheon of the Boating Party'
+  start_year: 1881
+  end_year: 1881
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Pierre-Auguste_Renoir
+  category: Art
+- name: 'Pierre-Auguste Renoir: Bal du moulin de la Galette'
+  start_year: 1876
+  end_year: 1876
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Pierre-Auguste_Renoir
+  category: Art
+- name: 'Sarah Bernhardt: La Tosca (title role)'
+  start_year: 1887
+  end_year: 1887
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Sarah_Bernhardt
+  category: Art
+- name: 'Sarah Bernhardt: Hamlet (title role)'
+  start_year: 1899
+  end_year: 1899
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Sarah_Bernhardt
+  category: Art
+- name: 'Paul Gauguin: Where Do We Come From? What Are We? Where Are We Going?'
+  start_year: 1898
+  end_year: 1898
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Paul_Gauguin
+  category: Art
+- name: 'Paul Gauguin: Vision After the Sermon'
+  start_year: 1888
+  end_year: 1888
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Paul_Gauguin
+  category: Art
+- name: 'Vincent van Gogh: The Starry Night'
+  start_year: 1889
+  end_year: 1889
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Vincent_van_Gogh
+  category: Art
+- name: 'Vincent van Gogh: Sunflowers'
+  start_year: 1888
+  end_year: 1888
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Vincent_van_Gogh
+  category: Art
+- name: 'Vincent van Gogh: The Potato Eaters'
+  start_year: 1885
+  end_year: 1885
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Vincent_van_Gogh
+  category: Art
+- name: 'Gustav Klimt: The Kiss'
+  start_year: 1908
+  end_year: 1908
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Gustav_Klimt
+  category: Art
+- name: 'Gustav Klimt: Portrait of Adele Bloch-Bauer I'
+  start_year: 1907
+  end_year: 1907
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Gustav_Klimt
+  category: Art
+- name: 'Edvard Munch: The Scream'
+  start_year: 1893
+  end_year: 1893
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Edvard_Munch
+  category: Art
+- name: 'Edvard Munch: Madonna'
+  start_year: 1894
+  end_year: 1894
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Edvard_Munch
+  category: Art
+- name: 'Henri de Toulouse-Lautrec: Moulin Rouge: La Goulue (poster)'
+  start_year: 1891
+  end_year: 1891
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Henri_de_Toulouse-Lautrec
+  category: Art
+- name: 'Henri de Toulouse-Lautrec: At the Moulin Rouge'
+  start_year: 1895
+  end_year: 1895
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Henri_de_Toulouse-Lautrec
+  category: Art
+- name: 'Wassily Kandinsky: Composition VII'
+  start_year: 1913
+  end_year: 1913
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Wassily_Kandinsky
+  category: Art
+- name: 'Wassily Kandinsky: On the Spiritual in Art'
+  start_year: 1911
+  end_year: 1911
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Wassily_Kandinsky
+  category: Art
+- name: 'Henri Matisse: The Dance'
+  start_year: 1910
+  end_year: 1910
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Henri_Matisse
+  category: Art
+- name: 'Henri Matisse: Woman with a Hat'
+  start_year: 1905
+  end_year: 1905
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Henri_Matisse
+  category: Art
+- name: 'Paul Klee: Twittering Machine'
+  start_year: 1922
+  end_year: 1922
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Paul_Klee
+  category: Art
+- name: 'Paul Klee: Senecio'
+  start_year: 1922
+  end_year: 1922
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Paul_Klee
+  category: Art
+- name: 'Pablo Picasso: Guernica'
+  start_year: 1937
+  end_year: 1937
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Pablo_Picasso
+  category: Art
+- name: 'Pablo Picasso: Les Demoiselles d''Avignon'
+  start_year: 1907
+  end_year: 1907
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Pablo_Picasso
+  category: Art
+- name: 'Pablo Picasso: The Old Guitarist'
+  start_year: 1904
+  end_year: 1904
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Pablo_Picasso
+  category: Art
+- name: 'Marc Chagall: I and the Village'
+  start_year: 1911
+  end_year: 1911
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Marc_Chagall
+  category: Art
+- name: 'Marc Chagall: The Fiddler'
+  start_year: 1912
+  end_year: 1912
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Marc_Chagall
+  category: Art
+- name: 'Joan Miró: The Harlequin''s Carnival'
+  start_year: 1925
+  end_year: 1925
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Joan_Mir%C3%B3
+  category: Art
+- name: 'Joan Miró: The Farm'
+  start_year: 1922
+  end_year: 1922
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Joan_Mir%C3%B3
+  category: Art
+- name: 'Salvador Dalí: The Persistence of Memory'
+  start_year: 1931
+  end_year: 1931
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Salvador_Dal%C3%AD
+  category: Art
+- name: 'Salvador Dalí: The Temptation of St. Anthony'
+  start_year: 1946
+  end_year: 1946
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Salvador_Dal%C3%AD
+  category: Art
+- name: 'Frida Kahlo: The Two Fridas'
+  start_year: 1939
+  end_year: 1939
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Frida_Kahlo
+  category: Art
+- name: 'Frida Kahlo: Self-Portrait with Thorn Necklace and Hummingbird'
+  start_year: 1940
+  end_year: 1940
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Frida_Kahlo
+  category: Art
+- name: 'Jackson Pollock: No. 5, 1948'
+  start_year: 1948
+  end_year: 1948
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Jackson_Pollock
+  category: Art
+- name: 'Jackson Pollock: Autumn Rhythm'
+  start_year: 1950
+  end_year: 1950
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Jackson_Pollock
+  category: Art
+- name: 'Andy Warhol: Campbell''s Soup Cans'
+  start_year: 1962
+  end_year: 1962
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Andy_Warhol
+  category: Art
+- name: 'Andy Warhol: Marilyn Diptych'
+  start_year: 1962
+  end_year: 1962
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/Andy_Warhol
+  category: Art
+- name: 'David Lynch: Eraserhead'
+  start_year: 1977
+  end_year: 1977
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/David_Lynch
+  category: Art
+- name: 'David Lynch: Blue Velvet'
+  start_year: 1986
+  end_year: 1986
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/David_Lynch
+  category: Art
+- name: 'David Lynch: Twin Peaks'
+  start_year: 1990
+  end_year: 1990
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/David_Lynch
+  category: Art
+- name: 'David Lynch: Mulholland Drive'
+  start_year: 2001
+  end_year: 2001
+  notes: Work of art
+  wikipedia: https://en.wikipedia.org/wiki/David_Lynch
+  category: Art
+- name: 'Sophocles: Oedipus Rex'
+  start_year: -429
+  end_year: -429
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Sophocles
+  category: Literature
+- name: 'Sophocles: Antigone'
+  start_year: -441
+  end_year: -441
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Sophocles
+  category: Literature
+- name: 'Virgil: The Aeneid'
+  start_year: -19
+  end_year: -19
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Virgil
+  category: Literature
+- name: 'Virgil: Georgics'
+  start_year: -29
+  end_year: -29
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Virgil
+  category: Literature
+- name: 'Ovid: Metamorphoses'
+  start_year: 8
+  end_year: 8
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Ovid
+  category: Literature
+- name: 'Dante Alighieri: The Divine Comedy'
+  start_year: 1320
+  end_year: 1320
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Dante_Alighieri
+  category: Literature
+- name: 'Geoffrey Chaucer: The Canterbury Tales'
+  start_year: 1400
+  end_year: 1400
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Geoffrey_Chaucer
+  category: Literature
+- name: 'Miguel de Cervantes: Don Quixote'
+  start_year: 1605
+  end_year: 1605
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Miguel_de_Cervantes
+  category: Literature
+- name: 'William Shakespeare: Hamlet'
+  start_year: 1600
+  end_year: 1600
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/William_Shakespeare
+  category: Literature
+- name: 'William Shakespeare: Romeo and Juliet'
+  start_year: 1595
+  end_year: 1595
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/William_Shakespeare
+  category: Literature
+- name: 'William Shakespeare: Macbeth'
+  start_year: 1606
+  end_year: 1606
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/William_Shakespeare
+  category: Literature
+- name: 'Molière: Tartuffe'
+  start_year: 1664
+  end_year: 1664
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Moli%C3%A8re
+  category: Literature
+- name: 'Molière: The Misanthrope'
+  start_year: 1666
+  end_year: 1666
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Moli%C3%A8re
+  category: Literature
+- name: 'Matsuo Bashō: The Narrow Road to the Deep North'
+  start_year: 1694
+  end_year: 1694
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Matsuo_Bash%C5%8D
+  category: Literature
+- name: 'Voltaire: Candide'
+  start_year: 1759
+  end_year: 1759
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Voltaire
+  category: Literature
+- name: 'Benjamin Franklin: Poor Richard''s Almanack'
+  start_year: 1732
+  end_year: 1732
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Benjamin_Franklin
+  category: Literature
+- name: 'Benjamin Franklin: The Autobiography of Benjamin Franklin'
+  start_year: 1791
+  end_year: 1791
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Benjamin_Franklin
+  category: Literature
+- name: 'Johann Wolfgang von Goethe: Faust'
+  start_year: 1808
+  end_year: 1808
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Johann_Wolfgang_von_Goethe
+  category: Literature
+- name: 'Johann Wolfgang von Goethe: The Sorrows of Young Werther'
+  start_year: 1774
+  end_year: 1774
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Johann_Wolfgang_von_Goethe
+  category: Literature
+- name: 'Friedrich Schiller: William Tell'
+  start_year: 1804
+  end_year: 1804
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Friedrich_Schiller
+  category: Literature
+- name: 'Friedrich Schiller: The Robbers'
+  start_year: 1781
+  end_year: 1781
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Friedrich_Schiller
+  category: Literature
+- name: 'Jane Austen: Pride and Prejudice'
+  start_year: 1813
+  end_year: 1813
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Jane_Austen
+  category: Literature
+- name: 'Jane Austen: Sense and Sensibility'
+  start_year: 1811
+  end_year: 1811
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Jane_Austen
+  category: Literature
+- name: 'Jane Austen: Emma'
+  start_year: 1815
+  end_year: 1815
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Jane_Austen
+  category: Literature
+- name: 'Lord Byron: Don Juan'
+  start_year: 1819
+  end_year: 1819
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Lord_Byron
+  category: Literature
+- name: 'Lord Byron: Childe Harold''s Pilgrimage'
+  start_year: 1812
+  end_year: 1812
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Lord_Byron
+  category: Literature
+- name: 'Alexander Pushkin: Eugene Onegin'
+  start_year: 1833
+  end_year: 1833
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Alexander_Pushkin
+  category: Literature
+- name: 'Alexander Pushkin: The Bronze Horseman'
+  start_year: 1837
+  end_year: 1837
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Alexander_Pushkin
+  category: Literature
+- name: 'Hans Christian Andersen: The Little Mermaid'
+  start_year: 1837
+  end_year: 1837
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Hans_Christian_Andersen
+  category: Literature
+- name: 'Hans Christian Andersen: Fairy Tales'
+  start_year: 1835
+  end_year: 1835
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Hans_Christian_Andersen
+  category: Literature
+- name: 'Edgar Allan Poe: The Raven'
+  start_year: 1845
+  end_year: 1845
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Edgar_Allan_Poe
+  category: Literature
+- name: 'Edgar Allan Poe: The Tell-Tale Heart'
+  start_year: 1843
+  end_year: 1843
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Edgar_Allan_Poe
+  category: Literature
+- name: 'Charles Dickens: A Christmas Carol'
+  start_year: 1843
+  end_year: 1843
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Charles_Dickens
+  category: Literature
+- name: 'Charles Dickens: Oliver Twist'
+  start_year: 1838
+  end_year: 1838
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Charles_Dickens
+  category: Literature
+- name: 'Charles Dickens: Great Expectations'
+  start_year: 1861
+  end_year: 1861
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Charles_Dickens
+  category: Literature
+- name: 'Fyodor Dostoyevsky: Crime and Punishment'
+  start_year: 1866
+  end_year: 1866
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Fyodor_Dostoevsky
+  category: Literature
+- name: 'Fyodor Dostoyevsky: The Brothers Karamazov'
+  start_year: 1880
+  end_year: 1880
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Fyodor_Dostoevsky
+  category: Literature
+- name: 'Charles Baudelaire: Les Fleurs du mal'
+  start_year: 1857
+  end_year: 1857
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Charles_Baudelaire
+  category: Literature
+- name: 'Leo Tolstoy: War and Peace'
+  start_year: 1869
+  end_year: 1869
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Leo_Tolstoy
+  category: Literature
+- name: 'Leo Tolstoy: Anna Karenina'
+  start_year: 1877
+  end_year: 1877
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Leo_Tolstoy
+  category: Literature
+- name: 'Jules Verne: Twenty Thousand Leagues Under the Sea'
+  start_year: 1870
+  end_year: 1870
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Jules_Verne
+  category: Literature
+- name: 'Jules Verne: Around the World in Eighty Days'
+  start_year: 1873
+  end_year: 1873
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Jules_Verne
+  category: Literature
+- name: 'Mark Twain: Adventures of Huckleberry Finn'
+  start_year: 1884
+  end_year: 1884
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Mark_Twain
+  category: Literature
+- name: 'Mark Twain: The Adventures of Tom Sawyer'
+  start_year: 1876
+  end_year: 1876
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Mark_Twain
+  category: Literature
+- name: 'Oscar Wilde: The Picture of Dorian Gray'
+  start_year: 1890
+  end_year: 1890
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Oscar_Wilde
+  category: Literature
+- name: 'Oscar Wilde: The Importance of Being Earnest'
+  start_year: 1895
+  end_year: 1895
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Oscar_Wilde
+  category: Literature
+- name: 'Arthur Conan Doyle: A Study in Scarlet'
+  start_year: 1887
+  end_year: 1887
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Arthur_Conan_Doyle
+  category: Literature
+- name: 'Arthur Conan Doyle: The Hound of the Baskervilles'
+  start_year: 1902
+  end_year: 1902
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Arthur_Conan_Doyle
+  category: Literature
+- name: 'Anton Chekhov: The Cherry Orchard'
+  start_year: 1904
+  end_year: 1904
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Anton_Chekhov
+  category: Literature
+- name: 'Anton Chekhov: The Seagull'
+  start_year: 1896
+  end_year: 1896
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Anton_Chekhov
+  category: Literature
+- name: 'Rabindranath Tagore: Gitanjali'
+  start_year: 1910
+  end_year: 1910
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Rabindranath_Tagore
+  category: Literature
+- name: 'Rudyard Kipling: The Jungle Book'
+  start_year: 1894
+  end_year: 1894
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Rudyard_Kipling
+  category: Literature
+- name: 'Rudyard Kipling: Kim'
+  start_year: 1901
+  end_year: 1901
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Rudyard_Kipling
+  category: Literature
+- name: 'Maxim Gorky: The Lower Depths'
+  start_year: 1902
+  end_year: 1902
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Maxim_Gorky
+  category: Literature
+- name: 'Maxim Gorky: The Mother'
+  start_year: 1906
+  end_year: 1906
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Maxim_Gorky
+  category: Literature
+- name: 'Marcel Proust: In Search of Lost Time'
+  start_year: 1913
+  end_year: 1913
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Marcel_Proust
+  category: Literature
+- name: 'James Joyce: Ulysses'
+  start_year: 1922
+  end_year: 1922
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/James_Joyce
+  category: Literature
+- name: 'James Joyce: Dubliners'
+  start_year: 1914
+  end_year: 1914
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/James_Joyce
+  category: Literature
+- name: 'Franz Kafka: The Metamorphosis'
+  start_year: 1915
+  end_year: 1915
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Franz_Kafka
+  category: Literature
+- name: 'Franz Kafka: The Trial'
+  start_year: 1925
+  end_year: 1925
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Franz_Kafka
+  category: Literature
+- name: 'Le Corbusier: Towards a New Architecture'
+  start_year: 1923
+  end_year: 1923
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Le_Corbusier
+  category: Literature
+- name: 'Le Corbusier: Villa Savoye'
+  start_year: 1931
+  end_year: 1931
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Le_Corbusier
+  category: Literature
+- name: 'Agatha Christie: Murder on the Orient Express'
+  start_year: 1934
+  end_year: 1934
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Agatha_Christie
+  category: Literature
+- name: 'Agatha Christie: And Then There Were None'
+  start_year: 1939
+  end_year: 1939
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Agatha_Christie
+  category: Literature
+- name: 'J. R. R. Tolkien: The Hobbit'
+  start_year: 1937
+  end_year: 1937
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/J._R._R._Tolkien
+  category: Literature
+- name: 'J. R. R. Tolkien: The Lord of the Rings'
+  start_year: 1954
+  end_year: 1954
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/J._R._R._Tolkien
+  category: Literature
+- name: 'Ernest Hemingway: The Old Man and the Sea'
+  start_year: 1952
+  end_year: 1952
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Ernest_Hemingway
+  category: Literature
+- name: 'Ernest Hemingway: A Farewell to Arms'
+  start_year: 1929
+  end_year: 1929
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Ernest_Hemingway
+  category: Literature
+- name: 'Jorge Luis Borges: Ficciones'
+  start_year: 1944
+  end_year: 1944
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Jorge_Luis_Borges
+  category: Literature
+- name: 'Jorge Luis Borges: The Aleph'
+  start_year: 1949
+  end_year: 1949
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/Jorge_Luis_Borges
+  category: Literature
+- name: 'George Orwell: Nineteen Eighty-Four'
+  start_year: 1949
+  end_year: 1949
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/George_Orwell
+  category: Literature
+- name: 'George Orwell: Animal Farm'
+  start_year: 1945
+  end_year: 1945
+  notes: Literary work
+  wikipedia: https://en.wikipedia.org/wiki/George_Orwell
+  category: Literature
+- name: 'Euclid: Elements'
+  start_year: -300
+  end_year: -300
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Euclid
+  category: Science
+- name: 'Archimedes: On Floating Bodies'
+  start_year: -250
+  end_year: -250
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Archimedes
+  category: Science
+- name: 'Archimedes: On the Sphere and Cylinder'
+  start_year: -225
+  end_year: -225
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Archimedes
+  category: Science
+- name: 'Ptolemy: Almagest'
+  start_year: 150
+  end_year: 150
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Ptolemy
+  category: Science
+- name: 'Ptolemy: Geography'
+  start_year: 150
+  end_year: 150
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Ptolemy
+  category: Science
+- name: 'Muḥammad ibn Musa al-Khwarizmi: The Compendious Book on Calculation by Completion and Balancing (Algebra)'
+  start_year: 820
+  end_year: 820
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Al-Khwarizmi
+  category: Science
+- name: 'Omar Khayyám: Treatise on Demonstration of Problems of Algebra'
+  start_year: 1070
+  end_year: 1070
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Omar_Khayyam
+  category: Science
+- name: 'Leonardo da Vinci: The Last Supper'
+  start_year: 1498
+  end_year: 1498
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Leonardo_da_Vinci
+  category: Science
+- name: 'Leonardo da Vinci: Mona Lisa'
+  start_year: 1503
+  end_year: 1503
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Leonardo_da_Vinci
+  category: Science
+- name: 'Leonardo da Vinci: Vitruvian Man'
+  start_year: 1490
+  end_year: 1490
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Leonardo_da_Vinci
+  category: Science
+- name: 'Nicolaus Copernicus: On the Revolutions of the Heavenly Spheres'
+  start_year: 1543
+  end_year: 1543
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Nicolaus_Copernicus
+  category: Science
+- name: 'Galileo Galilei: Sidereus Nuncius (The Starry Messenger)'
+  start_year: 1610
+  end_year: 1610
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Galileo_Galilei
+  category: Science
+- name: 'Galileo Galilei: Dialogue Concerning the Two Chief World Systems'
+  start_year: 1632
+  end_year: 1632
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Galileo_Galilei
+  category: Science
+- name: 'Johannes Kepler: Astronomia nova'
+  start_year: 1609
+  end_year: 1609
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Johannes_Kepler
+  category: Science
+- name: 'Johannes Kepler: Harmonices Mundi'
+  start_year: 1619
+  end_year: 1619
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Johannes_Kepler
+  category: Science
+- name: 'Blaise Pascal: Pensées'
+  start_year: 1670
+  end_year: 1670
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Blaise_Pascal
+  category: Science
+- name: 'Isaac Newton: Philosophiæ Naturalis Principia Mathematica'
+  start_year: 1687
+  end_year: 1687
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Isaac_Newton
+  category: Science
+- name: 'Isaac Newton: Opticks'
+  start_year: 1704
+  end_year: 1704
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Isaac_Newton
+  category: Science
+- name: 'Gottfried Wilhelm Leibniz: Development of calculus'
+  start_year: 1684
+  end_year: 1684
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz
+  category: Science
+- name: 'Gottfried Wilhelm Leibniz: Monadology'
+  start_year: 1714
+  end_year: 1714
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz
+  category: Science
+- name: 'Leonhard Euler: Introductio in analysin infinitorum'
+  start_year: 1748
+  end_year: 1748
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Leonhard_Euler
+  category: Science
+- name: 'Leonhard Euler: Seven Bridges of Königsberg'
+  start_year: 1736
+  end_year: 1736
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Leonhard_Euler
+  category: Science
+- name: 'Joseph Fourier: The Analytical Theory of Heat'
+  start_year: 1822
+  end_year: 1822
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Joseph_Fourier
+  category: Science
+- name: 'Alexander von Humboldt: Kosmos'
+  start_year: 1845
+  end_year: 1845
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Alexander_von_Humboldt
+  category: Science
+- name: 'Carl Friedrich Gauss: Disquisitiones Arithmeticae'
+  start_year: 1801
+  end_year: 1801
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss
+  category: Science
+- name: 'Michael Faraday: Discovery of electromagnetic induction'
+  start_year: 1831
+  end_year: 1831
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Michael_Faraday
+  category: Science
+- name: 'Ada Lovelace: Notes on the Analytical Engine (first algorithm)'
+  start_year: 1843
+  end_year: 1843
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Ada_Lovelace
+  category: Science
+- name: 'James Prescott Joule: Mechanical equivalent of heat'
+  start_year: 1845
+  end_year: 1845
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/James_Prescott_Joule
+  category: Science
+- name: 'Louis Pasteur: Rabies vaccine'
+  start_year: 1885
+  end_year: 1885
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Louis_Pasteur
+  category: Science
+- name: 'Louis Pasteur: Germ theory and pasteurization'
+  start_year: 1862
+  end_year: 1862
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Louis_Pasteur
+  category: Science
+- name: 'Gregor Mendel: Experiments on Plant Hybridization'
+  start_year: 1866
+  end_year: 1866
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Gregor_Mendel
+  category: Science
+- name: 'James Clerk Maxwell: A Treatise on Electricity and Magnetism'
+  start_year: 1873
+  end_year: 1873
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/James_Clerk_Maxwell
+  category: Science
+- name: 'Alfred Nobel: Invention of dynamite'
+  start_year: 1867
+  end_year: 1867
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Alfred_Nobel
+  category: Science
+- name: 'Dmitri Mendeleev: The Periodic Table of Elements'
+  start_year: 1869
+  end_year: 1869
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Dmitri_Mendeleev
+  category: Science
+- name: 'Wilhelm Röntgen: Discovery of X-rays'
+  start_year: 1895
+  end_year: 1895
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Wilhelm_R%C3%B6ntgen
+  category: Science
+- name: 'Thomas Edison: The phonograph'
+  start_year: 1877
+  end_year: 1877
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Thomas_Edison
+  category: Science
+- name: 'Thomas Edison: Practical incandescent light bulb'
+  start_year: 1879
+  end_year: 1879
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Thomas_Edison
+  category: Science
+- name: 'Henri Poincaré: Work on the three-body problem'
+  start_year: 1890
+  end_year: 1890
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Henri_Poincar%C3%A9
+  category: Science
+- name: 'Nikola Tesla: The AC induction motor'
+  start_year: 1888
+  end_year: 1888
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Nikola_Tesla
+  category: Science
+- name: 'Max Planck: Quantum theory (Planck''s law)'
+  start_year: 1900
+  end_year: 1900
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Max_Planck
+  category: Science
+- name: 'L. L. Zamenhof: Esperanto (Unua Libro)'
+  start_year: 1887
+  end_year: 1887
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/L._L._Zamenhof
+  category: Science
+- name: 'Pierre Curie: Discovery of radium and polonium'
+  start_year: 1898
+  end_year: 1898
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Pierre_Curie
+  category: Science
+- name: 'David Hilbert: Hilbert''s 23 problems'
+  start_year: 1900
+  end_year: 1900
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/David_Hilbert
+  category: Science
+- name: 'Marie Curie: Discovery of radium and polonium'
+  start_year: 1898
+  end_year: 1898
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Marie_Curie
+  category: Science
+- name: 'Marie Curie: Nobel Prize in Physics'
+  start_year: 1903
+  end_year: 1903
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Marie_Curie
+  category: Science
+- name: 'Ernest Rutherford: Nuclear model of the atom'
+  start_year: 1911
+  end_year: 1911
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Ernest_Rutherford
+  category: Science
+- name: 'Guglielmo Marconi: First transatlantic radio transmission'
+  start_year: 1901
+  end_year: 1901
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Guglielmo_Marconi
+  category: Science
+- name: 'Albert Einstein: Theory of Special Relativity'
+  start_year: 1905
+  end_year: 1905
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Albert_Einstein
+  category: Science
+- name: 'Albert Einstein: Theory of General Relativity'
+  start_year: 1915
+  end_year: 1915
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Albert_Einstein
+  category: Science
+- name: 'Erwin Schrödinger: The Schrödinger equation'
+  start_year: 1926
+  end_year: 1926
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Erwin_Schr%C3%B6dinger
+  category: Science
+- name: 'Enrico Fermi: First nuclear reactor (Chicago Pile-1)'
+  start_year: 1942
+  end_year: 1942
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Enrico_Fermi
+  category: Science
+- name: 'Robert Oppenheimer: The Manhattan Project (Trinity test)'
+  start_year: 1945
+  end_year: 1945
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/J._Robert_Oppenheimer
+  category: Science
+- name: 'Stephen Hawking: A Brief History of Time'
+  start_year: 1988
+  end_year: 1988
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Stephen_Hawking
+  category: Science
+- name: 'Stephen Hawking: Hawking radiation'
+  start_year: 1974
+  end_year: 1974
+  notes: Scientific work
+  wikipedia: https://en.wikipedia.org/wiki/Stephen_Hawking
+  category: Science
+- name: 'M. Tullius Cicero: On the Republic'
+  start_year: -51
+  end_year: -51
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Cicero_Minor
+  category: Philosophy
+- name: 'M. Tullius Cicero: On Duties'
+  start_year: -44
+  end_year: -44
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Cicero_Minor
+  category: Philosophy
+- name: 'Thales: Prediction of the solar eclipse'
+  start_year: -585
+  end_year: -585
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Thales_of_Miletus
+  category: Philosophy
+- name: 'Pythagoras: The Pythagorean theorem'
+  start_year: -530
+  end_year: -530
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Pythagoras
+  category: Philosophy
+- name: 'The Buddha: Founding of Buddhism'
+  start_year: -528
+  end_year: -528
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/The_Buddha
+  category: Philosophy
+- name: 'Confucius: The Analects'
+  start_year: -479
+  end_year: -479
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Confucius
+  category: Philosophy
+- name: 'Socrates: Trial and death of Socrates'
+  start_year: -399
+  end_year: -399
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Socrates
+  category: Philosophy
+- name: 'Plato: The Republic'
+  start_year: -375
+  end_year: -375
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Plato
+  category: Philosophy
+- name: 'Plato: Symposium'
+  start_year: -385
+  end_year: -385
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Plato
+  category: Philosophy
+- name: 'Aristotle: Nicomachean Ethics'
+  start_year: -340
+  end_year: -340
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Aristotle
+  category: Philosophy
+- name: 'Aristotle: Politics'
+  start_year: -350
+  end_year: -350
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Aristotle
+  category: Philosophy
+- name: 'Epicurus: Letter to Menoeceus'
+  start_year: -300
+  end_year: -300
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Epicurus
+  category: Philosophy
+- name: 'Plutarch: Parallel Lives'
+  start_year: 100
+  end_year: 100
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Plutarch
+  category: Philosophy
+- name: 'Marcus Aurelius: Meditations'
+  start_year: 175
+  end_year: 175
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Marcus_Aurelius
+  category: Philosophy
+- name: 'Augustine of Hippo: Confessions'
+  start_year: 398
+  end_year: 398
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Augustine_of_Hippo
+  category: Philosophy
+- name: 'Augustine of Hippo: The City of God'
+  start_year: 426
+  end_year: 426
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Augustine_of_Hippo
+  category: Philosophy
+- name: 'Avicenna: The Canon of Medicine'
+  start_year: 1025
+  end_year: 1025
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Avicenna
+  category: Philosophy
+- name: 'Avicenna: The Book of Healing'
+  start_year: 1027
+  end_year: 1027
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Avicenna
+  category: Philosophy
+- name: 'Thomas Aquinas: Summa Theologica'
+  start_year: 1274
+  end_year: 1274
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Thomas_Aquinas
+  category: Philosophy
+- name: 'Giordano Bruno: On the Infinite Universe and Worlds'
+  start_year: 1584
+  end_year: 1584
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Giordano_Bruno
+  category: Philosophy
+- name: 'Francis Bacon: Novum Organum'
+  start_year: 1620
+  end_year: 1620
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Francis_Bacon
+  category: Philosophy
+- name: 'Francis Bacon: The Advancement of Learning'
+  start_year: 1605
+  end_year: 1605
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Francis_Bacon
+  category: Philosophy
+- name: 'Thomas Hobbes: Leviathan'
+  start_year: 1651
+  end_year: 1651
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Thomas_Hobbes
+  category: Philosophy
+- name: 'René Descartes: Discourse on the Method'
+  start_year: 1637
+  end_year: 1637
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Ren%C3%A9_Descartes
+  category: Philosophy
+- name: 'René Descartes: Meditations on First Philosophy'
+  start_year: 1641
+  end_year: 1641
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Ren%C3%A9_Descartes
+  category: Philosophy
+- name: 'John Locke: Two Treatises of Government'
+  start_year: 1689
+  end_year: 1689
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/John_Locke
+  category: Philosophy
+- name: 'John Locke: An Essay Concerning Human Understanding'
+  start_year: 1689
+  end_year: 1689
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/John_Locke
+  category: Philosophy
+- name: 'Benedictus de Spinoza: Ethics'
+  start_year: 1677
+  end_year: 1677
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Baruch_Spinoza
+  category: Philosophy
+- name: 'David Hume: A Treatise of Human Nature'
+  start_year: 1739
+  end_year: 1739
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/David_Hume
+  category: Philosophy
+- name: 'David Hume: An Enquiry Concerning Human Understanding'
+  start_year: 1748
+  end_year: 1748
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/David_Hume
+  category: Philosophy
+- name: 'Jean-Jacques Rousseau: The Social Contract'
+  start_year: 1762
+  end_year: 1762
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Jean-Jacques_Rousseau
+  category: Philosophy
+- name: 'Jean-Jacques Rousseau: Emile, or On Education'
+  start_year: 1762
+  end_year: 1762
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Jean-Jacques_Rousseau
+  category: Philosophy
+- name: 'Denis Diderot: The Encyclopédie'
+  start_year: 1751
+  end_year: 1751
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Denis_Diderot
+  category: Philosophy
+- name: 'Adam Smith: The Wealth of Nations'
+  start_year: 1776
+  end_year: 1776
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Adam_Smith
+  category: Philosophy
+- name: 'Adam Smith: The Theory of Moral Sentiments'
+  start_year: 1759
+  end_year: 1759
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Adam_Smith
+  category: Philosophy
+- name: 'Immanuel Kant: Critique of Pure Reason'
+  start_year: 1781
+  end_year: 1781
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Immanuel_Kant
+  category: Philosophy
+- name: 'Immanuel Kant: Critique of Practical Reason'
+  start_year: 1788
+  end_year: 1788
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Immanuel_Kant
+  category: Philosophy
+- name: 'Georg Wilhelm Friedrich Hegel: The Phenomenology of Spirit'
+  start_year: 1807
+  end_year: 1807
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Georg_Wilhelm_Friedrich_Hegel
+  category: Philosophy
+- name: 'Arthur Schopenhauer: The World as Will and Representation'
+  start_year: 1818
+  end_year: 1818
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Arthur_Schopenhauer
+  category: Philosophy
+- name: 'Ralph Waldo Emerson: Nature'
+  start_year: 1836
+  end_year: 1836
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Ralph_Waldo_Emerson
+  category: Philosophy
+- name: 'Ralph Waldo Emerson: Self-Reliance'
+  start_year: 1841
+  end_year: 1841
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Ralph_Waldo_Emerson
+  category: Philosophy
+- name: 'John Stuart Mill: On Liberty'
+  start_year: 1859
+  end_year: 1859
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/John_Stuart_Mill
+  category: Philosophy
+- name: 'John Stuart Mill: Utilitarianism'
+  start_year: 1863
+  end_year: 1863
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/John_Stuart_Mill
+  category: Philosophy
+- name: 'Søren Kierkegaard: Either/Or'
+  start_year: 1843
+  end_year: 1843
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/S%C3%B8ren_Kierkegaard
+  category: Philosophy
+- name: 'Søren Kierkegaard: Fear and Trembling'
+  start_year: 1843
+  end_year: 1843
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/S%C3%B8ren_Kierkegaard
+  category: Philosophy
+- name: 'Karl Marx: The Communist Manifesto'
+  start_year: 1848
+  end_year: 1848
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Karl_Marx
+  category: Philosophy
+- name: 'Karl Marx: Das Kapital'
+  start_year: 1867
+  end_year: 1867
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Karl_Marx
+  category: Philosophy
+- name: 'Friedrich Engels: The Condition of the Working Class in England'
+  start_year: 1845
+  end_year: 1845
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Friedrich_Engels
+  category: Philosophy
+- name: 'Friedrich Engels: The Communist Manifesto'
+  start_year: 1848
+  end_year: 1848
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Friedrich_Engels
+  category: Philosophy
+- name: 'Friedrich Nietzsche: Thus Spoke Zarathustra'
+  start_year: 1883
+  end_year: 1883
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Friedrich_Nietzsche
+  category: Philosophy
+- name: 'Friedrich Nietzsche: Beyond Good and Evil'
+  start_year: 1886
+  end_year: 1886
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Friedrich_Nietzsche
+  category: Philosophy
+- name: 'Max Weber: The Protestant Ethic and the Spirit of Capitalism'
+  start_year: 1905
+  end_year: 1905
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Max_Weber
+  category: Philosophy
+- name: 'Bertrand Russell: Principia Mathematica'
+  start_year: 1910
+  end_year: 1910
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Bertrand_Russell
+  category: Philosophy
+- name: 'Bertrand Russell: The Problems of Philosophy'
+  start_year: 1912
+  end_year: 1912
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Bertrand_Russell
+  category: Philosophy
+- name: 'Ludwig Wittgenstein: Tractatus Logico-Philosophicus'
+  start_year: 1921
+  end_year: 1921
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Ludwig_Wittgenstein
+  category: Philosophy
+- name: 'Ludwig Wittgenstein: Philosophical Investigations'
+  start_year: 1953
+  end_year: 1953
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Ludwig_Wittgenstein
+  category: Philosophy
+- name: 'B. R. Ambedkar: Annihilation of Caste'
+  start_year: 1936
+  end_year: 1936
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/B._R._Ambedkar
+  category: Philosophy
+- name: 'B. R. Ambedkar: Drafting the Constitution of India'
+  start_year: 1949
+  end_year: 1949
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/B._R._Ambedkar
+  category: Philosophy
+- name: 'Jean-Paul Sartre: Being and Nothingness'
+  start_year: 1943
+  end_year: 1943
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Jean-Paul_Sartre
+  category: Philosophy
+- name: 'Jean-Paul Sartre: Nausea'
+  start_year: 1938
+  end_year: 1938
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Jean-Paul_Sartre
+  category: Philosophy
+- name: 'Simone de Beauvoir: The Second Sex'
+  start_year: 1949
+  end_year: 1949
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Simone_de_Beauvoir
+  category: Philosophy
+- name: 'Albert Camus: The Stranger'
+  start_year: 1942
+  end_year: 1942
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Albert_Camus
+  category: Philosophy
+- name: 'Albert Camus: The Myth of Sisyphus'
+  start_year: 1942
+  end_year: 1942
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Albert_Camus
+  category: Philosophy
+- name: 'Albert Camus: The Plague'
+  start_year: 1947
+  end_year: 1947
+  notes: Philosophical work
+  wikipedia: https://en.wikipedia.org/wiki/Albert_Camus
+  category: Philosophy

@@ -1,0 +1,561 @@
+category	name	born	died	sitelinks	rulerID	progr	desc	url	status
+Artist	Giotto	1267	1337	97	3441	4261	Italian painter and architect	https://en.wikipedia.org/wiki/Giotto	NEW
+Artist	Donatello	1386	1466	107	3442	4262	Early Renaissance Italian sculptor	https://en.wikipedia.org/wiki/Donatello	NEW
+Artist	Sandro Botticelli	1445	1510	113	3443	4263	Italian painter	https://en.wikipedia.org/wiki/Sandro_Botticelli	NEW
+Artist	Albrecht Dürer	1471	1528	187	3444	4264	German painter, printmaker, mathematician, and theorist	https://en.wikipedia.org/wiki/Albrecht_D%C3%BCrer	NEW
+Artist	Michelangelo	1475	1564	259	3445	4265	Italian artist and architect	https://en.wikipedia.org/wiki/Michelangelo	NEW
+Artist	Raphael	1483	1520	194	3446	4266	Italian painter and architect	https://en.wikipedia.org/wiki/Raphael	NEW
+Artist	Titian	1490	1576	107	3447	4267	Italian painter	https://en.wikipedia.org/wiki/Titian	NEW
+Artist	El Greco	1541	1614	113	3448	4268	Greek artist, painter, sculptor and architect	https://en.wikipedia.org/wiki/El_Greco	NEW
+Artist	Caravaggio	1571	1610	112	3449	4269	Italian painter	https://en.wikipedia.org/wiki/Caravaggio	NEW
+Artist	Peter Paul Rubens	1577	1640	172	3450	4270	Flemish painter	https://en.wikipedia.org/wiki/Peter_Paul_Rubens	NEW
+Artist	Diego Velázquez	1599	1660	165	3451	4271	Spanish painter	https://en.wikipedia.org/wiki/Diego_Vel%C3%A1zquez	NEW
+Artist	Rembrandt	1606	1669	205	3452	4272	Dutch painter and printmaker	https://en.wikipedia.org/wiki/Rembrandt	NEW
+Artist	Johannes Vermeer	1632	1675	115	3453	4273	Dutch painter	https://en.wikipedia.org/wiki/Johannes_Vermeer	NEW
+Artist	Francisco Goya	1746	1828	183	3454	4274	Spanish painter and printmaker	https://en.wikipedia.org/wiki/Francisco_Goya	NEW
+Artist	Katsushika Hokusai	1760	1849	175	3455	4275	Japanese artist	https://en.wikipedia.org/wiki/Hokusai	NEW
+Artist	Jean-Auguste-Dominique Ingres	1780	1867	133	3456	4276	French painter	https://en.wikipedia.org/wiki/Jean-Auguste-Dominique_Ingres	NEW
+Artist	Eugène Delacroix	1798	1863	121	3457	4277	French painter	https://en.wikipedia.org/wiki/Eug%C3%A8ne_Delacroix	NEW
+Artist	Édouard Manet	1832	1883	112	3458	4278	French painter	https://en.wikipedia.org/wiki/%C3%89douard_Manet	NEW
+Artist	Edgar Degas	1834	1917	113	3459	4279	French Impressionist artist	https://en.wikipedia.org/wiki/Edgar_Degas	NEW
+Artist	Paul Cézanne	1839	1906	138	3460	4280	French painter	https://en.wikipedia.org/wiki/Paul_C%C3%A9zanne	NEW
+Artist	Claude Monet	1840	1926	153	3461	4281	French painter	https://en.wikipedia.org/wiki/Claude_Monet	NEW
+Artist	Auguste Rodin	1840	1917	130	3462	4282	French sculptor	https://en.wikipedia.org/wiki/Auguste_Rodin	NEW
+Artist	Pierre-Auguste Renoir	1841	1919	114	3463	4283	French painter and sculptor	https://en.wikipedia.org/wiki/Pierre-Auguste_Renoir	NEW
+Artist	Sarah Bernhardt	1844	1923	193	3464	4284	French stage actress, painter and sculptor	https://en.wikipedia.org/wiki/Sarah_Bernhardt	NEW
+Artist	Paul Gauguin	1848	1903	133	3465	4285	French painter and printmaker	https://en.wikipedia.org/wiki/Paul_Gauguin	NEW
+Artist	Vincent van Gogh	1853	1890	263	3466	4286	Dutch painter	https://en.wikipedia.org/wiki/Vincent_van_Gogh	NEW
+Artist	Gustav Klimt	1862	1918	106	3467	4287	Austrian symbolist painter	https://en.wikipedia.org/wiki/Gustav_Klimt	NEW
+Artist	Edvard Munch	1863	1944	119	3468	4288	Norwegian painter	https://en.wikipedia.org/wiki/Edvard_Munch	NEW
+Artist	Henri de Toulouse-Lautrec	1864	1901	97	3469	4289	French painter and illustrator	https://en.wikipedia.org/wiki/Henri_de_Toulouse-Lautrec	NEW
+Artist	Wassily Kandinsky	1866	1944	102	3470	4290	Avant-garde painter of Russian origin	https://en.wikipedia.org/wiki/Wassily_Kandinsky	NEW
+Artist	Henri Matisse	1869	1954	179	3471	4291	French artist	https://en.wikipedia.org/wiki/Henri_Matisse	NEW
+Artist	Paul Klee	1879	1940	97	3472	4292	German-Swiss artist	https://en.wikipedia.org/wiki/Paul_Klee	NEW
+Artist	Pablo Picasso	1881	1973	263	3473	4293	Spanish painter and sculptor	https://en.wikipedia.org/wiki/Pablo_Picasso	NEW
+Artist	Marc Chagall	1887	1985	103	3474	4294	Belarusian-French artist	https://en.wikipedia.org/wiki/Marc_Chagall	NEW
+Artist	Joan Miró	1893	1983	105	3475	4295	Spanish painter, sculptor, and ceramicist	https://en.wikipedia.org/wiki/Joan_Mir%C3%B3	NEW
+Artist	Salvador Dalí	1904	1989	246	3476	4296	Spanish artist	https://en.wikipedia.org/wiki/Salvador_Dal%C3%AD	NEW
+Artist	Frida Kahlo	1907	1954	196	3477	4297	Mexican painter	https://en.wikipedia.org/wiki/Frida_Kahlo	NEW
+Artist	Jackson Pollock	1912	1956	116	3478	4298	American painter	https://en.wikipedia.org/wiki/Jackson_Pollock	NEW
+Artist	Andy Warhol	1928	1987	178	3479	4299	American artist, film director, and producer	https://en.wikipedia.org/wiki/Andy_Warhol	NEW
+Artist	David Lynch	1946	2025	105	3480	4300	American filmmaker, visual artist, musician, and actor	https://en.wikipedia.org/wiki/David_Lynch	NEW
+Composer	Giovanni Pierluigi da Palestrina	1525	1594	116	3481	4301	Italian Renaissance composer	https://en.wikipedia.org/wiki/Giovanni_Pierluigi_da_Palestrina	NEW
+Composer	Antonio Vivaldi	1678	1741	166	3482	4302	Italian composer and violinist	https://en.wikipedia.org/wiki/Antonio_Vivaldi	NEW
+Composer	Johann Sebastian Bach	1685	1750	258	3483	4303	German composer	https://en.wikipedia.org/wiki/Johann_Sebastian_Bach	NEW
+Composer	George Frideric Handel	1685	1759	157	3484	4304	German-British Baroque composer	https://en.wikipedia.org/wiki/George_Frideric_Handel	NEW
+Composer	Joseph Haydn	1732	1809	158	3485	4305	Austrian composer	https://en.wikipedia.org/wiki/Joseph_Haydn	NEW
+Composer	Wolfgang Amadeus Mozart	1756	1791	274	3486	4306	Austrian composer of the Classical period	https://en.wikipedia.org/wiki/Wolfgang_Amadeus_Mozart	NEW
+Composer	Ludwig van Beethoven	1770	1827	273	3487	4307	German composer	https://en.wikipedia.org/wiki/Ludwig_van_Beethoven	NEW
+Composer	Niccolò Paganini	1782	1840	103	3488	4308	Italian violinist and composer	https://en.wikipedia.org/wiki/Niccol%C3%B2_Paganini	NEW
+Composer	Gioachino Rossini	1792	1868	106	3489	4309	Italian opera composer	https://en.wikipedia.org/wiki/Gioachino_Rossini	NEW
+Composer	Franz Schubert	1797	1828	172	3490	4310	Austrian composer	https://en.wikipedia.org/wiki/Franz_Schubert	NEW
+Composer	Hector Berlioz	1803	1869	133	3491	4311	French composer and conductor	https://en.wikipedia.org/wiki/Hector_Berlioz	NEW
+Composer	Felix Mendelssohn	1809	1847	122	3492	4312	German composer, pianist, organist and conductor of Jewish descent	https://en.wikipedia.org/wiki/Felix_Mendelssohn	NEW
+Composer	Frédéric Chopin	1810	1849	200	3493	4313	Polish composer and pianist	https://en.wikipedia.org/wiki/Fr%C3%A9d%C3%A9ric_Chopin	NEW
+Composer	Robert Schumann	1810	1856	130	3494	4314	German composer, pianist and critic	https://en.wikipedia.org/wiki/Robert_Schumann	NEW
+Composer	Franz Liszt	1811	1886	126	3495	4315	Hungarian romantic composer and virtuoso pianist	https://en.wikipedia.org/wiki/Franz_Liszt	NEW
+Composer	Richard Wagner	1813	1883	206	3496	4316	German composer	https://en.wikipedia.org/wiki/Richard_Wagner	NEW
+Composer	Giuseppe Verdi	1813	1901	178	3497	4317	Italian opera composer	https://en.wikipedia.org/wiki/Giuseppe_Verdi	NEW
+Composer	Jacques Offenbach	1819	1880	104	3498	4318	German-born French composer	https://en.wikipedia.org/wiki/Jacques_Offenbach	NEW
+Composer	Bedřich Smetana	1824	1884	92	3499	4319	Czech composer	https://en.wikipedia.org/wiki/Bed%C5%99ich_Smetana	NEW
+Composer	Johannes Brahms	1833	1897	159	3500	4320	German composer	https://en.wikipedia.org/wiki/Johannes_Brahms	NEW
+Composer	Alexander Borodin	1833	1887	91	3501	4321	Russian composer, doctor and chemist	https://en.wikipedia.org/wiki/Alexander_Borodin	NEW
+Composer	Georges Bizet	1838	1875	104	3502	4322	French composer	https://en.wikipedia.org/wiki/Georges_Bizet	NEW
+Composer	Pyotr Ilyich Tchaikovsky	1840	1893	194	3503	4323	Russian composer	https://en.wikipedia.org/wiki/Pyotr_Ilyich_Tchaikovsky	NEW
+Composer	Antonín Dvořák	1841	1904	150	3504	4324	Czech composer	https://en.wikipedia.org/wiki/Anton%C3%ADn_Dvo%C5%99%C3%A1k	NEW
+Composer	Edvard Grieg	1843	1907	110	3505	4325	Norwegian composer and pianist	https://en.wikipedia.org/wiki/Edvard_Grieg	NEW
+Composer	Nikolai Rimsky-Korsakov	1844	1908	92	3506	4326	Russian composer	https://en.wikipedia.org/wiki/Nikolai_Rimsky-Korsakov	NEW
+Composer	Giacomo Puccini	1858	1924	146	3507	4327	Italian opera composer	https://en.wikipedia.org/wiki/Giacomo_Puccini	NEW
+Composer	Gustav Mahler	1860	1911	150	3508	4328	Austrian late-Romantic composer	https://en.wikipedia.org/wiki/Gustav_Mahler	NEW
+Composer	Claude Debussy	1862	1918	129	3509	4329	French classical composer	https://en.wikipedia.org/wiki/Claude_Debussy	NEW
+Composer	Richard Strauss	1864	1949	91	3510	4330	German composer and orchestra director	https://en.wikipedia.org/wiki/Richard_Strauss	NEW
+Composer	Jean Sibelius	1865	1957	104	3511	4331	Finnish composer	https://en.wikipedia.org/wiki/Jean_Sibelius	NEW
+Composer	Sergei Rachmaninoff	1873	1943	92	3512	4332	Russian composer, pianist and conductor	https://en.wikipedia.org/wiki/Sergei_Rachmaninoff	NEW
+Composer	Maurice Ravel	1875	1937	105	3513	4333	French composer	https://en.wikipedia.org/wiki/Maurice_Ravel	NEW
+Composer	Béla Bartók	1881	1945	103	3514	4334	Hungarian composer and pianist	https://en.wikipedia.org/wiki/B%C3%A9la_Bart%C3%B3k	NEW
+Composer	Igor Stravinsky	1882	1971	164	3515	4335	Russian, French, and American composer	https://en.wikipedia.org/wiki/Igor_Stravinsky	NEW
+Composer	Sergei Prokofiev	1891	1953	94	3516	4336	Russian and Soviet pianist, composer and conductor	https://en.wikipedia.org/wiki/Sergei_Prokofiev	NEW
+Composer	Stefania Turkevych-Lukiianovych	1898	1977	102	3517	4337	Ukrainian pianist, composer, and musicologist	https://en.wikipedia.org/wiki/Stefania_Turkewich	NEW
+Composer	Dmitri Shostakovich	1906	1975	105	3518	4338	Soviet composer and pianist	https://en.wikipedia.org/wiki/Dmitri_Shostakovich	NEW
+Composer	Miles Davis	1926	1991	99	3519	4339	American jazz trumpeter, bandleader, and composer	https://en.wikipedia.org/wiki/Miles_Davis	NEW
+Composer	Ennio Morricone	1928	2020	94	3520	4340	Italian composer, orchestrator and conductor	https://en.wikipedia.org/wiki/Ennio_Morricone	NEW
+Writer	Sophocles	-496	-406	213	3521	4341	Ancient Greek playwright	https://en.wikipedia.org/wiki/Sophocles	NEW
+Writer	Virgil	-70	-19	244	3522	4342	Roman poet	https://en.wikipedia.org/wiki/Virgil	NEW
+Writer	Ovid	-43	17	200	3523	4343	Roman poet	https://en.wikipedia.org/wiki/Ovid	NEW
+Writer	Li Bai	701	762	198	3524	4344	Classical Chinese poet of the Tang dynasty	https://en.wikipedia.org/wiki/Li_Bai	NEW
+Writer	Dante Alighieri	1265	1321	270	3525	4345	Florentine poet, writer, and philosopher	https://en.wikipedia.org/wiki/Dante_Alighieri	NEW
+Writer	Geoffrey Chaucer	1343	1400	177	3526	4346	14th century English poet and author	https://en.wikipedia.org/wiki/Geoffrey_Chaucer	NEW
+Writer	Miguel de Cervantes	1547	1616	247	3527	4347	Spanish novelist, poet, and playwright	https://en.wikipedia.org/wiki/Miguel_de_Cervantes	NEW
+Writer	William Shakespeare	1564	1616	335	3528	4348	English playwright and poet	https://en.wikipedia.org/wiki/William_Shakespeare	NEW
+Writer	Molière	1622	1673	225	3529	4349	French playwright and actor	https://en.wikipedia.org/wiki/Moli%C3%A8re	NEW
+Writer	Matsuo Bashō	1644	1694	201	3530	4350	Japanese poet	https://en.wikipedia.org/wiki/Matsuo_Bash%C5%8D	NEW
+Writer	Voltaire	1694	1778	254	3531	4351	French writer, historian and philosopher	https://en.wikipedia.org/wiki/Voltaire	NEW
+Writer	Benjamin Franklin	1706	1790	216	3532	4352	American polymath and statesman	https://en.wikipedia.org/wiki/Benjamin_Franklin	NEW
+Writer	Johann Wolfgang von Goethe	1749	1832	278	3533	4353	German writer, artist, natural scientist and politician	https://en.wikipedia.org/wiki/Johann_Wolfgang_von_Goethe	NEW
+Writer	Friedrich Schiller	1759	1805	182	3534	4354	German playwright, poet, philosopher and historian	https://en.wikipedia.org/wiki/Friedrich_Schiller	NEW
+Writer	Jane Austen	1775	1817	201	3535	4355	English novelist	https://en.wikipedia.org/wiki/Jane_Austen	NEW
+Writer	Lord Byron	1788	1824	219	3536	4356	English Romantic poet and lyricist	https://en.wikipedia.org/wiki/Lord_Byron	NEW
+Writer	Alexander Pushkin	1799	1837	244	3537	4357	Russian poet, playwright, and novelist	https://en.wikipedia.org/wiki/Alexander_Pushkin	NEW
+Writer	Hans Christian Andersen	1805	1875	243	3538	4358	Danish writer and poet	https://en.wikipedia.org/wiki/Hans_Christian_Andersen	NEW
+Writer	Edgar Allan Poe	1809	1849	226	3539	4359	American writer and literary critic	https://en.wikipedia.org/wiki/Edgar_Allan_Poe	NEW
+Writer	Charles Dickens	1812	1870	246	3540	4360	English novelist and social critic	https://en.wikipedia.org/wiki/Charles_Dickens	NEW
+Writer	Fyodor Dostoyevsky	1821	1881	253	3541	4361	Russian novelist	https://en.wikipedia.org/wiki/Fyodor_Dostoevsky	NEW
+Writer	Charles Baudelaire	1821	1867	177	3542	4362	French poet and critic	https://en.wikipedia.org/wiki/Charles_Baudelaire	NEW
+Writer	Leo Tolstoy	1828	1910	279	3543	4363	Russian author	https://en.wikipedia.org/wiki/Leo_Tolstoy	NEW
+Writer	Jules Verne	1828	1905	187	3544	4364	French writer	https://en.wikipedia.org/wiki/Jules_Verne	NEW
+Writer	Mark Twain	1835	1910	251	3545	4365	American author and humorist	https://en.wikipedia.org/wiki/Mark_Twain	NEW
+Writer	Oscar Wilde	1854	1900	220	3546	4366	Irish poet, playwright, and aesthete	https://en.wikipedia.org/wiki/Oscar_Wilde	NEW
+Writer	Arthur Conan Doyle	1859	1930	183	3547	4367	British writer and physician	https://en.wikipedia.org/wiki/Arthur_Conan_Doyle	NEW
+Writer	Anton Chekhov	1860	1904	238	3548	4368	Russian dramatist and author	https://en.wikipedia.org/wiki/Anton_Chekhov	NEW
+Writer	Rabindranath Tagore	1861	1941	244	3549	4369	Bengali poet, philosopher and polymath	https://en.wikipedia.org/wiki/Rabindranath_Tagore	NEW
+Writer	Rudyard Kipling	1865	1936	188	3550	4370	English writer and poet	https://en.wikipedia.org/wiki/Rudyard_Kipling	NEW
+Writer	Maxim Gorky	1868	1936	182	3551	4371	Russian and Soviet writer	https://en.wikipedia.org/wiki/Maxim_Gorky	NEW
+Writer	Marcel Proust	1871	1922	188	3552	4372	French novelist, critic and essayist	https://en.wikipedia.org/wiki/Marcel_Proust	NEW
+Writer	James Joyce	1882	1941	204	3553	4373	Irish novelist and poet	https://en.wikipedia.org/wiki/James_Joyce	NEW
+Writer	Franz Kafka	1883	1924	238	3554	4374	Bohemian writer from Prague	https://en.wikipedia.org/wiki/Franz_Kafka	NEW
+Writer	Le Corbusier	1887	1965	198	3555	4375	Swiss-French architect, designer, urbanist, and writer	https://en.wikipedia.org/wiki/Le_Corbusier	NEW
+Writer	Agatha Christie	1890	1976	194	3556	4376	English mystery and detective writer	https://en.wikipedia.org/wiki/Agatha_Christie	NEW
+Writer	J. R. R. Tolkien	1892	1973	202	3557	4377	English writer and philologist	https://en.wikipedia.org/wiki/J._R._R._Tolkien	NEW
+Writer	Ernest Hemingway	1899	1961	207	3558	4378	American author and journalist	https://en.wikipedia.org/wiki/Ernest_Hemingway	NEW
+Writer	Jorge Luis Borges	1899	1986	191	3559	4379	Argentine writer, essayist, poet and translator	https://en.wikipedia.org/wiki/Jorge_Luis_Borges	NEW
+Writer	George Orwell	1903	1950	210	3560	4380	British writer and journalist	https://en.wikipedia.org/wiki/George_Orwell	NEW
+Scientist	Euclid	-323	-285	201	3561	4381	Ancient Greek mathematician	https://en.wikipedia.org/wiki/Euclid	NEW
+Scientist	Archimedes	-287	-212	244	3562	4382	Greek mathematician and physicist	https://en.wikipedia.org/wiki/Archimedes	NEW
+Scientist	Ptolemy	100	170	138	3563	4383	2nd-century Roman mathematician, astronomer, geographer	https://en.wikipedia.org/wiki/Ptolemy	NEW
+Scientist	Muḥammad ibn Musa al-Khwarizmi	780	850	164	3564	4384	9th-century Persian mathematician and astronomer	https://en.wikipedia.org/wiki/Al-Khwarizmi	NEW
+Scientist	Omar Khayyám	1048	1131	165	3565	4385	Persian mathematician and poet	https://en.wikipedia.org/wiki/Omar_Khayyam	NEW
+Scientist	Leonardo da Vinci	1452	1519	304	3566	4386	Italian Renaissance polymath	https://en.wikipedia.org/wiki/Leonardo_da_Vinci	NEW
+Scientist	Nicolaus Copernicus	1473	1543	212	3567	4387	Polish mathematician and astronomer	https://en.wikipedia.org/wiki/Nicolaus_Copernicus	NEW
+Scientist	Galileo Galilei	1564	1642	269	3568	4388	Italian polymath	https://en.wikipedia.org/wiki/Galileo_Galilei	NEW
+Scientist	Johannes Kepler	1571	1630	183	3569	4389	German mathematician and astronomer	https://en.wikipedia.org/wiki/Johannes_Kepler	NEW
+Scientist	Blaise Pascal	1623	1662	194	3570	4390	French mathematician, physicist, inventor, writer, and Christian philosopher	https://en.wikipedia.org/wiki/Blaise_Pascal	NEW
+Scientist	Isaac Newton	1642	1727	302	3571	4391	English mathematician and physicist	https://en.wikipedia.org/wiki/Isaac_Newton	NEW
+Scientist	Gottfried Wilhelm Leibniz	1646	1716	204	3572	4392	German mathematician and philosopher	https://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz	NEW
+Scientist	Leonhard Euler	1707	1783	188	3573	4393	Swiss mathematician, physicist, and engineer	https://en.wikipedia.org/wiki/Leonhard_Euler	NEW
+Scientist	Joseph Fourier	1768	1830	131	3574	4394	French mathematician and physicist	https://en.wikipedia.org/wiki/Joseph_Fourier	NEW
+Scientist	Alexander von Humboldt	1769	1859	140	3575	4395	Prussian geographer, naturalist and explorer	https://en.wikipedia.org/wiki/Alexander_von_Humboldt	NEW
+Scientist	Carl Friedrich Gauss	1777	1855	199	3576	4396	German mathematician and physicist	https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss	NEW
+Scientist	Michael Faraday	1791	1867	177	3577	4397	British scientist	https://en.wikipedia.org/wiki/Michael_Faraday	NEW
+Scientist	Ada Lovelace	1815	1852	133	3578	4398	English mathematician	https://en.wikipedia.org/wiki/Ada_Lovelace	NEW
+Scientist	James Prescott Joule	1818	1889	134	3579	4399	English physicist and brewer	https://en.wikipedia.org/wiki/James_Prescott_Joule	NEW
+Scientist	Louis Pasteur	1822	1895	210	3580	4400	French chemist and microbiologist	https://en.wikipedia.org/wiki/Louis_Pasteur	NEW
+Scientist	Gregor Mendel	1822	1884	133	3581	4401	Moravian scientist and Augustinian friar	https://en.wikipedia.org/wiki/Gregor_Mendel	NEW
+Scientist	James Clerk Maxwell	1831	1879	160	3582	4402	Scottish physicist	https://en.wikipedia.org/wiki/James_Clerk_Maxwell	NEW
+Scientist	Alfred Nobel	1833	1896	192	3583	4403	Swedish chemist and inventor	https://en.wikipedia.org/wiki/Alfred_Nobel	NEW
+Scientist	Dmitri Mendeleev	1834	1907	179	3584	4404	Russian chemist	https://en.wikipedia.org/wiki/Dmitri_Mendeleev	NEW
+Scientist	Wilhelm Röntgen	1845	1923	157	3585	4405	German physicist	https://en.wikipedia.org/wiki/Wilhelm_R%C3%B6ntgen	NEW
+Scientist	Thomas Edison	1847	1931	251	3586	4406	American inventor and businessman	https://en.wikipedia.org/wiki/Thomas_Edison	NEW
+Scientist	Henri Poincaré	1854	1912	130	3587	4407	French mathematician, physicist and engineer	https://en.wikipedia.org/wiki/Henri_Poincar%C3%A9	NEW
+Scientist	Nikola Tesla	1856	1943	215	3588	4408	Serbian-American engineer and inventor	https://en.wikipedia.org/wiki/Nikola_Tesla	NEW
+Scientist	Max Planck	1858	1947	182	3589	4409	German theoretical physicist	https://en.wikipedia.org/wiki/Max_Planck	NEW
+Scientist	L. L. Zamenhof	1859	1917	141	3590	4410	Polish-Jewish physician and inventor of Esperanto	https://en.wikipedia.org/wiki/L._L._Zamenhof	NEW
+Scientist	Pierre Curie	1859	1906	130	3591	4411	French physicist	https://en.wikipedia.org/wiki/Pierre_Curie	NEW
+Scientist	David Hilbert	1862	1943	163	3592	4412	German mathematician	https://en.wikipedia.org/wiki/David_Hilbert	NEW
+Scientist	Marie Curie	1867	1934	244	3593	4413	Polish-French physicist and chemist	https://en.wikipedia.org/wiki/Marie_Curie	NEW
+Scientist	Ernest Rutherford	1871	1937	171	3594	4414	New Zealand physicist	https://en.wikipedia.org/wiki/Ernest_Rutherford	NEW
+Scientist	Guglielmo Marconi	1874	1937	129	3595	4415	Italian inventor and radio pioneer	https://en.wikipedia.org/wiki/Guglielmo_Marconi	NEW
+Scientist	Albert Einstein	1879	1955	319	3596	4416	German-born theoretical physicist	https://en.wikipedia.org/wiki/Albert_Einstein	NEW
+Scientist	Erwin Schrödinger	1887	1961	162	3597	4417	Austrian physicist	https://en.wikipedia.org/wiki/Erwin_Schr%C3%B6dinger	NEW
+Scientist	Enrico Fermi	1901	1954	169	3598	4418	Italian–American physicist	https://en.wikipedia.org/wiki/Enrico_Fermi	NEW
+Scientist	Robert Oppenheimer	1904	1967	129	3599	4419	American theoretical physicist	https://en.wikipedia.org/wiki/J._Robert_Oppenheimer	NEW
+Scientist	Stephen Hawking	1942	2018	199	3600	4420	British theoretical physicist, cosmologist and author	https://en.wikipedia.org/wiki/Stephen_Hawking	NEW
+Philosopher	Thales	-625	-548	161	3601	4421	Ancient Greek philosopher and mathematician	https://en.wikipedia.org/wiki/Thales_of_Miletus	NEW
+Philosopher	Pythagoras	-582	-500	207	3602	4422	Greek philosopher and mathematician	https://en.wikipedia.org/wiki/Pythagoras	NEW
+Philosopher	The Buddha	-563	-483	273	3603	4423	Indian philosopher and the founder of Buddhism	https://en.wikipedia.org/wiki/The_Buddha	NEW
+Philosopher	Confucius	-551	-479	310	3604	4424	5th-century BCE Chinese philosopher and politician	https://en.wikipedia.org/wiki/Confucius	NEW
+Philosopher	Socrates	-470	-399	275	3605	4425	5th-century BCE Greek philosopher	https://en.wikipedia.org/wiki/Socrates	NEW
+Philosopher	Plato	-427	-347	300	3606	4426	4th-century BCE Greek philosopher	https://en.wikipedia.org/wiki/Plato	NEW
+Philosopher	Aristotle	-384	-322	316	3607	4427	4th-century BCE Classical Greek philosopher and polymath	https://en.wikipedia.org/wiki/Aristotle	NEW
+Philosopher	Epicurus	-342	-270	150	3608	4428	Ancient Greek philosopher	https://en.wikipedia.org/wiki/Epicurus	NEW
+Philosopher	Cicero	-106	-43	202	1787	4429	Roman statesman, lawyer, orator, and philosopher	https://en.wikipedia.org/wiki/Cicero	REUSE rulerID 1787 (M. Tullius Cicero)
+Philosopher	Plutarch	45	120	159	3609	4430	Greek philosopher and historian	https://en.wikipedia.org/wiki/Plutarch	NEW
+Philosopher	Marcus Aurelius	121	180	176	702	4431	16th Roman Emperor from 161 to 180 and Stoic philosopher	https://en.wikipedia.org/wiki/Marcus_Aurelius	REUSE rulerID 702 (Marcus Aurelius)
+Philosopher	Augustine of Hippo	354	430	226	3610	4432	Christian theologian, philosopher, and saint	https://en.wikipedia.org/wiki/Augustine_of_Hippo	NEW
+Philosopher	Avicenna	980	1037	193	3611	4433	Persian polymath, physician and philosopher	https://en.wikipedia.org/wiki/Avicenna	NEW
+Philosopher	Thomas Aquinas	1225	1274	205	3612	4434	Italian Dominican friar, philosopher, Catholic priest, and Doctor of the Church	https://en.wikipedia.org/wiki/Thomas_Aquinas	NEW
+Philosopher	Giordano Bruno	1548	1600	150	3613	4435	Italian Dominican friar, philosopher and mathematician	https://en.wikipedia.org/wiki/Giordano_Bruno	NEW
+Philosopher	Francis Bacon	1561	1626	186	3614	4436	English philosopher and statesman	https://en.wikipedia.org/wiki/Francis_Bacon	NEW
+Philosopher	Thomas Hobbes	1588	1679	159	3615	4437	English philosopher	https://en.wikipedia.org/wiki/Thomas_Hobbes	NEW
+Philosopher	René Descartes	1596	1650	249	3616	4438	French philosopher, mathematician, and scientist	https://en.wikipedia.org/wiki/Ren%C3%A9_Descartes	NEW
+Philosopher	John Locke	1632	1704	206	3617	4439	English philosopher and physician	https://en.wikipedia.org/wiki/John_Locke	NEW
+Philosopher	Benedictus de Spinoza	1632	1677	176	3618	4440	Dutch philosopher	https://en.wikipedia.org/wiki/Baruch_Spinoza	NEW
+Philosopher	David Hume	1711	1776	158	3619	4441	Scottish philosopher, economist, and historian	https://en.wikipedia.org/wiki/David_Hume	NEW
+Philosopher	Jean-Jacques Rousseau	1712	1778	229	3620	4442	Genevan philosopher, writer, and composer	https://en.wikipedia.org/wiki/Jean-Jacques_Rousseau	NEW
+Philosopher	Denis Diderot	1713	1784	150	3621	4443	French Enlightenment philosopher writer and encyclopædist	https://en.wikipedia.org/wiki/Denis_Diderot	NEW
+Philosopher	Adam Smith	1723	1790	219	3622	4444	Scottish moral philosopher and political economist	https://en.wikipedia.org/wiki/Adam_Smith	NEW
+Philosopher	Immanuel Kant	1724	1804	251	3623	4445	German philosopher	https://en.wikipedia.org/wiki/Immanuel_Kant	NEW
+Philosopher	Georg Wilhelm Friedrich Hegel	1770	1831	192	3624	4446	German philosopher and theologian	https://en.wikipedia.org/wiki/Georg_Wilhelm_Friedrich_Hegel	NEW
+Philosopher	Arthur Schopenhauer	1788	1860	173	3625	4447	German philosopher	https://en.wikipedia.org/wiki/Arthur_Schopenhauer	NEW
+Philosopher	Ralph Waldo Emerson	1803	1882	155	3626	4448	American philosopher	https://en.wikipedia.org/wiki/Ralph_Waldo_Emerson	NEW
+Philosopher	John Stuart Mill	1806	1873	149	3627	4449	British philosopher and political economist	https://en.wikipedia.org/wiki/John_Stuart_Mill	NEW
+Philosopher	Søren Kierkegaard	1813	1855	169	3628	4450	Danish theologian, philosopher, poet and social critic	https://en.wikipedia.org/wiki/S%C3%B8ren_Kierkegaard	NEW
+Philosopher	Karl Marx	1818	1883	310	3629	4451	German-born philosopher	https://en.wikipedia.org/wiki/Karl_Marx	NEW
+Philosopher	Friedrich Engels	1820	1895	196	3630	4452	German philosopher, sociologist and economist	https://en.wikipedia.org/wiki/Friedrich_Engels	NEW
+Philosopher	Friedrich Nietzsche	1844	1900	254	3631	4453	German philosopher	https://en.wikipedia.org/wiki/Friedrich_Nietzsche	NEW
+Philosopher	Max Weber	1864	1920	171	3632	4454	German sociologist, philosopher, and political economist	https://en.wikipedia.org/wiki/Max_Weber	NEW
+Philosopher	Bertrand Russell	1872	1970	185	3633	4455	British philosopher and logician	https://en.wikipedia.org/wiki/Bertrand_Russell	NEW
+Philosopher	Ludwig Wittgenstein	1889	1951	171	3634	4456	Austrian philosopher and logician	https://en.wikipedia.org/wiki/Ludwig_Wittgenstein	NEW
+Philosopher	B. R. Ambedkar	1891	1956	148	3635	4457	Indian polymath, philosopher, and social reformer	https://en.wikipedia.org/wiki/B._R._Ambedkar	NEW
+Philosopher	Jean-Paul Sartre	1905	1980	198	3636	4458	French existentialist philosopher	https://en.wikipedia.org/wiki/Jean-Paul_Sartre	NEW
+Philosopher	Simone de Beauvoir	1908	1986	183	3637	4459	French philosopher, social theorist and activist	https://en.wikipedia.org/wiki/Simone_de_Beauvoir	NEW
+Philosopher	Albert Camus	1913	1960	205	3638	4460	French philosopher, author, and journalist	https://en.wikipedia.org/wiki/Albert_Camus	NEW
+Writer	Abraham Lincoln	1809	1865	292			President of the United States from 1861 to 1865	https://en.wikipedia.org/wiki/Abraham_Lincoln	SKIP description doesn't match category
+Writer	Mahatma Gandhi	1869	1948	283			Indian independence activist	https://en.wikipedia.org/wiki/Mahatma_Gandhi	SKIP description doesn't match category
+Writer	Julius Caesar	-100	-44	281			Roman general and dictator	https://en.wikipedia.org/wiki/Julius_Caesar	SKIP description doesn't match category
+Composer	Charlie Chaplin	1889	1977	259			English comic actor and filmmaker	https://en.wikipedia.org/wiki/Charlie_Chaplin	SKIP description doesn't match category
+Composer	Martin Luther	1483	1546	257			German priest and theologian	https://en.wikipedia.org/wiki/Martin_Luther	SKIP description doesn't match category
+Writer	Mustafa Kemal Atatürk	1881	1938	253			Founding father of the Republic of Turkey	https://en.wikipedia.org/wiki/Mustafa_Kemal_Atat%C3%BCrk	SKIP description doesn't match category
+Writer	John F. Kennedy	1917	1963	250			President of the United States from 1961 to 1963	https://en.wikipedia.org/wiki/John_F._Kennedy	SKIP description doesn't match category
+Writer	Martin Luther King Jr.	1929	1968	245			American Baptist minister and civil rights leader	https://en.wikipedia.org/wiki/Martin_Luther_King_Jr.	SKIP description doesn't match category
+Writer	Pope Francis	1936	2025	235			266th pope of the Catholic Church from 2013 to 2025	https://en.wikipedia.org/wiki/Pope_Francis	SKIP description doesn't match category
+Writer	Mao Zedong	1893	1976	230			1st chairman of the Chinese Communist Party and founder of the People's Republic of China	https://en.wikipedia.org/wiki/Mao_Zedong	SKIP description doesn't match category
+Writer	Niccolò Machiavelli	1469	1527	225			Italian diplomat and political and military theorist	https://en.wikipedia.org/wiki/Niccol%C3%B2_Machiavelli	SKIP description doesn't match category
+Writer	Thomas Jefferson	1743	1826	222			Founding Father, U.S. president from 1801 to 1809	https://en.wikipedia.org/wiki/Thomas_Jefferson	SKIP description doesn't match category
+Writer	Otto von Bismarck	1815	1898	218			German statesman and Chancellor	https://en.wikipedia.org/wiki/Otto_von_Bismarck	SKIP description doesn't match category
+Scientist	Carl Linnaeus	1707	1778	212			Swedish botanist, physician, and zoologist	https://en.wikipedia.org/wiki/Carl_Linnaeus	SKIP description doesn't match category
+Artist	Walt Disney	1901	1966	211			American animator, producer, director, screenwriter, voice actor and entrepreneur, founder of The Walt Disney Company	https://en.wikipedia.org/wiki/Walt_Disney	SKIP description doesn't match category
+Writer	Marco Polo	1254	1324	210			Venetian explorer and merchant who travelled through Asia	https://en.wikipedia.org/wiki/Marco_Polo	SKIP description doesn't match category
+Scientist	Margaret Thatcher	1925	2013	207			British stateswoman and prime minister	https://en.wikipedia.org/wiki/Margaret_Thatcher	SKIP description doesn't match category
+Writer	John Paul II	1920	2005	204			264th pope of the Catholic Church	https://en.wikipedia.org/wiki/Pope_John_Paul_II	SKIP description doesn't match category
+Philosopher	Benedict XVI	1927	2022	201			265 th pope of the Catholic Church	https://en.wikipedia.org/wiki/Pope_Benedict_XVI	SKIP description doesn't match category
+Writer	Jimmy Carter	1924	2024	199			President of the United States from 1977 to 1981	https://en.wikipedia.org/wiki/Jimmy_Carter	SKIP description doesn't match category
+Writer	Henry Ford	1863	1947	198			American business magnate	https://en.wikipedia.org/wiki/Henry_Ford	SKIP description doesn't match category
+Writer	Paul the Apostle	5	66	194			Early Christian apostle and missionary	https://en.wikipedia.org/wiki/Paul_the_Apostle	SKIP description doesn't match category
+Writer	Theodore Roosevelt	1858	1919	191			26th President of the United States from 1901 to 1909	https://en.wikipedia.org/wiki/Theodore_Roosevelt	SKIP description doesn't match category
+Writer	Jawaharlal Nehru	1889	1964	190			Prime Minister of India from 1947 to 1964	https://en.wikipedia.org/wiki/Jawaharlal_Nehru	SKIP description doesn't match category
+Writer	Dwight D. Eisenhower	1890	1969	190			President of the United States from 1953 to 1961	https://en.wikipedia.org/wiki/Dwight_D._Eisenhower	SKIP description doesn't match category
+Writer	Woodrow Wilson	1856	1924	189			President of the United States from 1913 to 1921	https://en.wikipedia.org/wiki/Woodrow_Wilson	SKIP description doesn't match category
+Writer	Roald Amundsen	1872	1928	189			Norwegian explorer; first person to reach the South Pole	https://en.wikipedia.org/wiki/Roald_Amundsen	SKIP description doesn't match category
+Writer	John Adams	1735	1826	187			Founding Father, U.S. president from 1797 to 1801	https://en.wikipedia.org/wiki/John_Adams	SKIP description doesn't match category
+Writer	Muammar Gaddafi	1942	2011	185			Military officer and former Brotherly Leader and Guide of the Revolution of Libya	https://en.wikipedia.org/wiki/Muammar_Gaddafi	SKIP description doesn't match category
+Writer	Alfred Hitchcock	1899	1980	185			British filmmaker	https://en.wikipedia.org/wiki/Alfred_Hitchcock	SKIP description doesn't match category
+Scientist	John Maynard Keynes	1883	1946	184			British economist	https://en.wikipedia.org/wiki/John_Maynard_Keynes	SKIP description doesn't match category
+Composer	John Lennon	1940	1980	183			British musician	https://en.wikipedia.org/wiki/John_Lennon	SKIP description doesn't match category
+Writer	Leon Trotsky	1879	1940	182			Russian Marxist revolutionary	https://en.wikipedia.org/wiki/Leon_Trotsky	SKIP description doesn't match category
+Composer	Pelé	1940	2022	181			Brazilian footballer	https://en.wikipedia.org/wiki/Pel%C3%A9	SKIP description doesn't match category
+Artist	Freddie Mercury	1946	1991	177			British singer, songwriter and musician, frontman of the rock band Queen	https://en.wikipedia.org/wiki/Freddie_Mercury	SKIP description doesn't match category
+Writer	Frank Lloyd Wright	1867	1959	177			American architect	https://en.wikipedia.org/wiki/Frank_Lloyd_Wright	SKIP description doesn't match category
+Writer	Louis Armstrong	1901	1971	176			American jazz musician, trumpeter and singer	https://en.wikipedia.org/wiki/Louis_Armstrong	SKIP description doesn't match category
+Artist	Akira Kurosawa	1910	1998	174			Japanese filmmaker	https://en.wikipedia.org/wiki/Akira_Kurosawa	SKIP description doesn't match category
+Writer	James Madison	1751	1836	173			President of the United States from 1809 to 1817	https://en.wikipedia.org/wiki/James_Madison	SKIP description doesn't match category
+Philosopher	Hippocrates	-460	-370	173			Greek physician	https://en.wikipedia.org/wiki/Hippocrates	SKIP description doesn't match category
+Writer	Indira Gandhi	1917	1984	171			Prime Minister of India	https://en.wikipedia.org/wiki/Indira_Gandhi	SKIP description doesn't match category
+Writer	Hernán Cortés	1485	1547	170			Spanish conquistador	https://en.wikipedia.org/wiki/Hern%C3%A1n_Cort%C3%A9s	SKIP description doesn't match category
+Writer	Saddam Hussein	1937	2006	169			Iraqi politician and revolutionary, president of Iraq from 1979 to 2003	https://en.wikipedia.org/wiki/Saddam_Hussein	SKIP description doesn't match category
+Writer	Aesop	-620	-564	166			Ancient Greek storyteller	https://en.wikipedia.org/wiki/Aesop	SKIP description doesn't match category
+Writer	John Quincy Adams	1767	1848	165			President of the United States from 1825 to 1829	https://en.wikipedia.org/wiki/John_Quincy_Adams	SKIP description doesn't match category
+Writer	Ibn Battuta	1304	1368	165			14th century Muslim Maghrebi scholar and explorer	https://en.wikipedia.org/wiki/Ibn_Battuta	SKIP description doesn't match category
+Composer	Bob Marley	1945	1981	164			Jamaican reggae musician	https://en.wikipedia.org/wiki/Bob_Marley	SKIP description doesn't match category
+Writer	Ibn Khaldun	1332	1406	164			Arab historiographer and historian	https://en.wikipedia.org/wiki/Ibn_Khaldun	SKIP description doesn't match category
+Writer	Bruce Lee	1940	1973	162			Hong Kong–American martial artist and actor	https://en.wikipedia.org/wiki/Bruce_Lee	SKIP description doesn't match category
+Writer	Sun Tzu	-544	-496	162			6th century BCE Chinese general and military strategist	https://en.wikipedia.org/wiki/Sun_Tzu	SKIP description doesn't match category
+Writer	Herbert Hoover	1874	1964	161			President of the United States from 1929 to 1933	https://en.wikipedia.org/wiki/Herbert_Hoover	SKIP description doesn't match category
+Writer	Ingmar Bergman	1918	2007	160			Swedish director and screenwriter	https://en.wikipedia.org/wiki/Ingmar_Bergman	SKIP description doesn't match category
+Writer	Federico Fellini	1920	1993	159			Italian filmmaker	https://en.wikipedia.org/wiki/Federico_Fellini	SKIP description doesn't match category
+Scientist	James Watt	1736	1819	159			British engineer	https://en.wikipedia.org/wiki/James_Watt	SKIP description doesn't match category
+Writer	Ali Khamenei	1939	2026	158			Cleric and former Supreme Leader of Iran from 1989 to 2026	https://en.wikipedia.org/wiki/Ali_Khamenei	SKIP description doesn't match category
+Writer	Marlon Brando	1924	2004	157			American actor	https://en.wikipedia.org/wiki/Marlon_Brando	SKIP description doesn't match category
+Writer	Ulysses S. Grant	1822	1885	157			President of the United States from 1869 to 1877	https://en.wikipedia.org/wiki/Ulysses_S._Grant	SKIP description doesn't match category
+Writer	James Monroe	1758	1831	156			President of the United States from 1817 to 1825	https://en.wikipedia.org/wiki/James_Monroe	SKIP description doesn't match category
+Writer	Stanley Kubrick	1928	1999	155			American filmmaker	https://en.wikipedia.org/wiki/Stanley_Kubrick	SKIP description doesn't match category
+Writer	Kwame Nkrumah	1909	1972	154			Ghanaian politician	https://en.wikipedia.org/wiki/Kwame_Nkrumah	SKIP description doesn't match category
+Writer	Erasmus	1466	1536	153			Dutch Renaissance humanist, Catholic priest, and theologian	https://en.wikipedia.org/wiki/Erasmus	SKIP description doesn't match category
+Writer	Brigitte Bardot	1934	2025	151			French actress, singer, animal rights activist	https://en.wikipedia.org/wiki/Brigitte_Bardot	SKIP description doesn't match category
+Writer	Alī ibn Abī Ṭālib	599	661	151			4th Rashidun Caliph (r. 656–661) and first Shia Imam	https://en.wikipedia.org/wiki/Ali	SKIP description doesn't match category
+Philosopher	Sun Yat-sen	1866	1925	151			Chinese politician, physician, and revolutionary	https://en.wikipedia.org/wiki/Sun_Yat-sen	SKIP description doesn't match category
+Artist	Carl Jung	1875	1961	150			Swiss psychiatrist and psychotherapist	https://en.wikipedia.org/wiki/Carl_Jung	SKIP description doesn't match category
+Writer	Florence Nightingale	1820	1910	149			English social reformer, statistician, and founder of modern nursing	https://en.wikipedia.org/wiki/Florence_Nightingale	SKIP description doesn't match category
+Writer	Eleanor Roosevelt	1884	1962	147			American diplomat and activist, First Lady of the United States from 1933 to 1945	https://en.wikipedia.org/wiki/Eleanor_Roosevelt	SKIP description doesn't match category
+Writer	James A. Garfield	1831	1881	146			President of the United States in 1881	https://en.wikipedia.org/wiki/James_A._Garfield	SKIP description doesn't match category
+Writer	Grover Cleveland	1837	1908	146			President of the United States	https://en.wikipedia.org/wiki/Grover_Cleveland	SKIP description doesn't match category
+Writer	William Howard Taft	1857	1930	146			27th President of the United States from 1909 to 1913	https://en.wikipedia.org/wiki/William_Howard_Taft	SKIP description doesn't match category
+Writer	Martin Van Buren	1782	1862	145			President of the United States from 1837 to 1841	https://en.wikipedia.org/wiki/Martin_Van_Buren	SKIP description doesn't match category
+Writer	Tacitus	55	120	144			Roman historian and senator	https://en.wikipedia.org/wiki/Tacitus	SKIP description doesn't match category
+Writer	Henry Kissinger	1923	2023	144			American politician and diplomat and geopolitical advisor, served as U.S. Secretary of State from 1973 to 1977	https://en.wikipedia.org/wiki/Henry_Kissinger	SKIP description doesn't match category
+Writer	Elizabeth Taylor	1932	2011	143			British-American actress	https://en.wikipedia.org/wiki/Elizabeth_Taylor	SKIP description doesn't match category
+Writer	Sean Connery	1930	2020	143			Scottish actor	https://en.wikipedia.org/wiki/Sean_Connery	SKIP description doesn't match category
+Writer	Al-Ghazali	1058	1111	143			Persian Sunni Muslim scholar and mystic	https://en.wikipedia.org/wiki/Al-Ghazali	SKIP description doesn't match category
+Artist	Bhumibol Adulyadej	1927	2016	142			Former King of Thailand	https://en.wikipedia.org/wiki/Bhumibol_Adulyadej	SKIP description doesn't match category
+Writer	Zoroaster	-628	-551	141			Founder of Zoroastrianism	https://en.wikipedia.org/wiki/Zoroaster	SKIP description doesn't match category
+Writer	Chanakya Kautilya	-375	-283	140			Ancient Indian teacher and strategist who authored the foundational manual on political economy.	https://en.wikipedia.org/wiki/Chanakya	SKIP description doesn't match category
+Writer	Francis of Assisi	1182	1226	139			Italian Catholic saint, friar, deacon and preacher and founder of the Franciscan Order	https://en.wikipedia.org/wiki/Francis_of_Assisi	SKIP description doesn't match category
+Writer	Alain Delon	1935	2024	138			French actor	https://en.wikipedia.org/wiki/Alain_Delon	SKIP description doesn't match category
+Artist	David Bowie	1947	2016	136			English musician and actor	https://en.wikipedia.org/wiki/David_Bowie	SKIP description doesn't match category
+Writer	Nero	37	68	135			Fifth and last Roman Emperor of Julio-Claudian dynasty	https://en.wikipedia.org/wiki/Nero	SKIP description doesn't match category
+Writer	Benjamin Harrison	1833	1901	135			President of the United States, 1889-1893	https://en.wikipedia.org/wiki/Benjamin_Harrison	SKIP description doesn't match category
+Writer	John Calvin	1509	1564	135			French Protestant reformer	https://en.wikipedia.org/wiki/John_Calvin	SKIP description doesn't match category
+Writer	Ruhollah Khomeini	1902	1989	135			Supreme Leader of Iran from 1979 to 1989	https://en.wikipedia.org/wiki/Ruhollah_Khomeini	SKIP description doesn't match category
+Composer	Jimi Hendrix	1942	1970	132			American guitarist	https://en.wikipedia.org/wiki/Jimi_Hendrix	SKIP description doesn't match category
+Composer	Tupac Shakur	1971	1996	132			American rapper and actor	https://en.wikipedia.org/wiki/Tupac_Shakur	SKIP description doesn't match category
+Writer	John McCain	1936	2018	132			American politician	https://en.wikipedia.org/wiki/John_McCain	SKIP description doesn't match category
+Writer	David	-1039	-969	131			King of Israel and Judah	https://en.wikipedia.org/wiki/David	SKIP description doesn't match category
+Writer	Giuseppe Garibaldi	1807	1882	130			Italian general, patriot and republican	https://en.wikipedia.org/wiki/Giuseppe_Garibaldi	SKIP description doesn't match category
+Artist	Wilhelm II	1859	1941	129			As King of Prussia last German Emperor from 1888 to 1918	https://en.wikipedia.org/wiki/Wilhelm_II	SKIP description doesn't match category
+Composer	Amy Winehouse	1983	2011	129			British singer-songwriter	https://en.wikipedia.org/wiki/Amy_Winehouse	SKIP description doesn't match category
+Writer	Titus Livius	-59	17	129			Roman historian	https://en.wikipedia.org/wiki/Livy	SKIP description doesn't match category
+Writer	Abu Bakr	573	634	128			1st Rashidun Caliph and father-in-law of Muhammad	https://en.wikipedia.org/wiki/Abu_Bakr	SKIP description doesn't match category
+Writer	Napoleon III	1808	1873	128			President of the Second French Republic, Emperor of the Second French Empire and last monarch of France	https://en.wikipedia.org/wiki/Napoleon_III	SKIP description doesn't match category
+Composer	Kurt Cobain	1967	1994	127			American rock musician	https://en.wikipedia.org/wiki/Kurt_Cobain	SKIP description doesn't match category
+Writer	Shimon Peres	1923	2016	127			Israeli politician (1923–2016) –Former President of Israel (2007–2014) and Prime Minister of Israel	https://en.wikipedia.org/wiki/Shimon_Peres	SKIP description doesn't match category
+Composer	George Harrison	1943	2001	126			English musician and member of the Beatles	https://en.wikipedia.org/wiki/George_Harrison	SKIP description doesn't match category
+Writer	Theodor Mommsen	1817	1903	126			German classical scholar and historian	https://en.wikipedia.org/wiki/Theodor_Mommsen	SKIP description doesn't match category
+Writer	John Paul I	1912	1978	125			Pope of the Catholic Church in 1978	https://en.wikipedia.org/wiki/Pope_John_Paul_I	SKIP description doesn't match category
+Writer	Emma Goldman	1869	1940	125			Russian-born American anarchist	https://en.wikipedia.org/wiki/Emma_Goldman	SKIP description doesn't match category
+Scientist	Wangari Muta Maathai	1940	2011	125			Kenyan environmentalist and politician who won the Nobel Peace Prize in 2004	https://en.wikipedia.org/wiki/Wangar%C4%A9_Maathai	SKIP description doesn't match category
+Scientist	Robert Koch	1843	1910	124			German physician, bacteriologist	https://en.wikipedia.org/wiki/Robert_Koch	SKIP description doesn't match category
+Philosopher	Émile Durkheim	1858	1917	124			French sociologist	https://en.wikipedia.org/wiki/%C3%89mile_Durkheim	SKIP description doesn't match category
+Composer	Frederick II of Prussia	1712	1786	123			King of Prussia from 1740 to 1786	https://en.wikipedia.org/wiki/Frederick_the_Great	SKIP description doesn't match category
+Composer	Bing Crosby	1903	1977	122			American singer and actor	https://en.wikipedia.org/wiki/Bing_Crosby	SKIP description doesn't match category
+Writer	Mehmed II	1432	1481	122			Seventh Sultan of the Ottoman Empire	https://en.wikipedia.org/wiki/Mehmed_II	SKIP description doesn't match category
+Writer	Nostradamus	1503	1566	122			French seer and astrologer	https://en.wikipedia.org/wiki/Nostradamus	SKIP description doesn't match category
+Scientist	Ivan Pavlov	1849	1936	122			Russian physiologist	https://en.wikipedia.org/wiki/Ivan_Pavlov	SKIP description doesn't match category
+Writer	John Wayne	1907	1979	119			American actor	https://en.wikipedia.org/wiki/John_Wayne	SKIP description doesn't match category
+Writer	Justinian I	482	565	119			Eastern Roman Emperor who ruled from 527 to 565	https://en.wikipedia.org/wiki/Justinian_I	SKIP description doesn't match category
+Philosopher	Lee Kuan Yew	1923	2015	119			1st Prime Minister of the Republic of Singapore	https://en.wikipedia.org/wiki/Lee_Kuan_Yew	SKIP description doesn't match category
+Composer	Henry VIII of England	1491	1547	118			King of England from 1509 to 1547	https://en.wikipedia.org/wiki/Henry_VIII	SKIP description doesn't match category
+Composer	Johnny Cash	1932	2003	117			American country singer	https://en.wikipedia.org/wiki/Johnny_Cash	SKIP description doesn't match category
+Composer	Vladimir Vysotsky	1938	1980	117			Soviet singer-songwriter and actor	https://en.wikipedia.org/wiki/Vladimir_Vysotsky	SKIP description doesn't match category
+Writer	Solon	-630	-560	116			Athenian legislator	https://en.wikipedia.org/wiki/Solon	SKIP description doesn't match category
+Writer	Bobby Fischer	1943	2008	116			American chess player	https://en.wikipedia.org/wiki/Bobby_Fischer	SKIP description doesn't match category
+Composer	Aretha Franklin	1942	2018	115			American singer, songwriter, and pianist	https://en.wikipedia.org/wiki/Aretha_Franklin	SKIP description doesn't match category
+Writer	Humphrey Bogart	1899	1957	115			American actor	https://en.wikipedia.org/wiki/Humphrey_Bogart	SKIP description doesn't match category
+Writer	Leo XIII	1810	1903	115			Pope of the Catholic Church from 1878 to 1903	https://en.wikipedia.org/wiki/Pope_Leo_XIII	SKIP description doesn't match category
+Writer	Pierre de Coubertin	1863	1937	115			Founder of modern Olympic Games, pedagogue and historian	https://en.wikipedia.org/wiki/Pierre_de_Coubertin	SKIP description doesn't match category
+Writer	Alexis de Tocqueville	1805	1859	114			French political thinker and historian, minister of Foreign Affairs	https://en.wikipedia.org/wiki/Alexis_de_Tocqueville	SKIP description doesn't match category
+Writer	Américo Vespucio	1454	1512	114			Florentine explorer, financier, navigator and cartographer	https://en.wikipedia.org/wiki/Amerigo_Vespucci	SKIP description doesn't match category
+Writer	Orson Welles	1915	1985	112			American actor and filmmaker	https://en.wikipedia.org/wiki/Orson_Welles	SKIP description doesn't match category
+Writer	Gregory I	540	604	112			64th Bishop of Rome, Head of the Roman Catholic Church from 590 to 604	https://en.wikipedia.org/wiki/Pope_Gregory_I	SKIP description doesn't match category
+Writer	Fridtjof Nansen	1861	1930	112			Norwegian polar explorer and diplomat; Nobel Peace Prize laureate	https://en.wikipedia.org/wiki/Fridtjof_Nansen	SKIP description doesn't match category
+Philosopher	Ramakrishna	1836	1886	112			Indian mystic and religious preacher	https://en.wikipedia.org/wiki/Ramakrishna	SKIP description doesn't match category
+Composer	Prince	1958	2016	111			American musician	https://en.wikipedia.org/wiki/Prince_(musician)	SKIP description doesn't match category
+Writer	Demosthenes	-384	-322	111			Classical Athenian statesman and orator	https://en.wikipedia.org/wiki/Demosthenes	SKIP description doesn't match category
+Writer	Hadrian	76	138	111			14th Roman Emperor	https://en.wikipedia.org/wiki/Hadrian	SKIP description doesn't match category
+Writer	Christopher Lee	1922	2015	111			English actor and singer	https://en.wikipedia.org/wiki/Christopher_Lee	SKIP description doesn't match category
+Writer	Helmut Schmidt	1918	2015	111			Chancellor of West Germany	https://en.wikipedia.org/wiki/Helmut_Schmidt	SKIP description doesn't match category
+Writer	Andrew Carnegie	1835	1919	111			Scottish-American industrialist and philanthropist	https://en.wikipedia.org/wiki/Andrew_Carnegie	SKIP description doesn't match category
+Philosopher	Friedrich Hayek	1899	1992	111			Austrian and British economist	https://en.wikipedia.org/wiki/Friedrich_Hayek	SKIP description doesn't match category
+Composer	Frank Zappa	1940	1993	110			American musician	https://en.wikipedia.org/wiki/Frank_Zappa	SKIP description doesn't match category
+Writer	David Lloyd George	1863	1945	110			Prime Minister of the United Kingdom from 1916 to 1922	https://en.wikipedia.org/wiki/David_Lloyd_George	SKIP description doesn't match category
+Writer	Chuck Norris	1940	2026	110			American martial artist and action actor	https://en.wikipedia.org/wiki/Chuck_Norris	SKIP description doesn't match category
+Writer	Claudius	-10	54	109			Fourth Roman emperor	https://en.wikipedia.org/wiki/Claudius	SKIP description doesn't match category
+Writer	Madeleine Albright	1937	2022	109			United States Secretary of State from 1997 to 2001	https://en.wikipedia.org/wiki/Madeleine_Albright	SKIP description doesn't match category
+Writer	Teresa of Ávila	1515	1582	109			Roman Catholic saint	https://en.wikipedia.org/wiki/Teresa_of_%C3%81vila	SKIP description doesn't match category
+Writer	Paul Newman	1925	2008	109			American actor	https://en.wikipedia.org/wiki/Paul_Newman	SKIP description doesn't match category
+Scientist	Edgar de Wahl	1867	1948	109			Estonian teacher and linguist	https://en.wikipedia.org/wiki/Edgar_de_Wahl	SKIP description doesn't match category
+Writer	Jerome	345	420	108			4th and 5th-century Catholic and Eastern Orthodox saint and Doctor of the Church	https://en.wikipedia.org/wiki/Jerome	SKIP description doesn't match category
+Scientist	Wernher von Braun	1912	1977	108			German and later American aerospace engineer and space architect	https://en.wikipedia.org/wiki/Wernher_von_Braun	SKIP description doesn't match category
+Writer	Henry Dunant	1828	1910	107			Swiss businessman and co-founder of the Red Cross	https://en.wikipedia.org/wiki/Henry_Dunant	SKIP description doesn't match category
+Writer	Aisha	614	678	107			Muhammad's third wife	https://en.wikipedia.org/wiki/Aisha	SKIP description doesn't match category
+Writer	Pierre Corneille	1606	1684	107			French tragedian	https://en.wikipedia.org/wiki/Pierre_Corneille	SKIP description doesn't match category
+Writer	Clara Zetkin	1857	1933	107			Communist activist, and advocate for women's rights	https://en.wikipedia.org/wiki/Clara_Zetkin	SKIP description doesn't match category
+Writer	Carl von Clausewitz	1780	1831	107			German-Prussian general and military theorist	https://en.wikipedia.org/wiki/Carl_von_Clausewitz	SKIP description doesn't match category
+Writer	Babur	1483	1530	107			Founder of the Mughal Empire	https://en.wikipedia.org/wiki/Babur	SKIP description doesn't match category
+Writer	Thomas Robert Malthus	1766	1834	106			British political economist	https://en.wikipedia.org/wiki/Thomas_Robert_Malthus	SKIP description doesn't match category
+Writer	Guru Nanak	1469	1539	106			First Sikh Guru and founder of Sikhism	https://en.wikipedia.org/wiki/Guru_Nanak	SKIP description doesn't match category
+Scientist	Maria Montessori	1870	1952	106			Italian physician and educator	https://en.wikipedia.org/wiki/Maria_Montessori	SKIP description doesn't match category
+Composer	Ray Charles	1930	2004	105			American singer, pianist and songwriter	https://en.wikipedia.org/wiki/Ray_Charles	SKIP description doesn't match category
+Composer	Anne Boleyn	1501	1536	105			Second wife of Henry VIII of England	https://en.wikipedia.org/wiki/Anne_Boleyn	SKIP description doesn't match category
+Writer	Armand-Jean du Plessis, duc de Richelieu	1585	1642	105			French clergyman, cardinal, noble and statesman	https://en.wikipedia.org/wiki/Cardinal_Richelieu	SKIP description doesn't match category
+Writer	John Chrysostom	349	407	105			Church Father, Archbishop of Constantinople and Christian saint	https://en.wikipedia.org/wiki/John_Chrysostom	SKIP description doesn't match category
+Writer	Isadora Duncan	1877	1927	105			American dancer and choreographer	https://en.wikipedia.org/wiki/Isadora_Duncan	SKIP description doesn't match category
+Writer	Erich Fromm	1900	1980	105			German sociologist and psychoanalyst	https://en.wikipedia.org/wiki/Erich_Fromm	SKIP description doesn't match category
+Writer	Baháʼu'lláh	1817	1892	104			Founder of the Bahá'í Faith	https://en.wikipedia.org/wiki/Bah%C3%A1%CA%BCu%27ll%C3%A1h	SKIP description doesn't match category
+Writer	Harriet Tubman	1821	1913	104			African-American abolitionist	https://en.wikipedia.org/wiki/Harriet_Tubman	SKIP description doesn't match category
+Writer	Edward Gibbon	1737	1794	104			English historian and politician	https://en.wikipedia.org/wiki/Edward_Gibbon	SKIP description doesn't match category
+Writer	Lucian of Samosata	120	180	104			2nd-century Syrian satirist and rhetorician	https://en.wikipedia.org/wiki/Lucian	SKIP description doesn't match category
+Writer	Alexander Hamilton	1757	1804	104			American Founding Father and statesman	https://en.wikipedia.org/wiki/Alexander_Hamilton	SKIP description doesn't match category
+Writer	Ernst Haeckel	1834	1919	104			German zoologist	https://en.wikipedia.org/wiki/Ernst_Haeckel	SKIP description doesn't match category
+Composer	George Michael	1963	2016	103			English singer	https://en.wikipedia.org/wiki/George_Michael	SKIP description doesn't match category
+Writer	Theodor Herzl	1860	1904	103			Father of modern political Zionism	https://en.wikipedia.org/wiki/Theodor_Herzl	SKIP description doesn't match category
+Composer	George Carlin	1937	2008	102			American stand-up comedian	https://en.wikipedia.org/wiki/George_Carlin	SKIP description doesn't match category
+Writer	Peter O'Toole	1932	2013	102			British-Irish actor	https://en.wikipedia.org/wiki/Peter_O%27Toole	SKIP description doesn't match category
+Writer	Alfred the Great	849	899	102			King of Wessex	https://en.wikipedia.org/wiki/Alfred_the_Great	SKIP description doesn't match category
+Writer	Lauren Bacall	1924	2014	101			American actress	https://en.wikipedia.org/wiki/Lauren_Bacall	SKIP description doesn't match category
+Writer	Kirk Douglas	1916	2020	101			American actor	https://en.wikipedia.org/wiki/Kirk_Douglas	SKIP description doesn't match category
+Writer	Jacqueline Kennedy Onassis	1929	1994	101			First Lady of the United States from 1961 to 1963	https://en.wikipedia.org/wiki/Jacqueline_Kennedy_Onassis	SKIP description doesn't match category
+Writer	Fatima	604	632	101			Daughter of Muhammad	https://en.wikipedia.org/wiki/Fatima	SKIP description doesn't match category
+Writer	Gene Wilder	1933	2016	101			American actor	https://en.wikipedia.org/wiki/Gene_Wilder	SKIP description doesn't match category
+Artist	Empress Dowager Cixi	1835	1908	100			Chinese empress	https://en.wikipedia.org/wiki/Empress_Dowager_Cixi	SKIP description doesn't match category
+Composer	Huldrych Zwingli	1484	1531	100			Protestant Reformation leader in Switzerland, Swiss Reformed Church founder	https://en.wikipedia.org/wiki/Huldrych_Zwingli	SKIP description doesn't match category
+Composer	Ella Fitzgerald	1917	1996	100			American jazz singer	https://en.wikipedia.org/wiki/Ella_Fitzgerald	SKIP description doesn't match category
+Composer	James Brown	1933	2006	100			American musician	https://en.wikipedia.org/wiki/James_Brown	SKIP description doesn't match category
+Writer	Sidney Poitier	1927	2022	100			Bahamian and American actor and diplomat	https://en.wikipedia.org/wiki/Sidney_Poitier	SKIP description doesn't match category
+Writer	Mary Pickford	1892	1979	100			Canadian actress and producer	https://en.wikipedia.org/wiki/Mary_Pickford	SKIP description doesn't match category
+Writer	Husayn ibn Ali	626	680	100			Grandson of Muhammad and the 3rd Shia Imam	https://en.wikipedia.org/wiki/Husayn_ibn_Ali	SKIP description doesn't match category
+Writer	David Livingstone	1813	1873	100			Scottish missionary and explorer	https://en.wikipedia.org/wiki/David_Livingstone	SKIP description doesn't match category
+Writer	Claude Lévi-Strauss	1908	2009	99			French anthropologist and ethnologist	https://en.wikipedia.org/wiki/Claude_L%C3%A9vi-Strauss	SKIP description doesn't match category
+Writer	Henry Fonda	1905	1982	99			American actor	https://en.wikipedia.org/wiki/Henry_Fonda	SKIP description doesn't match category
+Composer	Charles Aznavour	1924	2018	98			Armenian-French singer and diplomat	https://en.wikipedia.org/wiki/Charles_Aznavour	SKIP description doesn't match category
+Writer	Oscar Niemeyer	1907	2012	98			Brazilian architect	https://en.wikipedia.org/wiki/Oscar_Niemeyer	SKIP description doesn't match category
+Writer	Robert F. Kennedy	1925	1968	98			American politician and lawyer	https://en.wikipedia.org/wiki/Robert_F._Kennedy	SKIP description doesn't match category
+Scientist	Louis de Broglie	1892	1987	98			Nobel laureate credited to pioneer the discovery of wave character of matter	https://en.wikipedia.org/wiki/Louis_de_Broglie	SKIP description doesn't match category
+Composer	Miriam Makeba	1932	2008	97			South African singer and civil rights activist	https://en.wikipedia.org/wiki/Miriam_Makeba	SKIP description doesn't match category
+Composer	Chester Bennington	1976	2017	97			American singer, songwriter and musician	https://en.wikipedia.org/wiki/Chester_Bennington	SKIP description doesn't match category
+Composer	Ichirō Mizuki	1948	2022	97			Japanese singer, voice actor	https://en.wikipedia.org/wiki/Ichirou_Mizuki	SKIP description doesn't match category
+Writer	Buster Keaton	1895	1966	97			American actor, comedian, and director	https://en.wikipedia.org/wiki/Buster_Keaton	SKIP description doesn't match category
+Writer	Harun al-Rashid	766	809	97			5th Abbasid caliph	https://en.wikipedia.org/wiki/Harun_al-Rashid	SKIP description doesn't match category
+Writer	David Ricardo	1772	1823	97			British economist and politician	https://en.wikipedia.org/wiki/David_Ricardo	SKIP description doesn't match category
+Writer	William Ewart Gladstone	1809	1898	97			British Liberal prime minister	https://en.wikipedia.org/wiki/William_Ewart_Gladstone	SKIP description doesn't match category
+Writer	Ambrose	339	397	97			Roman theologian and Bishop of Milan	https://en.wikipedia.org/wiki/Ambrose	SKIP description doesn't match category
+Writer	William of Ockham	1287	1349	97			English Franciscan friar and theologian	https://en.wikipedia.org/wiki/William_of_Ockham	SKIP description doesn't match category
+Writer	Cary Grant	1904	1986	97			British-American actor	https://en.wikipedia.org/wiki/Cary_Grant	SKIP description doesn't match category
+Artist	René Magritte	1898	1967	96			Belgian surrealist	https://en.wikipedia.org/wiki/Ren%C3%A9_Magritte	SKIP description doesn't match category
+Composer	Ravi Shankar	1920	2012	96			Indian sitar player	https://en.wikipedia.org/wiki/Ravi_Shankar	SKIP description doesn't match category
+Composer	Chuck Berry	1926	2017	96			American musician	https://en.wikipedia.org/wiki/Chuck_Berry	SKIP description doesn't match category
+Writer	James Stewart	1908	1997	96			American actor and military officer	https://en.wikipedia.org/wiki/James_Stewart	SKIP description doesn't match category
+Writer	Rajneesh	1931	1990	96			Indian guru and leader of the Rajneesh movement	https://en.wikipedia.org/wiki/Rajneesh	SKIP description doesn't match category
+Writer	Josephine Baker	1906	1975	96			American-born French dancer, singer and actress	https://en.wikipedia.org/wiki/Josephine_Baker	SKIP description doesn't match category
+Writer	Margaret Mead	1901	1978	96			American anthropologist	https://en.wikipedia.org/wiki/Margaret_Mead	SKIP description doesn't match category
+Writer	Louis de Funès	1914	1983	96			French actor and comedian	https://en.wikipedia.org/wiki/Louis_de_Fun%C3%A8s	SKIP description doesn't match category
+Writer	Anthony Bourdain	1956	2018	96			American chef and television personality	https://en.wikipedia.org/wiki/Anthony_Bourdain	SKIP description doesn't match category
+Philosopher	Harry Houdini	1874	1926	96			Hungarian-born American illusionist, escapologist, and stunt performer	https://en.wikipedia.org/wiki/Harry_Houdini	SKIP description doesn't match category
+Writer	Paul Samuelson	1915	2009	95			American economist	https://en.wikipedia.org/wiki/Paul_Samuelson	SKIP description doesn't match category
+Writer	Anna Politkovskaya	1958	2006	95			Russian journalist	https://en.wikipedia.org/wiki/Anna_Politkovskaya	SKIP description doesn't match category
+Writer	Charles-Maurice de Talleyrand-Périgord	1754	1839	95			French diplomat	https://en.wikipedia.org/wiki/Charles_Maurice_de_Talleyrand-P%C3%A9rigord	SKIP description doesn't match category
+Writer	Leo I	390	461	95			Pope from 440 to 461	https://en.wikipedia.org/wiki/Pope_Leo_I	SKIP description doesn't match category
+Writer	James VI and I	1566	1625	95			King of Scotland from 1566 to 1625, King of England and Ireland from 1603 to 1625	https://en.wikipedia.org/wiki/James_VI_and_I	SKIP description doesn't match category
+Composer	Luis Buñuel	1900	1983	94			Spanish-Mexican filmmaker	https://en.wikipedia.org/wiki/Luis_Bu%C3%B1uel	SKIP description doesn't match category
+Writer	Josephus	37	100	94			Roman–Jewish historian and military leader	https://en.wikipedia.org/wiki/Josephus	SKIP description doesn't match category
+Writer	Camillo Benso di Cavour	1810	1861	94			First Prime Minister of the Kingdom of Italy from March to June in 1861	https://en.wikipedia.org/wiki/Camillo_Benso,_Count_of_Cavour	SKIP description doesn't match category
+Writer	Sheikh Mujibur Rahman	1920	1975	94			President of the Provisional Government of Bangladesh and the 2nd Prime Minister and first President of Bangladesh	https://en.wikipedia.org/wiki/Sheikh_Mujibur_Rahman	SKIP description doesn't match category
+Writer	P. T. Barnum	1810	1891	94			American showman and politician	https://en.wikipedia.org/wiki/P._T._Barnum	SKIP description doesn't match category
+Writer	Julian	331	363	94			Last Pagan Roman emperor, reigned 361 to 363	https://en.wikipedia.org/wiki/Julian_(emperor)	SKIP description doesn't match category
+Writer	Klemens von Metternich	1773	1859	94			Austrian diplomat, foreign minister and Chancellor	https://en.wikipedia.org/wiki/Klemens_von_Metternich	SKIP description doesn't match category
+Writer	Albertus Magnus	1200	1280	94			German-Dominican friar and saint	https://en.wikipedia.org/wiki/Albertus_Magnus	SKIP description doesn't match category
+Writer	Edward VI of England	1537	1553	94			King of England and Ireland from 1547 to 1553	https://en.wikipedia.org/wiki/Edward_VI	SKIP description doesn't match category
+Writer	Alan Rickman	1946	2016	93			British actor and director	https://en.wikipedia.org/wiki/Alan_Rickman	SKIP description doesn't match category
+Writer	Innocent III	1160	1216	93			Head of the Catholic Church from 1198 to 1216	https://en.wikipedia.org/wiki/Pope_Innocent_III	SKIP description doesn't match category
+Writer	Basil of Caesarea	329	379	93			4th-century Christian bishop, theologian, and saint	https://en.wikipedia.org/wiki/Basil_of_Caesarea	SKIP description doesn't match category
+Writer	Benedict of Nursia	480	547	93			Founder of Christian monasticism, founder of the Benedictine order	https://en.wikipedia.org/wiki/Benedict_of_Nursia	SKIP description doesn't match category
+Writer	Vitruvius	-80	-15	93			Roman architect and engineer	https://en.wikipedia.org/wiki/Vitruvius	SKIP description doesn't match category
+Writer	Konrad Lorenz	1903	1989	93			Austrian zoologist, winner of the Nobel Prize in Physiology or Medicine in 1973	https://en.wikipedia.org/wiki/Konrad_Lorenz	SKIP description doesn't match category
+Writer	Charlton Heston	1923	2008	93			American actor	https://en.wikipedia.org/wiki/Charlton_Heston	SKIP description doesn't match category
+Writer	Boutros Boutros-Ghali	1922	2016	92			Secretary-General of the United Nations from 1992 to 1996	https://en.wikipedia.org/wiki/Boutros_Boutros-Ghali	SKIP description doesn't match category
+Writer	Frederick II, Holy Roman Emperor	1194	1250	92			King of Sicily, Holy Roman Emperor	https://en.wikipedia.org/wiki/Frederick_II,_Holy_Roman_Emperor	SKIP description doesn't match category
+Writer	Hugo Grotius	1583	1645	92			Dutch jurist and scholar	https://en.wikipedia.org/wiki/Hugo_Grotius	SKIP description doesn't match category
+Writer	Robert Duvall	1931	2026	92			American actor and director	https://en.wikipedia.org/wiki/Robert_Duvall	SKIP description doesn't match category
+Writer	Matthew Perry	1969	2023	92			American-Canadian actor	https://en.wikipedia.org/wiki/Matthew_Perry	SKIP description doesn't match category
+Scientist	Subrahmanyan Chandrasekhar	1910	1995	92			Indian-American astrophysicist	https://en.wikipedia.org/wiki/Subrahmanyan_Chandrasekhar	SKIP description doesn't match category
+Composer	Norodom Sihanouk	1922	2012	91			Cambodian monarch and politician	https://en.wikipedia.org/wiki/Norodom_Sihanouk	SKIP description doesn't match category
+Writer	T. E. Lawrence	1888	1935	91			British archaeologist, army officer and diplomat	https://en.wikipedia.org/wiki/T._E._Lawrence	SKIP description doesn't match category
+Writer	Atal Bihari Vajpayee	1924	2018	91			Prime Minister of India	https://en.wikipedia.org/wiki/Atal_Bihari_Vajpayee	SKIP description doesn't match category
+Writer	Carl Reiner	1922	2020	91			American actor	https://en.wikipedia.org/wiki/Carl_Reiner	SKIP description doesn't match category
+Philosopher	Mahavira	-599	-527	91			24th Tirthankara of Jainism, promoter of non-violence, truth, and celibacy	https://en.wikipedia.org/wiki/Mahavira	SKIP description doesn't match category
+Writer	Pius II	1405	1464	90			Pope of the Catholic Church from 1458 to 1464	https://en.wikipedia.org/wiki/Pope_Pius_II	SKIP description doesn't match category
+Writer	Polybius	-200	-120	90			Ancient Greek historian	https://en.wikipedia.org/wiki/Polybius	SKIP description doesn't match category
+Writer	Abu Abdullah Muhammad al-Idrisi al-Qurtubi al-Hasani as-Sabti	1110	1166	90			Andalusian geographer	https://en.wikipedia.org/wiki/Muhammad_al-Idrisi	SKIP description doesn't match category
+Writer	Mu'awiya I	603	680	90			Founder and first caliph of the Umayyad Caliphate	https://en.wikipedia.org/wiki/Mu%27awiya_I	SKIP description doesn't match category
+Writer	Bernard of Clairvaux	1091	1153	90			Burgundian saint, abbot and theologian	https://en.wikipedia.org/wiki/Bernard_of_Clairvaux	SKIP description doesn't match category
+Writer	Arthur Balfour	1848	1930	90			British Prime Minister, Conservative politician, and statesman	https://en.wikipedia.org/wiki/Arthur_Balfour	SKIP description doesn't match category
+Writer	Susan B. Anthony	1820	1906	90			American women's rights activist	https://en.wikipedia.org/wiki/Susan_B._Anthony	SKIP description doesn't match category
+Writer	Georges-Louis Leclerc, Comte de Buffon	1707	1788	90			French natural historian	https://en.wikipedia.org/wiki/Georges-Louis_Leclerc,_Comte_de_Buffon	SKIP description doesn't match category
+Writer	Selim I	1470	1520	90			9th Sultan of the Ottoman Empire from 1512 to 1520	https://en.wikipedia.org/wiki/Selim_I	SKIP description doesn't match category
+Composer	Billie Holiday	1915	1959	89			American jazz singer	https://en.wikipedia.org/wiki/Billie_Holiday	SKIP description doesn't match category
+Writer	Urban VIII	1568	1644	89			235 pope of the Catholic Church from 1623 to 1644	https://en.wikipedia.org/wiki/Pope_Urban_VIII	SKIP description doesn't match category
+Writer	Francis Xavier	1506	1552	89			Spanish Catholic saint and missionary	https://en.wikipedia.org/wiki/Francis_Xavier	SKIP description doesn't match category
+Writer	Omar Sharif	1932	2015	89			Egyptian actor	https://en.wikipedia.org/wiki/Omar_Sharif	SKIP description doesn't match category
+Writer	Edward Said	1935	2003	89			Palestinian-American professor	https://en.wikipedia.org/wiki/Edward_Said	SKIP description doesn't match category
+Writer	John Ford	1894	1973	89			American film director	https://en.wikipedia.org/wiki/John_Ford	SKIP description doesn't match category
+Composer	Sergio Leone	1929	1989	88			Italian filmmaker	https://en.wikipedia.org/wiki/Sergio_Leone	SKIP description doesn't match category
+Composer	Avicii	1989	2018	88			Swedish electronic music producer	https://en.wikipedia.org/wiki/Avicii	SKIP description doesn't match category
+Writer	Syngman Rhee	1875	1965	88			President of South Korea from 1948 to 1960	https://en.wikipedia.org/wiki/Syngman_Rhee	SKIP description doesn't match category
+Writer	B. F. Skinner	1904	1990	88			American behaviorist	https://en.wikipedia.org/wiki/B._F._Skinner	SKIP description doesn't match category
+Writer	Gregory of Nazianzus	329	389	88			Christian saint and theologian	https://en.wikipedia.org/wiki/Gregory_of_Nazianzus	SKIP description doesn't match category
+Writer	Pierre Trudeau	1919	2000	88			Prime Minister of Canada from 1968 to 1979 and 1980 to 1984	https://en.wikipedia.org/wiki/Pierre_Trudeau	SKIP description doesn't match category
+Scientist	Gerty Cori	1896	1957	88			Austro-Hungarian-American biochemist	https://en.wikipedia.org/wiki/Gerty_Cori	SKIP description doesn't match category
+Writer	U Thant	1909	1974	87			UN Secretary-General from 1961 to 1971	https://en.wikipedia.org/wiki/U_Thant	SKIP description doesn't match category
+Writer	Thor Heyerdahl	1914	2002	87			Norwegian anthropologist and adventurer	https://en.wikipedia.org/wiki/Thor_Heyerdahl	SKIP description doesn't match category
+Writer	Joan Rivers	1933	2014	87			American comedian, actress, and television host	https://en.wikipedia.org/wiki/Joan_Rivers	SKIP description doesn't match category
+Writer	Hürrem Sultan	1520	1558	87			Wife of Suleiman the Magnificent	https://en.wikipedia.org/wiki/H%C3%BCrrem_Sultan	SKIP description doesn't match category
+Writer	Fethullah Gülen	1941	2024	87			Turkish preacher and imam	https://en.wikipedia.org/wiki/Fethullah_G%C3%BClen	SKIP description doesn't match category
+Scientist	Frederick Sanger	1918	2013	87			British biochemist	https://en.wikipedia.org/wiki/Frederick_Sanger	SKIP description doesn't match category
+Scientist	Emanuel Lasker	1868	1941	87			Former World Chess champion	https://en.wikipedia.org/wiki/Emanuel_Lasker	SKIP description doesn't match category
+Scientist	Alfred Wegener	1880	1930	87			German climatologist and geophysicist	https://en.wikipedia.org/wiki/Alfred_Wegener	SKIP description doesn't match category
+Artist	Alexey Leonov	1934	2019	86			Soviet pilot and cosmonaut, first human to conduct a spacewalk	https://en.wikipedia.org/wiki/Alexei_Leonov	SKIP description doesn't match category
+Artist	Christina of Sweden	1626	1689	86			Queen of Sweden, ruled from 1632 until abdication in 1654	https://en.wikipedia.org/wiki/Christina,_Queen_of_Sweden	SKIP description doesn't match category
+Composer	Pete Seeger	1919	2014	86			American folk singer	https://en.wikipedia.org/wiki/Pete_Seeger	SKIP description doesn't match category
+Writer	Gregory II	669	731	86			89th Pope of the Catholic Church	https://en.wikipedia.org/wiki/Pope_Gregory_II	SKIP description doesn't match category
+Writer	Leo III	750	816	86			Pope of the Catholic Church from 795 to 816	https://en.wikipedia.org/wiki/Pope_Leo_III	SKIP description doesn't match category
+Writer	Boniface VIII	1235	1303	86			Pope of the Catholic Church from 1294 to 1303	https://en.wikipedia.org/wiki/Pope_Boniface_VIII	SKIP description doesn't match category
+Writer	Alexander III	1100	1181	86			Pope of the Catholic Church from 1159 to 1181	https://en.wikipedia.org/wiki/Pope_Alexander_III	SKIP description doesn't match category
+Writer	Jefferson Davis	1808	1889	86			President of the Confederate States from 1861 to 1865	https://en.wikipedia.org/wiki/Jefferson_Davis	SKIP description doesn't match category
+Writer	Alexandra Kollontai	1872	1952	86			Soviet diplomat	https://en.wikipedia.org/wiki/Alexandra_Kollontai	SKIP description doesn't match category
+Writer	Thérèse of Lisieux	1873	1897	86			French Discalced Carmelite nun, Doctor of the Church	https://en.wikipedia.org/wiki/Th%C3%A9r%C3%A8se_of_Lisieux	SKIP description doesn't match category
+Writer	Jerry Lewis	1926	2017	86			American comedian, actor and film director	https://en.wikipedia.org/wiki/Jerry_Lewis	SKIP description doesn't match category
+Writer	Athanasius of Alexandria	296	373	86			Pope of Alexandria from 328 to 373	https://en.wikipedia.org/wiki/Athanasius_of_Alexandria	SKIP description doesn't match category
+Writer	Giulio Andreotti	1919	2013	86			Italian politician and statesman	https://en.wikipedia.org/wiki/Giulio_Andreotti	SKIP description doesn't match category
+Writer	Bernardo Bertolucci	1941	2018	86			Italian film director and screenwriter	https://en.wikipedia.org/wiki/Bernardo_Bertolucci	SKIP description doesn't match category
+Philosopher	Adrian VI	1459	1523	86			Pope of the Catholic Church from 1522 to 1523	https://en.wikipedia.org/wiki/Pope_Adrian_VI	SKIP description doesn't match category
+Composer	Paul Allen	1953	2018	85			American businessman and philanthropist, co-founder of Microsoft	https://en.wikipedia.org/wiki/Paul_Allen	SKIP description doesn't match category
+Writer	Gregory IX	1170	1241	85			Pope of the Catholic Church from 1227 to 1241	https://en.wikipedia.org/wiki/Pope_Gregory_IX	SKIP description doesn't match category
+Writer	Alberto Fujimori	1938	2024	85			President of Peru from 1990 to 2000	https://en.wikipedia.org/wiki/Alberto_Fujimori	SKIP description doesn't match category
+Writer	Bernard Montgomery	1887	1976	85			British Army officer	https://en.wikipedia.org/wiki/Bernard_Montgomery	SKIP description doesn't match category
+Writer	Girolamo Savonarola	1452	1498	85			Italian Dominican friar and preacher	https://en.wikipedia.org/wiki/Girolamo_Savonarola	SKIP description doesn't match category
+Writer	Lorenzo de' Medici	1449	1492	85			Italian politician, literary man and humanist	https://en.wikipedia.org/wiki/Lorenzo_de%27_Medici	SKIP description doesn't match category
+Writer	Puyi	1906	1967	85			Last Emperor of Qing dynasty and Manchukuo	https://en.wikipedia.org/wiki/Puyi	SKIP description doesn't match category
+Writer	Larry King	1933	2021	85			American television and radio host	https://en.wikipedia.org/wiki/Larry_King	SKIP description doesn't match category
+Writer	Charles the Bald	823	877	85			King of West Francia from 843 to 877 and Carolingian Emperor from 875 to 877	https://en.wikipedia.org/wiki/Charles_the_Bald	SKIP description doesn't match category
+Scientist	Gustave Le Bon	1841	1931	85			French psychologist	https://en.wikipedia.org/wiki/Gustave_Le_Bon	SKIP description doesn't match category
+Artist	Diego Rivera	1886	1957	84			Mexican muralist	https://en.wikipedia.org/wiki/Diego_Rivera	SKIP description doesn't match category
+Artist	Rudolf Steiner	1861	1925	84			Austrian social reformer, occultist and esotericist	https://en.wikipedia.org/wiki/Rudolf_Steiner	SKIP description doesn't match category
+Artist	Anthony Quinn	1915	2001	84			Mexican and American actor	https://en.wikipedia.org/wiki/Anthony_Quinn	SKIP description doesn't match category
+Writer	Bayezid I	1354	1403	84			Fourth Sultan of the Ottoman Empire	https://en.wikipedia.org/wiki/Bayezid_I	SKIP description doesn't match category
+Writer	Damasus I	305	384	84			Pope	https://en.wikipedia.org/wiki/Pope_Damasus_I	SKIP description doesn't match category
+Writer	Alexander Alekhine	1892	1946	84			Russian-French chess player	https://en.wikipedia.org/wiki/Alexander_Alekhine	SKIP description doesn't match category
+Writer	Burt Lancaster	1913	1994	84			American actor	https://en.wikipedia.org/wiki/Burt_Lancaster	SKIP description doesn't match category
+Writer	Isidore of Seville	560	636	84			Hispano-Roman scholar, theologian and bishop	https://en.wikipedia.org/wiki/Isidore_of_Seville	SKIP description doesn't match category
+Writer	Võ Nguyên Giáp	1911	2013	84			Vietnamese general and communist politician	https://en.wikipedia.org/wiki/V%C3%B5_Nguy%C3%AAn_Gi%C3%A1p	SKIP description doesn't match category
+Writer	Jean Gabin	1904	1976	84			French actor and singer	https://en.wikipedia.org/wiki/Jean_Gabin	SKIP description doesn't match category
+Writer	Debbie Reynolds	1932	2016	84			American actress, singer, and dancer	https://en.wikipedia.org/wiki/Debbie_Reynolds	SKIP description doesn't match category
+Writer	Charlie Kirk	1993	2025	84			American political activist	https://en.wikipedia.org/wiki/Charlie_Kirk	SKIP description doesn't match category
+Writer	Frank Capra	1897	1991	84			Italian-born American film director	https://en.wikipedia.org/wiki/Frank_Capra	SKIP description doesn't match category
+Writer	Adolphe Thiers	1797	1877	84			President of France from 1871 to 1873	https://en.wikipedia.org/wiki/Adolphe_Thiers	SKIP description doesn't match category
+Writer	Barbara Stanwyck	1907	1990	84			American actress	https://en.wikipedia.org/wiki/Barbara_Stanwyck	SKIP description doesn't match category
+Scientist	Frederick Soddy	1877	1956	84			English radiochemist	https://en.wikipedia.org/wiki/Frederick_Soddy	SKIP description doesn't match category
+Scientist	Vilfredo Pareto	1848	1923	84			Italian economist and sociologist	https://en.wikipedia.org/wiki/Vilfredo_Pareto	SKIP description doesn't match category
+Scientist	Nils Gustaf Dalén	1869	1937	84			Swedish Nobel Laureate and industrialist	https://en.wikipedia.org/wiki/Gustaf_Dal%C3%A9n	SKIP description doesn't match category
+Scientist	Christopher Wren	1632	1723	84			English architect	https://en.wikipedia.org/wiki/Christopher_Wren	SKIP description doesn't match category
+Composer	Pedro I of Brazil	1798	1834	83			Emperor of Brazil (1822–31) and King of Portugal	https://en.wikipedia.org/wiki/Pedro_I_of_Brazil	SKIP description doesn't match category
+Writer	Origen	185	254	83			Christian scholar, ascetic, and theologian	https://en.wikipedia.org/wiki/Origen	SKIP description doesn't match category
+Writer	Honorius I	585	638	83			Pope	https://en.wikipedia.org/wiki/Pope_Honorius_I	SKIP description doesn't match category
+Writer	Mikhail Botvinnik	1911	1995	83			Soviet chess player	https://en.wikipedia.org/wiki/Mikhail_Botvinnik	SKIP description doesn't match category
+Writer	Akbar Hashemi Rafsanjani	1934	2017	83			Iranian politician	https://en.wikipedia.org/wiki/Akbar_Hashemi_Rafsanjani	SKIP description doesn't match category
+Writer	Abigail Adams	1744	1818	83			First Lady of the United States from 1797 to 1801	https://en.wikipedia.org/wiki/Abigail_Adams	SKIP description doesn't match category
+Writer	Steve Biko	1946	1977	83			South African anti-apartheid activist	https://en.wikipedia.org/wiki/Steve_Biko	SKIP description doesn't match category
+Writer	Ismail I	1487	1524	83			Founder and first shah of Safavid Iran	https://en.wikipedia.org/wiki/Ismail_I	SKIP description doesn't match category
+Writer	Nadezhda Krupskaya	1869	1939	83			Russian revolutionary and politician	https://en.wikipedia.org/wiki/Nadezhda_Krupskaya	SKIP description doesn't match category
+Writer	Jerome K. Jerome	1859	1927	83			English humorist	https://en.wikipedia.org/wiki/Jerome_K._Jerome	SKIP description doesn't match category
+Writer	Richard Simmons	1948	2024	83			American fitness instructor and video producer	https://en.wikipedia.org/wiki/Richard_Simmons	SKIP description doesn't match category
+Writer	Vittorio De Sica	1901	1974	83			Italian film director	https://en.wikipedia.org/wiki/Vittorio_De_Sica	SKIP description doesn't match category
+Scientist	Albert Szent-Györgyi	1893	1986	83			Hungarian biochemist, Nobel Prize laureate in Physiology or Medicine in 1937	https://en.wikipedia.org/wiki/Albert_Szent-Gy%C3%B6rgyi	SKIP description doesn't match category
+Philosopher	Eugene IV	1383	1447	83			Pope of the Catholic Church from 1431 to 1447	https://en.wikipedia.org/wiki/Pope_Eugene_IV	SKIP description doesn't match category
+Artist	Tony Curtis	1925	2010	82			American actor	https://en.wikipedia.org/wiki/Tony_Curtis	SKIP description doesn't match category
+Artist	Viktor Tsoi	1962	1990	82			Soviet rock musician	https://en.wikipedia.org/wiki/Viktor_Tsoi	SKIP description doesn't match category
+Composer	Patrick Swayze	1952	2009	82			American actor, producer, singer and dancer	https://en.wikipedia.org/wiki/Patrick_Swayze	SKIP description doesn't match category
+Writer	Charles IV	1316	1378	82			Holy Roman Emperor	https://en.wikipedia.org/wiki/Charles_IV,_Holy_Roman_Emperor	SKIP description doesn't match category
+Writer	Gregory IV	795	844	82			Pope and bishop of Rome from 827 to 844	https://en.wikipedia.org/wiki/Pope_Gregory_IV	SKIP description doesn't match category
+Writer	John VIII	820	882	82			Head of the Catholic Church from 872 to 882	https://en.wikipedia.org/wiki/Pope_John_VIII	SKIP description doesn't match category
+Writer	Sylvester II	938	1003	82			Pope of the Catholic Church from 938 to 1003	https://en.wikipedia.org/wiki/Pope_Sylvester_II	SKIP description doesn't match category
+Writer	John XII	937	964	82			Head of the Catholic Church from 955 to 964	https://en.wikipedia.org/wiki/Pope_John_XII	SKIP description doesn't match category
+Writer	Emmeline Pankhurst	1858	1928	82			English suffragist	https://en.wikipedia.org/wiki/Emmeline_Pankhurst	SKIP description doesn't match category
+Writer	Catherine of Siena	1347	1380	82			Italian Dominican saint	https://en.wikipedia.org/wiki/Catherine_of_Siena	SKIP description doesn't match category
+Writer	Muḥammad ibn Ismaeel al-Bukhārī	810	870	82			Persian Islamic scholar	https://en.wikipedia.org/wiki/Muhammad_al-Bukhari	SKIP description doesn't match category
+Writer	Aaron Swartz	1986	2013	82			American computer programmer and internet-political activist	https://en.wikipedia.org/wiki/Aaron_Swartz	SKIP description doesn't match category
+Scientist	Georges Lemaître	1894	1966	82			Belgian astrophysicist and Catholic priest	https://en.wikipedia.org/wiki/Georges_Lema%C3%AEtre	SKIP description doesn't match category
+Scientist	Sergei Korolev	1906	1966	82			Soviet rocket engineer and spacecraft designer	https://en.wikipedia.org/wiki/Sergei_Korolev	SKIP description doesn't match category
+Philosopher	Arnold J. Toynbee	1889	1975	82			British historian	https://en.wikipedia.org/wiki/Arnold_J._Toynbee	SKIP description doesn't match category
+Philosopher	Yun Ch'iho	1864	1945	82			Korean independence activist	https://en.wikipedia.org/wiki/Yun_Ch%27iho	SKIP description doesn't match category
+Artist	Dennis Hopper	1936	2010	81			American actor and film director	https://en.wikipedia.org/wiki/Dennis_Hopper	SKIP description doesn't match category
+Composer	Jacques Brel	1929	1978	81			Belgian singer	https://en.wikipedia.org/wiki/Jacques_Brel	SKIP description doesn't match category
+Composer	Ram Narayan	1927	2024	81			Indian classical sarangi player	https://en.wikipedia.org/wiki/Ram_Narayan	SKIP description doesn't match category
+Writer	Paul I	700	767	81			Pope	https://en.wikipedia.org/wiki/Pope_Paul_I	SKIP description doesn't match category
+Writer	Hormisdas	450	523	81			Bishop of Rome from 514 to 523	https://en.wikipedia.org/wiki/Pope_Hormisdas	SKIP description doesn't match category
+Writer	Benedict II	635	685	81			Pope	https://en.wikipedia.org/wiki/Pope_Benedict_II	SKIP description doesn't match category
+Writer	John Wycliffe	1330	1384	81			English theologian and dissident in the Roman Catholic Church	https://en.wikipedia.org/wiki/John_Wycliffe	SKIP description doesn't match category
+Writer	Vissarion Belinsky	1811	1848	81			Russian literary critic	https://en.wikipedia.org/wiki/Vissarion_Belinsky	SKIP description doesn't match category
+Writer	Hugh Hefner	1926	2017	81			American businessman and magazine publisher	https://en.wikipedia.org/wiki/Hugh_Hefner	SKIP description doesn't match category
+Writer	Dean Martin	1917	1995	81			American singer, actor, comedian and film producer	https://en.wikipedia.org/wiki/Dean_Martin	SKIP description doesn't match category
+Writer	Paramahansa Yogananda	1893	1952	81			Yogi, Kriya Yoga guru and founder of Self-Realization Fellowship	https://en.wikipedia.org/wiki/Paramahansa_Yogananda	SKIP description doesn't match category
+Writer	Jacob Grimm	1785	1863	81			German philologist, linguist, jurist and mythologist	https://en.wikipedia.org/wiki/Jacob_Grimm	SKIP description doesn't match category
+Writer	Elia Kazan	1909	2003	81			American director and actor	https://en.wikipedia.org/wiki/Elia_Kazan	SKIP description doesn't match category
+Philosopher	Lev Vygotsky	1896	1934	81			Soviet psychologist	https://en.wikipedia.org/wiki/Lev_Vygotsky	SKIP description doesn't match category

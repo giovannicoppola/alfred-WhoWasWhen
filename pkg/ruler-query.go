@@ -885,7 +885,7 @@ func byRuler(db *sql.DB, searchStringList interface{}, queryType string, config 
 
 		query := fmt.Sprintf(`
 			SELECT 
-				ru.*,
+				ru.rulerID, ru.name, ru.personal_name, ru.epithet, ru.wikipedia, ru.notes, ru.biography,
 				per.*,
 				t.title AS title,
 				t.maxCount as titleCount,
@@ -1086,7 +1086,7 @@ func byYear(db *sql.DB, searchTerms []string, yearTerm string, config Config, or
 
 	query := fmt.Sprintf(`
 		SELECT 
-		r.*,
+		r.rulerID, r.name, r.personal_name, r.epithet, r.wikipedia, r.notes, r.biography,
 		per.*,
 		t.title AS title,
 		t.maxCount as titleCount,
@@ -1596,7 +1596,7 @@ func getRulerResults(db *sql.DB, searchTerms []string, config Config, originalQu
 
 	query := fmt.Sprintf(`
 		SELECT 
-			ru.*,
+			ru.rulerID, ru.name, ru.personal_name, ru.epithet, ru.wikipedia, ru.notes, ru.biography,
 			per.*,
 			t.title AS title,
 			t.titlePlural as titlePlural
@@ -1791,7 +1791,7 @@ func getRulerResultsWithoutCounters(db *sql.DB, searchTerms []string, config Con
 
 	query := fmt.Sprintf(`
 		SELECT 
-			ru.*,
+			ru.rulerID, ru.name, ru.personal_name, ru.epithet, ru.wikipedia, ru.notes, ru.biography,
 			per.*,
 			t.title AS title,
 			t.titlePlural as titlePlural
