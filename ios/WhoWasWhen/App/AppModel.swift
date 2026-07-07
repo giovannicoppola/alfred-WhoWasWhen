@@ -125,6 +125,8 @@ final class AppModel {
     }
 
     func quizTitles() async -> [TitleInfo] { await database()?.quizTitles() ?? [] }
+    func peopleTitles() async -> [TitleInfo] { await database()?.peopleTitles() ?? [] }
+    func quizWorks() async -> [WorkRow] { await database()?.quizWorks() ?? [] }
     func holders(ofTitle title: String) async -> [HolderRow] {
         await database()?.holders(ofTitle: title) ?? []
     }

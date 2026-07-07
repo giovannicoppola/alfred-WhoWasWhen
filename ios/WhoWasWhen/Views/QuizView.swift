@@ -9,7 +9,11 @@ struct QuizView: View {
     @State private var phase: Phase = .picking
     @State private var category: QuizCategory = .mixed
     @State private var titles: [TitleInfo] = []
+    /// The "By title" list in display order (see `rebuildTitleOrder`), held in
+    /// state so the random part stays stable while the picker is on screen.
+    @State private var orderedTitles: [TitleInfo] = []
     @State private var hasPeople = false
+    @State private var hasWorks = false
     @State private var questions: [QuizQuestion] = []
     @State private var index = 0
     @State private var selection: Int?
@@ -44,10 +48,16 @@ struct QuizView: View {
             .task {
                 print("[WWW] quiz tab task: awaiting db…")
                 await app.load()   // wait for the database on a cold tab open
-                titles = await app.quizTitles()
+                // The "By title" list mixes ruler titles with the lifespan
+                // callings (Painters, Composers, …); the ordering is applied
+                // in `sortedTitles` so it stays fresh as play counts change.
+                titles = await app.quizTitles() + app.peopleTitles()
+                rebuildTitleOrder()   // onAppear ran before the DB was ready
                 // Older databases predate the notable people; hide the
                 // category rather than offer an empty round.
                 hasPeople = !(await app.holders(ofTitle: Database.lifespanTitles[0])).isEmpty
+                // Older databases predate the linked `works` table.
+                hasWorks = !(await app.quizWorks()).isEmpty
                 print("[WWW] quiz titles loaded: \(titles.count)")
                 #if DEBUG
                 // Automation hooks: jump straight into a round (WWW_QUIZ=1|
@@ -58,6 +68,7 @@ struct QuizView: View {
                     case "events": await start(.events)
                     case "rulers": await start(.rulers)
                     case "people": await start(.people)
+                    case "works": await start(.works)
                     default: await start(.mixed)
                     }
                     // WWW_ANSWER=1 answers the first question correctly, to
@@ -83,6 +94,17 @@ struct QuizView: View {
 
     // MARK: - Category picker
 
+    /// "By title" order: categories never quizzed go first in a random order
+    /// (so a fresh list doesn't always lead with Antipopes and invites new
+    /// picks), and ones already played sink to the bottom, sorted A–Z. Rebuilt
+    /// on each appearance and after every round, so the random part is stable
+    /// while the list is on screen but re-shuffles next time you open it.
+    private func rebuildTitleOrder() {
+        let untried = titles.filter { QuizStats.playCount(for: .title($0)) == 0 }
+        let tried = titles.filter { QuizStats.playCount(for: .title($0)) > 0 }
+        orderedTitles = untried.shuffled() + tried.sorted { $0.title < $1.title }
+    }
+
     private var categoryPicker: some View {
         List {
             Section("Play") {
@@ -96,12 +118,17 @@ struct QuizView: View {
                     categoryRow(.people, subtitle: "Artists, writers, scientists — when they lived",
                                 symbol: "person.2.fill")
                 }
+                if hasWorks {
+                    categoryRow(.works, subtitle: "Who wrote, painted, and composed what",
+                                symbol: "book.closed.fill")
+                }
             }
             Section("By title") {
-                ForEach(titles) { t in
+                ForEach(orderedTitles) { t in
                     categoryRow(.title(t),
                                 subtitle: "\(formatNumber(t.maxCount)) \(titlePluralOrDefault(t.titlePlural, title: t.title))",
-                                symbol: "crown.fill")
+                                symbol: Database.lifespanTitles.contains(t.title)
+                                    ? "paintpalette.fill" : "crown.fill")
                 }
             }
             if QuizStats.gamesPlayed > 0 {
@@ -118,6 +145,10 @@ struct QuizView: View {
                 }
             }
         }
+        // Rebuild each time the picker appears (initial load, after a round,
+        // returning to the tab) so untried titles re-shuffle and just-played
+        // ones drop to the bottom.
+        .onAppear { rebuildTitleOrder() }
     }
 
     private func categoryRow(_ cat: QuizCategory, subtitle: String, symbol: String) -> some View {
@@ -144,6 +175,9 @@ struct QuizView: View {
                     .font(.caption.weight(.semibold))
                     .foregroundStyle(.tertiary)
             }
+            // Make the whole row (including the Spacer gap) tap-responsive,
+            // not just the text/icons.
+            .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
     }

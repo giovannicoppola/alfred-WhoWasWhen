@@ -29,6 +29,7 @@ enum QuizCategory: Hashable, Identifiable {
     case rulers
     case events
     case people
+    case works
     case title(TitleInfo)
 
     var id: String {
@@ -37,6 +38,7 @@ enum QuizCategory: Hashable, Identifiable {
         case .rulers: "rulers"
         case .events: "events"
         case .people: "people"
+        case .works: "works"
         case .title(let t): "title-\(t.titleID)"
         }
     }
@@ -47,6 +49,7 @@ enum QuizCategory: Hashable, Identifiable {
         case .rulers: "Rulers"
         case .events: "Events"
         case .people: "Notable people"
+        case .works: "Works & authors"
         case .title(let t): titlePluralOrDefault(t.titlePlural, title: t.title)
         }
     }
@@ -68,6 +71,18 @@ enum QuizEngine {
 
         case .title(let t):
             let holders = await app.holders(ofTitle: t.title)
+            // Lifespan callings (Artist, Composer, …) can't use the ruler
+            // "Who was X in «year»?" format — many hold the title at once — so
+            // a single-calling round blends ~half "Who composed «work»?" with
+            // ~half birth/death-year questions about the same calling.
+            if Database.lifespanTitles.contains(t.title) {
+                let works = (await app.quizWorks()).filter { $0.category == t.title }
+                var qs = workQuestions(from: works, count: roundSize / 2)
+                let people = holders.map { (category: t.title, person: $0) }.shuffled()
+                qs += peopleQuestions(from: people, count: roundSize - qs.count,
+                                      singleCalling: true)
+                return qs.shuffled()
+            }
             return rulerQuestions(for: t, holders: holders, count: roundSize)
 
         case .rulers:
@@ -79,6 +94,10 @@ enum QuizEngine {
             let people = await notablePeople(app: app)
             return peopleQuestions(from: people, count: roundSize)
 
+        case .works:
+            let works = await app.quizWorks()
+            return workQuestions(from: works, count: roundSize)
+
         case .mixed:
             let titles = (await app.quizTitles()).shuffled()
             guard !titles.isEmpty else { return [] }
@@ -89,6 +108,7 @@ enum QuizEngine {
             var questions = eventQuestions(from: events, count: eventTarget)
             let people = await notablePeople(app: app)
             questions += peopleQuestions(from: people, count: roundSize / 5)
+            questions += workQuestions(from: await app.quizWorks(), count: roundSize / 5)
             questions += await rulerRound(titles: titles,
                                           count: roundSize - questions.count, app: app)
             return questions.shuffled()
@@ -205,11 +225,13 @@ enum QuizEngine {
     /// "Who was Artist in 1503?" would have many right answers, so people
     /// questions ask what only one option can answer: when a person was
     /// born or died, or which calling they're known for.
+    /// `singleCalling` rounds (a "By title" pick like Painters) skip the
+    /// "What was this person?" variant — every answer would be the same.
     static func peopleQuestions(from people: [(category: String, person: HolderRow)],
-                                count: Int) -> [QuizQuestion] {
+                                count: Int, singleCalling: Bool = false) -> [QuizQuestion] {
         var out: [QuizQuestion] = []
         for (category, person) in people where out.count < count {
-            let q = Int.random(in: 0..<3) == 0
+            let q = (!singleCalling && Int.random(in: 0..<3) == 0)
                 ? whatWasQuestion(category: category, person: person)
                 : lifeYearQuestion(category: category, person: person)
             if let q, !out.contains(where: { $0.subject == q.subject }) {
@@ -264,6 +286,61 @@ enum QuizEngine {
             explanation: "\(person.name) — \(category) (\(person.period))",
             subjectID: .ruler(person.rulerID),
             centerOptions: true)
+    }
+
+    // MARK: - Works & authors questions
+
+    /// The phrasing that reads right for a work's kind. Scientists' "works"
+    /// are often discoveries or theories, not written texts ("Hawking
+    /// radiation"), so they get "is known for"; visual art covers paintings
+    /// and sculpture alike, so it stays with the neutral "created".
+    private static func creationClause(for category: String, work: String) -> String {
+        switch category {
+        case "Composer": return "composed \(work)"
+        case "Artist": return "created \(work)"
+        case "Scientist": return "is known for \(work)"
+        default: return "wrote \(work)"   // Writer, Philosopher
+        }
+    }
+
+    /// "Who wrote «work»?" — the three wrong answers are other creators from
+    /// the same category (so a painter isn't offered for a symphony), drawn
+    /// from the nearest years to keep them era-plausible.
+    static func workQuestions(from works: [WorkRow], count: Int) -> [QuizQuestion] {
+        guard works.count >= 4 else { return [] }
+        var out: [QuizQuestion] = []
+        for w in works.shuffled() where out.count < count {
+            // Creators who ALSO made a same-titled work (Schumann & Grieg both
+            // wrote a "Piano Concerto in A minor") can't be wrong answers, or
+            // the question would have two right ones. This set includes w's own
+            // creator, so it doubles as the "not the answer" filter.
+            let title = w.title.lowercased()
+            let sameTitle = Set(works.filter { $0.title.lowercased() == title }
+                .map(\.creatorRulerID))
+            let sameKind = works.filter {
+                $0.category == w.category && !sameTitle.contains($0.creatorRulerID)
+            }
+            let nearest = sameKind.sorted { abs($0.year - w.year) < abs($1.year - w.year) }
+            var wrong: [String] = []
+            for cand in nearest.prefix(20).shuffled() where wrong.count < 3 {
+                if cand.creatorName != w.creatorName, !wrong.contains(cand.creatorName) {
+                    wrong.append(cand.creatorName)
+                }
+            }
+            guard wrong.count == 3 else { continue }
+            // One work per creator per round keeps a name from being the
+            // answer twice.
+            if out.contains(where: { $0.subjectID == .ruler(w.creatorRulerID) }) { continue }
+
+            let options = (wrong + [w.creatorName]).shuffled()
+            out.append(QuizQuestion(
+                prompt: "Who \(creationClause(for: w.category, work: w.title))?",
+                options: options,
+                correctIndex: options.firstIndex(of: w.creatorName)!,
+                explanation: "\(w.title) — \(w.creatorName) (\(formatYear(w.year)))",
+                subjectID: .ruler(w.creatorRulerID)))
+        }
+        return out
     }
 
     // MARK: - Event questions
@@ -326,6 +403,12 @@ enum QuizStats {
         defaults.integer(forKey: "quiz.best.\(category.id)")
     }
 
+    /// How many rounds of a given category have been finished — drives the
+    /// "By title" list order (least-played first, to encourage exploration).
+    static func playCount(for category: QuizCategory) -> Int {
+        defaults.integer(forKey: "quiz.plays.\(category.id)")
+    }
+
     static var gamesPlayed: Int { defaults.integer(forKey: "quiz.gamesPlayed") }
     static var totalCorrect: Int { defaults.integer(forKey: "quiz.totalCorrect") }
     static var totalAnswered: Int { defaults.integer(forKey: "quiz.totalAnswered") }
@@ -336,6 +419,7 @@ enum QuizStats {
         defaults.set(gamesPlayed + 1, forKey: "quiz.gamesPlayed")
         defaults.set(totalCorrect + score, forKey: "quiz.totalCorrect")
         defaults.set(totalAnswered + answered, forKey: "quiz.totalAnswered")
+        defaults.set(playCount(for: category) + 1, forKey: "quiz.plays.\(category.id)")
         if score > bestScore(for: category) {
             defaults.set(score, forKey: "quiz.best.\(category.id)")
             return true

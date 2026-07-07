@@ -531,6 +531,31 @@ actor Database {
         return rows
     }
 
+    /// The lifespan callings (Artist, Composer, …) as quiz categories. These
+    /// are kept out of `quizTitles` — the Rulers/Mixed rounds would build
+    /// ambiguous "Who was Painter in 1503?" questions from them — but they make
+    /// fine standalone "By title" rounds when asked as birth/death-year
+    /// questions instead (see QuizEngine's people questions).
+    func peopleTitles(minHolders: Int = 10) -> [TitleInfo] {
+        let included = Database.lifespanTitles
+            .map { "'\($0)'" }.joined(separator: ", ")
+        let sql = """
+            SELECT titleID, title, titlePlural, maxCount FROM titles
+            WHERE maxCount >= ? AND title IN (\(included)) ORDER BY title;
+            """
+        guard let stmt = prepare(sql) else { return [] }
+        defer { sqlite3_finalize(stmt) }
+        sqlite3_bind_int64(stmt, 1, Int64(minHolders))
+
+        var rows: [TitleInfo] = []
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            rows.append(TitleInfo(
+                titleID: col(stmt, 0).int, title: col(stmt, 1).string,
+                titlePlural: col(stmt, 2).optString, maxCount: col(stmt, 3).int))
+        }
+        return rows
+    }
+
     /// Every reign of a title, in progression order (quiz question material
     /// and the detail view's mini-timeline).
     func holders(ofTitle title: String) -> [HolderRow] {
@@ -570,6 +595,37 @@ actor Database {
               sqlite3_column_type(stmt, 0) != SQLITE_NULL else { return nil }
         let lo = col(stmt, 0).int, hi = col(stmt, 1).int
         return lo <= hi ? lo...hi : nil
+    }
+
+    /// Every linked key work with its creator's name — the "Works & authors"
+    /// quiz pool. Empty on databases built before the `works` table existed.
+    func quizWorks() -> [WorkRow] {
+        // The table may not exist in an older shipped DB; tolerate that.
+        guard tableExists("works") else { return [] }
+        let sql = """
+            SELECT w.workTitle, w.year, w.category, w.creatorRulerID, ru.name
+            FROM works w JOIN rulers ru ON w.creatorRulerID = ru.rulerID;
+            """
+        guard let stmt = prepare(sql) else { return [] }
+        defer { sqlite3_finalize(stmt) }
+        var rows: [WorkRow] = []
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            rows.append(WorkRow(
+                title: col(stmt, 0).string, year: col(stmt, 1).int,
+                category: col(stmt, 2).string, creatorRulerID: col(stmt, 3).int,
+                creatorName: col(stmt, 4).string))
+        }
+        return rows
+    }
+
+    /// Whether a table is present — guards features that depend on a newer
+    /// database schema than a given shipped copy might have.
+    private func tableExists(_ name: String) -> Bool {
+        let sql = "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?;"
+        guard let stmt = prepare(sql) else { return false }
+        defer { sqlite3_finalize(stmt) }
+        bindText(stmt, 1, name)
+        return sqlite3_step(stmt) == SQLITE_ROW
     }
 
     /// Random events reduced to what a quiz question needs (no formatted
@@ -757,6 +813,17 @@ struct QuizEventRow: Sendable, Hashable {
     let name: String
     let startYear: Int
     let endYear: Int
+}
+
+/// A key work linked to its creator (the `works` table) — the "Who wrote
+/// «work»?" quiz material. `category` is the work's kind (Artist/Composer/…),
+/// which drives the question verb and the pool its distractors come from.
+struct WorkRow: Sendable, Hashable {
+    let title: String
+    let year: Int
+    let category: String
+    let creatorRulerID: Int
+    let creatorName: String
 }
 
 /// Adds thousands separators, matching the Go `formatNumber`.
