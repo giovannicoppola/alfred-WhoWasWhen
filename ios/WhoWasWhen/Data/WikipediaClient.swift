@@ -43,11 +43,16 @@ actor WikipediaClient {
             struct Thumb: Decodable { let source: String }
             let thumbnail: Thumb?
             let extract: String?
+            let type: String?
         }
         guard let payload = try? JSONDecoder().decode(Payload.self, from: data) else { return nil }
+        // A bare name with no stored link can resolve to a disambiguation page
+        // ("Frederick II may refer to: …") — its extract is a list of unrelated
+        // people, so drop it rather than show it as an "About" summary.
+        let extract = payload.type == "disambiguation" ? nil : payload.extract
         return WikipediaSummary(
             thumbnailURL: payload.thumbnail.flatMap { URL(string: $0.source) },
-            extract: payload.extract)
+            extract: extract)
     }
 
     /// `…wikipedia.org/wiki/Julius_Caesar` → that host's
