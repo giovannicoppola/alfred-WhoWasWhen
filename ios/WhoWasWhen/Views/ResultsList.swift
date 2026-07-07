@@ -162,6 +162,7 @@ private struct OnThisDayCard: View {
         }
         .buttonStyle(.plain)
         .padding(.horizontal, 24)
+        .contextMenu { ResultActions(result: result) }
         .sheet(isPresented: $showDetail) {
             ResultDetailView(result: result).presentationDetents([.medium, .large])
         }

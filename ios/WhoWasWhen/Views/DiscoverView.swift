@@ -15,7 +15,7 @@ struct DiscoverView: View {
             List {
                 Section {
                     if let featuredRuler {
-                        FeaturedCard(result: featuredRuler, kindLabel: "Featured ruler")
+                        FeaturedCard(result: featuredRuler, kindLabel: featuredLabel(for: featuredRuler))
                     }
                     if let featuredEvent {
                         FeaturedCard(result: featuredEvent, kindLabel: "Featured event")
@@ -68,6 +68,16 @@ struct DiscoverView: View {
     private func shuffle() async {
         featuredRuler = await app.randomRuler()
         featuredEvent = await app.randomEvent()
+    }
+
+    /// The featured "person" card can be a monarch, but also an artist,
+    /// composer, writer, scientist or philosopher — so label it with the
+    /// person's actual title rather than assuming "ruler".
+    private func featuredLabel(for result: SearchResult) -> String {
+        if let title = result.titleName, !title.isEmpty {
+            return "Featured \(title)"
+        }
+        return "Featured person"
     }
 
     /// Walks back a century at a time from the current year, keeping the first
