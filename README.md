@@ -90,7 +90,7 @@ Beyond the workflow's search, the app adds:
 
 # Changelog
 
-- 2026-07-08 version 0.4: accent- and case-insensitive search; person results now show ages; refresh rate now a slider in Workflow Configuration; [iPhone companion app](https://apps.apple.com/app/whowaswhen/id6780277187).
+- 2026-07-08 version 0.4: accent- and case-insensitive search; person results now show ages; refresh rate now a slider in Workflow Configuration; [iPhone companion app](https://giovannicoppola.github.io/alfred-WhoWasWhen/).
 - 2025-07-19 version 0.3: minor changes preparing for Gallery submission
 - 2025-07-10 version 0.2: added auto-refresh, `--e` flag
 - 2025-07-07 version 0.1.1: database update
