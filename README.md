@@ -11,6 +11,8 @@ src="https://img.shields.io/github/downloads/giovannicoppola/alfred-whowaswhen/t
 src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fgiovannicoppola%2Falfred-gallery-downloads%40main%2Fdownloads.json&query=%24.whowaswhen%5B0%5D.display&label=Gallery%20Downloads&color=blue&logo=alfred"><br/>
 </a>
 
+🌐 **[Website](https://giovannicoppola.github.io/alfred-WhoWasWhen/)** · 📱 **[iPhone app](https://apps.apple.com/app/whowaswhen/id6780277187)**
+
 ![](screenshot.png)
 
 # Motivation
