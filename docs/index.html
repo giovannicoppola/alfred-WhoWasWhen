@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WhoWasWhen — Travel through history on your iPhone</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="1024x1024" href="icon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="description" content="WhoWasWhen answers ‘who ruled in a given year?’ in an instant. Search 3,500+ historical figures — rulers, popes, consuls, presidents, plus famous artists, writers, and scientists — and 890+ events, with quizzes, timelines, and daily discoveries. Right from your iPhone, fully offline.">
 <meta property="og:title" content="WhoWasWhen — Travel through history on your iPhone">
 <meta property="og:description" content="Who was king, pope, or president in any given year — and how old was van Gogh? Search 3,500+ historical figures and 890+ events instantly, quiz yourself, and scroll visual timelines.">
@@ -72,6 +75,9 @@
   .btn.primary { background: var(--ink); color: #fff; border-color: var(--ink); }
   .btn:hover { text-decoration: none; transform: translateY(-1px); }
   .btn { transition: transform .12s ease; }
+  .appstore { display: block; height: 50px; width: auto; transition: transform .12s ease; }
+  .appstore-link:hover { text-decoration: none; }
+  .appstore-link:hover .appstore { transform: translateY(-1px); }
 
   .hero-shot { display: flex; justify-content: center; }
   .phone {
@@ -150,7 +156,8 @@
       <h1>Who was <span class="accent">when?</span></h1>
       <p class="lede">Answer “who ruled in this year?” in an instant — kings, popes, consuls and presidents, joined by the artists, writers, and scientists who lived alongside them.</p>
       <div class="cta-row">
-        <a class="btn primary" href="#screenshots">See it in action</a>
+        <a class="appstore-link" href="https://apps.apple.com/app/whowaswhen/id6780277187" aria-label="Download WhoWasWhen on the App Store"><img class="appstore" src="appstore-badge.svg" alt="Download on the App Store"></a>
+        <a class="btn" href="#screenshots">See it in action</a>
         <a class="btn" href="https://github.com/giovannicoppola/alfred-WhoWasWhen">View on GitHub</a>
       </div>
     </div>
@@ -310,6 +317,7 @@
       © 2026 Giovanni Coppola.
     </div>
     <nav class="foot-links">
+      <a href="https://apps.apple.com/app/whowaswhen/id6780277187">App Store</a>
       <a href="https://github.com/giovannicoppola/alfred-WhoWasWhen">GitHub</a>
       <a href="privacy.html">Privacy</a>
       <a href="mailto:giovannicoppola@gmail.com">Support</a>
