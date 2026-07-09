@@ -352,6 +352,12 @@
 Travel through history with Alfred
 ![](screenshot.png)
 
+## What's new in 0.4
+- 🔤 Accent- &amp; case-insensitive search
+- 🎂 Person results now show ages
+- ⚙️ Refresh rate is now a slider in Workflow Configuration
+- 📱 New free [iPhone companion app](https://apps.apple.com/app/whowaswhen/id6780277187) on the App Store
+
 # Usage
 
 Query search terms can be:
@@ -550,10 +556,8 @@ If you notice a bug, incorrect information, or have ideas for new features, plea
 			<string>REFRESH_KEYWORD</string>
 		</dict>
 	</array>
-	<key>variablesdontexport</key>
-	<array/>
 	<key>version</key>
-	<string>0.3</string>
+	<string>0.4</string>
 	<key>webaddress</key>
 	<string>https://github.com/giovannicoppola/alfred-WhoWasWhen</string>
 </dict>

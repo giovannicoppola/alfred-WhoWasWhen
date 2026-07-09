@@ -57,11 +57,24 @@ Once a result is identified, it can be actioned in one of five ways:
 - Refresh rate (in days): Frequency at which WhoWasWhen checks for changes in the master database. Set to 0 to never update. Default: 30 days
 - Keyword to force a database refresh (default: `::whoWasWhen-refresh`)
 
+# iPhone companion app 👑📱
+
+WhoWasWhen also has a free iPhone companion app — the same history in your pocket when you're away from your Mac. It shares the same data and answers as the workflow, and works fully **offline** with **no account and no tracking**.
+
+<a href="https://apps.apple.com/app/whowaswhen/id6780277187"><img alt="Download on the App Store" src="appstore-badge.svg" height="48"></a>
+
+Beyond the workflow's search, the app adds:
+
+- **Portraits & summaries** — Wikipedia portraits and a summary paragraph appear right in the app when you're online.
+- **Lineages & timelines** — see everyone who held a title as a list or a scrollable visual timeline, with the one you tapped highlighted 🌟.
+- **On this day & Discover** — a featured event from today's date, plus what happened 100, 200, 300… years ago.
+- **Quiz** — endless multiple-choice trivia generated from the data (*Who was Pope in 1500? Who painted the Mona Lisa?*).
+- **Favorites** — save results to revisit later.
+
 # Roadmap
 
-- add other notable figures (artists etc)
 - learn mode
-- show age of rulers
+- per-person portraits (like the iPhone app)
 - ... suggestions welcome!
 
 # Known issues
@@ -75,6 +88,7 @@ Once a result is identified, it can be actioned in one of five ways:
 
 # Changelog
 
+- 2026-07-08 version 0.4: accent- and case-insensitive search; person results now show ages; refresh rate now a slider in Workflow Configuration; [iPhone companion app](https://apps.apple.com/app/whowaswhen/id6780277187).
 - 2025-07-19 version 0.3: minor changes preparing for Gallery submission
 - 2025-07-10 version 0.2: added auto-refresh, `--e` flag
 - 2025-07-07 version 0.1.1: database update

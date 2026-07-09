@@ -81,6 +81,8 @@ type RulerRow struct {
 	Year               sql.NullInt64
 	ConcatenatedTitles sql.NullString
 	ConcatenatedNotes  sql.NullString
+	Born               sql.NullInt64
+	Died               sql.NullInt64
 }
 
 // EventRow represents an event database row result
@@ -368,6 +370,50 @@ func formatYear(year int) string {
 		return fmt.Sprintf("%d BC", -year)
 	}
 	return fmt.Sprintf("%d", year)
+}
+
+// appendClause appends " — <clause>" to a subtitle (trimming any trailing
+// space first), matching the iPhone app's separator. Empty clause is a no-op.
+func appendClause(subtitle, clause string) string {
+	if clause == "" {
+		return subtitle
+	}
+	subtitle = strings.TrimRight(subtitle, " ")
+	if subtitle == "" {
+		return clause
+	}
+	return fmt.Sprintf("%s — %s", subtitle, clause)
+}
+
+// ageInYear renders how a ruler relates to a searched year, matching the app:
+// "born this year" / "died this year" / "age N" (their age that year). Empty
+// when nothing applies (e.g. birth year unknown and it isn't their birth/death).
+func ageInYear(born, died sql.NullInt64, year int) string {
+	switch {
+	case born.Valid && int(born.Int64) == year:
+		return "born this year"
+	case died.Valid && int(died.Int64) == year:
+		return "died this year"
+	case born.Valid && year > int(born.Int64):
+		return fmt.Sprintf("age %d", year-int(born.Int64))
+	default:
+		return ""
+	}
+}
+
+// lifespanClause renders a ruler's lifespan for non-year listings (ruler search,
+// lineage): "died age N" when both years are known, else the known half.
+func lifespanClause(born, died sql.NullInt64) string {
+	switch {
+	case born.Valid && died.Valid:
+		return fmt.Sprintf("died age %d", died.Int64-born.Int64)
+	case died.Valid:
+		return fmt.Sprintf("died %s", formatYear(int(died.Int64)))
+	case born.Valid:
+		return fmt.Sprintf("born %s", formatYear(int(born.Int64)))
+	default:
+		return ""
+	}
 }
 
 // Helper function to get title ranking (lower number = higher priority)
@@ -885,7 +931,7 @@ func byRuler(db *sql.DB, searchStringList interface{}, queryType string, config 
 
 		query := fmt.Sprintf(`
 			SELECT 
-				ru.rulerID, ru.name, ru.personal_name, ru.epithet, ru.wikipedia, ru.notes, ru.biography,
+				ru.rulerID, ru.name, ru.personal_name, ru.epithet, ru.wikipedia, ru.notes, ru.biography, ru.born, ru.died,
 				per.*,
 				t.title AS title,
 				t.maxCount as titleCount,
@@ -913,7 +959,7 @@ func byRuler(db *sql.DB, searchStringList interface{}, queryType string, config 
 		for rows.Next() {
 			var r RulerRow
 			err := rows.Scan(
-				&r.RulerID, &r.Name, &r.PersonalName, &r.Epithet, &r.Wikipedia, &r.Notes, &r.Biography,
+				&r.RulerID, &r.Name, &r.PersonalName, &r.Epithet, &r.Wikipedia, &r.Notes, &r.Biography, &r.Born, &r.Died,
 				&r.PeriodID, &r.RulerID, &r.TitleID, &r.ProgrTitle, &r.Period, &r.StartYear, &r.EndYear, &r.Notes,
 				&r.Title, &r.TitleCount, &r.TitlePlural,
 			)
@@ -970,6 +1016,7 @@ func byRuler(db *sql.DB, searchStringList interface{}, queryType string, config 
 					subtitleString = fmt.Sprintf("%s %s %s", counterPrefix, r.Title, notesPart)
 				}
 			}
+			subtitleString = appendClause(subtitleString, lifespanClause(r.Born, r.Died))
 			wikilink := r.Name
 			if r.Wikipedia.Valid && r.Wikipedia.String != "" {
 				wikilink = r.Wikipedia.String
@@ -1054,12 +1101,9 @@ func byRuler(db *sql.DB, searchStringList interface{}, queryType string, config 
 
 // Search rulers by year
 func byYear(db *sql.DB, searchTerms []string, yearTerm string, config Config, originalQuery string) {
-	var junctionString string
-	if len(searchTerms) > 0 {
-		junctionString = " AND "
-	} else {
-		junctionString = ""
-	}
+	// buildFoldedTextSQL always returns a non-empty condition (at least "1=1"),
+	// so the year condition must always be joined to it with " AND ".
+	junctionString := " AND "
 
 	// Process wildcards
 	asteriskCount := len(yearTerm) - len(strings.TrimRight(yearTerm, "*"))
@@ -1081,12 +1125,21 @@ func byYear(db *sql.DB, searchTerms []string, yearTerm string, config Config, or
 		yearSQLString = fmt.Sprintf("(CAST(y.year as TEXT) LIKE '%s%s')%s", prefix, wildcards, junctionString)
 	}
 
+	// A single concrete year (no wildcard, not a range) lets us show each
+	// ruler's age that year, matching the app; ranges/wildcards get no age.
+	searchedYear, hasSearchedYear := 0, false
+	if !strings.Contains(yearTerm, "*") {
+		if y, err := strconv.Atoi(yearTerm); err == nil {
+			searchedYear, hasSearchedYear = y, true
+		}
+	}
+
 	// Build text search conditions
 	textSQLString := buildFoldedTextSQL([]string{"r.name", "t.title"}, searchTerms, " AND ")
 
 	query := fmt.Sprintf(`
 		SELECT 
-		r.rulerID, r.name, r.personal_name, r.epithet, r.wikipedia, r.notes, r.biography,
+		r.rulerID, r.name, r.personal_name, r.epithet, r.wikipedia, r.notes, r.biography, r.born, r.died,
 		per.*,
 		t.title AS title,
 		t.maxCount as titleCount,
@@ -1128,7 +1181,7 @@ func byYear(db *sql.DB, searchTerms []string, yearTerm string, config Config, or
 	for rows.Next() {
 		var r RulerRow
 		err := rows.Scan(
-			&r.RulerID, &r.Name, &r.PersonalName, &r.Epithet, &r.Wikipedia, &r.Notes, &r.Biography,
+			&r.RulerID, &r.Name, &r.PersonalName, &r.Epithet, &r.Wikipedia, &r.Notes, &r.Biography, &r.Born, &r.Died,
 			&r.PeriodID, &r.RulerID, &r.TitleID, &r.ProgrTitle, &r.Period, &r.StartYear, &r.EndYear, &r.Notes,
 			&r.Title, &r.TitleCount, &r.TitlePlural, &r.Year,
 		)
@@ -1165,6 +1218,10 @@ func byYear(db *sql.DB, searchTerms []string, yearTerm string, config Config, or
 			subtitleString = fmt.Sprintf("%s, %s (%s/%s) %s", r.PersonalName.String, r.Title, formatNumber(r.ProgrTitle), formatNumber(r.TitleCount), r.Notes.String)
 		} else {
 			subtitleString = fmt.Sprintf("%s (%s/%s) %s", r.Title, formatNumber(r.ProgrTitle), formatNumber(r.TitleCount), r.Notes.String)
+		}
+
+		if hasSearchedYear {
+			subtitleString = appendClause(subtitleString, ageInYear(r.Born, r.Died, searchedYear))
 		}
 
 		wikilink := r.Name
@@ -1428,12 +1485,9 @@ func byEvent(db *sql.DB, searchTerms []string, config Config, originalQuery stri
 
 // Helper function to get events by year without counters
 func getEventsByYearWithoutCounters(db *sql.DB, searchTerms []string, yearTerm string, config Config, originalQuery string) []AlfredItem {
-	var junctionString string
-	if len(searchTerms) > 0 {
-		junctionString = " AND "
-	} else {
-		junctionString = ""
-	}
+	// buildFoldedTextSQL always returns a non-empty condition (at least "1=1"),
+	// so the year condition must always be joined to it with " AND ".
+	junctionString := " AND "
 
 	// Process wildcards
 	asteriskCount := len(yearTerm) - len(strings.TrimRight(yearTerm, "*"))
@@ -1596,7 +1650,7 @@ func getRulerResults(db *sql.DB, searchTerms []string, config Config, originalQu
 
 	query := fmt.Sprintf(`
 		SELECT 
-			ru.rulerID, ru.name, ru.personal_name, ru.epithet, ru.wikipedia, ru.notes, ru.biography,
+			ru.rulerID, ru.name, ru.personal_name, ru.epithet, ru.wikipedia, ru.notes, ru.biography, ru.born, ru.died,
 			per.*,
 			t.title AS title,
 			t.titlePlural as titlePlural
@@ -1629,7 +1683,7 @@ func getRulerResults(db *sql.DB, searchTerms []string, config Config, originalQu
 	for rows.Next() {
 		var r RulerRow
 		err := rows.Scan(
-			&r.RulerID, &r.Name, &r.PersonalName, &r.Epithet, &r.Wikipedia, &r.Notes, &r.Biography,
+			&r.RulerID, &r.Name, &r.PersonalName, &r.Epithet, &r.Wikipedia, &r.Notes, &r.Biography, &r.Born, &r.Died,
 			&r.PeriodID, &r.RulerID, &r.TitleID, &r.ProgrTitle, &r.Period, &r.StartYear, &r.EndYear, &r.Notes,
 			&r.Title, &r.TitlePlural,
 		)
@@ -1678,6 +1732,8 @@ func getRulerResults(db *sql.DB, searchTerms []string, config Config, originalQu
 		} else {
 			subtitleString = formatSubtitle(periods, r.PersonalName)
 		}
+
+		subtitleString = appendClause(subtitleString, lifespanClause(r.Born, r.Died))
 
 		wikilink := r.Name
 		if r.Wikipedia.Valid && r.Wikipedia.String != "" {
@@ -1791,7 +1847,7 @@ func getRulerResultsWithoutCounters(db *sql.DB, searchTerms []string, config Con
 
 	query := fmt.Sprintf(`
 		SELECT 
-			ru.rulerID, ru.name, ru.personal_name, ru.epithet, ru.wikipedia, ru.notes, ru.biography,
+			ru.rulerID, ru.name, ru.personal_name, ru.epithet, ru.wikipedia, ru.notes, ru.biography, ru.born, ru.died,
 			per.*,
 			t.title AS title,
 			t.titlePlural as titlePlural
@@ -1826,7 +1882,7 @@ func getRulerResultsWithoutCounters(db *sql.DB, searchTerms []string, config Con
 	for rows.Next() {
 		var r RulerRow
 		err := rows.Scan(
-			&r.RulerID, &r.Name, &r.PersonalName, &r.Epithet, &r.Wikipedia, &r.Notes, &r.Biography,
+			&r.RulerID, &r.Name, &r.PersonalName, &r.Epithet, &r.Wikipedia, &r.Notes, &r.Biography, &r.Born, &r.Died,
 			&r.PeriodID, &r.RulerID, &r.TitleID, &r.ProgrTitle, &r.Period, &r.StartYear, &r.EndYear, &r.Notes,
 			&r.Title, &r.TitlePlural,
 		)
@@ -1881,6 +1937,8 @@ func getRulerResultsWithoutCounters(db *sql.DB, searchTerms []string, config Con
 		} else {
 			subtitleString = formatSubtitle(periods, r.PersonalName)
 		}
+
+		subtitleString = appendClause(subtitleString, lifespanClause(r.Born, r.Died))
 
 		wikilink := r.Name
 		if r.Wikipedia.Valid && r.Wikipedia.String != "" {
@@ -2110,12 +2168,9 @@ func byEventWithoutCounters(db *sql.DB, searchTerms []string, config Config, ori
 
 // Helper function to get events by year
 func getEventsByYear(db *sql.DB, searchTerms []string, yearTerm string, config Config, originalQuery string) []AlfredItem {
-	var junctionString string
-	if len(searchTerms) > 0 {
-		junctionString = " AND "
-	} else {
-		junctionString = ""
-	}
+	// buildFoldedTextSQL always returns a non-empty condition (at least "1=1"),
+	// so the year condition must always be joined to it with " AND ".
+	junctionString := " AND "
 
 	// Process wildcards
 	asteriskCount := len(yearTerm) - len(strings.TrimRight(yearTerm, "*"))
