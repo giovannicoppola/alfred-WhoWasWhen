@@ -56,12 +56,49 @@ else
 	note "recursion guard present" "FAIL (a mis-packaged build could fork bomb)"; fail=1
 fi
 
-# 5. Gatekeeper: a downloaded .alfredworkflow is quarantined.
+# 5. Universal (amd64 + arm64). build.sh lipo's the two slices together; a
+#    binary built for only one arch runs on half the user base.
+for b in ruler-query whowaswhen; do
+	archs=$(lipo -archs "$DIR/$b" 2>/dev/null)
+	missing=""
+	for a in x86_64 arm64; do
+		case " $archs " in *" $a "*) ;; *) missing="$missing $a" ;; esac
+	done
+	if [ -z "$missing" ]; then
+		note "$b universal" "ok ($archs)"
+	else
+		note "$b universal" "FAIL (missing:$missing; have: ${archs:-none})"; fail=1
+	fi
+done
+
+# 6. Signature on EVERY slice, not just the fat header. lipo strips the arm64
+#    ad-hoc signature, so a binary signed before lipo leaves arm64 unsigned
+#    while `codesign -dvv` on the fat file still looks fine. Sign after lipo.
+for b in ruler-query whowaswhen; do
+	for a in $(lipo -archs "$DIR/$b" 2>/dev/null); do
+		if ! codesign --verify --strict --arch "$a" "$DIR/$b" >/dev/null 2>&1; then
+			note "$b $a signature" "FAIL (does not verify)"; fail=1; continue
+		fi
+		d=$(codesign -dvv --arch "$a" "$DIR/$b" 2>&1)
+		case "$d" in
+			*"Authority=Developer ID Application: Giovanni Coppola (VDG762YNX9)"*) ;;
+			*) note "$b $a signature" "FAIL (not Developer ID signed)"; fail=1; continue ;;
+		esac
+		case "$d" in
+			*"flags=0x10000(runtime)"*) ;;
+			*) note "$b $a signature" "FAIL (no hardened runtime; blocks notarization)"; fail=1; continue ;;
+		esac
+		note "$b $a signature" "ok (Developer ID + runtime)"
+	done
+done
+
+# 7. Gatekeeper: a downloaded .alfredworkflow is quarantined, and an
+#    un-notarized binary is blocked with no visible error in Alfred.
 for b in ruler-query whowaswhen; do
 	if spctl -a -t install "$DIR/$b" >/dev/null 2>&1; then
-		note "$b signed + notarized" "ok"
+		note "$b notarized" "ok"
 	else
-		note "$b signed + notarized" "FAIL (would be blocked on download)"; fail=1
+		note "$b notarized" "FAIL (would be blocked on download)"; fail=1
 	fi
 done
 
