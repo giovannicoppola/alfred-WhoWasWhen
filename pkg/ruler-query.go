@@ -669,6 +669,17 @@ func main() {
 	// Check if we have input for non-ruler modes
 	if input == "" {
 		logMsg("No search input provided")
+		result := AlfredResult{Items: []AlfredItem{{
+			Title:    "Type a year or a name",
+			Subtitle: "e.g. 1066, Caesar, --e plague",
+			Valid:    false,
+		}}}
+		jsonOut, err := json.Marshal(result)
+		if err != nil {
+			logMsg("Error creating JSON output: %v", err)
+			return
+		}
+		fmt.Println(string(jsonOut))
 		return
 	}
 
@@ -897,9 +908,25 @@ func byRuler(db *sql.DB, searchStringList interface{}, queryType string, config 
 			terms,
 			" AND ",
 		)
-
-		// TODO: searchRuler functionality needs to be implemented
 		_ = textSQLString
+
+		items := getRulerResults(db, terms, config, origQuery)
+		result := AlfredResult{Items: items}
+		if len(result.Items) == 0 {
+			result.Items = append(result.Items, AlfredItem{
+				Title:    "No rulers found 🫤",
+				Subtitle: origQuery,
+				Valid:    false,
+				Icon:     map[string]string{"path": "icons/hopeless.png"},
+			})
+		}
+		jsonOut, err := json.Marshal(result)
+		if err != nil {
+			logMsg("Error creating JSON output: %v", err)
+			return
+		}
+		fmt.Println(string(jsonOut))
+		return
 
 	} else if queryType == "listLineage" {
 		// For listLineage, we need to find the correct progression number for the specific title
@@ -913,7 +940,7 @@ func byRuler(db *sql.DB, searchStringList interface{}, queryType string, config 
 			JOIN titles t ON per.titleID = t.titleID
 			WHERE per.rulerID = %d AND t.title = '%s'
 			ORDER BY per.progrTitle ASC
-			LIMIT 1`, myRulerID, config.MyTitle)
+			LIMIT 1`, myRulerID, strings.ReplaceAll(config.MyTitle, "'", "''"))
 
 		err := db.QueryRow(progQuery).Scan(&currentProg)
 		if err != nil {
@@ -2337,6 +2364,17 @@ func getEventsByYear(db *sql.DB, searchTerms []string, yearTerm string, config C
 // checkDatabaseUpdate checks if the database needs updating based on CHECK_RATE and timestamp
 // Returns (wasUpdated, error) where wasUpdated indicates if a database update occurred
 func checkDatabaseUpdate(config Config, dataFolder string, forceRefresh bool) (bool, error) {
+	// Recursion guard. runUpdateScript execs the sibling "whowaswhen" binary; if that
+	// binary is ever mis-packaged as a copy of ruler-query (it was in v0.4), the child
+	// re-enters this function and execs another child, forking without bound. The
+	// output/timestamp checks in runUpdateScript cannot catch that, because
+	// CombinedOutput blocks until the child exits and the child never does. Bail out
+	// in any process that was itself spawned as the updater.
+	if os.Getenv(updateChildEnv) != "" {
+		logMsg("Running as update child, skipping update check (recursion guard)")
+		return false, nil
+	}
+
 	// If force refresh is requested, always update
 	if forceRefresh {
 		logMsg("Force refresh requested, updating database...")
@@ -2390,22 +2428,54 @@ func checkDatabaseUpdate(config Config, dataFolder string, forceRefresh bool) (b
 	return false, nil
 }
 
+// updateChildEnv marks a process spawned by runUpdateScript, so it never starts an
+// update of its own. See the recursion guard in checkDatabaseUpdate.
+const updateChildEnv = "WHOWASWHEN_UPDATE_CHILD"
+
 // runUpdateScript executes the database update script
 func runUpdateScript(config Config, dataFolder string) error {
 	logMsg("Running database update script...")
 
-	// Execute the whowaswhen script with alfred flag for JSON output
-	// The script automatically uses the correct data folder and creates timestamp file
-	cmd := exec.Command("./whowaswhen", "-alfred")
-
-	// Capture both stdout and stderr
-	output, err := cmd.CombinedOutput()
+	execPath, err := os.Executable()
 	if err != nil {
-		return fmt.Errorf("error running whowaswhen script: %w\nOutput: %s", err, string(output))
+		return fmt.Errorf("cannot determine executable path: %w", err)
+	}
+	workflowDir := filepath.Dir(execPath)
+	whowaswhenPath := filepath.Join(workflowDir, "whowaswhen")
+
+	if _, err := os.Stat(whowaswhenPath); err != nil {
+		return fmt.Errorf("whowaswhen binary not found at %s: %w", whowaswhenPath, err)
+	}
+
+	timestampFile := filepath.Join(dataFolder, "timestamp.txt")
+	var mtimeBefore time.Time
+	if info, err := os.Stat(timestampFile); err == nil {
+		mtimeBefore = info.ModTime()
+	}
+
+	cmd := exec.Command(whowaswhenPath, "-alfred")
+	cmd.Dir = workflowDir
+	cmd.Env = append(os.Environ(), updateChildEnv+"=1")
+
+	output, err := cmd.CombinedOutput()
+	outputStr := string(output)
+	if err != nil {
+		return fmt.Errorf("error running whowaswhen script: %w\nOutput: %s", err, outputStr)
+	}
+
+	if !strings.Contains(outputStr, "Database created") &&
+		!strings.Contains(outputStr, "database created successfully") {
+		return fmt.Errorf("whowaswhen did not rebuild the database (is source/whowaswhen the DB builder, not ruler-query?): %s", outputStr)
+	}
+
+	if info, err := os.Stat(timestampFile); err != nil {
+		return fmt.Errorf("timestamp file missing after rebuild: %w", err)
+	} else if !mtimeBefore.IsZero() && !info.ModTime().After(mtimeBefore) {
+		return fmt.Errorf("timestamp file was not updated after rebuild")
 	}
 
 	logMsg("Database update completed successfully")
-	logMsg("whowaswhen output: %s", string(output))
+	logMsg("whowaswhen output: %s", outputStr)
 
 	return nil
 }

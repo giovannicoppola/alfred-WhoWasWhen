@@ -52,7 +52,7 @@ func normalizeSearchInput(input string) string {
 }
 
 func foldLikeSQL(column, term string) string {
-	folded := foldForSearch(term)
+	folded := strings.ReplaceAll(foldForSearch(term), "'", "''")
 	return fmt.Sprintf("fold(%s) LIKE '%%%s%%'", column, folded)
 }
 
