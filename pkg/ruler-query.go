@@ -208,85 +208,124 @@ func formatNumber(n int) string {
 	return string(result)
 }
 
-// ensureDatabase checks for the presence of the workflow data folder and the SQLite database.
-// If a zipped database is found in the current directory, it will be extracted and moved to the
-// workflow data folder. In case the database is missing, an error is returned so that the caller
-// can emit an Alfred-compatible JSON error message.
-func ensureDatabase(dataFolder string) error {
-	// 1) Ensure the workflow data folder exists
-	if _, err := os.Stat(dataFolder); os.IsNotExist(err) {
-		if err := os.MkdirAll(dataFolder, 0o755); err != nil {
-			return fmt.Errorf("error creating data folder: %w", err)
+// workflowDir returns the directory holding this binary, which is the workflow
+// folder Alfred runs it from. Preferred over os.Getwd(), which depends on how
+// the process was launched.
+func workflowDir() (string, error) {
+	execPath, err := os.Executable()
+	if err == nil {
+		if resolved, rerr := filepath.EvalSymlinks(execPath); rerr == nil {
+			execPath = resolved
 		}
+		return filepath.Dir(execPath), nil
+	}
+	cwd, cerr := os.Getwd()
+	if cerr != nil {
+		return "", fmt.Errorf("cannot determine workflow directory: %w", err)
+	}
+	return cwd, nil
+}
+
+const (
+	bundledZipName = "whoWasWhen.zip"
+	dbFileName     = "whoWasWhen.db"
+	timestampName  = "timestamp.txt"
+)
+
+// seedFromBundledZip extracts the database we ship alongside the binary into the
+// workflow data folder, then deletes the archive so it only ever runs once. It
+// is a no-op when no archive is present.
+//
+// This must run BEFORE checkDatabaseUpdate. A fresh install has no timestamp.txt,
+// so the update check would otherwise rebuild from Google Sheets and the shipped
+// database would never be used — making first run require a network and take the
+// slow path. The archive carries timestamp.txt too, recording when the database
+// was generated, so the refresh cycle stays honest: a user installing an old
+// release still refreshes on schedule rather than getting a free 30 days.
+//
+// An existing database is never overwritten; a returning user's data folder wins.
+func seedFromBundledZip(dataFolder string) error {
+	if err := os.MkdirAll(dataFolder, 0o755); err != nil {
+		return fmt.Errorf("error creating data folder: %w", err)
 	}
 
-	const zipName = "whoWasWhen.zip"
-	const dbName = "whoWasWhen.db"
-
-	cwd, err := os.Getwd()
+	dir, err := workflowDir()
 	if err != nil {
-		return fmt.Errorf("cannot determine current directory: %w", err)
+		return err
 	}
 
-	zipPath := filepath.Join(cwd, zipName)
-	dbDestPath := filepath.Join(dataFolder, dbName)
+	zipPath := filepath.Join(dir, bundledZipName)
+	if _, err := os.Stat(zipPath); err != nil {
+		return nil // nothing bundled; the update path will build the database
+	}
 
-	// 2) If the zip file is present, extract it and move the DB to the data folder
-	if _, err := os.Stat(zipPath); err == nil {
-		// Extract directly into a temporary directory inside cwd
-		tempExtractDir := filepath.Join(cwd, "_db_extract_tmp")
-		if err := os.MkdirAll(tempExtractDir, 0o755); err != nil {
-			return fmt.Errorf("error preparing temp dir: %w", err)
-		}
-
-		if err := unzipFile(zipPath, tempExtractDir); err != nil {
-			return fmt.Errorf("error unzipping database: %w", err)
-		}
-
-		// Debug: log what files were extracted
-		filepath.Walk(tempExtractDir, func(path string, info os.FileInfo, err error) error {
-			if err == nil && !info.IsDir() {
-				logMsg("Extracted file: %s", path)
-			}
-			return nil
-		})
-
-		// Locate the .db file inside the extracted directory (could be nested)
-		var extractedDBPath string
-		err = filepath.Walk(tempExtractDir, func(path string, info os.FileInfo, err error) error {
-			if err != nil {
-				return err
-			}
-			if !info.IsDir() && strings.EqualFold(info.Name(), dbName) {
-				extractedDBPath = path
-				logMsg("Found database file at: %s", path)
-				return io.EOF // stop walking early
-			}
-			return nil
-		})
-		if err != nil && err != io.EOF {
-			return fmt.Errorf("error locating extracted db: %w", err)
-		}
-		if extractedDBPath == "" {
-			return fmt.Errorf("unzipped database %s not found in archive", dbName)
-		}
-
-		// Copy (not rename) to support cross-filesystem moves
-		if err := copyFile(extractedDBPath, dbDestPath); err != nil {
-			return fmt.Errorf("error copying database to data folder: %w", err)
-		}
-
-		// Clean-up zip and temp directory
+	dbDestPath := filepath.Join(dataFolder, dbFileName)
+	if _, err := os.Stat(dbDestPath); err == nil {
+		logMsg("Database already present, discarding bundled archive")
 		_ = os.Remove(zipPath)
-		_ = os.RemoveAll(tempExtractDir)
 		return nil
 	}
 
-	// 3) If zip is not present, ensure database already exists in data folder
+	logMsg("Found %s, seeding data folder", bundledZipName)
+
+	tempExtractDir, err := os.MkdirTemp("", "whowaswhen_seed_")
+	if err != nil {
+		return fmt.Errorf("error preparing temp dir: %w", err)
+	}
+	defer os.RemoveAll(tempExtractDir)
+
+	if err := unzipFile(zipPath, tempExtractDir); err != nil {
+		return fmt.Errorf("error unzipping bundled database: %w", err)
+	}
+
+	// Locate the db (and the optional timestamp) anywhere in the archive.
+	var extractedDBPath, extractedStampPath string
+	walkErr := filepath.Walk(tempExtractDir, func(path string, info os.FileInfo, err error) error {
+		if err != nil || info.IsDir() {
+			return err
+		}
+		switch {
+		case strings.EqualFold(info.Name(), dbFileName):
+			extractedDBPath = path
+		case strings.EqualFold(info.Name(), timestampName):
+			extractedStampPath = path
+		}
+		return nil
+	})
+	if walkErr != nil {
+		return fmt.Errorf("error locating extracted db: %w", walkErr)
+	}
+	if extractedDBPath == "" {
+		return fmt.Errorf("bundled archive does not contain %s", dbFileName)
+	}
+
+	// Copy (not rename) to support cross-filesystem moves.
+	if err := copyFile(extractedDBPath, dbDestPath); err != nil {
+		return fmt.Errorf("error copying database to data folder: %w", err)
+	}
+	if extractedStampPath != "" {
+		if err := copyFile(extractedStampPath, filepath.Join(dataFolder, timestampName)); err != nil {
+			// Not fatal: without it the next run just refreshes from the network.
+			logMsg("Warning: could not write %s: %v", timestampName, err)
+		}
+	}
+
+	if err := os.Remove(zipPath); err != nil {
+		logMsg("Warning: could not remove %s: %v", bundledZipName, err)
+	}
+
+	logMsg("Seeded database from bundled archive")
+	return nil
+}
+
+// ensureDatabase verifies the database is present, after seeding and any update
+// have had their chance. It returns an error so the caller can emit an
+// Alfred-compatible JSON message.
+func ensureDatabase(dataFolder string) error {
+	dbDestPath := filepath.Join(dataFolder, dbFileName)
 	if _, err := os.Stat(dbDestPath); os.IsNotExist(err) {
 		return fmt.Errorf("database missing at %s", dbDestPath)
 	}
-
 	return nil
 }
 
@@ -582,8 +621,16 @@ func main() {
 	// Get configuration
 	config := getConfig()
 
-	// Check for database updates first (before database validation)
 	dataFolder := filepath.Dir(config.DBPath)
+
+	// Seed from the bundled archive before anything else, so a fresh install
+	// uses the database we ship instead of rebuilding it over the network.
+	if err := seedFromBundledZip(dataFolder); err != nil {
+		logMsg("Database seeding error: %v", err)
+		// Not fatal: fall through to the update path, which can build one.
+	}
+
+	// Check for database updates (before database validation)
 	wasUpdated, err := checkDatabaseUpdate(config, dataFolder, cmdArgs.ForceRefresh)
 	if err != nil {
 		// Log detailed error to stderr for Alfred debugger

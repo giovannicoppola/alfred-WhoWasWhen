@@ -25,3 +25,7 @@ ios/build/
 
 # Personal feature brain-dump / wishlist (local only)
 ios/new-features.md
+
+# Built at package time by pkg/package-release.sh; source/ is the live
+# workflow folder, so a zip left here is deleted by the next local run.
+source/whoWasWhen.zip

@@ -92,7 +92,38 @@ for b in ruler-query whowaswhen; do
 	done
 done
 
-# 7. Gatekeeper: a downloaded .alfredworkflow is quarantined, and an
+# 7. Bundled database. ruler-query seeds the data folder from whoWasWhen.zip on
+#    first run and then deletes the archive, so first run needs no network.
+#    Alfred's own export silently drops files it does not know about — a
+#    DB-less bundle is the classic way this ships broken.
+if [ ! -f "$DIR/whoWasWhen.zip" ]; then
+	note "bundled whoWasWhen.zip" "FAIL (missing; first run would need a network)"; fail=1
+else
+	zt=$(mktemp -d)
+	if unzip -oq "$DIR/whoWasWhen.zip" -d "$zt" 2>/dev/null; then
+		if [ -f "$zt/whoWasWhen.db" ]; then
+			note "bundled whoWasWhen.zip" "ok ($(du -h "$DIR/whoWasWhen.zip" | cut -f1))"
+			cols=$(sqlite3 "$zt/whoWasWhen.db" "SELECT COUNT(born)||'/'||COUNT(*) FROM rulers;" 2>/dev/null)
+			if [ -n "$cols" ]; then
+				note "bundled db has born/died" "ok ($cols rulers with birth years)"
+			else
+				note "bundled db has born/died" "FAIL (no born column; stale build)"; fail=1
+			fi
+		else
+			note "bundled whoWasWhen.zip" "FAIL (no whoWasWhen.db inside)"; fail=1
+		fi
+		if [ -f "$zt/timestamp.txt" ]; then
+			note "bundled timestamp.txt" "ok ($(cat "$zt/timestamp.txt"))"
+		else
+			note "bundled timestamp.txt" "FAIL (first run would rebuild immediately)"; fail=1
+		fi
+	else
+		note "bundled whoWasWhen.zip" "FAIL (not a readable archive)"; fail=1
+	fi
+	rm -rf "$zt"
+fi
+
+# 8. Gatekeeper: a downloaded .alfredworkflow is quarantined, and an
 #    un-notarized binary is blocked with no visible error in Alfred.
 for b in ruler-query whowaswhen; do
 	if spctl -a -t install "$DIR/$b" >/dev/null 2>&1; then
