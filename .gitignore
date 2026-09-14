@@ -3,7 +3,15 @@
 __pycache__
 prefs.plist
 lib
-sandbox
+
+# sandbox/ is scratch space, EXCEPT the database generator: source/whowaswhen is
+# built from it, and leaving it untracked is how a v0.2-era build of it got
+# shipped in 0.4 with nobody able to tell. Source is tracked; the binary is not.
+sandbox/*
+!sandbox/database generator/
+sandbox/database generator/*
+!sandbox/database generator/go-whowaswhen/
+sandbox/database generator/go-whowaswhen/whowaswhen
 
 # Secrets & local config for sheet-maintenance / tools (never commit)
 tools/.venv/
