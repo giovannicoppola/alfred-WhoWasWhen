@@ -208,85 +208,176 @@ func formatNumber(n int) string {
 	return string(result)
 }
 
-// ensureDatabase checks for the presence of the workflow data folder and the SQLite database.
-// If a zipped database is found in the current directory, it will be extracted and moved to the
-// workflow data folder. In case the database is missing, an error is returned so that the caller
-// can emit an Alfred-compatible JSON error message.
-func ensureDatabase(dataFolder string) error {
-	// 1) Ensure the workflow data folder exists
-	if _, err := os.Stat(dataFolder); os.IsNotExist(err) {
-		if err := os.MkdirAll(dataFolder, 0o755); err != nil {
-			return fmt.Errorf("error creating data folder: %w", err)
+// workflowDir returns the directory holding this binary, which is the workflow
+// folder Alfred runs it from. Preferred over os.Getwd(), which depends on how
+// the process was launched.
+func workflowDir() (string, error) {
+	execPath, err := os.Executable()
+	if err == nil {
+		if resolved, rerr := filepath.EvalSymlinks(execPath); rerr == nil {
+			execPath = resolved
 		}
+		return filepath.Dir(execPath), nil
 	}
+	cwd, cerr := os.Getwd()
+	if cerr != nil {
+		return "", fmt.Errorf("cannot determine workflow directory: %w", err)
+	}
+	return cwd, nil
+}
 
-	const zipName = "whoWasWhen.zip"
-	const dbName = "whoWasWhen.db"
+const (
+	bundledZipName = "whoWasWhen.zip"
+	dbFileName     = "whoWasWhen.db"
+	timestampName  = "timestamp.txt"
+)
 
-	cwd, err := os.Getwd()
+// databaseSchemaIsCurrent reports whether the database has the columns this
+// binary queries. Releases up to 0.4 shipped a generator that wrote rulers
+// without born/died, so an upgrading user can arrive with a database that is
+// present, recent by timestamp, and unusable — every year query fails with
+// "no such column: r.born" until CHECK_RATE finally elapses, or forever when
+// the user has set CHECK_RATE to 0.
+func databaseSchemaIsCurrent(dbPath string) bool {
+	db, err := openWhoWasWhenDB(dbPath)
 	if err != nil {
-		return fmt.Errorf("cannot determine current directory: %w", err)
+		return false
+	}
+	defer db.Close()
+
+	found := map[string]bool{}
+	rows, err := db.Query("PRAGMA table_info(rulers)")
+	if err != nil {
+		return false
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var cid int
+		var name, ctype string
+		var notnull, pk int
+		var dflt sql.NullString
+		if err := rows.Scan(&cid, &name, &ctype, &notnull, &dflt, &pk); err != nil {
+			return false
+		}
+		found[strings.ToLower(name)] = true
+	}
+	if rows.Err() != nil {
+		return false
+	}
+	for _, col := range []string{"born", "died"} {
+		if !found[col] {
+			logMsg("Database is missing rulers.%s; treating as stale", col)
+			return false
+		}
+	}
+	return true
+}
+
+// seedFromBundledZip extracts the database we ship alongside the binary into the
+// workflow data folder, then deletes the archive so it only ever runs once. It
+// is a no-op when no archive is present.
+//
+// This must run BEFORE checkDatabaseUpdate. A fresh install has no timestamp.txt,
+// so the update check would otherwise rebuild from Google Sheets and the shipped
+// database would never be used — making first run require a network and take the
+// slow path. The archive carries timestamp.txt too, recording when the database
+// was generated, so the refresh cycle stays honest: a user installing an old
+// release still refreshes on schedule rather than getting a free 30 days.
+//
+// An existing database is never overwritten; a returning user's data folder wins.
+func seedFromBundledZip(dataFolder string) error {
+	if err := os.MkdirAll(dataFolder, 0o755); err != nil {
+		return fmt.Errorf("error creating data folder: %w", err)
 	}
 
-	zipPath := filepath.Join(cwd, zipName)
-	dbDestPath := filepath.Join(dataFolder, dbName)
+	dir, err := workflowDir()
+	if err != nil {
+		return err
+	}
 
-	// 2) If the zip file is present, extract it and move the DB to the data folder
-	if _, err := os.Stat(zipPath); err == nil {
-		// Extract directly into a temporary directory inside cwd
-		tempExtractDir := filepath.Join(cwd, "_db_extract_tmp")
-		if err := os.MkdirAll(tempExtractDir, 0o755); err != nil {
-			return fmt.Errorf("error preparing temp dir: %w", err)
-		}
+	zipPath := filepath.Join(dir, bundledZipName)
+	if _, err := os.Stat(zipPath); err != nil {
+		return nil // nothing bundled; the update path will build the database
+	}
 
-		if err := unzipFile(zipPath, tempExtractDir); err != nil {
-			return fmt.Errorf("error unzipping database: %w", err)
-		}
-
-		// Debug: log what files were extracted
-		filepath.Walk(tempExtractDir, func(path string, info os.FileInfo, err error) error {
-			if err == nil && !info.IsDir() {
-				logMsg("Extracted file: %s", path)
-			}
+	dbDestPath := filepath.Join(dataFolder, dbFileName)
+	if _, err := os.Stat(dbDestPath); err == nil {
+		if databaseSchemaIsCurrent(dbDestPath) {
+			logMsg("Database already present, discarding bundled archive")
+			_ = os.Remove(zipPath)
 			return nil
-		})
-
-		// Locate the .db file inside the extracted directory (could be nested)
-		var extractedDBPath string
-		err = filepath.Walk(tempExtractDir, func(path string, info os.FileInfo, err error) error {
-			if err != nil {
-				return err
-			}
-			if !info.IsDir() && strings.EqualFold(info.Name(), dbName) {
-				extractedDBPath = path
-				logMsg("Found database file at: %s", path)
-				return io.EOF // stop walking early
-			}
-			return nil
-		})
-		if err != nil && err != io.EOF {
-			return fmt.Errorf("error locating extracted db: %w", err)
 		}
-		if extractedDBPath == "" {
-			return fmt.Errorf("unzipped database %s not found in archive", dbName)
+		// Stale schema from an older release: replace it with the bundled
+		// database rather than leaving the workflow broken until the next
+		// refresh. The old file is kept alongside, not deleted.
+		backup := filepath.Join(dataFolder, fmt.Sprintf("whoWasWhen_backup_%s.db", time.Now().UTC().Format("20060102T150405Z")))
+		if err := os.Rename(dbDestPath, backup); err != nil {
+			logMsg("Warning: could not back up stale database: %v", err)
+		} else {
+			logMsg("Backed up stale database to %s", backup)
 		}
+	}
 
-		// Copy (not rename) to support cross-filesystem moves
-		if err := copyFile(extractedDBPath, dbDestPath); err != nil {
-			return fmt.Errorf("error copying database to data folder: %w", err)
+	logMsg("Found %s, seeding data folder", bundledZipName)
+
+	tempExtractDir, err := os.MkdirTemp("", "whowaswhen_seed_")
+	if err != nil {
+		return fmt.Errorf("error preparing temp dir: %w", err)
+	}
+	defer os.RemoveAll(tempExtractDir)
+
+	if err := unzipFile(zipPath, tempExtractDir); err != nil {
+		return fmt.Errorf("error unzipping bundled database: %w", err)
+	}
+
+	// Locate the db (and the optional timestamp) anywhere in the archive.
+	var extractedDBPath, extractedStampPath string
+	walkErr := filepath.Walk(tempExtractDir, func(path string, info os.FileInfo, err error) error {
+		if err != nil || info.IsDir() {
+			return err
 		}
-
-		// Clean-up zip and temp directory
-		_ = os.Remove(zipPath)
-		_ = os.RemoveAll(tempExtractDir)
+		switch {
+		case strings.EqualFold(info.Name(), dbFileName):
+			extractedDBPath = path
+		case strings.EqualFold(info.Name(), timestampName):
+			extractedStampPath = path
+		}
 		return nil
+	})
+	if walkErr != nil {
+		return fmt.Errorf("error locating extracted db: %w", walkErr)
+	}
+	if extractedDBPath == "" {
+		return fmt.Errorf("bundled archive does not contain %s", dbFileName)
 	}
 
-	// 3) If zip is not present, ensure database already exists in data folder
+	// Copy (not rename) to support cross-filesystem moves.
+	if err := copyFile(extractedDBPath, dbDestPath); err != nil {
+		return fmt.Errorf("error copying database to data folder: %w", err)
+	}
+	if extractedStampPath != "" {
+		if err := copyFile(extractedStampPath, filepath.Join(dataFolder, timestampName)); err != nil {
+			// Not fatal: without it the next run just refreshes from the network.
+			logMsg("Warning: could not write %s: %v", timestampName, err)
+		}
+	}
+
+	if err := os.Remove(zipPath); err != nil {
+		logMsg("Warning: could not remove %s: %v", bundledZipName, err)
+	}
+
+	logMsg("Seeded database from bundled archive")
+	return nil
+}
+
+// ensureDatabase verifies the database is present, after seeding and any update
+// have had their chance. It returns an error so the caller can emit an
+// Alfred-compatible JSON message.
+func ensureDatabase(dataFolder string) error {
+	dbDestPath := filepath.Join(dataFolder, dbFileName)
 	if _, err := os.Stat(dbDestPath); os.IsNotExist(err) {
 		return fmt.Errorf("database missing at %s", dbDestPath)
 	}
-
 	return nil
 }
 
@@ -582,8 +673,16 @@ func main() {
 	// Get configuration
 	config := getConfig()
 
-	// Check for database updates first (before database validation)
 	dataFolder := filepath.Dir(config.DBPath)
+
+	// Seed from the bundled archive before anything else, so a fresh install
+	// uses the database we ship instead of rebuilding it over the network.
+	if err := seedFromBundledZip(dataFolder); err != nil {
+		logMsg("Database seeding error: %v", err)
+		// Not fatal: fall through to the update path, which can build one.
+	}
+
+	// Check for database updates (before database validation)
 	wasUpdated, err := checkDatabaseUpdate(config, dataFolder, cmdArgs.ForceRefresh)
 	if err != nil {
 		// Log detailed error to stderr for Alfred debugger
@@ -669,6 +768,17 @@ func main() {
 	// Check if we have input for non-ruler modes
 	if input == "" {
 		logMsg("No search input provided")
+		result := AlfredResult{Items: []AlfredItem{{
+			Title:    "Type a year or a name",
+			Subtitle: "e.g. 1066, Caesar, --e plague",
+			Valid:    false,
+		}}}
+		jsonOut, err := json.Marshal(result)
+		if err != nil {
+			logMsg("Error creating JSON output: %v", err)
+			return
+		}
+		fmt.Println(string(jsonOut))
 		return
 	}
 
@@ -897,9 +1007,25 @@ func byRuler(db *sql.DB, searchStringList interface{}, queryType string, config 
 			terms,
 			" AND ",
 		)
-
-		// TODO: searchRuler functionality needs to be implemented
 		_ = textSQLString
+
+		items := getRulerResults(db, terms, config, origQuery)
+		result := AlfredResult{Items: items}
+		if len(result.Items) == 0 {
+			result.Items = append(result.Items, AlfredItem{
+				Title:    "No rulers found 🫤",
+				Subtitle: origQuery,
+				Valid:    false,
+				Icon:     map[string]string{"path": "icons/hopeless.png"},
+			})
+		}
+		jsonOut, err := json.Marshal(result)
+		if err != nil {
+			logMsg("Error creating JSON output: %v", err)
+			return
+		}
+		fmt.Println(string(jsonOut))
+		return
 
 	} else if queryType == "listLineage" {
 		// For listLineage, we need to find the correct progression number for the specific title
@@ -913,7 +1039,7 @@ func byRuler(db *sql.DB, searchStringList interface{}, queryType string, config 
 			JOIN titles t ON per.titleID = t.titleID
 			WHERE per.rulerID = %d AND t.title = '%s'
 			ORDER BY per.progrTitle ASC
-			LIMIT 1`, myRulerID, config.MyTitle)
+			LIMIT 1`, myRulerID, strings.ReplaceAll(config.MyTitle, "'", "''"))
 
 		err := db.QueryRow(progQuery).Scan(&currentProg)
 		if err != nil {
@@ -2337,9 +2463,31 @@ func getEventsByYear(db *sql.DB, searchTerms []string, yearTerm string, config C
 // checkDatabaseUpdate checks if the database needs updating based on CHECK_RATE and timestamp
 // Returns (wasUpdated, error) where wasUpdated indicates if a database update occurred
 func checkDatabaseUpdate(config Config, dataFolder string, forceRefresh bool) (bool, error) {
+	// Recursion guard. runUpdateScript execs the sibling "whowaswhen" binary; if that
+	// binary is ever mis-packaged as a copy of ruler-query (it was in v0.4), the child
+	// re-enters this function and execs another child, forking without bound. The
+	// output/timestamp checks in runUpdateScript cannot catch that, because
+	// CombinedOutput blocks until the child exits and the child never does. Bail out
+	// in any process that was itself spawned as the updater.
+	if os.Getenv(updateChildEnv) != "" {
+		logMsg("Running as update child, skipping update check (recursion guard)")
+		return false, nil
+	}
+
 	// If force refresh is requested, always update
 	if forceRefresh {
 		logMsg("Force refresh requested, updating database...")
+		err := runUpdateScript(config, dataFolder)
+		return true, err
+	}
+
+	dbPath := filepath.Join(dataFolder, dbFileName)
+	if _, err := os.Stat(dbPath); err == nil && !databaseSchemaIsCurrent(dbPath) {
+		// Seeding could not repair it (no archive bundled, or it was already
+		// consumed). Rebuild regardless of CHECK_RATE: a stale-schema database
+		// makes every year query fail, so honouring "never update" here would
+		// just leave the workflow broken.
+		logMsg("Stale database schema, rebuilding regardless of CHECK_RATE...")
 		err := runUpdateScript(config, dataFolder)
 		return true, err
 	}
@@ -2390,22 +2538,54 @@ func checkDatabaseUpdate(config Config, dataFolder string, forceRefresh bool) (b
 	return false, nil
 }
 
+// updateChildEnv marks a process spawned by runUpdateScript, so it never starts an
+// update of its own. See the recursion guard in checkDatabaseUpdate.
+const updateChildEnv = "WHOWASWHEN_UPDATE_CHILD"
+
 // runUpdateScript executes the database update script
 func runUpdateScript(config Config, dataFolder string) error {
 	logMsg("Running database update script...")
 
-	// Execute the whowaswhen script with alfred flag for JSON output
-	// The script automatically uses the correct data folder and creates timestamp file
-	cmd := exec.Command("./whowaswhen", "-alfred")
-
-	// Capture both stdout and stderr
-	output, err := cmd.CombinedOutput()
+	execPath, err := os.Executable()
 	if err != nil {
-		return fmt.Errorf("error running whowaswhen script: %w\nOutput: %s", err, string(output))
+		return fmt.Errorf("cannot determine executable path: %w", err)
+	}
+	workflowDir := filepath.Dir(execPath)
+	whowaswhenPath := filepath.Join(workflowDir, "whowaswhen")
+
+	if _, err := os.Stat(whowaswhenPath); err != nil {
+		return fmt.Errorf("whowaswhen binary not found at %s: %w", whowaswhenPath, err)
+	}
+
+	timestampFile := filepath.Join(dataFolder, "timestamp.txt")
+	var mtimeBefore time.Time
+	if info, err := os.Stat(timestampFile); err == nil {
+		mtimeBefore = info.ModTime()
+	}
+
+	cmd := exec.Command(whowaswhenPath, "-alfred")
+	cmd.Dir = workflowDir
+	cmd.Env = append(os.Environ(), updateChildEnv+"=1")
+
+	output, err := cmd.CombinedOutput()
+	outputStr := string(output)
+	if err != nil {
+		return fmt.Errorf("error running whowaswhen script: %w\nOutput: %s", err, outputStr)
+	}
+
+	if !strings.Contains(outputStr, "Database created") &&
+		!strings.Contains(outputStr, "database created successfully") {
+		return fmt.Errorf("whowaswhen did not rebuild the database (is source/whowaswhen the DB builder, not ruler-query?): %s", outputStr)
+	}
+
+	if info, err := os.Stat(timestampFile); err != nil {
+		return fmt.Errorf("timestamp file missing after rebuild: %w", err)
+	} else if !mtimeBefore.IsZero() && !info.ModTime().After(mtimeBefore) {
+		return fmt.Errorf("timestamp file was not updated after rebuild")
 	}
 
 	logMsg("Database update completed successfully")
-	logMsg("whowaswhen output: %s", string(output))
+	logMsg("whowaswhen output: %s", outputStr)
 
 	return nil
 }
