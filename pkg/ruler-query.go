@@ -232,6 +232,47 @@ const (
 	timestampName  = "timestamp.txt"
 )
 
+// databaseSchemaIsCurrent reports whether the database has the columns this
+// binary queries. Releases up to 0.4 shipped a generator that wrote rulers
+// without born/died, so an upgrading user can arrive with a database that is
+// present, recent by timestamp, and unusable — every year query fails with
+// "no such column: r.born" until CHECK_RATE finally elapses, or forever when
+// the user has set CHECK_RATE to 0.
+func databaseSchemaIsCurrent(dbPath string) bool {
+	db, err := openWhoWasWhenDB(dbPath)
+	if err != nil {
+		return false
+	}
+	defer db.Close()
+
+	found := map[string]bool{}
+	rows, err := db.Query("PRAGMA table_info(rulers)")
+	if err != nil {
+		return false
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var cid int
+		var name, ctype string
+		var notnull, pk int
+		var dflt sql.NullString
+		if err := rows.Scan(&cid, &name, &ctype, &notnull, &dflt, &pk); err != nil {
+			return false
+		}
+		found[strings.ToLower(name)] = true
+	}
+	if rows.Err() != nil {
+		return false
+	}
+	for _, col := range []string{"born", "died"} {
+		if !found[col] {
+			logMsg("Database is missing rulers.%s; treating as stale", col)
+			return false
+		}
+	}
+	return true
+}
+
 // seedFromBundledZip extracts the database we ship alongside the binary into the
 // workflow data folder, then deletes the archive so it only ever runs once. It
 // is a no-op when no archive is present.
@@ -261,9 +302,20 @@ func seedFromBundledZip(dataFolder string) error {
 
 	dbDestPath := filepath.Join(dataFolder, dbFileName)
 	if _, err := os.Stat(dbDestPath); err == nil {
-		logMsg("Database already present, discarding bundled archive")
-		_ = os.Remove(zipPath)
-		return nil
+		if databaseSchemaIsCurrent(dbDestPath) {
+			logMsg("Database already present, discarding bundled archive")
+			_ = os.Remove(zipPath)
+			return nil
+		}
+		// Stale schema from an older release: replace it with the bundled
+		// database rather than leaving the workflow broken until the next
+		// refresh. The old file is kept alongside, not deleted.
+		backup := filepath.Join(dataFolder, fmt.Sprintf("whoWasWhen_backup_%s.db", time.Now().UTC().Format("20060102T150405Z")))
+		if err := os.Rename(dbDestPath, backup); err != nil {
+			logMsg("Warning: could not back up stale database: %v", err)
+		} else {
+			logMsg("Backed up stale database to %s", backup)
+		}
 	}
 
 	logMsg("Found %s, seeding data folder", bundledZipName)
@@ -2425,6 +2477,17 @@ func checkDatabaseUpdate(config Config, dataFolder string, forceRefresh bool) (b
 	// If force refresh is requested, always update
 	if forceRefresh {
 		logMsg("Force refresh requested, updating database...")
+		err := runUpdateScript(config, dataFolder)
+		return true, err
+	}
+
+	dbPath := filepath.Join(dataFolder, dbFileName)
+	if _, err := os.Stat(dbPath); err == nil && !databaseSchemaIsCurrent(dbPath) {
+		// Seeding could not repair it (no archive bundled, or it was already
+		// consumed). Rebuild regardless of CHECK_RATE: a stale-schema database
+		// makes every year query fail, so honouring "never update" here would
+		// just leave the workflow broken.
+		logMsg("Stale database schema, rebuilding regardless of CHECK_RATE...")
 		err := runUpdateScript(config, dataFolder)
 		return true, err
 	}
