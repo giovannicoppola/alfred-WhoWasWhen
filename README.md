@@ -90,7 +90,7 @@ Beyond the workflow's search, the app adds:
 
 # Changelog
 
-- 2026-09-14 version 0.4.1: fixes first-run setup, which could hang or fail to build the database, and year searches that returned an error instead of results. The database now ships with the workflow, so the first search works straight away and without a network. **If you are on 0.4 or earlier, please update** — existing installations repair themselves on the next search.
+- 2026-09-14 version 0.4.1: maintenance release — fixes first-time setup and the scheduled refresh; the database now ships with the workflow, so the first search works right away without a download.
 - 2026-07-08 version 0.4: accent- and case-insensitive search; person results now show ages; refresh rate now a slider in Workflow Configuration; [iPhone companion app](https://giovannicoppola.github.io/alfred-WhoWasWhen/).
 - 2025-07-19 version 0.3: minor changes preparing for Gallery submission
 - 2025-07-10 version 0.2: added auto-refresh, `--e` flag
