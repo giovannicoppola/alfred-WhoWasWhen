@@ -22,7 +22,7 @@ android {
         applicationId = "studio.cimento.whowaswhen"
         minSdk = 26
         targetSdk = 36
-        versionCode = 3
+        versionCode = 4
         versionName = "1.1"
     }
 
@@ -90,10 +90,6 @@ dependencies {
 
     // Image loading for Wikipedia portraits/thumbnails.
     implementation("io.coil-kt:coil-compose:2.7.0")
-    // On-device face detection for portrait cropping (mirrors iOS Vision).
-    // Unbundled variant: the model is delivered via Google Play services on
-    // demand rather than packed into the APK, keeping the download small.
-    implementation("com.google.android.gms:play-services-mlkit-face-detection:17.1.0")
     // Wikipedia REST summary fetch.
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 

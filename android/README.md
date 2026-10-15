@@ -66,7 +66,7 @@ and Android Back pops one level.
 | custom `fold()` SQL function | precomputed `*_fold` shadow columns (`DatabaseProvider.kt`) |
 | `QueryParser`, `QuizEngine`, models | ported ~1:1 to Kotlin |
 | `WikipediaClient` (URLSession) | `WikipediaClient.kt` (OkHttp) |
-| `PortraitLoader` (Vision face crop) | `FaceCropTransformation.kt` (Coil + ML Kit) |
+| `PortraitLoader` (Vision face crop) | `FaceCropTransformation.kt` (Coil + framework `android.media.FaceDetector`) |
 | `FavoritesStore` / `QuizStats` (UserDefaults) | JSON file / SharedPreferences |
 | `AppModel` + SwiftUI views | `WwwViewModel` (incl. tab/stack/screen state) + Compose screens in `ui/` |
 | SwiftUI system styling | iOS design kit (`Theme.kt`, `IosComponents.kt`, `SwipeActions.kt`) |

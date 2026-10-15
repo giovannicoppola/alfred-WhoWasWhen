@@ -1,13 +1,11 @@
 package com.giovannicoppola.whowaswhen.data
 
 import android.graphics.Bitmap
+import android.graphics.PointF
 import android.graphics.Rect
+import android.media.FaceDetector
 import coil.size.Size
 import coil.transform.Transformation
-import com.google.android.gms.tasks.Tasks
-import com.google.mlkit.vision.common.InputImage
-import com.google.mlkit.vision.face.FaceDetection
-import com.google.mlkit.vision.face.FaceDetectorOptions
 
 /**
  * A Coil transformation that crops a portrait to a face-centered square.
@@ -38,26 +36,36 @@ class FaceCropTransformation : Transformation {
         return Bitmap.createBitmap(input, originX, originY, side, side)
     }
 
-    private fun faceUnion(bitmap: Bitmap): Rect? {
-        val options = FaceDetectorOptions.Builder()
-            .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_FAST)
-            .build()
-        val detector = FaceDetection.getClient(options)
-        return try {
-            val image = InputImage.fromBitmap(bitmap, 0)
-            val faces = Tasks.await(detector.process(image))
-            if (faces.isNullOrEmpty()) return null
-            val union = Rect(faces[0].boundingBox)
-            for (i in 1 until faces.size) union.union(faces[i].boundingBox)
-            union
-        } catch (e: Exception) {
-            null
-        } finally {
-            detector.close()
+    private fun faceUnion(bitmap: Bitmap): Rect? = try {
+        // FaceDetector needs an RGB_565 bitmap with an even width.
+        val even = bitmap.width and 1.inv()
+        val src = if (even == bitmap.width) bitmap
+        else Bitmap.createBitmap(bitmap, 0, 0, even, bitmap.height)
+        val rgb565 = src.copy(Bitmap.Config.RGB_565, false)
+        val faces = arrayOfNulls<FaceDetector.Face>(MAX_FACES)
+        val found = FaceDetector(rgb565.width, rgb565.height, MAX_FACES).findFaces(rgb565, faces)
+        var union: Rect? = null
+        val mid = PointF()
+        for (i in 0 until found) {
+            val face = faces[i] ?: continue
+            face.getMidPoint(mid)
+            // The detector reports the point between the eyes; approximate the
+            // head as a box around it, nudged down toward the face's center.
+            val r = face.eyesDistance() * 1.5f
+            val cy = mid.y + face.eyesDistance() * 0.4f
+            val box = Rect((mid.x - r).toInt(), (cy - r).toInt(), (mid.x + r).toInt(), (cy + r).toInt())
+            union = union?.apply { union(box) } ?: box
         }
+        union
+    } catch (e: Exception) {
+        null
     }
 
     override fun equals(other: Any?): Boolean = other is FaceCropTransformation
 
     override fun hashCode(): Int = cacheKey.hashCode()
+
+    private companion object {
+        const val MAX_FACES = 5
+    }
 }

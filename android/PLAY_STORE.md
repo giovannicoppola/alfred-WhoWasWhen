@@ -11,7 +11,7 @@ only you can do.
 
 | Asset | Path |
 |---|---|
-| Signed release bundle (upload this) | `app/build/outputs/bundle/release/app-release.aab` (6.4 MB, versionCode 3 / 1.1) |
+| Signed release bundle (upload this) | `app/build/outputs/bundle/release/app-release.aab` (5.8 MB, versionCode 4 / 1.1) |
 | Signed release APK (sideload/testing) | `app/build/outputs/apk/release/app-release.apk` (5.6 MB) |
 | Hi-res store icon (512×512) | `play/play-store-icon-512.png` |
 | Feature graphic (1024×500) | `play/feature-graphic-1024x500.png` |
@@ -82,7 +82,8 @@ permanent once uploaded.
   (from `docs/privacy.html`). Required.
 - **Data safety form:** the app **collects and shares no user data**. It only
   makes outbound HTTPS calls to Wikipedia for portraits/summaries (no accounts,
-  no analytics, no ads). Declare: no data collected.
+  no analytics, no ads, no Google SDKs — see the ML Kit note below). Declare:
+  no data collected.
 - **Content rating:** fill the questionnaire — it will rate as *Everyone*.
 - **Target audience:** not directed at children (choose 13+ or all ages as you
   prefer); no ads.
@@ -104,9 +105,11 @@ Submit for review; first review typically takes a few days.
 - **Localized listings** — optional.
 
 ## Notes / decisions baked into the build
-- `minSdk 26` (Android 8.0+), `targetSdk 35` — meets Play's current target-API
+- `minSdk 26` (Android 8.0+), `targetSdk 36` — Play requires 36 for new apps (a 35 upload was rejected); meets the target-API
   requirement.
-- ML Kit face detection uses the **unbundled** (Play services) model, which is why
-  the download is ~5 MB instead of ~55 MB. It downloads the model on first use;
-  on a device without Google Play services, portraits simply fall back to icons.
+- Portrait face-centering uses the framework's on-device `android.media.FaceDetector`,
+  **not ML Kit**: ML Kit reports usage metrics (device/app info, install IDs) to
+  Google, which would break the "no data collected" Data safety answer and the
+  privacy policy. Don't add Google SDKs (ML Kit, Firebase, Play services) without
+  revisiting both.
 - R8 minification + resource shrinking are on for release.
