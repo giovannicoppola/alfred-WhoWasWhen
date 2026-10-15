@@ -64,8 +64,11 @@ permanent once uploaded.
 - **Full description:** reuse/adapt the copy in `../ios/APPSTORE.md`.
 - **App icon:** upload `play/play-store-icon-512.png`.
 - **Feature graphic:** upload `play/feature-graphic-1024x500.png`.
-- **Phone screenshots:** upload `play/screenshots/01-home` … `07-newbest` in
-  order (seven; Play allows 2–8). They mirror the iOS App Store set: home with
+- **Phone screenshots:** upload `play/screenshots-9x16/01-home` … `07-newbest` in
+  order. Play only takes 16:9/9:16, so the raw 1080×2400 captures in
+  `play/screenshots/` are framed to 1080×1920 by
+  `python3 play/frame_screenshots.py play/screenshots play/screenshots-9x16`
+  (seven; Play allows 2–8). They mirror the iOS App Store set: home with
   On this day, 1789, a quiz question, Discover, the Louis XVI detail sheet, the
   English Monarch timeline, and the new-best confetti. `00-launcher` is the
   home-screen icon, not needed for the listing. To retake them, use the debug

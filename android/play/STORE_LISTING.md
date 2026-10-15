@@ -57,8 +57,8 @@ Every title's lineage as a scrollable visual timeline: all 267 Popes, all 66 Eng
 FAVORITES
 Save any ruler or event to your own collection. No account needed.
 
-PRIVATE AND OFFLINE BY DESIGN
-The full history database ships inside the app. Search, quiz, timelines, and favorites all work with no connection, no account, no ads, and no data collection of any kind.
+OFFLINE BY DESIGN
+The full history database ships inside the app. Search, quiz, timelines, and favorites all work with no connection, no account, and no ads.
 
 Spanning 776 BC to today — from the consuls of the Roman Republic to modern presidents. WhoWasWhen is the pocket companion to the WhoWasWhen Alfred workflow, with the same data and the same answers.
 ```
@@ -73,10 +73,10 @@ Spanning 776 BC to today — from the consuls of the Roman Republic to modern pr
 |---|---|
 | **App category** | Education *(alt: Books & Reference)* |
 | **Tags** | History, Reference, Trivia *(Play lets you pick up to 5)* |
-| **Email** | giovannicoppola@gmail.com |
+| **Email** | cimento.studio.info@gmail.com *(matches the other Cimento Studio apps)* |
 | **Website** | https://giovannicoppola.github.io/alfred-WhoWasWhen/ |
 | **Privacy policy** | https://giovannicoppola.github.io/alfred-WhoWasWhen/privacy.html |
-| **Graphics** | Icon `play/play-store-icon-512.png`, Feature graphic `play/feature-graphic-1024x500.png`, Screenshots `play/screenshots/` |
+| **Graphics** | Icon `play/play-store-icon-512.png`, Feature graphic `play/feature-graphic-1024x500.png`, Screenshots `play/screenshots-9x16/` (Play rejects the raw 1080×2400 captures; `frame_screenshots.py` letterboxes them to 1080×1920 on the accent color) |
 
 ## Notes
 - Play has **no keywords field** — ASO comes from the title, short description,
