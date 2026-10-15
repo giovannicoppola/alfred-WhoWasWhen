@@ -48,7 +48,7 @@ new upload — Play rejects a reused `versionCode`.
 
 ## Step 2 — Create the app  *(you)*
 In the Console: **Create app** → name "WhoWasWhen", language, "App", "Free". The
-package name **`com.giovannicoppola.whowaswhen`** is set by the bundle and is
+package name **`studio.cimento.whowaswhen`** (Cimento Studio account) is set by the bundle and is
 permanent once uploaded.
 
 ## Step 3 — Upload the bundle & enable Play App Signing  *(you)*

@@ -19,7 +19,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.giovannicoppola.whowaswhen"
+        applicationId = "studio.cimento.whowaswhen"
         minSdk = 26
         targetSdk = 35
         versionCode = 2

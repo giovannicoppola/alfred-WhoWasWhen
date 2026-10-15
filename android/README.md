@@ -92,14 +92,14 @@ in Android Studio to build and run from the IDE.
 ```bash
 # boot an emulator (or plug in a device with USB debugging), then:
 ./gradlew :app:installDebug
-adb shell am start -n com.giovannicoppola.whowaswhen/.MainActivity
+adb shell am start -n studio.cimento.whowaswhen/com.giovannicoppola.whowaswhen.MainActivity
 ```
 
 Debug builds accept the same automation hooks as the iOS `WWW_*` env vars,
 as intent extras, to jump straight to a screen for screenshots:
 
 ```bash
-adb shell am start -S -n com.giovannicoppola.whowaswhen/.MainActivity \
+adb shell am start -S -n studio.cimento.whowaswhen/com.giovannicoppola.whowaswhen.MainActivity \
     --es WWW_QUERY 1789 --es WWW_DETAIL Washington
 ```
 
