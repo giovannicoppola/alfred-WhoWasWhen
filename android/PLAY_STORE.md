@@ -11,7 +11,7 @@ only you can do.
 
 | Asset | Path |
 |---|---|
-| Signed release bundle (upload this) | `app/build/outputs/bundle/release/app-release.aab` (6.4 MB, versionCode 2 / 1.1) |
+| Signed release bundle (upload this) | `app/build/outputs/bundle/release/app-release.aab` (6.4 MB, versionCode 3 / 1.1) |
 | Signed release APK (sideload/testing) | `app/build/outputs/apk/release/app-release.apk` (5.6 MB) |
 | Hi-res store icon (512×512) | `play/play-store-icon-512.png` |
 | Feature graphic (1024×500) | `play/feature-graphic-1024x500.png` |
