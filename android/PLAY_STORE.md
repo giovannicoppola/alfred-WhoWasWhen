@@ -40,11 +40,10 @@ new upload — Play rejects a reused `versionCode`.
 1. Go to https://play.google.com/console and register. **One-time $25 fee.**
 2. Complete **identity verification** (government ID; for an organization account,
    also D-U-N-S). This can take a few days — start it early.
-3. **Heads-up on the testing requirement:** personal developer accounts created
-   recently must run a **closed test with ≥12 testers for 14 continuous days**
-   before Google will let you promote to production. That 14-day clock is usually
-   the longest part of launching — so create the account and start a closed test
-   as soon as you can.
+3. **Done:** the app lives on the **Cimento Studio organization account**. The
+   "closed test with ≥12 testers for 14 days" rule only applies to new *personal*
+   accounts, so it doesn't apply here — production is open once the store listing
+   and app-content forms are complete.
 
 ## Step 2 — Create the app  *(you)*
 In the Console: **Create app** → name "WhoWasWhen", language, "App", "Free". The
@@ -56,8 +55,8 @@ permanent once uploaded.
 2. Upload `app-release.aab`.
 3. Accept **Play App Signing** (recommended) — Google holds the real signing key;
    your `upload-keystore.jks` is just the upload key.
-4. Add yourself as an internal tester and verify the install works, then move to
-   **Closed testing** to start the 14-day clock (Step 1).
+4. Add yourself as an internal tester and verify the install works. No closed
+   test is required on the organization account (Step 1).
 
 ## Step 4 — Store listing  *(you, assets ready)*
 - **App name:** WhoWasWhen
