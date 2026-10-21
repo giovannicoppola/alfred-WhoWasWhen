@@ -11,7 +11,7 @@ src="https://img.shields.io/github/downloads/giovannicoppola/alfred-whowaswhen/t
 src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fgiovannicoppola%2Falfred-gallery-downloads%40main%2Fdownloads.json&query=%24.whowaswhen%5B0%5D.display&label=Gallery%20Downloads&color=blue&logo=alfred"><br/>
 </a>
 
-🌐 **[Website](https://giovannicoppola.github.io/alfred-WhoWasWhen/)** · 📱 **[iPhone app](https://apps.apple.com/app/whowaswhen/id6780277187)**
+🌐 **[Website](https://giovannicoppola.github.io/alfred-WhoWasWhen/)** · 📱 **[iPhone app](https://apps.apple.com/app/whowaswhen/id6780277187)** · 🤖 **[Android app](https://play.google.com/store/apps/details?id=studio.cimento.whowaswhen)**
 
 ![](screenshot.png)
 
@@ -59,11 +59,12 @@ Once a result is identified, it can be actioned in one of five ways:
 - Refresh rate (in days): Frequency at which WhoWasWhen checks for changes in the master database. Set to 0 to never update. Default: 30 days
 - Keyword to force a database refresh (default: `::whoWasWhen-refresh`)
 
-# iPhone companion app 👑📱
+# iPhone & Android companion app 👑📱
 
-WhoWasWhen also has a free iPhone companion app — the same history in your pocket when you're away from your Mac. It shares the same data and answers as the workflow, and works fully **offline** with **no account and no tracking**.
+WhoWasWhen also has a free companion app for iPhone and Android — the same history in your pocket when you're away from your Mac. It shares the same data and answers as the workflow, and works fully **offline** with **no account and no tracking**.
 
 <a href="https://apps.apple.com/app/whowaswhen/id6780277187"><img alt="Download on the App Store" src="appstore-badge.svg" height="48"></a>
+<a href="https://play.google.com/store/apps/details?id=studio.cimento.whowaswhen"><img alt="Get it on Google Play" src="googleplay-badge.png" height="48"></a>
 
 Beyond the workflow's search, the app adds:
 
