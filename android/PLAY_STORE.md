@@ -1,9 +1,11 @@
 # Publishing WhoWasWhen to Google Play
 
-This is the checklist for getting the Android app onto the Play Store. The
-**technical prep is done** (see "What's ready" below); the remaining work is the
-Play Console account, the store listing, and the compliance forms — the parts
-only you can do.
+**Live on Google Play** since 2026-10-16:
+https://play.google.com/store/apps/details?id=studio.cimento.whowaswhen
+(Cimento Studio organization account, app ID 4972748922919226354).
+
+Steps 1–6 below are the record of the first launch; for later versions follow
+"Shipping an update".
 
 ---
 
@@ -15,7 +17,7 @@ only you can do.
 | Signed release APK (sideload/testing) | `app/build/outputs/apk/release/app-release.apk` (5.6 MB) |
 | Hi-res store icon (512×512) | `play/play-store-icon-512.png` |
 | Feature graphic (1024×500) | `play/feature-graphic-1024x500.png` |
-| Phone screenshots | `play/screenshots/01-home … 07-newbest` (iOS-style redesign, 2026-10-13) |
+| Phone screenshots | `play/screenshots-9x16/01-home … 07-newbest` (framed from the raw `play/screenshots/` captures) |
 | Upload keystore (KEEP SAFE, gitignored) | `keystore/upload-keystore.jks` |
 | Keystore credentials (gitignored) | `keystore.properties` |
 
@@ -92,8 +94,34 @@ permanent once uploaded.
 - **Government/financial/health:** none apply.
 
 ## Step 6 — Roll out  *(you)*
-Internal testing → **Closed testing** (14 days, ≥12 testers) → **Production**.
-Submit for review; first review typically takes a few days.
+**Test and release → Production → Create new release** → add the bundle → Next →
+Save → **Publishing overview → Send changes for review**. No closed test is
+needed on the organization account. Managed publishing is off, so the release
+goes live as soon as Google approves it (the first production review took under a week).
+
+⚠️ Use the **web** Play Console. The first submission, made from the Play Console
+phone app, landed on **Closed testing – Alpha** instead of Production: Google
+approved it, but the app stayed invisible (Production "Inactive") until a real
+Production release was created. After submitting, check **Latest releases and
+bundles** — the *Track* column must say Production.
+
+---
+
+## Shipping an update
+1. Bump `versionCode` (last used: **4**, so the next is ≥5 — codes 2–4 are all
+   taken) and `versionName` in `app/build.gradle.kts`.
+2. Rebuild the bundle (see "Rebuilding the bundle later").
+3. **Production → Create new release** → Upload the `.aab` → release notes →
+   Next → Save → **Publishing overview → Send changes for review**.
+4. Release notes: each language tag on its own line, or the Console rejects
+   them with "tag not closed":
+   ```
+   <en-US>
+   What changed in this version.
+   </en-US>
+   ```
+5. The "native code without debug symbols" warning is expected and doesn't
+   block the release.
 
 ---
 
