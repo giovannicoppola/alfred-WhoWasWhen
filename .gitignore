@@ -37,3 +37,8 @@ ios/new-features.md
 # Built at package time by pkg/package-release.sh; source/ is the live
 # workflow folder, so a zip left here is deleted by the next local run.
 source/whoWasWhen.zip
+
+# App tour tooling (tools/tour): build output, Node modules, the generated runner project
+build/
+tools/tour/node_modules/
+tools/tour/runner/WhoWasWhenTour.xcodeproj/

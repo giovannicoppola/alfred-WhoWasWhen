@@ -1,0 +1,15 @@
+{
+  "name": "whowaswhen-tour",
+  "private": true,
+  "description": "Films, cuts and narrates the app tour for the landing page. See README.md.",
+  "type": "module",
+  "scripts": {
+    "record": "node record.mjs ${SIM:?set SIM to a simulator udid} ../../build/tour",
+    "voice": "${KOKORO_PYTHON:-python3} narrate.py narration.txt ../../build/tour/voice --voice af_heart",
+    "plan": "${KOKORO_PYTHON:-python3} plan.py ../../build/tour ../../build/tour/voice",
+    "video": "node compose.mjs ../../build/tour ../../docs/media/whowaswhen-tour.mp4 && ${KOKORO_PYTHON:-python3} mix.py ../../build/tour ../../build/tour/voice ../../docs/media/whowaswhen-tour.mp4"
+  },
+  "devDependencies": {
+    "playwright-core": "1.56.1"
+  }
+}
