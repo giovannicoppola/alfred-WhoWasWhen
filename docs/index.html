@@ -142,6 +142,20 @@
     .gallery { grid-template-columns: repeat(2, 1fr); }
     .syntax .row { grid-template-columns: 1fr; gap: 6px; }
   }
+  /* The narrated tour beside its chapters, above the screenshots: pressing a chapter jumps the
+     video there, and the one playing is marked. */
+  .tour { display: grid; grid-template-columns: minmax(0, 300px) 1fr; gap: 48px; align-items: center; margin: 0 auto 64px; max-width: 900px; }
+  .tour video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; border-radius: 22px; background: #fff; border: 1px solid var(--line); box-shadow: 0 30px 70px rgba(20,24,50,.18); }
+  .tour h3 { font-size: 24px; margin: 0 0 10px; }
+  .tour p { color: var(--muted); margin: 0; }
+  .chapters { list-style: none; margin: 22px 0 0; padding: 0; max-width: 30rem; border-top: 1px solid var(--line); }
+  .chapters li { border-bottom: 1px solid var(--line); }
+  .chapters button { display: grid; grid-template-columns: 3rem 1fr; gap: 12px; align-items: baseline; width: 100%; padding: 10px 10px; background: none; border: 0; border-left: 3px solid transparent; font: inherit; font-size: 16px; color: var(--ink); text-align: left; cursor: pointer; }
+  .chapters time { color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; }
+  .chapters button:hover span { text-decoration: underline; text-decoration-color: var(--indigo); }
+  .chapters button[aria-current="true"] { background: var(--indigo-soft); border-left-color: var(--indigo); }
+  .chapters button:focus-visible { outline: 3px solid var(--indigo); outline-offset: 2px; }
+  @media (max-width: 760px) { .tour { grid-template-columns: 1fr; gap: 28px; } .tour video { max-width: 300px; margin: 0 auto; } }
 </style>
 </head>
 <body>
@@ -254,6 +268,25 @@
       <h2>A look inside</h2>
       <p>The same fast, no-friction search whether you ask with a year, a name, or an event.</p>
     </div>
+    <div class="tour">
+      <video controls playsinline preload="none" poster="media/whowaswhen-tour-poster.jpg" width="1080" height="1920" data-tour-video aria-describedby="tour-about">
+        <source src="media/whowaswhen-tour.mp4" type="video/mp4">
+      </video>
+      <div>
+        <h3>The 50-second tour</h3>
+        <p id="tour-about">A narrated walk through the app: 1789 and the artists of 1888, van Gogh's details and a jump to the year he was born, every English monarch on a timeline, Discover and the quiz. Pick a moment to jump to it.</p>
+        <ol class="chapters" data-tour-chapters hidden>
+          <li><button type="button" data-t="0.0"><time>0:00</time><span>Who was when?</span></button></li>
+          <li><button type="button" data-t="4.41"><time>0:04</time><span>Who ruled in 1789</span></button></li>
+          <li><button type="button" data-t="10.96"><time>0:10</time><span>Beyond rulers: the artists of 1888</span></button></li>
+          <li><button type="button" data-t="19.61"><time>0:19</time><span>Who they were</span></button></li>
+          <li><button type="button" data-t="25.53"><time>0:25</time><span>Travel through time</span></button></li>
+          <li><button type="button" data-t="30.11"><time>0:30</time><span>Every holder of a title</span></button></li>
+          <li><button type="button" data-t="36.31"><time>0:36</time><span>Discover</span></button></li>
+          <li><button type="button" data-t="42.18"><time>0:42</time><span>Quiz yourself</span></button></li>
+        </ol>
+      </div>
+    </div>
     <div class="gallery">
       <figure>
         <div class="phone"><img src="screenshots/year-1789.png" alt="Search results for the year 1789 with portraits and ages"></div>
@@ -322,10 +355,35 @@
       <a href="https://play.google.com/store/apps/details?id=studio.cimento.whowaswhen">Google Play</a>
       <a href="https://github.com/giovannicoppola/alfred-WhoWasWhen">GitHub</a>
       <a href="privacy.html">Privacy</a>
+      <a href="https://ko-fi.com/cimentostudio" rel="noopener">Tip jar ♥</a>
       <a href="mailto:giovannicoppola@gmail.com">Support</a>
     </nav>
   </div>
 </footer>
 
+  <script>
+    // The tour's chapters jump the video and mark the one playing. Without this script the
+    // list stays hidden and the video still plays; nothing here runs until a chapter is pressed.
+    (function () {
+      var video = document.querySelector("[data-tour-video]");
+      var list = document.querySelector("[data-tour-chapters]");
+      if (!video || !list) return;
+      list.hidden = false;
+      var buttons = Array.prototype.slice.call(list.querySelectorAll("button"));
+      var starts = buttons.map(function (b) { return Number(b.dataset.t); });
+      buttons.forEach(function (button, i) {
+        button.addEventListener("click", function () {
+          var jump = function () { video.currentTime = starts[i]; video.play().catch(function () {}); };
+          if (video.readyState >= 1) jump();
+          else { video.addEventListener("loadedmetadata", jump, { once: true }); video.load(); }
+        });
+      });
+      video.addEventListener("timeupdate", function () {
+        var current = -1;
+        starts.forEach(function (t, i) { if (video.currentTime >= t - 0.05) current = i; });
+        buttons.forEach(function (b, i) { if (i === current) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current"); });
+      });
+    })();
+  </script>
 </body>
 </html>
